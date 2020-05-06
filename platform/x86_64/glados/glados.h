@@ -36,7 +36,6 @@
 #include "mosys/platform.h"
 
 /* platform callbacks */
-extern struct memory_cb glados_memory_cb;	/* memory.c */
 extern struct sys_cb glados_sys_cb;		/* sys.c */
 
 #endif /* EXPERIMENTAL_GLADOS_H_ */
