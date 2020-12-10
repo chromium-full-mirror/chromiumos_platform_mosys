@@ -211,6 +211,10 @@ struct elog_ec_event {
 #define  ELOG_WAKE_SOURCE_PME_PCIE23       0x2a
 #define  ELOG_WAKE_SOURCE_PME_PCIE24       0x2b
 #define  ELOG_WAKE_SOURCE_GPIO             0x2c
+#define  ELOG_WAKE_SOURCE_PME_TBT          0x2d
+#define  ELOG_WAKE_SOURCE_PME_TCSS_XHCI    0x2e
+#define  ELOG_WAKE_SOURCE_PME_TCSS_XDCI    0x2f
+#define  ELOG_WAKE_SOURCE_PME_TCSS_DMA     0x30
 
 struct elog_wake_source {
 	uint8_t source;

@@ -273,6 +273,10 @@ int elog_print_data(struct platform_intf *intf, struct smbios_log_entry *entry,
 		{ ELOG_WAKE_SOURCE_PME_PCIE23, "PME - PCIE23" },
 		{ ELOG_WAKE_SOURCE_PME_PCIE24, "PME - PCIE24" },
 		{ ELOG_WAKE_SOURCE_GPIO, " GPIO #" },
+		{ ELOG_WAKE_SOURCE_PME_TBT, "PME - Thunderbolt" },
+		{ ELOG_WAKE_SOURCE_PME_TCSS_XHCI, "PME - TCSS XHCI" },
+		{ ELOG_WAKE_SOURCE_PME_TCSS_XHCI, "PME - TCSS XDCI" },
+		{ ELOG_WAKE_SOURCE_PME_TCSS_XHCI, "PME - TCSS DMA" },
 		{ 0, NULL },
 	};
 	static struct valstr ec_event_types[] = {
