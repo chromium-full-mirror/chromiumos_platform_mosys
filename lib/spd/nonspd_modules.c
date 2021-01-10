@@ -351,6 +351,22 @@ const struct nonspd_mem_info hynix_lpddr4x_h9hcnnncpmmlxr_nee = {
                   'X', 'R', '-', 'N', 'E', 'E'},
 };
 
+const struct nonspd_mem_info hynix_lpddr4x_h9hcnnnfammlxr_nee = {
+	.dram_type		= SPD_DRAM_TYPE_LPDDR4X,
+
+	.module_size_mbits	=  65536,
+	.num_ranks		= 2,
+	.device_width		= 32,
+	.ddr_freq		= { DDR_800, DDR_1200, DDR_1600 },
+
+	.module_mfg_id		= { .msb = 0xad, .lsb = 0x80 },
+	.dram_mfg_id		= { .msb = 0xad, .lsb = 0x80 },
+
+	.part_num =
+				{ 'H', '9', 'H', 'C', 'N', 'N', 'N', 'F', 'A', 'M', 'M', 'L',
+				  'X', 'R', '-', 'N', 'E', 'E' },
+};
+
 const struct nonspd_mem_info micron_mt41k256m16ha = {
 	.dram_type		= SPD_DRAM_TYPE_DDR3,
 	.module_type.ddr3_type	= DDR3_MODULE_TYPE_UNDEFINED,
