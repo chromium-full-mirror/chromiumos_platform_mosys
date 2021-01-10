@@ -43,6 +43,16 @@ static int read_ram_code(struct platform_intf *intf)
 			trogdor_mem_info = &micron_lpddr4x_mt53e2g32d4nq_046wta;
 			break;
 
+		case 4:
+			trogdor_dimm_count = 1;
+			trogdor_mem_info = &hynix_lpddr4x_h9hcnnncpmmlxr_nee;
+			break;
+
+		case 5:
+			trogdor_dimm_count = 1;
+			trogdor_mem_info = &hynix_lpddr4x_h9hcnnnfammlxr_nee;
+			break;
+
 		default:
 			lprintf(LOG_ERR, "Unknown ram code.\n");
 			ret = -1;
