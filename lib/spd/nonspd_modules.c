@@ -1315,6 +1315,30 @@ static int transfer_speed_from_smbios_to_nonspd_mem_info(
 
 static enum spd_dram_type map_smbios_mem_type_to_spd(struct smbios_table *table)
 {
+	char *part_number = table->string[table->data.mem_device.part_number];
+	static const struct {
+		enum spd_dram_type type;
+		const char *prefix;
+	} part_number_matches[] = {
+		/* Hynix */
+		{ SPD_DRAM_TYPE_DDR3, "h5t" },
+		{ SPD_DRAM_TYPE_LPDDR3, "h9c" },
+		{ SPD_DRAM_TYPE_LPDDR4, "h9h" },
+
+		/* Samsung */
+		{ SPD_DRAM_TYPE_DDR3, "k4b" },
+		{ SPD_DRAM_TYPE_LPDDR3, "k3q" },
+		{ SPD_DRAM_TYPE_LPDDR3, "k4e" },
+		{ SPD_DRAM_TYPE_LPDDR4, "k3u" },
+		{ SPD_DRAM_TYPE_LPDDR4, "k4f" },
+
+		/* Micron */
+		{ SPD_DRAM_TYPE_DDR4, "mt40" },
+		{ SPD_DRAM_TYPE_DDR3, "mt41" },
+		{ SPD_DRAM_TYPE_LPDDR3, "mt52" },
+		{ SPD_DRAM_TYPE_LPDDR4, "mt53" },
+	};
+
 	switch (table->data.mem_device.type) {
 	case SMBIOS_MEMORY_TYPE_DDR3:
 		return SPD_DRAM_TYPE_DDR3;
@@ -1324,6 +1348,16 @@ static enum spd_dram_type map_smbios_mem_type_to_spd(struct smbios_table *table)
 		return SPD_DRAM_TYPE_LPDDR3;
 	case SMBIOS_MEMORY_TYPE_LPDDR4:
 		return SPD_DRAM_TYPE_LPDDR4;
+	case SMBIOS_MEMORY_TYPE_UNKNOWN:
+		/* Do our best to figure it out from part numbers */
+		for (size_t i = 0; i < ARRAY_SIZE(part_number_matches); i++) {
+			if (!strncasecmp(part_number,
+					 part_number_matches[i].prefix,
+					 strlen(part_number_matches[i].prefix)))
+				return part_number_matches[i].type;
+		}
+
+		/* Fall thru */
 	default:
 		lprintf(LOG_ERR, "%s: Unknown SMBIOS memory type: %d\n",
 			__func__, table->data.mem_device.type);
