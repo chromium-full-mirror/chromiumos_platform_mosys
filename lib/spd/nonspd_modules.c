@@ -1348,6 +1348,7 @@ static enum spd_dram_type map_smbios_mem_type_to_spd(struct smbios_table *table)
 		return SPD_DRAM_TYPE_LPDDR3;
 	case SMBIOS_MEMORY_TYPE_LPDDR4:
 		return SPD_DRAM_TYPE_LPDDR4;
+	case SMBIOS_MEMORY_TYPE_OTHER:
 	case SMBIOS_MEMORY_TYPE_UNKNOWN:
 		/* Do our best to figure it out from part numbers */
 		for (size_t i = 0; i < ARRAY_SIZE(part_number_matches); i++) {
