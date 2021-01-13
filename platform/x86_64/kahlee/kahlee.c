@@ -74,7 +74,7 @@ static struct eventlog_cb kahlee_eventlog_cb = {
 
 static struct platform_cb kahlee_cb = {
 	.ec		= &cros_ec_cb,
-	.memory		= &cbfs_memory_cb,
+	.memory		= &smbios_only_memory_cb,
 	.sys 		= &kahlee_sys_cb,
 	.eventlog	= &kahlee_eventlog_cb,
 };
