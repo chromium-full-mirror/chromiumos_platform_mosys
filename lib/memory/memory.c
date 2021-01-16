@@ -8,12 +8,6 @@
 #include "lib/spd.h"
 #include "lib/smbios.h"
 
-struct memory_cb cbfs_memory_cb = {
-	.dimm_count	= smbios_dimm_count,
-	.spd		= &memory_spd_cbfs,
-	.dimm_speed	= smbios_dimm_speed,
-};
-
 struct memory_cb smbios_memory_cb = {
 	.dimm_count		= smbios_dimm_count,
 	.nonspd_mem_info	= &spd_set_nonspd_info,

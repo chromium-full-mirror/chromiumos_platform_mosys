@@ -36,22 +36,12 @@
 
 #include <inttypes.h>
 
-#include "intf/i2c.h"
 #include "lib/ddr4.h"
 #include "lib/val2str.h"
-
-#define SPD_READ          0
-#define SPD_WRITE         1
 
 #define SPD_DEFAULT_LENGTH 256
 #define SPD_DDR4_LENGTH    512
 #define SPD_MAX_LENGTH     SPD_DDR4_LENGTH
-
-#define SPD_DEFAULT_PART_OFF 128
-#define SPD_DDR4_PART_OFF    DDR4_SPD_REG_MODULE_PART_NUM_0
-
-#define SPD_DEFAULT_PART_LEN 18
-#define SPD_DDR4_PART_LEN    SPD_DEFAULT_PART_LEN
 
 #define SPD_PAGE_0        (0x6C >> 1)
 #define SPD_PAGE_1        (0x6E >> 1)
@@ -59,7 +49,6 @@
 /* forward declarations */
 struct kv_pair;
 struct platform_intf;
-struct spd_reg;
 
 /* different types of DRAM (fundamental memory type) for SPD */
 enum spd_dram_type {
@@ -123,16 +112,6 @@ enum ddr_freq {
 
 extern const char *ddr_freq_prettyprint[];
 
-/* spd register handlers */
-struct spd_reg {
-	const char *name;
-	const char *units;
-	const char *(*func)(struct spd_reg *reg,
-			    const uint8_t *eeprom,
-			    uint8_t byte);
-	const char *table[256];
-};
-
 struct spd_eeprom {
 	int length;
 	uint8_t data[SPD_MAX_LENGTH];
@@ -141,7 +120,6 @@ struct spd_eeprom {
 struct spd_device {
 	int dimm_num; /* DIMM number in system. */
 	enum spd_dram_type dram_type; /* Fundamental DRAM type. */
-	struct i2c_addr smbus; /* Address of DIMM in system. */
 	struct spd_eeprom eeprom;
 };
 
@@ -189,37 +167,6 @@ extern int spd_print_field(struct platform_intf *intf,
 extern int spd_print_raw(struct kv_pair *kv, int len, uint8_t *data);
 
 /*
- * spd_read_i2c  -  Read from SPD configuration space
- *
- * @intf:	platform interface
- * @bus:	i2c bus
- * @address:	i2c address
- * @reg:	register offset
- * @length:	number of bytes to read
- * @data:       data buffer
- *
- * returns number of bytes read
- * returns <0 to indicate error
- */
-extern int spd_read_i2c(struct platform_intf *intf, int bus,
-                        int addr, int reg, int length, void *data);
-
-/* spd_raw_access - read/write access method to SPDs
- *
- * @intf:  platform interface
- * @bus:  SMBus number of requested SPD
- * @address: SMBus address of requested SPD
- * @reg:  register in SPD to perform access on
- * @length:  length of access to perform
- * @data: pointer to buffer that is either filled or read from to do the access
- * @rw:  specify SPD operation (SPD_READ or SPD_WRITE)
- *
- * returns 0 on success, < 0 on error.
- */
-extern int spd_raw_access(struct platform_intf *intf, int bus, int address,
-                          int reg, int length, void *data, int rw);
-
-/*
  * spd_total_size  -  determine total bytes in spd from first few bytes
  *
  * @data:	spd data
@@ -229,32 +176,6 @@ extern int spd_raw_access(struct platform_intf *intf, int bus, int address,
  *
  */
 extern int spd_total_size(uint8_t *data);
-
-/*
- * SPD register and field callbacks.
- */
-
-/* Common register printing callbacks. */
-extern const char *spd_revision_code(struct spd_reg *reg,
-                                     const uint8_t * eeprom, uint8_t byte);
-extern const char *spd_shift_by(struct spd_reg *reg,
-                                const uint8_t * eeprom, uint8_t byte);
-extern const char *spd_module_bank_density(struct spd_reg *reg,
-                                           const uint8_t * eeprom,
-                                           uint8_t byte);
-extern const char *spd_shift_access_time(struct spd_reg *reg,
-                                         const uint8_t * eeprom, uint8_t byte);
-extern const char *spd_decimal_access_time(struct spd_reg *reg,
-                                           const uint8_t * eeprom,
-                                           uint8_t byte);
-extern const char *spd_burst(struct spd_reg *reg, const uint8_t * eeprom,
-                             uint8_t byte);
-extern const char *spd_readhex(struct spd_reg *reg,
-                               const uint8_t * eeprom, uint8_t byte);
-extern const char *spd_readbyte(struct spd_reg *reg,
-                                const uint8_t * eeprom, uint8_t byte);
-extern const char *spd_table_lookup(struct spd_reg *reg,
-                                    const uint8_t * eeprom, uint8_t byte);
 
 /*
  * spd_print_field_ddr3  -  add common DDR SPD fields into key=value pair
@@ -272,54 +193,4 @@ extern const char *spd_table_lookup(struct spd_reg *reg,
 extern int spd_print_field_ddr3(struct platform_intf *intf, struct kv_pair *kv,
                                 const void *data, enum spd_field_type type);
 
-/*
- * spd_print_field_ddr4  -  add common DDR SPD fields into key=value pair
- *
- * @intf:       platform interface
- * @kv:         key=value pair
- * @data:       raw spd data
- * @type:       type of field to retrieve
- *
- * returns 1 to indicate data added to key=value pair
- * returns 0 to indicate no data added
- * returns <0 to indicate error
- *
- */
-extern int spd_print_field_ddr4(struct platform_intf *intf, struct kv_pair *kv,
-                                const void *data, enum spd_field_type type);
-
-/*
- * spd_read_from_cbfs  -  retrieve SPD info from CBFS
- *
- * @intf:	platform interface
- * @module:	module number
- * @reg:	SPD register offset
- * @spd_len:	length of SPD data
- * @spd:	raw SPD data
- * @fw_size:	size of firmware image
- * @fw:		firmware image
- *
- * returns 0 to indicate success
- * returns <0 to indicate error
- */
-extern int spd_read_from_cbfs(struct platform_intf *intf,
-			      int module, int reg, int spd_len, uint8_t *spd,
-			      size_t fw_size, uint8_t *fw);
-
-/*
- * spd_read_cbfs_flashrom  -  retrieve SPD info from flashrom
- *
- * @intf:	platform interface
- * @dimm:	dimm number
- * @reg:	SPD register offset
- * @spd_len:	length of SPD data
- * @spd_buf:	raw SPD data buffer
- *
- * returns 0 to indicate success
- * returns <0 to indicate error
- */
-extern int spd_read_cbfs_flashrom(struct platform_intf *intf, int dimm,
-			    	  int reg, int spd_len, uint8_t *spd_buf);
-
-extern struct memory_spd_cb memory_spd_cbfs;
 #endif /* LIB_SPD_H__ */

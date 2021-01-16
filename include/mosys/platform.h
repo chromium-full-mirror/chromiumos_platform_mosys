@@ -102,8 +102,6 @@ struct memory_spd_cb {
 
 struct memory_cb {
 	int (*dimm_count)(struct platform_intf *intf);
-	int (*dimm_map)(struct platform_intf *intf,
-	                enum dimm_map_type type, int dimm);
 	int (*dimm_speed)(struct platform_intf *intf,
 	                  int dimm, struct kv_pair *kv);
 
