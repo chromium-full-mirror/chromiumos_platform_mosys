@@ -32,6 +32,9 @@
 #include <stdlib.h>
 #include <unistd.h>
 
+#include "intf/mmio.h"
+#include "intf/pci.h"
+
 #include "mosys/command_list.h"
 #include "mosys/platform.h"
 #include "mosys/intf_list.h"
@@ -159,10 +162,16 @@ static struct platform_cb rambi_cb = {
 	.eventlog	= &rambi_eventlog_cb,
 };
 
+static struct platform_op rambi_op = {
+	.pci		= &pci_file_intf,
+	.mmio		= &mmio_mmap_intf,
+};
+
 static struct platform_intf platform_rambi = {
 	.type		= PLATFORM_X86_64,
 	.sub		= rambi_sub,
 	.cb		= &rambi_cb,
+	.op		= &rambi_op,
 	.probe		= &rambi_probe,
 };
 REGISTER_PLATFORM(platform_rambi, "Rambi");

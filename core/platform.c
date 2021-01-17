@@ -123,9 +123,6 @@ struct platform_intf *mosys_platform_setup(const char *platform_name)
 		intf = p->entry;
 		if (!intf->name)
 			intf->name = "";
-		if (!intf->op)
-			intf->op = &platform_common_op;
-
 		platform_count++;
 	}
 

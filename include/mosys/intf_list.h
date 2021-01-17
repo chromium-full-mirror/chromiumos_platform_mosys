@@ -32,11 +32,7 @@
 #ifndef MOSYS_INTF_LIST_H__
 #define MOSYS_INTF_LIST_H__
 
-/* common operations */
 struct platform_intf;
-struct platform_op;
-
-extern struct platform_op platform_common_op;
 
 /*
  * intf_op_setup  -  prepare interface operations

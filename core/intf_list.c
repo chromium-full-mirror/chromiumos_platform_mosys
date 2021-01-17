@@ -33,14 +33,7 @@
 #include "mosys/intf_list.h"
 #include "mosys/platform.h"
 
-#include "intf/pci.h"
 #include "intf/mmio.h"
-
-/* common operations */
-struct platform_op platform_common_op = {
-	.pci		= &pci_file_intf,
-	.mmio		= &mmio_mmap_intf,
-};
 
 /*
  * intf_op_setup  -  prepare interface operations
@@ -53,7 +46,16 @@ int intf_op_setup(struct platform_intf *intf)
 {
 	int rc = 0;
 
-	if (intf->op->mmio && intf->op->mmio->setup)
+#ifdef CONFIG_PLATFORM_ARCH_X86
+	static struct platform_op x86_default_op = {
+		.mmio = &mmio_mmap_intf,
+	};
+
+	if (!intf->op)
+		intf->op = &x86_default_op;
+#endif
+
+	if (intf->op && intf->op->mmio && intf->op->mmio->setup)
 		rc |= intf->op->mmio->setup(intf);
 
 	return rc;
@@ -66,6 +68,6 @@ int intf_op_setup(struct platform_intf *intf)
  */
 void intf_op_destroy(struct platform_intf *intf)
 {
-	if (intf->op->mmio && intf->op->mmio->destroy)
+	if (intf->op && intf->op->mmio && intf->op->mmio->destroy)
 		intf->op->mmio->destroy(intf);
 }
