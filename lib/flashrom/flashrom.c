@@ -302,18 +302,3 @@ flashrom_write_exit_0:
 	unlink(full_filename);
 	return rc;
 }
-
-int flashrom_read_host_firmware_region(struct platform_intf *intf,
-							uint8_t **buf)
-{
-	int rc = -1;
-	const char *regions[] = { "COREBOOT", "BOOT_STUB" };
-
-	for (int i = 0; i < ARRAY_SIZE(regions); i++) {
-		rc = flashrom_read_by_name(buf, regions[i]);
-		if (rc > 0)
-			break;
-	}
-
-	return rc;
-}
