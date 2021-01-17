@@ -76,21 +76,10 @@ struct platform_cmd {
 /* platform operations handlers */
 struct pci_intf;
 struct mmio_intf;
-struct i2c_intf;
 
 struct platform_op {
 	struct pci_intf *pci;		/* pci interface */
 	struct mmio_intf *mmio;		/* mmio interface */
-	struct i2c_intf *i2c;		/* i2c interface */
-};
-
-/*
- * mappings of logical DIMM to physical
- * not all map types apply to all platforms
- */
-enum dimm_map_type {
-	DIMM_TO_BUS,			/* SPD bus */
-	DIMM_TO_ADDRESS,		/* SPD address */
 };
 
 /* memory related callbacks */

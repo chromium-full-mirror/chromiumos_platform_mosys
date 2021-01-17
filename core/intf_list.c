@@ -33,14 +33,12 @@
 #include "mosys/intf_list.h"
 #include "mosys/platform.h"
 
-#include "intf/i2c.h"
 #include "intf/pci.h"
 #include "intf/mmio.h"
 
 /* common operations */
 struct platform_op platform_common_op = {
 	.pci		= &pci_file_intf,
-	.i2c		= &i2c_dev_intf,
 	.mmio		= &mmio_mmap_intf,
 };
 
@@ -68,8 +66,6 @@ int intf_op_setup(struct platform_intf *intf)
  */
 void intf_op_destroy(struct platform_intf *intf)
 {
-	if (intf->op->i2c && intf->op->i2c->destroy)
-		intf->op->i2c->destroy(intf);
 	if (intf->op->mmio && intf->op->mmio->destroy)
 		intf->op->mmio->destroy(intf);
 }
