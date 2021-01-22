@@ -49,7 +49,6 @@ tgkill: 1
 # Don't allow mmap with both PROT_WRITE and PROT_EXEC
 mmap: arg2 in 0xfffffffb || arg2 in 0xfffffffd
 set_tid_address: 1
-ftruncate: 1
 fadvise64: 1
 gettimeofday: 1
 
@@ -71,7 +70,6 @@ pread64: 1
 geteuid: 1
 getppid: 1
 getcwd: 1
-getdents64: 1
 prctl: 1
 statfs: 1
 fstatfs: 1
