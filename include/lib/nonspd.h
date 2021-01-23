@@ -102,16 +102,11 @@ extern int nonspd_print_field(struct kv_pair *kv,
  * Modules defined in lib/spd/nonspd_modules.c
  */
 extern const struct nonspd_mem_info elpida_lpddr3_edfa164a2ma_jd_f;
-extern const struct nonspd_mem_info elpida_lpddr3_f8132a3ma_gd_f;
-extern const struct nonspd_mem_info elpida_lpddr3_fa232a2ma_gc_f;
 extern const struct nonspd_mem_info hynix_ddr3l_h5tc4g63afr_pba;
 extern const struct nonspd_mem_info hynix_ddr3l_h5tc4g63cfr_pba;
 extern const struct nonspd_mem_info hynix_ddr3l_h5tc4g63efr_rda;
 extern const struct nonspd_mem_info hynix_lpddr3_h9ccnnn8gtmlar_nud;
-extern const struct nonspd_mem_info hynix_lpddr3_h9ccnnn8jtblar_nud;
 extern const struct nonspd_mem_info hynix_lpddr3_h9ccnnnbjtalar_nud;
-extern const struct nonspd_mem_info hynix_lpddr3_h9ccnnnbjtmlar_nud;
-extern const struct nonspd_mem_info hynix_lpddr3_h9ccnnncltmlar_nud;
 extern const struct nonspd_mem_info hynix_lpddr4x_h9hcnnncpmalhr_nee;
 extern const struct nonspd_mem_info hynix_lpddr4x_h9hcnnncpmmlxr_nee;
 extern const struct nonspd_mem_info hynix_lpddr4x_h9hcnnnfammlxr_nee;
@@ -120,9 +115,6 @@ extern const struct nonspd_mem_info hynix_lpddr3_h9ccnnnbptblbr_nud;
 extern const struct nonspd_mem_info hynix_lpddr3_h9ccnnnbltblar_nud;
 extern const struct nonspd_mem_info hynix_lpddr3_h9ccnnnbktmlbr_ntd;
 extern const struct nonspd_mem_info micron_mt41k256m16ha;
-extern const struct nonspd_mem_info micron_mt52l256m32d1pf;
-extern const struct nonspd_mem_info micron_mt52l512m32d2pf;
-extern const struct nonspd_mem_info micron_lpddr3_mt52l256m32d1pf107;
 extern const struct nonspd_mem_info micron_lpddr3_mt52l256m32d1pf_10;
 extern const struct nonspd_mem_info micron_lpddr3_mt52l256m32d1pf_107wtb;
 extern const struct nonspd_mem_info micron_lpddr3_mt52l256m64d2pp_107wtb;
@@ -146,28 +138,20 @@ extern const struct nonspd_mem_info samsung_ddr3l_k4b4g1646q_hyk0;
 extern const struct nonspd_mem_info samsung_ddr3l_k4b8g1646q_myk0;
 extern const struct nonspd_mem_info samsung_lpddr3_k3qf2f20em_agce;
 extern const struct nonspd_mem_info samsung_lpddr3_k4e6e304eb_egce;
-extern const struct nonspd_mem_info samsung_lpddr3_k4e6e304ec_egcf;
 extern const struct nonspd_mem_info samsung_lpddr3_k4e6e304ee_egce;
-extern const struct nonspd_mem_info samsung_lpddr3_k4e6e304ee_egcf;
 extern const struct nonspd_mem_info samsung_lpddr3_k4e6e304eb_egcf;
-extern const struct nonspd_mem_info samsung_lpddr3_k4e8e304ed_egcc;
 extern const struct nonspd_mem_info samsung_lpddr3_k4e8e304ee_egce;
 extern const struct nonspd_mem_info samsung_lpddr3_k4e8e324eb_egcf;
-extern const struct nonspd_mem_info samsung_lpddr3_k4ebe304eb_egcf;
 extern const struct nonspd_mem_info samsung_lpddr3_k4e6e304ed_egcg;
 extern const struct nonspd_mem_info samsung_lpddr4_k3uh5h50mm_agcj;
 extern const struct nonspd_mem_info samsung_lpddr4x_kmdh6001da_b422;
 extern const struct nonspd_mem_info samsung_lpddr4x_kmdp6001da_b425;
 extern const struct nonspd_mem_info samsung_lpddr4x_kmdv6001da_b620;
-extern const struct nonspd_mem_info samsung_lpddr4x_k4ube3d4am_mgcj;
 extern const struct nonspd_mem_info samsung_lpddr4x_k4ube3d4aa_mgcl;
 extern const struct nonspd_mem_info samsung_lpddr4x_k4ube3d4aa_mgcr;
 extern const struct nonspd_mem_info sandisk_lpddr4x_sdada4cr_128g;
 
 int spd_set_nonspd_info_from_smbios(struct platform_intf *intf, int dimm,
 				    const struct nonspd_mem_info **info);
-
-int spd_set_nonspd_info(struct platform_intf *intf, int dimm,
-			const struct nonspd_mem_info **info);
 
 #endif /* LIB_NONSPD_H__ */
