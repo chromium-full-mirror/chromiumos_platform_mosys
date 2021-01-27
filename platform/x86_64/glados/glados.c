@@ -121,7 +121,7 @@ static struct platform_cb glados_cb = {
 	.ec		= &cros_ec_cb,
 	.pd		= &cros_pd_cb,
 	.fp		= &cros_fp_cb,
-	.memory		= &cbfs_memory_cb,
+	.memory		= &smbios_memory_cb,
 	.sys 		= &glados_sys_cb,
 	.eventlog	= &glados_eventlog_cb,
 };
