@@ -9,6 +9,5 @@
 struct memory_cb;
 
 extern struct memory_cb smbios_memory_cb;
-extern struct memory_cb smbios_only_memory_cb;
 
 #endif /* MOSYS_LIB_MEMORY_H__ */

@@ -42,7 +42,7 @@ static struct eventlog_cb puff_eventlog_cb = {
 
 static struct platform_cb puff_cb = {
 	.ec		= &cros_ec_cb,
-	.memory		= &smbios_only_memory_cb,
+	.memory		= &smbios_memory_cb,
 	.sys 		= &puff_sys_cb,
 	.eventlog	= &puff_eventlog_cb,
 };

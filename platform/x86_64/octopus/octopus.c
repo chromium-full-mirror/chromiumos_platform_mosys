@@ -75,7 +75,7 @@ static struct eventlog_cb octopus_eventlog_cb = {
 
 static struct platform_cb octopus_cb = {
 	.ec		= &cros_ec_cb,
-	.memory		= &smbios_only_memory_cb,
+	.memory		= &smbios_memory_cb,
 	.sys 		= &octopus_sys_cb,
 	.eventlog	= &octopus_eventlog_cb,
 };

@@ -60,7 +60,7 @@ static struct eventlog_cb jecht_eventlog_cb = {
 };
 
 static struct platform_cb jecht_cb = {
-	.memory = &smbios_only_memory_cb,
+	.memory = &smbios_memory_cb,
 	.psu = &generic_psu_ac_only_cb,
 	.eventlog = &jecht_eventlog_cb,
 };

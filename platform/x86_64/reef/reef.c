@@ -68,7 +68,7 @@ static struct eventlog_cb reef_eventlog_cb = {
 
 static struct platform_cb reef_cb = {
 	.ec		= &cros_ec_cb,
-	.memory		= &smbios_only_memory_cb,
+	.memory		= &smbios_memory_cb,
 	.sys 		= &reef_sys_cb,
 	.eventlog	= &reef_eventlog_cb,
 };

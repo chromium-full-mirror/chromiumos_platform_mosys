@@ -44,7 +44,7 @@ static struct eventlog_cb zork_eventlog_cb = {
 
 static struct platform_cb zork_cb = {
 	.ec = &cros_ec_cb,
-	.memory = &smbios_only_memory_cb,
+	.memory = &smbios_memory_cb,
 	.sys = &zork_sys_cb,
 	.eventlog = &zork_eventlog_cb,
 };

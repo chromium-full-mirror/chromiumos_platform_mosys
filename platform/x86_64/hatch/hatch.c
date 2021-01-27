@@ -74,7 +74,7 @@ static struct eventlog_cb hatch_eventlog_cb = {
 
 static struct platform_cb hatch_cb = {
 	.ec		= &cros_ec_cb,
-	.memory		= &smbios_only_memory_cb,
+	.memory		= &smbios_memory_cb,
 	.sys 		= &hatch_sys_cb,
 	.eventlog	= &hatch_eventlog_cb,
 };

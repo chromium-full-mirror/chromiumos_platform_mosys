@@ -73,7 +73,7 @@ static struct eventlog_cb sarien_eventlog_cb = {
 
 static struct platform_cb sarien_cb = {
 	.ec		= &wilco_ec_cb,
-	.memory		= &smbios_only_memory_cb,
+	.memory		= &smbios_memory_cb,
 	.sys		= &sarien_sys_cb,
 	.eventlog	= &sarien_eventlog_cb,
 };
