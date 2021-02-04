@@ -862,8 +862,8 @@ static int transfer_speed_from_smbios_to_nonspd_mem_info(
 		}
 	}
 
-	lprintf(LOG_ERR, "%s: mem speed %hu in SMBIOS is out of range.",
-			__func__, table->data.mem_device.speed);
+	lprintf(LOG_DEBUG, "%s: mem speed %hu in SMBIOS is out of range.",
+		__func__, table->data.mem_device.speed);
 	return -1;
 }
 
@@ -951,7 +951,15 @@ static int extract_mem_info_from_smbios(
 	info->num_ranks = table->data.mem_device.attributes & 0xf;
 	info->device_width = table->data.mem_device.data_width;
 
-	return transfer_speed_from_smbios_to_nonspd_mem_info(table, info);
+	/*
+	 * Try to transfer speed info, but ignore errors. Many older
+	 * firmware will report invalid speeds, but it does not
+	 * actually matter, as nothing in the OS really uses this
+	 * information.
+	 */
+	transfer_speed_from_smbios_to_nonspd_mem_info(table, info);
+
+	return 0;
 }
 
 int spd_set_nonspd_info_from_smbios(struct platform_intf *intf, int dimm,
