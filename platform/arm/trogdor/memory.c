@@ -5,58 +5,92 @@
 
 #include "lib/fdt.h"
 #include "lib/nonspd.h"
+#include "lib/string.h"
 
 #include "mosys/platform.h"
 
 #include "trogdor.h"
 
-static int trogdor_dimm_count;
-static const struct nonspd_mem_info *trogdor_mem_info;
+#define MAX_LINE_SIZE	128
 
-/* read RAM code and fill in values needed by memory commands */
-static int read_ram_code(struct platform_intf *intf)
+static int trogdor_dimm_count;
+static const struct nonspd_mem_info *mem_info;
+
+enum trogdor_ram_manufacturer {
+	HYNIX = 6,
+	MICRON = 255
+};
+
+/*
+ * TODO(b/177917361) Remove once we have a more reliable API to probe
+ * the memory information in Trogdor platform.
+ *
+ * get_ram_manufacturer_id - Get RAM manufacturer id from firmware log
+ *
+ * returns 0 to indicate success, <0 to indicate failure.
+ */
+static int get_ram_manufacturer_id(uint32_t *manufacturer_id)
+{
+	FILE *fp;
+	char line[MAX_LINE_SIZE];
+
+	fp = fopen("/sys/firmware/log", "r");
+
+	if (!fp) {
+		lprintf(LOG_ERR, "%s: Failed to open firmware log file.",
+			__func__);
+		return -1;
+	}
+	while (fgets(line, MAX_LINE_SIZE, fp)) {
+		if (sscanf(line, "B - %*d - Manufacturer ID = %x",
+			   manufacturer_id) == 1) {
+			fclose(fp);
+			return 0;
+		}
+	}
+
+	fclose(fp);
+	return -1;
+}
+
+static int populate_ram_info(void)
 {
 	static int done;
 	static int ret;
 
 	uint32_t ram_code;
+	uint32_t ram_mid;
 
 	if (!done) {
 		if (fdt_get_ram_code(&ram_code) < 0) {
-			lprintf(LOG_ERR, "Unable to obtain RAM code.\n");
+			lprintf(LOG_ERR, "%s: Unable to obtain RAM code.\n",
+				__func__);
 			return -1;
 		}
 
-		switch (ram_code) {
-		case 1:
-			trogdor_dimm_count = 1;
-			trogdor_mem_info = &micron_lpddr4x_mt53d1g32d4dt_046wtd;
-			break;
+		if (get_ram_manufacturer_id(&ram_mid) < 0) {
+			lprintf(LOG_ERR,
+				"%s: Unable to obtain RAM manufacturer id.\n",
+				__func__);
+			return -1;
+		}
 
-		case 2:
-			trogdor_dimm_count = 1;
-			trogdor_mem_info = &micron_lpddr4x_mt53e1g32d2np_046wta;
-			break;
+		trogdor_dimm_count = 1;
 
-		case 3:
-			trogdor_dimm_count = 1;
-			trogdor_mem_info = &micron_lpddr4x_mt53e2g32d4nq_046wta;
-			break;
-
-		case 4:
-			trogdor_dimm_count = 1;
-			trogdor_mem_info = &hynix_lpddr4x_h9hcnnncpmmlxr_nee;
-			break;
-
-		case 5:
-			trogdor_dimm_count = 1;
-			trogdor_mem_info = &hynix_lpddr4x_h9hcnnnfammlxr_nee;
-			break;
-
-		default:
-			lprintf(LOG_ERR, "Unknown ram code.\n");
+		if (ram_code == 1) {
+			mem_info = &micron_lpddr4x_mt53d1g32d4dt_046wtd;
+		} else if (ram_code == 2 && ram_mid == MICRON) {
+			mem_info = &micron_lpddr4x_mt53e1g32d2np_046wta;
+		} else if (ram_code == 2 && ram_mid == HYNIX) {
+			mem_info = &hynix_lpddr4x_h9hcnnncpmmlxr_nee;
+		} else if (ram_code == 3 && ram_mid == MICRON) {
+			mem_info = &micron_lpddr4x_mt53e2g32d4nq_046wta;
+		} else if (ram_code == 3 && ram_mid == HYNIX) {
+			mem_info = &hynix_lpddr4x_h9hcnnnfammlxr_nee;
+		} else {
+			lprintf(LOG_ERR, "%s: Unknown ram code or "
+				"manufacturer id.\n", __func__);
 			ret = -1;
-			break;
 		}
 
 		done = 1;
@@ -74,7 +108,7 @@ static int read_ram_code(struct platform_intf *intf)
  */
 static int dimm_count(struct platform_intf *intf)
 {
-	if (read_ram_code(intf) < 0)
+	if (populate_ram_info() < 0)
 		return -1;
 
 	return trogdor_dimm_count;
@@ -83,10 +117,10 @@ static int dimm_count(struct platform_intf *intf)
 static int get_mem_info(struct platform_intf *intf, int dimm,
 			const struct nonspd_mem_info **info)
 {
-	if (read_ram_code(intf) < 0)
+	if (populate_ram_info() < 0)
 		return -1;
 
-	*info = trogdor_mem_info;
+	*info = mem_info;
 	return 0;
 }
 
