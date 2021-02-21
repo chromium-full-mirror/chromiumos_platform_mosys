@@ -51,6 +51,7 @@ enum oak_memory_config {
 	SAMSUNG_DDR3_K4E8E324EB_EGCF_1G,
 	SAMSUNG_DDR3_K4E6E304ED_EGCG_4G,
 	NANYA_DDR3_NT6CL512T32AM_H0_4G,
+	SAMSUNG_DDR3_K4E6E304EC_EGCG_4G,
 	MEM_UNKNOWN,
 };
 
@@ -86,6 +87,8 @@ static int get_memory_config(struct platform_intf *intf)
 		return SAMSUNG_DDR3_K4E6E304ED_EGCG_4G;
 	case 10:
 		return NANYA_DDR3_NT6CL512T32AM_H0_4G;
+	case 11:
+		return SAMSUNG_DDR3_K4E6E304EC_EGCG_4G;
 
 	default:
 		lprintf(LOG_ERR, "Unable to determine memory configuration\n");
@@ -143,6 +146,9 @@ static int get_mem_info(struct platform_intf *intf, int dimm,
 		break;
 	case NANYA_DDR3_NT6CL512T32AM_H0_4G:
 		*info = &nanya_lpddr3_nt6cl512t32am_h0;
+		break;
+	case SAMSUNG_DDR3_K4E6E304EC_EGCG_4G:
+		*info = &samsung_lpddr3_k4e6e304ec_egcg;
 		break;
 	default:
 		return -1;
