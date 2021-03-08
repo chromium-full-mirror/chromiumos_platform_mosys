@@ -69,7 +69,9 @@ static const struct nonspd_mem_info *kukui_dram[] = {
 	[0x12] = &micron_lpddr4x_mt53e1g32d4nq_046wte,
 	[0x13] = &samsung_lpddr4x_k4ube3d4aa_mgcl,
 	[0x14] = &hynix_lpddr4x_h9hcnnncpmmlxr_nee,
+	[0x15] = &hynix_lpddr4x_h9hcnnnfammlxr_nee,
 	[0x16] = &micron_lpddr4x_mt53e2g32d4nq_046wta,
+	[0x17] = &micron_lpddr4x_mt53e1g32d2np_046wta,
 };
 
 static int get_mem_info(struct platform_intf *intf, int dimm,
