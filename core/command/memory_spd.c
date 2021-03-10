@@ -239,101 +239,6 @@ static int memory_spd_print_id_cmd(struct platform_intf *intf,
 	return 0;
 }
 
-static int memory_spd_print_timings(struct platform_intf *intf, int dimm)
-{
-	struct kv_pair *kv;
-	struct spd_device *spd;
-	uint8_t *spd_data;
-	int rc;
-
-	if (!intf->cb->memory->spd || !intf->cb->memory->spd->read) {
-		errno = ENOSYS;
-		return -1;
-	}
-
-	kv = kv_pair_new();
-
-	spd = new_spd_device(intf, dimm);
-	if (spd == NULL) {
-		lprintf(LOG_DEBUG,
-			"Failed to read from SPD %u (not present?)\n", dimm);
-		return 0;	/* not an error */
-	}
-
-	spd_data = &spd->eeprom.data[0];
-
-	kv_pair_fmt(kv, "dimm", "%u", dimm);
-	spd_print_field(intf, kv, spd_data, SPD_GET_SPEEDS);
-
-	rc = kv_pair_print(kv);
-	kv_pair_free(kv);
-
-	free(spd);
-	return rc;
-}
-
-static int memory_nonspd_print_timings(struct platform_intf *intf, int dimm)
-{
-	struct kv_pair *kv;
-	const struct nonspd_mem_info *info;
-	int rc;
-
-	if (!intf->cb->memory->nonspd_mem_info) {
-		errno = ENOSYS;
-		return -1;
-	}
-
-	if (intf->cb->memory->nonspd_mem_info(intf, dimm, &info) < 0)
-		return -1;
-
-	kv = kv_pair_new();
-
-	kv_pair_fmt(kv, "dimm", "%u", dimm);
-	nonspd_print_field(kv, info, SPD_GET_SPEEDS);
-
-	rc = kv_pair_print(kv);
-	kv_pair_free(kv);
-
-	return rc;
-}
-
-static int memory_spd_print_timings_cmd(struct platform_intf *intf,
-                                   struct platform_cmd *cmd,
-                                   int argc, char **argv)
-{
-	int dimm = 0, last_dimm;
-
-	if (!intf->cb->memory || !intf->cb->memory->dimm_count) {
-		errno = ENOSYS;
-		return -1;
-	}
-
-	last_dimm = intf->cb->memory->dimm_count(intf);
-
-	if (argc) {
-		dimm = strtol(argv[0], NULL, 0);
-		if ((dimm < 0) || (dimm > (last_dimm - 1))) {
-			lprintf(LOG_ERR, "Invalid DIMM: %d\n", dimm);
-			errno = EINVAL;
-			return -1;
-		}
-		if (intf->cb->memory->spd)
-			memory_spd_print_timings(intf, dimm);
-		else
-			memory_nonspd_print_timings(intf, dimm);
-	} else {
-		do {
-			if (intf->cb->memory->spd)
-				memory_spd_print_timings(intf, dimm);
-			else
-				memory_nonspd_print_timings(intf, dimm);
-			dimm++;
-		} while (dimm < last_dimm);
-	}
-
-	return 0;
-}
-
 static int memory_spd_print_type(struct platform_intf *intf, int dimm)
 {
 	struct kv_pair *kv;
@@ -454,7 +359,6 @@ static int memory_spd_print_all_cmd(struct platform_intf *intf,
 	rc |= memory_spd_print_type_cmd(intf, cmd, argc, argv);
 	rc |= memory_spd_print_id_cmd(intf, cmd, argc, argv);
 	rc |= memory_spd_print_geometry_cmd(intf, cmd, argc, argv);
-	rc |= memory_spd_print_timings_cmd(intf, cmd, argc, argv);
 
 	return rc;
 }
@@ -473,13 +377,6 @@ static struct platform_cmd memory_spd_print_cmds[] = {
 		.usage	= "<dimm number>",
 		.type	= ARG_TYPE_GETTER,
 		.arg	= { .func = memory_spd_print_id_cmd }
-	},
-	{
-		.name	= "timings",
-		.desc	= "Print module timing capabilities",
-		.usage	= "<dimm number>",
-		.type	= ARG_TYPE_GETTER,
-		.arg	= { .func = memory_spd_print_timings_cmd }
 	},
 	{
 		.name	= "type",
