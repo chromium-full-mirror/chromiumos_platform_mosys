@@ -1,8 +1,7 @@
-# Copyright 2019 The Chromium OS Authors. All rights reserved.
+# Copyright 2021 The Chromium OS Authors. All rights reserved.
 # Use of this source code is governed by a BSD-style license that can be
 # found in the LICENSE file.
 
 platform_support_src += files(
-  'sys.c',
-  'zork.c',
+  'generic.c',
 )

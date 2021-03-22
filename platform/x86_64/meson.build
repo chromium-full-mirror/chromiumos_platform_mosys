@@ -1,15 +1,11 @@
 if use_cros_config
-  subdir('dedede')
-  subdir('fizz')
-  subdir('kahlee')
-  subdir('hatch')
-  subdir('poppy')
-  subdir('puff')
-  subdir('octopus')
-  subdir('reef')
-  subdir('sarien')
-  subdir('volteer')
-  subdir('zork')
+  subdir('generic')
+
+  # TODO(b/183403993): these platforms are not supported using
+  # "Generic" yet.
+  subdir('fizz')    # Chromebox
+  subdir('puff')    # Chromebox
+  subdir('sarien')  # Wilco EC
 else
   subdir('auron')
   subdir('glados')
