@@ -63,6 +63,7 @@ static const struct nonspd_mem_info *kukui_dram[] = {
 	[8] = &samsung_lpddr4x_k4ube3d4aa_mgcl,
 	[9] = &micron_lpddr4x_mt53e2g32d4nq_046wta,
 	[10] = &hynix_lpddr4x_h9hcnnncpmmlxr_nee,
+	[11] = &micron_lpddr4x_mt29vzzzad9gqfsm_046,
 	/* Burnet dram table */
 	[0x10] = &samsung_lpddr4x_k4ube3d4aa_mgcr,
 	[0x11] = &hynix_lpddr4x_h9hcnnncpmalhr_nee,
