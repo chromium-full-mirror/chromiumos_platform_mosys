@@ -41,24 +41,6 @@
 #include "lib/math.h"
 #include "lib/spd.h"
 
-const char *ddr_freq_prettyprint[] = {
-	[DDR_FREQ_UNKNOWN] = "Unknown",
-	[DDR_333] = "667",
-	[DDR_400] = "800",
-	[DDR_533] = "1066",
-	[DDR_667] = "1333",
-	[DDR_800] = "1600",
-	[DDR_933] = "1866",
-	[DDR_1067] = "2133",
-	[DDR_1200] = "2400",
-	[DDR_1333] = "2667",
-	[DDR_1355] = "2710",
-	[DDR_1466] = "2933",
-	[DDR_1600] = "3200",
-	[DDR_1867] = "3733",
-	[DDR_2133] = "4267",
-};
-
 /* new_spd_device() - create a new instance of spd_device
  *
  * @intf:  platform_intf for access

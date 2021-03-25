@@ -90,28 +90,6 @@ static const struct valstr ddr3_module_type_lut[] = {
 	{ DDR3_MODULE_TYPE_LRDIMM, "LRDIMM" },
 };
 
-enum ddr_freq {
-	DDR_FREQ_UNKNOWN = 0,	/* uninitialized value */
-	DDR_333,
-	DDR_400,
-	DDR_533,
-	DDR_667,
-	DDR_800,
-	DDR_933,
-	DDR_1067,
-	DDR_1200,
-	DDR_1333,
-	DDR_1355,
-	DDR_1466,
-	DDR_1600,
-	DDR_1867,
-	DDR_2133,
-
-	DDR_FREQ_MAX
-};
-
-extern const char *ddr_freq_prettyprint[];
-
 struct spd_eeprom {
 	int length;
 	uint8_t data[SPD_MAX_LENGTH];

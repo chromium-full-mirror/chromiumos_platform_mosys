@@ -42,7 +42,6 @@ const struct nonspd_mem_info elpida_lpddr3_edfa164a2ma_jd_f = {
         .module_size_mbits      = 8192,
         .num_ranks              = 2,
         .device_width           = 32,
-        .ddr_freq               = { DDR_333, DDR_400, DDR_533, DDR_667, DDR_800, DDR_933 },
 
         .module_mfg_id          = { .msb = 0x2c, .lsb = 0x80 },
         .dram_mfg_id            = { .msb = 0x2c, .lsb = 0x80 },
@@ -59,7 +58,6 @@ const struct nonspd_mem_info hynix_ddr3l_h5tc4g63afr_pba = {
         .module_size_mbits      = 4096,
         .num_ranks              = 1,
         .device_width           = 16,
-        .ddr_freq               = { DDR_333, DDR_400, DDR_533, DDR_667, DDR_800 },
 
         .module_mfg_id          = { .msb = 0xad, .lsb = 0x80 },
         .dram_mfg_id            = { .msb = 0xad, .lsb = 0x80 },
@@ -76,7 +74,6 @@ const struct nonspd_mem_info hynix_ddr3l_h5tc4g63cfr_pba = {
         .module_size_mbits      = 4096,
         .num_ranks              = 1,
         .device_width           = 16,
-        .ddr_freq               = { DDR_333, DDR_400, DDR_533, DDR_667, DDR_800 },
 
         .module_mfg_id          = { .msb = 0xad, .lsb = 0x80 },
         .dram_mfg_id            = { .msb = 0xad, .lsb = 0x80 },
@@ -93,7 +90,6 @@ const struct nonspd_mem_info hynix_ddr3l_h5tc4g63efr_rda = {
         .module_size_mbits      = 4096,
         .num_ranks              = 1,
         .device_width           = 16,
-        .ddr_freq               = { DDR_400, DDR_533, DDR_667, DDR_800, DDR_933 },
 
         .module_mfg_id          = { .msb = 0xad, .lsb = 0x80 },
         .dram_mfg_id            = { .msb = 0xad, .lsb = 0x80 },
@@ -110,7 +106,6 @@ const struct nonspd_mem_info hynix_lpddr3_h9ccnnn8gtmlar_nud = {
         .module_size_mbits      = 8192,
         .num_ranks              = 1,
         .device_width           = 32,
-        .ddr_freq               = { DDR_333, DDR_400, DDR_533, DDR_667, DDR_800 },
 
         .module_mfg_id          = { .msb = 0xad, .lsb = 0x80 },
         .dram_mfg_id            = { .msb = 0xad, .lsb = 0x80 },
@@ -127,7 +122,6 @@ const struct nonspd_mem_info hynix_lpddr3_h9ccnnnbjtalar_nud = {
         .module_size_mbits      = 16384,
         .num_ranks              = 2,
         .device_width           = 32,
-        .ddr_freq               = { DDR_333, DDR_400, DDR_533, DDR_667, DDR_800 },
 
         .module_mfg_id          = { .msb = 0xad, .lsb = 0x80 },
         .dram_mfg_id            = { .msb = 0xad, .lsb = 0x80 },
@@ -143,7 +137,6 @@ const struct nonspd_mem_info hynix_ddr3l_h5tc8g63amr_pba = {
 	.module_size_mbits	= 8192,
 	.num_ranks		= 2,
 	.device_width		= 16,
-	.ddr_freq 		= { DDR_333, DDR_400, DDR_533, DDR_667, DDR_800 },
 
 	.module_mfg_id		= { .msb = 0xad, .lsb = 0x80 },
 	.dram_mfg_id		= { .msb = 0xad, .lsb = 0x80 },
@@ -160,7 +153,6 @@ const struct nonspd_mem_info hynix_lpddr3_h9ccnnnbptblbr_nud = {
 	.module_size_mbits      = 16384,
 	.num_ranks              = 2,
 	.device_width           = 32,
-	.ddr_freq               = { DDR_667, DDR_800, DDR_933 },
 
 	.module_mfg_id          = { .msb = 0xad, .lsb = 0x80 },
 	.dram_mfg_id            = { .msb = 0xad, .lsb = 0x80 },
@@ -177,7 +169,6 @@ const struct nonspd_mem_info hynix_lpddr3_h9ccnnnbltblar_nud = {
 	.module_size_mbits      = 16384,
 	.num_ranks              = 2,
 	.device_width           = 32,
-	.ddr_freq               = { DDR_667, DDR_800, DDR_933 },
 
 	.module_mfg_id          = { .msb = 0xad, .lsb = 0x80 },
 	.dram_mfg_id            = { .msb = 0xad, .lsb = 0x80 },
@@ -194,7 +185,6 @@ const struct nonspd_mem_info hynix_lpddr3_h9ccnnnbktmlbr_ntd = {
 	.module_size_mbits      = 16384,
 	.num_ranks              = 2,
 	.device_width           = 32,
-        .ddr_freq               = { DDR_333, DDR_400, DDR_533, DDR_667, DDR_800 },
 
 	.module_mfg_id          = { .msb = 0xad, .lsb = 0x80 },
 	.dram_mfg_id            = { .msb = 0xad, .lsb = 0x80 },
@@ -210,7 +200,6 @@ const struct nonspd_mem_info hynix_lpddr4x_h9hcnnncpmalhr_nee = {
         .module_size_mbits      = 32768,
         .num_ranks              = 2,
         .device_width           = 32,
-        .ddr_freq               = { DDR_800, DDR_1200, DDR_1600 },
 
         .module_mfg_id          = { .msb = 0xad, .lsb = 0x80 },
         .dram_mfg_id            = { .msb = 0xad, .lsb = 0x80 },
@@ -226,7 +215,6 @@ const struct nonspd_mem_info hynix_lpddr4x_h9hcnnncpmmlxr_nee = {
 	.module_size_mbits	= 32768,
 	.num_ranks		= 2,
 	.device_width		= 32,
-	.ddr_freq		= { DDR_800, DDR_1200, DDR_1600 },
 
 	.module_mfg_id		= { .msb = 0xad, .lsb = 0x80 },
 	.dram_mfg_id		= { .msb = 0xad, .lsb = 0x80 },
@@ -242,7 +230,6 @@ const struct nonspd_mem_info hynix_lpddr4x_h9hcnnnfammlxr_nee = {
 	.module_size_mbits	=  65536,
 	.num_ranks		= 2,
 	.device_width		= 32,
-	.ddr_freq		= { DDR_800, DDR_1200, DDR_1600 },
 
 	.module_mfg_id		= { .msb = 0xad, .lsb = 0x80 },
 	.dram_mfg_id		= { .msb = 0xad, .lsb = 0x80 },
@@ -259,7 +246,6 @@ const struct nonspd_mem_info micron_mt41k256m16ha = {
 	.module_size_mbits	= 4096,
 	.num_ranks		= 1,
 	.device_width		= 16,
-	.ddr_freq 		= { DDR_533, DDR_667, DDR_800 },
 
 	.module_mfg_id		= { .msb = 0x2c, .lsb = 0x00 },
 	.dram_mfg_id		= { .msb = 0x2c, .lsb = 0x00 },
@@ -276,7 +262,6 @@ const struct nonspd_mem_info nanya_ddr3l_nt5cc256m16dp_di = {
 	.num_ranks		= 1,
 	.device_width		= 16,
 	/* CL = 11, CWL = 8, min = 1.25ns, max <1.5ns */
-	.ddr_freq 		= { DDR_667, DDR_800 },
 	.module_mfg_id		= { .msb = 0x0b, .lsb = 0x03 },
 	.dram_mfg_id		= { .msb = 0x0b, .lsb = 0x03 },
 
@@ -291,7 +276,6 @@ const struct nonspd_mem_info nanya_ddr3l_nt5cc256m16er_ek = {
 	.module_size_mbits	= 4096,
 	.num_ranks		= 1,
 	.device_width		= 16,
-	.ddr_freq 		= { DDR_400, DDR_533, DDR_667, DDR_800, DDR_933 },
 	.module_mfg_id		= { .msb = 0x0b, .lsb = 0x03 },
 	.dram_mfg_id		= { .msb = 0x0b, .lsb = 0x03 },
 
@@ -306,7 +290,6 @@ const struct nonspd_mem_info nanya_lpddr3_nt6cl512t32am_h0 = {
 	.module_size_mbits	= 16384,
 	.num_ranks		= 2,
 	.device_width		= 32,
-	.ddr_freq	= { DDR_400, DDR_533, DDR_667, DDR_800, DDR_933 },
 	.module_mfg_id		= { .msb = 0x0b, .lsb = 0x03 },
 	.dram_mfg_id		= { .msb = 0x0b, .lsb = 0x03 },
 
@@ -321,7 +304,6 @@ const struct nonspd_mem_info samsung_k4b4g1646d = {
 	.module_size_mbits	= 4096,
 	.num_ranks		= 1,
 	.device_width		= 16,
-	.ddr_freq 		= { DDR_400, DDR_533, DDR_667, DDR_800 },
 
 	.module_mfg_id		= { .msb = 0xce, .lsb = 0x00 },
 	.dram_mfg_id		= { .msb = 0xce, .lsb = 0x00 },
@@ -338,7 +320,6 @@ const struct nonspd_mem_info samsung_k4b4g1646e = {
 	.module_size_mbits	= 4096,
 	.num_ranks		= 1,
 	.device_width		= 16,
-	.ddr_freq 		= { DDR_400, DDR_533, DDR_667, DDR_800 },
 
 	.module_mfg_id		= { .msb = 0xce, .lsb = 0x00 },
 	.dram_mfg_id		= { .msb = 0xce, .lsb = 0x00 },
@@ -355,7 +336,6 @@ const struct nonspd_mem_info samsung_k4b4g1646e_byma = {
 	.module_size_mbits	= 4096,
 	.num_ranks		= 1,
 	.device_width		= 16,
-	.ddr_freq 		= { DDR_400, DDR_533, DDR_667, DDR_800, DDR_933 },
 
 	.module_mfg_id		= { .msb = 0xce, .lsb = 0x00 },
 	.dram_mfg_id		= { .msb = 0xce, .lsb = 0x00 },
@@ -372,7 +352,6 @@ const struct nonspd_mem_info samsung_ddr3l_k4b4g1646d_byk0 = {
 	.module_size_mbits	= 4096,
 	.num_ranks		= 1,
 	.device_width		= 16,
-	.ddr_freq 		= { DDR_400, DDR_533, DDR_667, DDR_800 },
 
 	.module_mfg_id		= { .msb = 0xce, .lsb = 0x00 },
 	.dram_mfg_id		= { .msb = 0xce, .lsb = 0x00 },
@@ -389,7 +368,6 @@ const struct nonspd_mem_info samsung_ddr3l_k4b4g1646q_hyk0 = {
 	.module_size_mbits	= 4096,
 	.num_ranks		= 1,
 	.device_width		= 16,
-	.ddr_freq 		= { DDR_400, DDR_533, DDR_667, DDR_800 },
 
 	.module_mfg_id		= { .msb = 0xce, .lsb = 0x00 },
 	.dram_mfg_id		= { .msb = 0xce, .lsb = 0x00 },
@@ -405,7 +383,6 @@ const struct nonspd_mem_info samsung_ddr3l_k4b8g1646q_myk0 = {
 	.module_size_mbits	= 8192,
 	.num_ranks		= 2,
 	.device_width		= 16,
-	.ddr_freq 		= { DDR_333, DDR_400, DDR_533, DDR_667, DDR_800 },
 
 	.module_mfg_id		= { .msb = 0xce, .lsb = 0x00 },
 	.dram_mfg_id		= { .msb = 0xce, .lsb = 0x00 },
@@ -422,7 +399,6 @@ const struct nonspd_mem_info samsung_lpddr3_k3qf2f20em_agce = {
         .module_size_mbits      = 8192,
         .num_ranks              = 2,
         .device_width           = 32,
-        .ddr_freq               = { DDR_400, DDR_533, DDR_667, DDR_800 },
 
         .module_mfg_id          = { .msb = 0xce, .lsb = 0x00 },
         .dram_mfg_id            = { .msb = 0xce, .lsb = 0x00 },
@@ -439,7 +415,6 @@ const struct nonspd_mem_info samsung_lpddr3_k4e6e304eb_egce = {
 	.module_size_mbits	= 16384,
 	.num_ranks		= 2,
 	.device_width		= 32,
-	.ddr_freq 		= { DDR_400, DDR_533, DDR_667, DDR_800, DDR_933},
 
 	.module_mfg_id		= { .msb = 0xce, .lsb = 0x00 },
 	.dram_mfg_id		= { .msb = 0xce, .lsb = 0x00 },
@@ -456,7 +431,6 @@ const struct nonspd_mem_info samsung_lpddr3_k4e6e304ee_egce = {
 	.module_size_mbits	= 16384,
 	.num_ranks		= 2,
 	.device_width		= 32,
-	.ddr_freq 		= { DDR_400, DDR_533, DDR_667, DDR_800, DDR_933},
 
 	.module_mfg_id		= { .msb = 0xce, .lsb = 0x00 },
 	.dram_mfg_id		= { .msb = 0xce, .lsb = 0x00 },
@@ -473,7 +447,6 @@ const struct nonspd_mem_info samsung_lpddr3_k4e6e304eb_egcf = {
 	.module_size_mbits	= 16384,
 	.num_ranks		= 2,
 	.device_width		= 32,
-	.ddr_freq 		= { DDR_400, DDR_533, DDR_667, DDR_800, DDR_933},
 
 	.module_mfg_id		= { .msb = 0xce, .lsb = 0x00 },
 	.dram_mfg_id		= { .msb = 0xce, .lsb = 0x00 },
@@ -490,7 +463,6 @@ const struct nonspd_mem_info samsung_lpddr3_k4e6e304ec_egcg = {
 	.module_size_mbits	= 16384,
 	.num_ranks		= 2,
 	.device_width		= 32,
-	.ddr_freq	= { DDR_400, DDR_533, DDR_667, DDR_800, DDR_933},
 
 	.module_mfg_id	= { .msb = 0xce, .lsb = 0x00 },
 	.dram_mfg_id	= { .msb = 0xce, .lsb = 0x00 },
@@ -506,7 +478,6 @@ const struct nonspd_mem_info samsung_lpddr3_k4e8e304ee_egce = {
 	.module_size_mbits	= 8192,
 	.num_ranks		= 2,
 	.device_width		= 32,
-	.ddr_freq 		= { DDR_400, DDR_533, DDR_667, DDR_800, DDR_933 },
 
 	.module_mfg_id		= { .msb = 0xce, .lsb = 0x00 },
 	.dram_mfg_id		= { .msb = 0xce, .lsb = 0x00 },
@@ -523,7 +494,6 @@ const struct nonspd_mem_info samsung_lpddr3_k4e8e324eb_egcf = {
 	.module_size_mbits	= 8192,
 	.num_ranks		= 2,
 	.device_width		= 32,
-	.ddr_freq 		= { DDR_400, DDR_533, DDR_667, DDR_800, DDR_933 },
 
 	.module_mfg_id		= { .msb = 0xce, .lsb = 0x00 },
 	.dram_mfg_id		= { .msb = 0xce, .lsb = 0x00 },
@@ -540,7 +510,6 @@ const struct nonspd_mem_info samsung_lpddr3_k4e6e304ed_egcg = {
 	.module_size_mbits	= 16384,
 	.num_ranks		= 2,
 	.device_width		= 32,
-	.ddr_freq = { DDR_400, DDR_533, DDR_667, DDR_800, DDR_933 },
 
 	.module_mfg_id		= { .msb = 0xce, .lsb = 0x00 },
 	.dram_mfg_id		= { .msb = 0xce, .lsb = 0x00 },
@@ -556,7 +525,6 @@ const struct nonspd_mem_info micron_lpddr3_mt52l256m32d1pf_107wtb = {
 	.module_size_mbits	= 8192,
 	.num_ranks		= 1,
 	.device_width		= 32,
-	.ddr_freq 		= { DDR_667, DDR_800, DDR_933 },
 
 	.module_mfg_id		= { .msb = 0x2c, .lsb = 0x00 },
 	.dram_mfg_id		= { .msb = 0x2c, .lsb = 0x00 },
@@ -573,7 +541,6 @@ const struct nonspd_mem_info micron_lpddr3_mt52l256m32d1pf_10 = {
 	.module_size_mbits = 2048 * 8,
 	.num_ranks = 1,
 	.device_width = 64,
-	.ddr_freq = { DDR_400, DDR_533, DDR_667, DDR_800, DDR_933 },
 
 	.module_mfg_id = { .msb = 0x2c, .lsb = 0x00 },
 	.dram_mfg_id = { .msb = 0x2c, .lsb = 0x00 },
@@ -589,7 +556,6 @@ const struct nonspd_mem_info micron_lpddr3_mt52l256m64d2pp_107wtb = {
 	.module_size_mbits	= 8192,
 	.num_ranks		= 1,
 	.device_width		= 32,
-	.ddr_freq 		= { DDR_667, DDR_800, DDR_933 },
 
 	.module_mfg_id		= { .msb = 0x2c, .lsb = 0x00 },
 	.dram_mfg_id		= { .msb = 0x2c, .lsb = 0x00 },
@@ -606,7 +572,6 @@ const struct nonspd_mem_info micron_lpddr3_mt52l512m32d2pf_107wtb = {
 	.module_size_mbits	= 16384,
 	.num_ranks		= 2,
 	.device_width		= 32,
-	.ddr_freq 		= { DDR_667, DDR_800, DDR_933 },
 
 	.module_mfg_id		= { .msb = 0x2c, .lsb = 0x00 },
 	.dram_mfg_id		= { .msb = 0x2c, .lsb = 0x00 },
@@ -623,7 +588,6 @@ const struct nonspd_mem_info micron_lpddr3_mt52l512m32d2pf_10 = {
 	.module_size_mbits = 4096 * 8,
 	.num_ranks = 2,
 	.device_width = 64,
-	.ddr_freq = { DDR_400, DDR_533, DDR_667, DDR_800, DDR_933 },
 
 	.module_mfg_id = { .msb = 0x2c, .lsb = 0x00 },
 	.dram_mfg_id = { .msb = 0x2c, .lsb = 0x00 },
@@ -638,7 +602,6 @@ const struct nonspd_mem_info micron_lpddr4x_mt53e1g32d4nq_046wte = {
 	.module_size_mbits	= 32768,
 	.num_ranks		= 2,
 	.device_width		= 32,
-	.ddr_freq		= { DDR_800, DDR_1200, DDR_1600 },
 
 	.module_mfg_id		= { .msb = 0x2c, .lsb = 0x00 },
 	.dram_mfg_id		= { .msb = 0x2c, .lsb = 0x00 },
@@ -654,7 +617,6 @@ const struct nonspd_mem_info micron_lpddr4x_mt53e1g32d2np_046wta = {
 	.module_size_mbits	= 32768,
 	.num_ranks		= 1,
 	.device_width		= 32,
-	.ddr_freq		= { DDR_2133 },
 
 	.module_mfg_id		= { .msb = 0x2c, .lsb = 0x00 },
 	.dram_mfg_id		= { .msb = 0x2c, .lsb = 0x00 },
@@ -670,7 +632,6 @@ const struct nonspd_mem_info micron_lpddr4x_mt53e2g32d4nq_046wta = {
 	.module_size_mbits	= 65536,
 	.num_ranks		= 2,
 	.device_width		= 32,
-	.ddr_freq		= { DDR_2133 },
 
 	.module_mfg_id		= { .msb = 0x2c, .lsb = 0x00 },
 	.dram_mfg_id		= { .msb = 0x2c, .lsb = 0x00 },
@@ -686,7 +647,6 @@ const struct nonspd_mem_info micron_lpddr4x_mt53d1g32d4dt_046wtd = {
 	.module_size_mbits	= 32768,
 	.num_ranks		= 2,
 	.device_width		= 32,
-	.ddr_freq		= { DDR_2133 },
 
 	.module_mfg_id		= { .msb = 0x2c, .lsb = 0x00 },
 	.dram_mfg_id		= { .msb = 0x2c, .lsb = 0x00 },
@@ -702,7 +662,6 @@ const struct nonspd_mem_info micron_lpddr4x_mt29vzzzad8dqksl = {
 	.module_size_mbits	= 32768,
 	.num_ranks		= 2,
 	.device_width		= 32,
-	.ddr_freq		= { DDR_800, DDR_1200, DDR_1600 },
 
 	.module_mfg_id		= { .msb = 0x2c, .lsb = 0x00 },
 	.dram_mfg_id		= { .msb = 0x2c, .lsb = 0x00 },
@@ -718,7 +677,6 @@ const struct nonspd_mem_info micron_lpddr4x_mt29vzzzad8gqfsl_046 = {
 	.module_size_mbits      = 32768,
 	.num_ranks              = 2,
 	.device_width           = 32,
-	.ddr_freq               = { DDR_2133 },
 
 	.module_mfg_id          = { .msb = 0x2c, .lsb = 0x00 },
 	.dram_mfg_id            = { .msb = 0x2c, .lsb = 0x00 },
@@ -734,7 +692,6 @@ const struct nonspd_mem_info micron_lpddr4x_mt29vzzzbd9dqkpr_046 = {
 	.module_size_mbits      = 32768,
 	.num_ranks              = 2,
 	.device_width           = 32,
-	.ddr_freq               = { DDR_2133 },
 
 	.module_mfg_id          = { .msb = 0x2c, .lsb = 0x00 },
 	.dram_mfg_id            = { .msb = 0x2c, .lsb = 0x00 },
@@ -750,7 +707,6 @@ const struct nonspd_mem_info micron_lpddr4x_mt29vzzzad9gqfsm_046 = {
 	.module_size_mbits      = 32768,
 	.num_ranks              = 2,
 	.device_width           = 32,
-	.ddr_freq               = { DDR_2133 },
 
 	.module_mfg_id          = { .msb = 0x2c, .lsb = 0x00 },
 	.dram_mfg_id            = { .msb = 0x2c, .lsb = 0x00 },
@@ -766,7 +722,6 @@ const struct nonspd_mem_info samsung_lpddr4_k3uh5h50mm_agcj = {
 	.module_size_mbits	= 32768,
 	.num_ranks		= 2,
 	.device_width		= 32,
-	.ddr_freq 		= { DDR_1355 },
 
 	.module_mfg_id		= { .msb = 0xce, .lsb = 0x00 },
 	.dram_mfg_id		= { .msb = 0xce, .lsb = 0x00 },
@@ -782,7 +737,6 @@ const struct nonspd_mem_info samsung_lpddr4x_kmdh6001da_b422 = {
 	.module_size_mbits	= 32768,
 	.num_ranks		= 2,
 	.device_width		= 32,
-	.ddr_freq 		= { DDR_667, DDR_800, DDR_933, DDR_1067, DDR_1200},
 
 	.module_mfg_id		= { .msb = 0xce, .lsb = 0x00 },
 	.dram_mfg_id		= { .msb = 0xce, .lsb = 0x00 },
@@ -798,7 +752,6 @@ const struct nonspd_mem_info samsung_lpddr4x_kmdp6001da_b425 = {
 	.module_size_mbits	= 32768,
 	.num_ranks		= 2,
 	.device_width		= 32,
-	.ddr_freq 		= { DDR_667, DDR_800, DDR_933, DDR_1067, DDR_1200},
 
 	.module_mfg_id		= { .msb = 0xce, .lsb = 0x00 },
 	.dram_mfg_id		= { .msb = 0xce, .lsb = 0x00 },
@@ -814,7 +767,6 @@ const struct nonspd_mem_info samsung_lpddr4x_kmdv6001da_b620 = {
 	.module_size_mbits	= 32768,
 	.num_ranks		= 2,
 	.device_width		= 32,
-	.ddr_freq 		= { DDR_667, DDR_800, DDR_933, DDR_1067, DDR_1200},
 
 	.module_mfg_id		= { .msb = 0xce, .lsb = 0x00 },
 	.dram_mfg_id		= { .msb = 0xce, .lsb = 0x00 },
@@ -830,7 +782,6 @@ const struct nonspd_mem_info samsung_lpddr4x_k4ube3d4aa_mgcl = {
 	.module_size_mbits	= 32768,
 	.num_ranks		= 2,
 	.device_width		= 32,
-	.ddr_freq 		= { DDR_667, DDR_800, DDR_933, DDR_1067, DDR_1200},
 
 	.module_mfg_id		= { .msb = 0xce, .lsb = 0x00 },
 	.dram_mfg_id		= { .msb = 0xce, .lsb = 0x00 },
@@ -846,7 +797,6 @@ const struct nonspd_mem_info samsung_lpddr4x_k4ube3d4aa_mgcr = {
         .module_size_mbits      = 32768,
         .num_ranks              = 2,
         .device_width           = 32,
-        .ddr_freq               = { DDR_667, DDR_800, DDR_933, DDR_1067, DDR_1200},
 
         .module_mfg_id          = { .msb = 0xce, .lsb = 0x00 },
         .dram_mfg_id            = { .msb = 0xce, .lsb = 0x00 },
@@ -862,7 +812,6 @@ const struct nonspd_mem_info sandisk_lpddr4x_sdada4cr_128g = {
 	.module_size_mbits	= 32768,
 	.num_ranks		= 2,
 	.device_width		= 32,
-	.ddr_freq 		= { DDR_667, DDR_800, DDR_933, DDR_1067, DDR_1200},
 
 	.module_mfg_id		= { .msb = 0x45, .lsb = 0x00 },
 	.dram_mfg_id		= { .msb = 0x45, .lsb = 0x00 },
