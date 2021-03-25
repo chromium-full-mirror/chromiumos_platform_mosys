@@ -879,26 +879,6 @@ static struct nonspd_mem_info part_extracted_from_smbios = {
 		{ 'U', 'N', 'P', 'R', 'O', 'V', 'I', 'S', 'I', 'O', 'N', 'E', 'D'},
 };
 
-static int transfer_speed_from_smbios_to_nonspd_mem_info(
-	struct smbios_table *table,
-	struct nonspd_mem_info *info)
-{
-	uint32_t expected_speed;
-
-	for (int index = DDR_333; index < DDR_FREQ_MAX; index++) {
-		expected_speed = strtoul(ddr_freq_prettyprint[index], NULL, 10);
-		if (table->data.mem_device.speed >= expected_speed - 1 &&
-		    table->data.mem_device.speed <= expected_speed + 1) {
-			info->ddr_freq[0] = index;
-			return 0;
-		}
-	}
-
-	lprintf(LOG_DEBUG, "%s: mem speed %hu in SMBIOS is out of range.",
-		__func__, table->data.mem_device.speed);
-	return -1;
-}
-
 static enum spd_dram_type map_smbios_mem_type_to_spd(struct smbios_table *table)
 {
 	char *part_number = table->string[table->data.mem_device.part_number];
@@ -982,14 +962,6 @@ static int extract_mem_info_from_smbios(
 	info->dram_type = map_smbios_mem_type_to_spd(table);
 	info->num_ranks = table->data.mem_device.attributes & 0xf;
 	info->device_width = table->data.mem_device.data_width;
-
-	/*
-	 * Try to transfer speed info, but ignore errors. Many older
-	 * firmware will report invalid speeds, but it does not
-	 * actually matter, as nothing in the OS really uses this
-	 * information.
-	 */
-	transfer_speed_from_smbios_to_nonspd_mem_info(table, info);
 
 	return 0;
 }
