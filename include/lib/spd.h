@@ -141,7 +141,6 @@ enum spd_field_type {
 	SPD_GET_RANKS,		/* Number of ranks */
 	SPD_GET_WIDTH,		/* SDRAM device width */
 	SPD_GET_CHECKSUM,	/* SPD checksum */
-	SPD_GET_SPEEDS,		/* module frequency capabilities */
 };
 
 /*

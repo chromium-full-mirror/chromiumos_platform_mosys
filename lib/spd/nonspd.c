@@ -40,7 +40,6 @@
 #include "lib/math.h"
 #include "lib/nonspd.h"
 #include "lib/string.h"
-#include "lib/string_builder.h"
 #include "lib/val2str.h"
 #include "mosys/platform.h"
 #include "mosys/kv_pair.h"
@@ -200,51 +199,6 @@ int nonspd_print_field(struct kv_pair *kv,
 	case SPD_GET_WIDTH:
 	{
 		kv_pair_fmt(kv, "width", "%d", info->device_width);
-		ret = 1;
-		break;
-	}
-
-	case SPD_GET_SPEEDS:
-	{
-		int i, first_entry = 1;
-		struct string_builder *speeds = new_string_builder();
-
-		for (i = 0; i < ARRAY_SIZE(info->ddr_freq); i++) {
-			if (!info->ddr_freq[i])
-				continue;
-
-			if (!first_entry)
-				string_builder_strcat(speeds, ", ");
-			else
-				first_entry = 0;
-
-			switch (info->dram_type) {
-			case SPD_DRAM_TYPE_DDR3:
-				string_builder_strcat(speeds, "DDR3-");
-				break;
-			case SPD_DRAM_TYPE_DDR4:
-				string_builder_strcat(speeds, "DDR4-");
-				break;
-			case SPD_DRAM_TYPE_LPDDR3:
-			case SPD_DRAM_TYPE_JEDEC_LPDDR3:
-				string_builder_strcat(speeds, "LPDDR3-");
-				break;
-			case SPD_DRAM_TYPE_LPDDR4:
-				string_builder_strcat(speeds, "LPDDR4-");
-				break;
-			case SPD_DRAM_TYPE_LPDDR4X:
-				string_builder_strcat(speeds, "LPDDR4X-");
-				break;
-			default:
-				break;
-			}
-
-			string_builder_strcat(speeds,
-				ddr_freq_prettyprint[info->ddr_freq[i]]);
-		}
-
-		kv_pair_add(kv, "speeds", string_builder_get_string(speeds));
-		free_string_builder(speeds);
 		ret = 1;
 		break;
 	}
