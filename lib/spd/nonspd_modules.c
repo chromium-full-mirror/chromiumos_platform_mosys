@@ -607,6 +607,19 @@ const struct nonspd_mem_info micron_lpddr4x_mt29vzzzad9gqfsm_046 = {
 	.part_num		= "MT29VZZZAD9GQFSM-046",
 };
 
+const struct nonspd_mem_info micron_lpddr4x_mt29vzzzcd9gqkpr_046 = {
+	.dram_type		= SPD_DRAM_TYPE_LPDDR4X,
+
+	.module_size_mbits	= 32768,
+	.num_ranks		= 2,
+	.device_width		= 32,
+
+	.module_mfg_id		= { .msb = 0x2c, .lsb = 0x00 },
+	.dram_mfg_id		= { .msb = 0x2c, .lsb = 0x00 },
+
+	.part_num		= "MT29VZZZCD9GQKPR-046",
+};
+
 const struct nonspd_mem_info samsung_lpddr4_k3uh5h50mm_agcj = {
 	.dram_type		= SPD_DRAM_TYPE_LPDDR4,
 

@@ -37,6 +37,7 @@ extern const struct nonspd_mem_info micron_lpddr4x_mt29vzzzad8dqksl;
 extern const struct nonspd_mem_info micron_lpddr4x_mt29vzzzad8gqfsl_046;
 extern const struct nonspd_mem_info micron_lpddr4x_mt29vzzzbd9dqkpr_046;
 extern const struct nonspd_mem_info micron_lpddr4x_mt29vzzzad9gqfsm_046;
+extern const struct nonspd_mem_info micron_lpddr4x_mt29vzzzcd9gqkpr_046;
 extern const struct nonspd_mem_info micron_lpddr4x_mt53e1g32d4nq_046wte;
 extern const struct nonspd_mem_info micron_lpddr4x_mt53e1g32d2np_046wta;
 extern const struct nonspd_mem_info micron_lpddr4x_mt53e2g32d4nq_046wta;
