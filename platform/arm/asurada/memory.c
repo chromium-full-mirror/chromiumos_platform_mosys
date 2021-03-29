@@ -24,13 +24,6 @@ static int dimm_count(struct platform_intf *intf)
 	return DIMM_COUNT;
 }
 
-static const struct nonspd_mem_info *asurada_dram[] = {
-	[0] = &micron_lpddr4x_mt29vzzzbd9dqkpr_046,
-	[1] = &micron_lpddr4x_mt29vzzzad8gqfsl_046,
-	[2] = &samsung_lpddr4x_kmdp6001da_b425,
-	[3] = &samsung_lpddr4x_kmdv6001da_b620,
-};
-
 static int get_mem_info(struct platform_intf *intf, int dimm,
 			const struct nonspd_mem_info **info)
 {
@@ -40,11 +33,39 @@ static int get_mem_info(struct platform_intf *intf, int dimm,
 		lprintf(LOG_ERR, "Unable to obtain RAM code.\n");
 		return -1;
 	}
-	if (ram_code >= ARRAY_SIZE(asurada_dram) || !asurada_dram[ram_code]) {
+
+	switch (ram_code) {
+	case 0x00:
+		*info = &micron_lpddr4x_mt29vzzzbd9dqkpr_046;
+		break;
+	case 0x01:
+		*info = &micron_lpddr4x_mt29vzzzad8gqfsl_046;
+		break;
+	case 0x02:
+		*info = &samsung_lpddr4x_kmdp6001da_b425;
+		break;
+	case 0x03:
+		*info = &samsung_lpddr4x_kmdv6001da_b620;
+		break;
+	case 0x40:
+		*info = &micron_lpddr4x_mt53e1g32d2np_046wta;
+		break;
+	case 0x50:
+		*info = &samsung_lpddr4x_k4ube3d4aa_mgcr;
+		break;
+	case 0x51:
+		*info = &hynix_lpddr4x_h9hcnnncpmmlxr_nee;
+		break;
+	case 0x60:
+		*info = &micron_lpddr4x_mt53e2g32d4nq_046wta;
+		break;
+	case 0x71:
+		*info = &hynix_lpddr4x_h9hcnnnfammlxr_nee;
+		break;
+	default:
 		lprintf(LOG_ERR, "Invalid RAM code: %d.\n", ram_code);
 		return -1;
 	}
-	*info = asurada_dram[ram_code];
 	return 0;
 }
 
