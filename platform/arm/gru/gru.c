@@ -74,7 +74,9 @@ static struct platform_cmd *gru_sub[] = {
 	&cmd_ec,
 	&cmd_memory,
 	&cmd_platform,
+#ifndef CONFIG_CROS_CONFIG
 	&cmd_psu,
+#endif
 	&cmd_eventlog,
 	NULL
 };
@@ -131,7 +133,9 @@ static struct eventlog_cb gru_eventlog_cb = {
 static struct platform_cb gru_cb = {
 	.ec		= &cros_ec_cb,
 	.memory		= &gru_memory_cb,
+#ifndef CONFIG_CROS_CONFIG
 	.psu 		= &generic_psu_battery_cb,
+#endif
 	.sys		= &fdt_sysinfo_cb,
 	.eventlog	= &gru_eventlog_cb,
 };

@@ -10,7 +10,6 @@
 #include "lib/cros_config.h"
 #include "lib/elog.h"
 #include "lib/file.h"
-#include "lib/generic_callbacks.h"
 #include "lib/sku.h"
 #include "mosys/command_list.h"
 #include "mosys/platform.h"
@@ -22,7 +21,6 @@ static struct platform_cmd *asurada_sub[] = {
 	&cmd_memory,
 	&cmd_pd,
 	&cmd_platform,
-	&cmd_psu,
 	&cmd_eventlog,
 	NULL
 };
@@ -47,7 +45,6 @@ static struct eventlog_cb asurada_eventlog_cb = {
 static struct platform_cb asurada_cb = {
 	.ec		= &cros_ec_cb,
 	.memory		= &asurada_memory_cb,
-	.psu		= &generic_psu_battery_cb,
 	.sys		= &asurada_sys_cb,
 	.eventlog	= &asurada_eventlog_cb,
 };

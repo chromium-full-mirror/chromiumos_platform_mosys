@@ -40,7 +40,6 @@
 #include "lib/math.h"
 #include "lib/probe.h"
 #include "lib/sku.h"
-#include "lib/generic_callbacks.h"
 #include "mosys/command_list.h"
 #include "mosys/platform.h"
 #include "mosys/intf_list.h"
@@ -50,7 +49,6 @@ static struct platform_cmd *cheza_sub[] = {
 	&cmd_ec,
 	&cmd_memory,
 	&cmd_platform,
-	&cmd_psu,
 	&cmd_eventlog,
 	NULL
 };
@@ -85,7 +83,6 @@ static struct eventlog_cb cheza_eventlog_cb = {
 static struct platform_cb cheza_cb = {
 	.ec		= &cros_ec_cb,
 	.memory		= &cheza_memory_cb,
-	.psu 		= &generic_psu_battery_cb,
 	.sys		= &fdt_sysinfo_cb,
 	.eventlog	= &cheza_eventlog_cb,
 };

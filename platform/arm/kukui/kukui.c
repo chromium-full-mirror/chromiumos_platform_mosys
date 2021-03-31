@@ -42,7 +42,6 @@
 #include "lib/cros_config.h"
 #include "lib/fdt.h"
 #include "lib/file.h"
-#include "lib/generic_callbacks.h"
 #include "lib/math.h"
 #include "lib/probe.h"
 #include "lib/sku.h"
@@ -53,7 +52,6 @@ static struct platform_cmd *kukui_sub[] = {
 	&cmd_ec,
 	&cmd_memory,
 	&cmd_platform,
-	&cmd_psu,
 	&cmd_eventlog,
 	NULL
 };
@@ -78,7 +76,6 @@ static struct eventlog_cb kukui_eventlog_cb = {
 static struct platform_cb kukui_cb = {
 	.ec		= &cros_ec_cb,
 	.memory		= &kukui_memory_cb,
-	.psu		= &generic_psu_battery_cb,
 	.sys		= &fdt_sysinfo_cb,
 	.eventlog	= &kukui_eventlog_cb,
 };

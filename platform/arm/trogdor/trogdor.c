@@ -8,7 +8,6 @@
 #include "lib/cros_config.h"
 #include "lib/fdt.h"
 #include "lib/sku.h"
-#include "lib/generic_callbacks.h"
 #include "mosys/command_list.h"
 #include "mosys/platform.h"
 #include "mosys/intf_list.h"
@@ -18,7 +17,6 @@ static struct platform_cmd *trogdor_sub[] = {
 	&cmd_memory,
 	&cmd_pd,
 	&cmd_platform,
-	&cmd_psu,
 	&cmd_eventlog,
 	NULL
 };
@@ -43,7 +41,6 @@ static struct eventlog_cb trogdor_eventlog_cb = {
 static struct platform_cb trogdor_cb = {
 	.ec		= &cros_ec_cb,
 	.memory		= &trogdor_memory_cb,
-	.psu 		= &generic_psu_battery_cb,
 	.sys		= &fdt_sysinfo_cb,
 	.eventlog	= &trogdor_eventlog_cb,
 };

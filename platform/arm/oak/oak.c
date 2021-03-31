@@ -64,7 +64,9 @@ static struct platform_cmd *oak_sub[] = {
 	&cmd_ec,
 	&cmd_memory,
 	&cmd_platform,
+#ifndef CONFIG_CROS_CONFIG
 	&cmd_psu,
+#endif
 	&cmd_eventlog,
 	NULL
 };
@@ -108,7 +110,9 @@ static struct platform_cb oak_cb = {
 	.ec		= &cros_ec_cb,
 	.memory		= &oak_memory_cb,
 	.pd		= &cros_pd_cb,
+#ifndef CONFIG_CROS_CONFIG
 	.psu		= &generic_psu_battery_cb,
+#endif
 	.sys		= &oak_sys_cb,
 	.eventlog	= &oak_eventlog_cb,
 };
