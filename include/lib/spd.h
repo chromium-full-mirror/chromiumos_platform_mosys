@@ -109,16 +109,10 @@ enum spd_field_type {
 	SPD_GET_DRAM_TYPE,      /* DRAM type */
 	SPD_GET_MODULE_TYPE,    /* DIMM type */
 	SPD_GET_MFG_ID,		/* Module Manufacturer ID */
-	SPD_GET_MFG_ID_DRAM,	/* DRAM Manufacturer ID */
-	SPD_GET_MFG_LOC,	/* Module Manufacturing Location */
-	SPD_GET_MFG_DATE,	/* Module Manufacturing Date */
 	SPD_GET_PART_NUMBER,	/* Module Part Number */
-	SPD_GET_REVISION_CODE,	/* Module Revision Code */
 	SPD_GET_SIZE,		/* Module Size (in MB) */
-	SPD_GET_ECC,		/* ECC capable: boolean */
 	SPD_GET_RANKS,		/* Number of ranks */
 	SPD_GET_WIDTH,		/* SDRAM device width */
-	SPD_GET_CHECKSUM,	/* SPD checksum */
 };
 
 /*

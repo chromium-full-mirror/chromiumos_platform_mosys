@@ -124,42 +124,6 @@ int nonspd_print_field(struct kv_pair *kv,
 		break;
 	}
 
-	case SPD_GET_MFG_ID_DRAM:
-	{
-		uint8_t manuf_lsb = info->dram_mfg_id.lsb & 0x7f;
-		uint8_t manuf_msb = info->dram_mfg_id.msb & 0x7f;
-		const char *tstr;
-
-		tstr = jedec_manufacturer(manuf_lsb, manuf_msb);
-
-		if (tstr != NULL) {
-			kv_pair_fmt(kv, "dram_mfg", "%u-%u: %s",
-			            manuf_lsb + 1, manuf_msb, tstr);
-		} else {
-			kv_pair_fmt(kv, "dram_mfg", "%u-%u",
-			            manuf_lsb + 1, manuf_msb);
-		}
-		ret = 1;
-		break;
-	}
-
-	case SPD_GET_MFG_LOC:
-	{
-		kv_pair_fmt(kv, "mfg_loc", "0x%02x", info->mfg_loc);
-		ret = 1;
-		break;
-	}
-
-	case SPD_GET_MFG_DATE: /* manufacturing date (BCD values) */
-	{
-		uint8_t year = info->module_mfg_date.year;
-		uint8_t week = info->module_mfg_date.week;
-
-		kv_pair_fmt(kv, "mfg_date", "20%02x-wk%02x", week, year);
-		ret = 1;
-		break;
-	}
-
 	case SPD_GET_PART_NUMBER:
 	{
 		char part[sizeof(info->part_num)+1];
@@ -168,15 +132,6 @@ int nonspd_print_field(struct kv_pair *kv,
 		part[sizeof(info->part_num)] = '\0';
 		kv_pair_fmt(kv, "part_number", "%s", part);
 
-		ret = 1;
-		break;
-	}
-
-	case SPD_GET_REVISION_CODE:
-	{
-		kv_pair_fmt(kv, "revision_code", "0x%02x%02x",
-		            info->revision[0],
-			    info->revision[1]);
 		ret = 1;
 		break;
 	}

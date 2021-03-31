@@ -103,48 +103,6 @@ int spd_print_field_ddr3(struct platform_intf *intf, struct kv_pair *kv,
 		break;
 	}
 
-	case SPD_GET_MFG_ID_DRAM:
-	{
-		uint8_t manuf_lsb;
-		uint8_t manuf_msb;
-		const char *tstr;
-
-		manuf_lsb = byte[DDR3_SPD_REG_DRAM_MANUF_JEDEC_ID_LSB] & 0x7f;
-		manuf_msb = byte[DDR3_SPD_REG_DRAM_MANUF_JEDEC_ID_MSB] & 0x7f;
-
-		tstr = jedec_manufacturer(manuf_lsb, manuf_msb);
-
-		if (tstr != NULL) {
-			kv_pair_fmt(kv, "dram_mfg", "%u-%u: %s",
-			            manuf_lsb + 1, manuf_msb, tstr);
-		} else {
-			kv_pair_fmt(kv, "dram_mfg", "%u-%u",
-			            manuf_lsb + 1, manuf_msb);
-		}
-		ret = 1;
-		break;
-	}
-
-	case SPD_GET_MFG_LOC:
-	{
-		kv_pair_fmt(kv, "mfg_loc", "0x%02x",
-		            byte[DDR3_SPD_REG_MODULE_MANUF_LOC]);
-		ret = 1;
-		break;
-	}
-
-	case SPD_GET_MFG_DATE: /* manufacturing date (BCD values) */
-	{
-		uint8_t year;
-		uint8_t week;
-
-		year = byte[DDR3_SPD_REG_MODULE_MANUF_DATE_YEAR];
-		week = byte[DDR3_SPD_REG_MODULE_MANUF_DATE_YEAR];
-		kv_pair_fmt(kv, "mfg_date", "20%02x-wk%02x", week, year);
-		ret = 1;
-		break;
-	}
-
 	case SPD_GET_PART_NUMBER:
 	{
 		char part[19];
@@ -153,15 +111,6 @@ int spd_print_field_ddr3(struct platform_intf *intf, struct kv_pair *kv,
 		part[18] = '\0';
 		kv_pair_fmt(kv, "part_number", "%s", part);
 
-		ret = 1;
-		break;
-	}
-
-	case SPD_GET_REVISION_CODE:
-	{
-		kv_pair_fmt(kv, "revision_code", "0x%02x%02x",
-		            byte[DDR3_SPD_REG_MODULE_REVISION_0],
-		            byte[DDR3_SPD_REG_MODULE_REVISION_1]);
 		ret = 1;
 		break;
 	}
@@ -184,16 +133,6 @@ int spd_print_field_ddr3(struct platform_intf *intf, struct kv_pair *kv,
 		break;
 	}
 
-	case SPD_GET_ECC:
-	{
-		uint8_t bus_ext_width = byte[DDR3_SPD_REG_MODULE_BUS_WIDTH];
-		bus_ext_width >>= 3;
-		bus_ext_width &= 0x7;
-		kv_pair_add_bool(kv, "ecc", bus_ext_width);
-		ret = 1;
-		break;
-	}
-
 	case SPD_GET_RANKS:
 	{
 		kv_pair_fmt(kv, "ranks", "%d",
@@ -209,15 +148,6 @@ int spd_print_field_ddr3(struct platform_intf *intf, struct kv_pair *kv,
 		width = 8 << (byte[DDR3_SPD_REG_MODULE_BUS_WIDTH] & 0x7);
 		width += 8 * ((byte[DDR3_SPD_REG_MODULE_BUS_WIDTH] >> 3) & 0x7);
 		kv_pair_fmt(kv, "width", "%d", width);
-		ret = 1;
-		break;
-	}
-
-	case SPD_GET_CHECKSUM:
-	{
-		kv_pair_fmt(kv, "checksum", "0x%02x%02x",
-		            byte[DDR3_SPD_REG_CRC_1],
-		            byte[DDR3_SPD_REG_CRC_0]);
 		ret = 1;
 		break;
 	}
