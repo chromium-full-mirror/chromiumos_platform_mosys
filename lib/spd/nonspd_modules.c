@@ -806,6 +806,21 @@ const struct nonspd_mem_info samsung_lpddr4x_k4ube3d4aa_mgcr = {
                   'M', 'G', 'C', 'R' },
 };
 
+const struct nonspd_mem_info samsung_lpddr4x_k4uce3q4aa_mgcr = {
+	.dram_type              = SPD_DRAM_TYPE_LPDDR4X,
+
+	.module_size_mbits      = 65536,
+	.num_ranks              = 2,
+	.device_width           = 32,
+
+	.module_mfg_id          = { .msb = 0xce, .lsb = 0x00 },
+	.dram_mfg_id            = { .msb = 0xce, .lsb = 0x00 },
+
+	.part_num               =
+		{ 'K', '4', 'U', 'C', 'E', '3', 'Q', '4', 'A', 'A', '-',
+		'M', 'G', 'C', 'R' },
+};
+
 const struct nonspd_mem_info sandisk_lpddr4x_sdada4cr_128g = {
 	.dram_type		= SPD_DRAM_TYPE_LPDDR4X,
 
