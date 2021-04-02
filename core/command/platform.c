@@ -184,12 +184,14 @@ static struct platform_cmd platform_cmds[] = {
 		.name	= "brand",
 		.desc	= "Display Brand Code (deprecated)",
 		.type	= ARG_TYPE_GETTER,
+		.replaced_by_cros_config = true,
 		.arg	= { .func = platform_brand_cmd }
 	},
 	{
 		.name	= "customization",
 		.desc	= "Display Customization ID (deprecated)",
 		.type	= ARG_TYPE_GETTER,
+		.replaced_by_cros_config = true,
 		.arg	= { .func = platform_customization_cmd }
 	},
 #endif  /* CONFIG_CROS_CONFIG */

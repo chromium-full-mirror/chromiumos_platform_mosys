@@ -29,6 +29,7 @@
  * OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
+#include <stdbool.h>
 #include <stdio.h>
 
 #include "mosys/command_list.h"
@@ -82,5 +83,6 @@ struct platform_cmd cmd_psu = {
 	.name	= "psu",
 	.desc	= "Power Supply Information",
 	.type	= ARG_TYPE_SUB,
+	.replaced_by_cros_config = true,
 	.arg	= { .sub = psu_cmds }
 };
