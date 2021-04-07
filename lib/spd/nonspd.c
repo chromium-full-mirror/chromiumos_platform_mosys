@@ -209,3 +209,118 @@ int nonspd_print_field(struct kv_pair *kv,
 
 	return ret;
 }
+
+// This one is reserved for storing mem info from SMBIOS if no explicit entry
+// was added above.
+static struct nonspd_mem_info part_extracted_from_smbios = {
+	.part_num		=
+		{ 'U', 'N', 'P', 'R', 'O', 'V', 'I', 'S', 'I', 'O', 'N', 'E', 'D'},
+};
+
+static enum spd_dram_type map_smbios_mem_type_to_spd(struct smbios_table *table)
+{
+	char *part_number = table->string[table->data.mem_device.part_number];
+	static const struct {
+		enum spd_dram_type type;
+		const char *prefix;
+	} part_number_matches[] = {
+		/* Hynix */
+		{ SPD_DRAM_TYPE_DDR3, "h5t" },
+		{ SPD_DRAM_TYPE_LPDDR3, "h9c" },
+		{ SPD_DRAM_TYPE_LPDDR4, "h9h" },
+
+		/* Samsung */
+		{ SPD_DRAM_TYPE_DDR3, "k4b" },
+		{ SPD_DRAM_TYPE_LPDDR3, "k3q" },
+		{ SPD_DRAM_TYPE_LPDDR3, "k4e" },
+		{ SPD_DRAM_TYPE_LPDDR4, "k3u" },
+		{ SPD_DRAM_TYPE_LPDDR4, "k4f" },
+
+		/* Micron */
+		{ SPD_DRAM_TYPE_DDR4, "mt40" },
+		{ SPD_DRAM_TYPE_DDR3, "mt41" },
+		{ SPD_DRAM_TYPE_LPDDR3, "mt52" },
+		{ SPD_DRAM_TYPE_LPDDR4, "mt53" },
+	};
+
+	switch (table->data.mem_device.type) {
+	case SMBIOS_MEMORY_TYPE_DDR3:
+		return SPD_DRAM_TYPE_DDR3;
+	case SMBIOS_MEMORY_TYPE_DDR4:
+		return SPD_DRAM_TYPE_DDR4;
+	case SMBIOS_MEMORY_TYPE_LPDDR3:
+		return SPD_DRAM_TYPE_LPDDR3;
+	case SMBIOS_MEMORY_TYPE_LPDDR4:
+		return SPD_DRAM_TYPE_LPDDR4;
+	case SMBIOS_MEMORY_TYPE_OTHER:
+	case SMBIOS_MEMORY_TYPE_UNKNOWN:
+		/* Do our best to figure it out from part numbers */
+		for (size_t i = 0; i < ARRAY_SIZE(part_number_matches); i++) {
+			if (!strncasecmp(part_number,
+					 part_number_matches[i].prefix,
+					 strlen(part_number_matches[i].prefix)))
+				return part_number_matches[i].type;
+		}
+
+		/* Fall thru */
+	default:
+		lprintf(LOG_ERR, "%s: Unknown SMBIOS memory type: %d\n",
+			__func__, table->data.mem_device.type);
+		return 0;
+	}
+}
+
+static int extract_mem_info_from_smbios(
+	struct smbios_table *table,
+	struct nonspd_mem_info *info)
+{
+	const char *smbios_part_num;
+	size_t smbios_part_num_len, max_part_num_len;
+	uint32_t size;
+
+	max_part_num_len = sizeof(info->part_num) - 1;
+	smbios_part_num = table->string[table->data.mem_device.part_number];
+	smbios_part_num_len = strlen(smbios_part_num);
+
+	if (!smbios_part_num_len ||
+		smbios_part_num_len > max_part_num_len) {
+		lprintf(LOG_ERR, "%s: SMBIOS Memory info table: part num is missing. "
+				"Or len of part number %lu is larger then buffer %lu."
+				, __func__, (unsigned long)smbios_part_num_len,
+				(unsigned long)max_part_num_len);
+		return -1;
+	}
+
+	size = (table->data.mem_device.size & 0x7fff) * 8;
+	info->module_size_mbits =
+		(table->data.mem_device.size & 0x8000 ? size * 1024 : size);
+
+	strncpy((char *)info->part_num, smbios_part_num, max_part_num_len);
+
+	info->dram_type = map_smbios_mem_type_to_spd(table);
+	info->num_ranks = table->data.mem_device.attributes & 0xf;
+	info->device_width = table->data.mem_device.data_width;
+
+	return 0;
+}
+
+
+int spd_set_nonspd_info_from_smbios(struct platform_intf *intf, int dimm,
+				    const struct nonspd_mem_info **info)
+{
+	struct smbios_table table;
+
+	if (smbios_find_table(intf, SMBIOS_TYPE_MEMORY, dimm, &table) < 0) {
+		lprintf(LOG_ERR, "%s: SMBIOS Memory info table missing\n",
+			__func__);
+		return -1;
+	}
+
+	/* memory device from SMBIOS is mapped into a nonspd_mem_info */
+	if (extract_mem_info_from_smbios(&table, &part_extracted_from_smbios))
+		return -1;
+
+	*info = &part_extracted_from_smbios;
+
+	return 0;
+}
