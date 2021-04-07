@@ -277,3 +277,180 @@ int nonspd_print_field(struct kv_pair *kv,
 
 	return ret;
 }
+
+// This one is reserved for storing mem info from SMBIOS if no explicit entry
+// was added above.
+static struct nonspd_mem_info part_extracted_from_smbios = {
+	.part_num		=
+		{ 'U', 'N', 'P', 'R', 'O', 'V', 'I', 'S', 'I', 'O', 'N', 'E', 'D'},
+};
+
+static const struct nonspd_mem_info *nospdmemory[] = {
+	&elpida_lpddr3_edfa164a2ma_jd_f,
+	&elpida_lpddr3_f8132a3ma_gd_f,
+	&elpida_lpddr3_fa232a2ma_gc_f,
+	&hynix_ddr3l_h5tc4g63afr_pba,
+	&hynix_ddr3l_h5tc4g63cfr_pba,
+	&hynix_ddr3l_h5tc4g63efr_rda,
+	&hynix_lpddr3_h9ccnnn8gtmlar_nud,
+	&hynix_lpddr3_h9ccnnnbjtalar_nud,
+	&hynix_lpddr3_h9ccnnnbjtmlar_nud,
+	&hynix_ddr3l_h5tc8g63amr_pba,
+	&hynix_lpddr3_h9ccnnnbptblbr_nud,
+	&hynix_lpddr3_h9ccnnnbltblar_nud,
+	&hynix_lpddr3_h9ccnnnbktmlbr_ntd,
+	&hynix_lpddr4_h9hcnnn8kumlhr,
+	&hynix_lpddr4_h9hcnnnbpumlhr,
+	&hynix_lpddr4x_h9hcnnncpmalhr_nee,
+	&hynix_lpddr4x_h9hcnnncpmmlxr_nee,
+	&micron_lpddr3_mt52l256m32d1pf_107wtb,
+	&micron_lpddr3_mt52l256m64d2pp_107wtb,
+	&micron_lpddr3_mt52l512m32d2pf_107wtb,
+	&micron_lpddr4_mt53b256m32d1np,
+	&micron_lpddr4_mt53b512m32d2np,
+	&micron_lpddr4_mt53e512m32d2np,
+	&micron_lpddr4x_mt29vzzzad8dqksl,
+	&micron_lpddr4x_mt53e1g32d4nq_046wte,
+	&micron_lpddr4x_mt53e1g32d2np_046wta,
+	&micron_lpddr4x_mt53e2g32d4nq_046wta,
+	&micron_mt41k256m16ha,
+	&micron_mt52l256m32d1pf,
+	&micron_mt52l512m32d2pf,
+	&nanya_ddr3l_nt5cc256m16dp_di,
+	&nanya_ddr3l_nt5cc256m16er_ek,
+	&samsung_k4b4g1646d,
+	&samsung_k4b4g1646e,
+	&samsung_k4b4g1646e_byma,
+	&samsung_ddr3l_k4b4g1646d_byk0,
+	&samsung_ddr3l_k4b4g1646q_hyk0,
+	&samsung_ddr3l_k4b8g1646q_myk0,
+	&samsung_lpddr3_k3qf2f20em_agce,
+	&samsung_lpddr3_k4e6e304eb_egce,
+	&samsung_lpddr3_k4e6e304ee_egce,
+	&samsung_lpddr3_k4e6e304eb_egcf,
+	&samsung_lpddr3_k4e8e304ed_egcc,
+	&samsung_lpddr3_k4e8e304ee_egce,
+	&samsung_lpddr3_k4e8e324eb_egcf,
+	&samsung_lpddr4_k3uh5h50mm_agcj,
+	&samsung_lpddr4_k4f6e304hb_mgch,
+	&samsung_lpddr4_k4f6e304hb_mgcj,
+	&samsung_lpddr4_k4f6e3s4hm_mgcj,
+	&samsung_lpddr4_k4f8e304hb_mgcj,
+	&samsung_lpddr4x_kmdh6001da_b422,
+	&samsung_lpddr4x_kmdp6001da_b425,
+	&samsung_lpddr4x_kmdv6001da_b620,
+	&samsung_lpddr4x_k4ube3d4am_mgcj,
+	&samsung_lpddr4x_k4ube3d4aa_mgcl,
+	&sandisk_lpddr4x_sdada4cr_128g
+};
+
+static int transfer_speed_from_smbios_to_nonspd_mem_info(
+	struct smbios_table *table,
+	struct nonspd_mem_info *info)
+{
+	for (int index = DDR_333; index < DDR_FREQ_MAX; index++) {
+		if (table->data.mem_device.speed == atoi(ddr_freq_prettyprint[index])) {
+			info->ddr_freq[0] = index;
+			return 0;
+		}
+	}
+
+	lprintf(LOG_ERR, "%s: mem speed %hu in SMBIOS is out of range.",
+			__func__, table->data.mem_device.speed);
+	return -1;
+}
+
+enum spd_dram_type map_smbios_mem_type_to_spd(struct smbios_table *table)
+{
+	switch (table->data.mem_device.type) {
+	case SMBIOS_MEMORY_TYPE_DDR:
+		return SPD_DRAM_TYPE_DDR;
+	case SMBIOS_MEMORY_TYPE_DDR2:
+		return SPD_DRAM_TYPE_DDR2;
+	case SMBIOS_MEMORY_TYPE_DDR2_FBDIMM:
+		return SPD_DRAM_TYPE_FBDIMM;
+	case SMBIOS_MEMORY_TYPE_DDR3:
+		return SPD_DRAM_TYPE_DDR3;
+	case SMBIOS_MEMORY_TYPE_DDR4:
+		return SPD_DRAM_TYPE_DDR4;
+	case SMBIOS_MEMORY_TYPE_LPDDR3:
+		return SPD_DRAM_TYPE_LPDDR3;
+	case SMBIOS_MEMORY_TYPE_LPDDR4:
+		return SPD_DRAM_TYPE_LPDDR4;
+	default:
+		lprintf(LOG_ERR, "%s: Unknown SMBIOS memory type: %d\n",
+			__func__, table->data.mem_device.type);
+		return 0;
+	}
+}
+
+static int extract_mem_info_from_smbios(
+	struct smbios_table *table,
+	struct nonspd_mem_info *info)
+{
+	const char *smbios_part_num;
+	size_t smbios_part_num_len, max_part_num_len;
+	uint32_t size;
+
+	max_part_num_len = sizeof(info->part_num) - 1;
+	smbios_part_num = table->string[table->data.mem_device.part_number];
+	smbios_part_num_len = strlen(smbios_part_num);
+
+	if (!smbios_part_num_len ||
+		smbios_part_num_len > max_part_num_len) {
+		lprintf(LOG_ERR, "%s: SMBIOS Memory info table: part num is missing. "
+				"Or len of part number %lu is larger then buffer %lu."
+				, __func__, (unsigned long)smbios_part_num_len,
+				(unsigned long)max_part_num_len);
+		return -1;
+	}
+
+	size = (table->data.mem_device.size & 0x7fff) * 8;
+	info->module_size_mbits =
+		(table->data.mem_device.size & 0x8000 ? size * 1024 : size);
+
+	strncpy((char *)info->part_num, smbios_part_num, max_part_num_len);
+
+	info->dram_type = map_smbios_mem_type_to_spd(table);
+	info->num_ranks = table->data.mem_device.attributes & 0xf;
+	info->device_width = table->data.mem_device.data_width;
+
+	return transfer_speed_from_smbios_to_nonspd_mem_info(table, info);
+}
+
+int spd_set_nonspd_info(struct platform_intf *intf,
+                        const struct nonspd_mem_info **info)
+{
+	int dimm = 0, index;
+	struct smbios_table table;
+
+	if (smbios_find_table(intf, SMBIOS_TYPE_MEMORY, dimm, &table,
+			SMBIOS_LEGACY_ENTRY_BASE,
+			SMBIOS_LEGACY_ENTRY_LEN) < 0) {
+		lprintf(LOG_ERR, "%s: SMBIOS Memory info table missing\n"
+			, __func__);
+		return -1;
+	}
+
+	for (index = 0; index < ARRAY_SIZE(nospdmemory); index++) {
+		if (!strncmp(table.string[table.data.mem_device.part_number],
+			(const char *)nospdmemory[index]->part_num,
+			sizeof(nospdmemory[index]->part_num))) {
+			*info = nospdmemory[index];
+			break;
+		}
+	}
+
+	if (index < ARRAY_SIZE(nospdmemory)) {
+		return 0;
+	}
+
+	// memory device from SMBIOS is mapped into a nonspd_mem_info.
+	if (extract_mem_info_from_smbios(&table, &part_extracted_from_smbios)) {
+		return -1;
+	}
+
+	*info = &part_extracted_from_smbios;
+
+	return 0;
+}

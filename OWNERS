@@ -2,3 +2,7 @@ adurbin@chromium.org
 hungte@chromium.org
 nednguyen@chromium.org
 sjg@chromium.org
+
+# Just like platform/, the non-SPD modules do not need owner's review.
+per-file lib/spd/nonspd_modules.c=*
+per-file include/lib/nonspd_modules.h=*
