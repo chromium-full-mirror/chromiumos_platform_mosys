@@ -17,9 +17,7 @@ const struct nonspd_mem_info elpida_lpddr3_edfa164a2ma_jd_f = {
 	.module_mfg_id		= { .msb = 0x2c, .lsb = 0x80 },
 	.dram_mfg_id		= { .msb = 0x2c, .lsb = 0x80 },
 
-	.part_num		=
-		{ 'E', 'D', 'F', 'A', '1', '6', '4', 'A', '2', 'M', 'A', '-',
-		  'J', 'D', '-', 'F',},
+	.part_num		= "EDFA164A2MA-JD-F",
 };
 
 const struct nonspd_mem_info hynix_ddr3l_h5tc4g63afr_pba = {
@@ -33,9 +31,7 @@ const struct nonspd_mem_info hynix_ddr3l_h5tc4g63afr_pba = {
 	.module_mfg_id		= { .msb = 0xad, .lsb = 0x80 },
 	.dram_mfg_id		= { .msb = 0xad, .lsb = 0x80 },
 
-	.part_num		=
-		{ 'H', '5', 'T', 'C', '4', 'G', '6', '3', 'A', 'F', 'R', '-',
-		  'P', 'B', 'A'},
+	.part_num		= "H5TC4G63AFR-PBA",
 };
 
 const struct nonspd_mem_info hynix_ddr3l_h5tc4g63cfr_pba = {
@@ -49,9 +45,7 @@ const struct nonspd_mem_info hynix_ddr3l_h5tc4g63cfr_pba = {
 	.module_mfg_id		= { .msb = 0xad, .lsb = 0x80 },
 	.dram_mfg_id		= { .msb = 0xad, .lsb = 0x80 },
 
-	.part_num		=
-		{ 'H', '5', 'T', 'C', '4', 'G', '6', '3', 'C', 'F', 'R', '-',
-		  'P', 'B', 'A'},
+	.part_num		= "H5TC4G63CFR-PBA",
 };
 
 const struct nonspd_mem_info hynix_ddr3l_h5tc4g63efr_rda = {
@@ -65,9 +59,7 @@ const struct nonspd_mem_info hynix_ddr3l_h5tc4g63efr_rda = {
 	.module_mfg_id		= { .msb = 0xad, .lsb = 0x80 },
 	.dram_mfg_id		= { .msb = 0xad, .lsb = 0x80 },
 
-	.part_num		=
-		{ 'H', '5', 'T', 'C', '4', 'G', '6', '3', 'E', 'F', 'R', '-',
-		  'R', 'D', 'A'},
+	.part_num		= "H5TC4G63EFR-RDA",
 };
 
 const struct nonspd_mem_info hynix_lpddr3_h9ccnnn8gtmlar_nud = {
@@ -81,9 +73,7 @@ const struct nonspd_mem_info hynix_lpddr3_h9ccnnn8gtmlar_nud = {
 	.module_mfg_id		= { .msb = 0xad, .lsb = 0x80 },
 	.dram_mfg_id		= { .msb = 0xad, .lsb = 0x80 },
 
-	.part_num		=
-		{ 'H', '9', 'C', 'C', 'N', 'N', 'N', '8', 'G', 'T', 'M', 'L',
-		  'A', 'R', '-', 'N', 'U', 'D',},
+	.part_num		= "H9CCNNN8GTMLAR-NUD",
 };
 
 const struct nonspd_mem_info hynix_lpddr3_h9ccnnnbjtalar_nud = {
@@ -97,9 +87,7 @@ const struct nonspd_mem_info hynix_lpddr3_h9ccnnnbjtalar_nud = {
 	.module_mfg_id		= { .msb = 0xad, .lsb = 0x80 },
 	.dram_mfg_id		= { .msb = 0xad, .lsb = 0x80 },
 
-	.part_num		=
-		{ 'H', '9', 'C', 'C', 'N', 'N', 'N', 'B', 'J', 'T', 'A', 'L',
-		  'A', 'R', '-', 'N', 'U', 'D',},
+	.part_num		= "H9CCNNNBJTALAR-NUD",
 };
 
 const struct nonspd_mem_info hynix_ddr3l_h5tc8g63amr_pba = {
@@ -112,9 +100,7 @@ const struct nonspd_mem_info hynix_ddr3l_h5tc8g63amr_pba = {
 	.module_mfg_id		= { .msb = 0xad, .lsb = 0x80 },
 	.dram_mfg_id		= { .msb = 0xad, .lsb = 0x80 },
 
-	.part_num		=
-		{ 'H', '5', 'T', 'C', '8', 'G', '6', '3', 'A', 'M', 'R', '-',
-		  'P', 'B', 'A' },
+	.part_num		= "H5TC8G63AMR-PBA",
 };
 
 const struct nonspd_mem_info hynix_lpddr3_h9ccnnnbptblbr_nud = {
@@ -128,9 +114,7 @@ const struct nonspd_mem_info hynix_lpddr3_h9ccnnnbptblbr_nud = {
 	.module_mfg_id		= { .msb = 0xad, .lsb = 0x80 },
 	.dram_mfg_id		= { .msb = 0xad, .lsb = 0x80 },
 
-	.part_num =
-		{ 'H', '9', 'C', 'C', 'N', 'N', 'N', 'B', 'P', 'T', 'B', 'L',
-		  'B', 'R', '-', 'N', 'U', 'D',},
+	.part_num		= "H9CCNNNBPTBLBR-NUD",
 };
 
 const struct nonspd_mem_info hynix_lpddr3_h9ccnnnbltblar_nud = {
@@ -144,9 +128,7 @@ const struct nonspd_mem_info hynix_lpddr3_h9ccnnnbltblar_nud = {
 	.module_mfg_id		= { .msb = 0xad, .lsb = 0x80 },
 	.dram_mfg_id		= { .msb = 0xad, .lsb = 0x80 },
 
-	.part_num =
-		{ 'H', '9', 'C', 'C', 'N', 'N', 'N', 'B', 'L', 'T', 'B', 'L',
-		  'A', 'R', '-', 'N', 'U', 'D',},
+	.part_num		= "H9CCNNNBLTBLAR-NUD",
 };
 
 const struct nonspd_mem_info hynix_lpddr3_h9ccnnnbktmlbr_ntd = {
@@ -160,9 +142,7 @@ const struct nonspd_mem_info hynix_lpddr3_h9ccnnnbktmlbr_ntd = {
 	.module_mfg_id		= { .msb = 0xad, .lsb = 0x80 },
 	.dram_mfg_id		= { .msb = 0xad, .lsb = 0x80 },
 
-	.part_num =
-		{ 'H', '9', 'C', 'C', 'N', 'N', 'N', 'B', 'K', 'T', 'M', 'L',
-		  'B', 'R', '-', 'N', 'T', 'D',},
+	.part_num		= "H9CCNNNBKTMLBR-NTD",
 };
 
 const struct nonspd_mem_info hynix_lpddr4x_h9hcnnncpmalhr_nee = {
@@ -175,9 +155,7 @@ const struct nonspd_mem_info hynix_lpddr4x_h9hcnnncpmalhr_nee = {
 	.module_mfg_id		= { .msb = 0xad, .lsb = 0x80 },
 	.dram_mfg_id		= { .msb = 0xad, .lsb = 0x80 },
 
-	.part_num =
-		{ 'H', '9', 'H', 'C', 'N', 'N', 'N', 'C', 'P', 'M', 'A', 'L',
-		  'H', 'R', '-', 'N', 'E', 'E'},
+	.part_num		= "H9HCNNNCPMALHR-NEE",
 };
 
 const struct nonspd_mem_info hynix_lpddr4x_h9hcnnncpmmlxr_nee = {
@@ -190,9 +168,7 @@ const struct nonspd_mem_info hynix_lpddr4x_h9hcnnncpmmlxr_nee = {
 	.module_mfg_id		= { .msb = 0xad, .lsb = 0x80 },
 	.dram_mfg_id		= { .msb = 0xad, .lsb = 0x80 },
 
-	.part_num =
-		{ 'H', '9', 'H', 'C', 'N', 'N', 'N', 'C', 'P', 'M', 'M', 'L',
-		  'X', 'R', '-', 'N', 'E', 'E'},
+	.part_num		= "H9HCNNNCPMMLXR-NEE",
 };
 
 const struct nonspd_mem_info hynix_lpddr4x_h9hcnnnfammlxr_nee = {
@@ -205,9 +181,7 @@ const struct nonspd_mem_info hynix_lpddr4x_h9hcnnnfammlxr_nee = {
 	.module_mfg_id		= { .msb = 0xad, .lsb = 0x80 },
 	.dram_mfg_id		= { .msb = 0xad, .lsb = 0x80 },
 
-	.part_num =
-				{ 'H', '9', 'H', 'C', 'N', 'N', 'N', 'F', 'A', 'M', 'M', 'L',
-				  'X', 'R', '-', 'N', 'E', 'E' },
+	.part_num		= "H9HCNNNFAMMLXR-NEE",
 };
 
 const struct nonspd_mem_info micron_mt41k256m16ha = {
@@ -221,8 +195,7 @@ const struct nonspd_mem_info micron_mt41k256m16ha = {
 	.module_mfg_id		= { .msb = 0x2c, .lsb = 0x00 },
 	.dram_mfg_id		= { .msb = 0x2c, .lsb = 0x00 },
 
-	.part_num		= { 'M', 'T', '4', '1', 'K', '2', '5', '6', 'M',
-				    '1', '6', 'H', 'A', '-', '1', '2', '5' },
+	.part_num		= "MT41K256M16HA-125",
 };
 
 const struct nonspd_mem_info nanya_ddr3l_nt5cc256m16dp_di = {
@@ -236,8 +209,7 @@ const struct nonspd_mem_info nanya_ddr3l_nt5cc256m16dp_di = {
 	.module_mfg_id		= { .msb = 0x0b, .lsb = 0x03 },
 	.dram_mfg_id		= { .msb = 0x0b, .lsb = 0x03 },
 
-	.part_num		= { 'N', 'T', '5', 'C', 'C', '2', '5', '6',
-				    'M', '1', '6', 'D', 'P', '-', 'D', 'I' },
+	.part_num		= "NT5CC256M16DP-DI",
 };
 
 const struct nonspd_mem_info nanya_ddr3l_nt5cc256m16er_ek = {
@@ -250,8 +222,7 @@ const struct nonspd_mem_info nanya_ddr3l_nt5cc256m16er_ek = {
 	.module_mfg_id		= { .msb = 0x0b, .lsb = 0x03 },
 	.dram_mfg_id		= { .msb = 0x0b, .lsb = 0x03 },
 
-	.part_num		= { 'N', 'T', '5', 'C', 'C', '2', '5', '6',
-				    'M', '1', '6', 'E', 'R', '-', 'E', 'K' },
+	.part_num		= "NT5CC256M16ER-EK",
 };
 
 const struct nonspd_mem_info nanya_lpddr3_nt6cl512t32am_h0 = {
@@ -264,8 +235,7 @@ const struct nonspd_mem_info nanya_lpddr3_nt6cl512t32am_h0 = {
 	.module_mfg_id		= { .msb = 0x0b, .lsb = 0x03 },
 	.dram_mfg_id		= { .msb = 0x0b, .lsb = 0x03 },
 
-	.part_num		= { 'N', 'T', '6', 'C', 'L', '5', '1', '2',
-				    'T', '3', '2', 'A', 'M', '-', 'H', '0' },
+	.part_num		= "NT6CL512T32AM-H0",
 };
 
 const struct nonspd_mem_info samsung_k4b4g1646d = {
@@ -279,9 +249,7 @@ const struct nonspd_mem_info samsung_k4b4g1646d = {
 	.module_mfg_id		= { .msb = 0xce, .lsb = 0x00 },
 	.dram_mfg_id		= { .msb = 0xce, .lsb = 0x00 },
 
-	.part_num		=
-		{ 'K', '4', 'B', '4', 'G', '1', '6', '4', '6', 'D',
-		  '-', 'B', 'Y', 'K', '0' },
+	.part_num		= "K4B4G1646D-BYK0",
 };
 
 const struct nonspd_mem_info samsung_k4b4g1646e = {
@@ -295,9 +263,7 @@ const struct nonspd_mem_info samsung_k4b4g1646e = {
 	.module_mfg_id		= { .msb = 0xce, .lsb = 0x00 },
 	.dram_mfg_id		= { .msb = 0xce, .lsb = 0x00 },
 
-	.part_num		=
-		{ 'K', '4', 'B', '4', 'G', '1', '6', '4', '6', 'E',
-		  '-', 'B', 'Y', 'K', '0' },
+	.part_num		= "K4B4G1646E-BYK0",
 };
 
 const struct nonspd_mem_info samsung_k4b4g1646e_byma = {
@@ -311,9 +277,7 @@ const struct nonspd_mem_info samsung_k4b4g1646e_byma = {
 	.module_mfg_id		= { .msb = 0xce, .lsb = 0x00 },
 	.dram_mfg_id		= { .msb = 0xce, .lsb = 0x00 },
 
-	.part_num		=
-		{ 'K', '4', 'B', '4', 'G', '1', '6', '4', '6', 'E',
-		  '-', 'B', 'Y', 'M', 'A' },
+	.part_num		= "K4B4G1646E-BYMA",
 };
 
 const struct nonspd_mem_info samsung_ddr3l_k4b4g1646d_byk0 = {
@@ -327,9 +291,7 @@ const struct nonspd_mem_info samsung_ddr3l_k4b4g1646d_byk0 = {
 	.module_mfg_id		= { .msb = 0xce, .lsb = 0x00 },
 	.dram_mfg_id		= { .msb = 0xce, .lsb = 0x00 },
 
-	.part_num		=
-		{ 'K', '4', 'B', '4', 'G', '1', '6', '4', '6', 'D', '-',
-		  'B', 'Y', 'K', '0' },
+	.part_num		= "K4B4G1646D-BYK0",
 };
 
 const struct nonspd_mem_info samsung_ddr3l_k4b4g1646q_hyk0 = {
@@ -343,9 +305,7 @@ const struct nonspd_mem_info samsung_ddr3l_k4b4g1646q_hyk0 = {
 	.module_mfg_id		= { .msb = 0xce, .lsb = 0x00 },
 	.dram_mfg_id		= { .msb = 0xce, .lsb = 0x00 },
 
-	.part_num		=
-		{ 'K', '4', 'B', '4', 'G', '1', '6', '4', '6', 'Q', '-',
-		  'H', 'Y', 'K', '0' },
+	.part_num		= "K4B4G1646Q-HYK0",
 };
 
 const struct nonspd_mem_info samsung_ddr3l_k4b8g1646q_myk0 = {
@@ -358,9 +318,7 @@ const struct nonspd_mem_info samsung_ddr3l_k4b8g1646q_myk0 = {
 	.module_mfg_id		= { .msb = 0xce, .lsb = 0x00 },
 	.dram_mfg_id		= { .msb = 0xce, .lsb = 0x00 },
 
-	.part_num		=
-		{ 'K', '4', 'B', '8', 'G', '1', '6', '4', '6', 'Q', '-',
-		  'M', 'Y', 'K', '0' },
+	.part_num		= "K4B8G1646Q-MYK0",
 };
 
 const struct nonspd_mem_info samsung_lpddr3_k3qf2f20em_agce = {
@@ -374,9 +332,7 @@ const struct nonspd_mem_info samsung_lpddr3_k3qf2f20em_agce = {
 	.module_mfg_id		= { .msb = 0xce, .lsb = 0x00 },
 	.dram_mfg_id		= { .msb = 0xce, .lsb = 0x00 },
 
-	.part_num		=
-		{ 'K', '3', 'Q', 'F', '2', 'F', '2', '0', 'E', 'M', '-',
-		  'A', 'G', 'C', 'E' },
+	.part_num		= "K3QF2F20EM-AGCE",
 };
 
 const struct nonspd_mem_info samsung_lpddr3_k4e6e304eb_egce = {
@@ -390,9 +346,7 @@ const struct nonspd_mem_info samsung_lpddr3_k4e6e304eb_egce = {
 	.module_mfg_id		= { .msb = 0xce, .lsb = 0x00 },
 	.dram_mfg_id		= { .msb = 0xce, .lsb = 0x00 },
 
-	.part_num		=
-		{ 'K', '4', 'E', '6', 'E', '3', '0', '4', 'E', 'B', '-',
-		  'E', 'G', 'C', 'E' },
+	.part_num		= "K4E6E304EB-EGCE",
 };
 
 const struct nonspd_mem_info samsung_lpddr3_k4e6e304ee_egce = {
@@ -406,9 +360,7 @@ const struct nonspd_mem_info samsung_lpddr3_k4e6e304ee_egce = {
 	.module_mfg_id		= { .msb = 0xce, .lsb = 0x00 },
 	.dram_mfg_id		= { .msb = 0xce, .lsb = 0x00 },
 
-	.part_num		=
-		{ 'K', '4', 'E', '6', 'E', '3', '0', '4', 'E', 'E', '-',
-		  'E', 'G', 'C', 'E' },
+	.part_num		= "K4E6E304EE-EGCE",
 };
 
 const struct nonspd_mem_info samsung_lpddr3_k4e6e304eb_egcf = {
@@ -422,9 +374,7 @@ const struct nonspd_mem_info samsung_lpddr3_k4e6e304eb_egcf = {
 	.module_mfg_id		= { .msb = 0xce, .lsb = 0x00 },
 	.dram_mfg_id		= { .msb = 0xce, .lsb = 0x00 },
 
-	.part_num		=
-		{ 'K', '4', 'E', '6', 'E', '3', '0', '4', 'E', 'B', '-',
-		  'E', 'G', 'C', 'F' },
+	.part_num		= "K4E6E304EB-EGCF",
 };
 
 const struct nonspd_mem_info samsung_lpddr3_k4e6e304ec_egcg = {
@@ -438,8 +388,7 @@ const struct nonspd_mem_info samsung_lpddr3_k4e6e304ec_egcg = {
 	.module_mfg_id	= { .msb = 0xce, .lsb = 0x00 },
 	.dram_mfg_id	= { .msb = 0xce, .lsb = 0x00 },
 
-	.part_num	= { 'K', '4', 'E', '6', 'E', '3', '0', '4', 'E', 'C',
-		  '-', 'E', 'G', 'C', 'G' },
+	.part_num		= "K4E6E304EC-EGCG",
 };
 
 const struct nonspd_mem_info samsung_lpddr3_k4e8e304ee_egce = {
@@ -453,9 +402,7 @@ const struct nonspd_mem_info samsung_lpddr3_k4e8e304ee_egce = {
 	.module_mfg_id		= { .msb = 0xce, .lsb = 0x00 },
 	.dram_mfg_id		= { .msb = 0xce, .lsb = 0x00 },
 
-	.part_num		=
-		{ 'K', '4', 'E', '8', 'E', '3', '0', '4', 'E', 'E', '-',
-		  'E', 'G', 'C', 'E' },
+	.part_num		= "K4E8E304EE-EGCE",
 };
 
 const struct nonspd_mem_info samsung_lpddr3_k4e8e324eb_egcf = {
@@ -469,9 +416,7 @@ const struct nonspd_mem_info samsung_lpddr3_k4e8e324eb_egcf = {
 	.module_mfg_id		= { .msb = 0xce, .lsb = 0x00 },
 	.dram_mfg_id		= { .msb = 0xce, .lsb = 0x00 },
 
-	.part_num		=
-		{ 'K', '4', 'E', '8', 'E', '3', '2', '4', 'E', 'B', '-',
-		  'E', 'G', 'C', 'F' },
+	.part_num		= "K4E8E324EB-EGCF",
 };
 
 const struct nonspd_mem_info samsung_lpddr3_k4e6e304ed_egcg = {
@@ -485,8 +430,7 @@ const struct nonspd_mem_info samsung_lpddr3_k4e6e304ed_egcg = {
 	.module_mfg_id		= { .msb = 0xce, .lsb = 0x00 },
 	.dram_mfg_id		= { .msb = 0xce, .lsb = 0x00 },
 
-	.part_num = { 'K', '4', 'E', '6', 'E', '3', '0', '4', 'E', 'D', '-',
-		      'E', 'G', 'C', 'G' },
+	.part_num		= "K4E6E304ED-EGCG",
 };
 
 const struct nonspd_mem_info micron_lpddr3_mt52l256m32d1pf_107wtb = {
@@ -500,9 +444,7 @@ const struct nonspd_mem_info micron_lpddr3_mt52l256m32d1pf_107wtb = {
 	.module_mfg_id		= { .msb = 0x2c, .lsb = 0x00 },
 	.dram_mfg_id		= { .msb = 0x2c, .lsb = 0x00 },
 
-	.part_num		=
-		{ 'M', 'T', '5', '2', 'L', '2', '5', '6', 'M', '3', '2', 'D',
-		  '1', 'P', 'F', '-', '1', '0', '7', 'W', 'T', ':', 'B' },
+	.part_num		= "MT52L256M32D1PF-107WT:B",
 };
 
 const struct nonspd_mem_info micron_lpddr3_mt52l256m32d1pf_10 = {
@@ -516,8 +458,7 @@ const struct nonspd_mem_info micron_lpddr3_mt52l256m32d1pf_10 = {
 	.module_mfg_id = { .msb = 0x2c, .lsb = 0x00 },
 	.dram_mfg_id = { .msb = 0x2c, .lsb = 0x00 },
 
-	.part_num = { 'M', 'T', '5', '2', 'L', '2', '5', '6', 'M', '3', '2',
-		      'D', '1', 'P', 'F', '-', '1', '0' },
+	.part_num		= "MT52L256M32D1PF-10",
 };
 
 const struct nonspd_mem_info micron_lpddr3_mt52l256m64d2pp_107wtb = {
@@ -531,9 +472,7 @@ const struct nonspd_mem_info micron_lpddr3_mt52l256m64d2pp_107wtb = {
 	.module_mfg_id		= { .msb = 0x2c, .lsb = 0x00 },
 	.dram_mfg_id		= { .msb = 0x2c, .lsb = 0x00 },
 
-	.part_num		=
-		{ 'M', 'T', '5', '2', 'L', '2', '5', '6', 'M', '6', '4', 'D',
-		  '2', 'P', 'P', '-', '1', '0', '7', 'W', 'T', ':', 'B' },
+	.part_num		= "MT52L256M64D2PP-107WT:B",
 };
 
 const struct nonspd_mem_info micron_lpddr3_mt52l512m32d2pf_107wtb = {
@@ -547,9 +486,7 @@ const struct nonspd_mem_info micron_lpddr3_mt52l512m32d2pf_107wtb = {
 	.module_mfg_id		= { .msb = 0x2c, .lsb = 0x00 },
 	.dram_mfg_id		= { .msb = 0x2c, .lsb = 0x00 },
 
-	.part_num		=
-		{ 'M', 'T', '5', '2', 'L', '5', '1', '2', 'M', '3', '2', 'D',
-		  '2', 'P', 'F', '-', '1', '0', '7', 'W', 'T', ':', 'B' },
+	.part_num		= "MT52L512M32D2PF-107WT:B",
 };
 
 const struct nonspd_mem_info micron_lpddr3_mt52l512m32d2pf_10 = {
@@ -563,8 +500,7 @@ const struct nonspd_mem_info micron_lpddr3_mt52l512m32d2pf_10 = {
 	.module_mfg_id = { .msb = 0x2c, .lsb = 0x00 },
 	.dram_mfg_id = { .msb = 0x2c, .lsb = 0x00 },
 
-	.part_num = { 'M', 'T', '5', '2', 'L', '5', '1', '2', 'M', '3', '2',
-		      'D', '2', 'P', 'F', '-', '1', '0' },
+	.part_num		= "MT52L512M32D2PF-10",
 };
 
 const struct nonspd_mem_info micron_lpddr4x_mt53e1g32d4nq_046wte = {
@@ -577,9 +513,7 @@ const struct nonspd_mem_info micron_lpddr4x_mt53e1g32d4nq_046wte = {
 	.module_mfg_id		= { .msb = 0x2c, .lsb = 0x00 },
 	.dram_mfg_id		= { .msb = 0x2c, .lsb = 0x00 },
 
-	.part_num		=
-		{ 'M', 'T', '5', '3', 'E', '1', 'G', '3', '2', 'D', '4', 'N',
-		  'Q', '-', '4', '6', 'W', 'T', ':', 'E'},
+	.part_num		= "MT53E1G32D4NQ-46WT:E",
 };
 
 const struct nonspd_mem_info micron_lpddr4x_mt53e1g32d2np_046wta = {
@@ -592,9 +526,7 @@ const struct nonspd_mem_info micron_lpddr4x_mt53e1g32d2np_046wta = {
 	.module_mfg_id		= { .msb = 0x2c, .lsb = 0x00 },
 	.dram_mfg_id		= { .msb = 0x2c, .lsb = 0x00 },
 
-	.part_num	=
-		{ 'M', 'T', '5', '3', 'E', '1', 'G', '3', '2', 'D', '2', 'N',
-		  'P', '-', '4', '6', 'W', 'T', ':', 'A'},
+	.part_num		= "MT53E1G32D2NP-46WT:A",
 };
 
 const struct nonspd_mem_info micron_lpddr4x_mt53e2g32d4nq_046wta = {
@@ -607,9 +539,7 @@ const struct nonspd_mem_info micron_lpddr4x_mt53e2g32d4nq_046wta = {
 	.module_mfg_id		= { .msb = 0x2c, .lsb = 0x00 },
 	.dram_mfg_id		= { .msb = 0x2c, .lsb = 0x00 },
 
-	.part_num		=
-		{ 'M', 'T', '5', '3', 'E', '2', 'G', '3', '2', 'D', '4', 'N',
-		  'Q', '-', '4', '6', 'W', 'T', ':', 'A'},
+	.part_num		= "MT53E2G32D4NQ-46WT:A",
 };
 
 const struct nonspd_mem_info micron_lpddr4x_mt53d1g32d4dt_046wtd = {
@@ -622,9 +552,7 @@ const struct nonspd_mem_info micron_lpddr4x_mt53d1g32d4dt_046wtd = {
 	.module_mfg_id		= { .msb = 0x2c, .lsb = 0x00 },
 	.dram_mfg_id		= { .msb = 0x2c, .lsb = 0x00 },
 
-	.part_num		=
-		{ 'M', 'T', '5', '3', 'D', '1', 'G', '3', '2', 'D', '4', 'D',
-		  'T', '-', '4', '6', 'W', 'T', ':', 'D'},
+	.part_num		= "MT53D1G32D4DT-46WT:D",
 };
 
 const struct nonspd_mem_info micron_lpddr4x_mt29vzzzad8dqksl = {
@@ -637,9 +565,7 @@ const struct nonspd_mem_info micron_lpddr4x_mt29vzzzad8dqksl = {
 	.module_mfg_id		= { .msb = 0x2c, .lsb = 0x00 },
 	.dram_mfg_id		= { .msb = 0x2c, .lsb = 0x00 },
 
-	.part_num		=
-		{ 'M', 'T', '2', '9', 'V', 'Z', 'Z', 'Z', 'A', 'D', '8', 'D',
-		  'Q', 'K', 'S', 'L'},
+	.part_num		= "MT29VZZZAD8DQKSL",
 };
 
 const struct nonspd_mem_info micron_lpddr4x_mt29vzzzad8gqfsl_046 = {
@@ -652,9 +578,7 @@ const struct nonspd_mem_info micron_lpddr4x_mt29vzzzad8gqfsl_046 = {
 	.module_mfg_id		= { .msb = 0x2c, .lsb = 0x00 },
 	.dram_mfg_id		= { .msb = 0x2c, .lsb = 0x00 },
 
-	.part_num		=
-		{ 'M', 'T', '2', '9', 'V', 'Z', 'Z', 'Z', 'A', 'D', '8', 'G',
-		  'Q', 'F', 'S', 'L', '-', '0', '4', '6'},
+	.part_num		= "MT29VZZZAD8GQFSL-046",
 };
 
 const struct nonspd_mem_info micron_lpddr4x_mt29vzzzbd9dqkpr_046 = {
@@ -667,9 +591,7 @@ const struct nonspd_mem_info micron_lpddr4x_mt29vzzzbd9dqkpr_046 = {
 	.module_mfg_id		= { .msb = 0x2c, .lsb = 0x00 },
 	.dram_mfg_id		= { .msb = 0x2c, .lsb = 0x00 },
 
-	.part_num		=
-		{ 'M', 'T', '2', '9', 'V', 'Z', 'Z', 'Z', 'B', 'D', '9', 'D',
-		  'Q', 'K', 'P', 'R', '-', '0', '4', '6'},
+	.part_num		= "MT29VZZZBD9DQKPR-046",
 };
 
 const struct nonspd_mem_info micron_lpddr4x_mt29vzzzad9gqfsm_046 = {
@@ -682,9 +604,7 @@ const struct nonspd_mem_info micron_lpddr4x_mt29vzzzad9gqfsm_046 = {
 	.module_mfg_id		= { .msb = 0x2c, .lsb = 0x00 },
 	.dram_mfg_id		= { .msb = 0x2c, .lsb = 0x00 },
 
-	.part_num		=
-		{ 'M', 'T', '2', '9', 'V', 'Z', 'Z', 'Z', 'A', 'D', '9', 'G',
-		  'Q', 'F', 'S', 'M', '-', '0', '4', '6'},
+	.part_num		= "MT29VZZZAD9GQFSM-046",
 };
 
 const struct nonspd_mem_info samsung_lpddr4_k3uh5h50mm_agcj = {
@@ -697,9 +617,7 @@ const struct nonspd_mem_info samsung_lpddr4_k3uh5h50mm_agcj = {
 	.module_mfg_id		= { .msb = 0xce, .lsb = 0x00 },
 	.dram_mfg_id		= { .msb = 0xce, .lsb = 0x00 },
 
-	.part_num		=
-		{ 'K', '3', 'U', 'H', '5', 'H', '5', '0', 'M', 'M', '-',
-		  'A', 'G', 'C', 'J' },
+	.part_num		= "K3UH5H50MM-AGCJ",
 };
 
 const struct nonspd_mem_info samsung_lpddr4x_kmdh6001da_b422 = {
@@ -712,9 +630,7 @@ const struct nonspd_mem_info samsung_lpddr4x_kmdh6001da_b422 = {
 	.module_mfg_id		= { .msb = 0xce, .lsb = 0x00 },
 	.dram_mfg_id		= { .msb = 0xce, .lsb = 0x00 },
 
-	.part_num		=
-		{ 'K', 'M', 'D', 'H', '6', '0', '0', '1', 'D', 'A', '-',
-		  'B', '4', '2', '2' },
+	.part_num		= "KMDH6001DA-B422",
 };
 
 const struct nonspd_mem_info samsung_lpddr4x_kmdp6001da_b425 = {
@@ -727,9 +643,7 @@ const struct nonspd_mem_info samsung_lpddr4x_kmdp6001da_b425 = {
 	.module_mfg_id		= { .msb = 0xce, .lsb = 0x00 },
 	.dram_mfg_id		= { .msb = 0xce, .lsb = 0x00 },
 
-	.part_num		=
-		{ 'K', 'M', 'D', 'P', '6', '0', '0', '1', 'D', 'A', '-',
-		  'B', '4', '2', '5' },
+	.part_num		= "KMDP6001DA-B425",
 };
 
 const struct nonspd_mem_info samsung_lpddr4x_kmdv6001da_b620 = {
@@ -742,9 +656,7 @@ const struct nonspd_mem_info samsung_lpddr4x_kmdv6001da_b620 = {
 	.module_mfg_id		= { .msb = 0xce, .lsb = 0x00 },
 	.dram_mfg_id		= { .msb = 0xce, .lsb = 0x00 },
 
-	.part_num		=
-		{ 'K', 'M', 'D', 'V', '6', '0', '0', '1', 'D', 'A', '-',
-		  'B', '6', '2', '0' },
+	.part_num		= "KMDV6001DA-B620",
 };
 
 const struct nonspd_mem_info samsung_lpddr4x_k4ube3d4aa_mgcl = {
@@ -757,9 +669,7 @@ const struct nonspd_mem_info samsung_lpddr4x_k4ube3d4aa_mgcl = {
 	.module_mfg_id		= { .msb = 0xce, .lsb = 0x00 },
 	.dram_mfg_id		= { .msb = 0xce, .lsb = 0x00 },
 
-	.part_num		=
-		{ 'K', '4', 'U', 'B', 'E', '3', 'D', '4', 'A', 'A', '-',
-		  'M', 'G', 'C', 'L' },
+	.part_num		= "K4UBE3D4AA-MGCL",
 };
 
 const struct nonspd_mem_info samsung_lpddr4x_k4ube3d4aa_mgcr = {
@@ -772,9 +682,7 @@ const struct nonspd_mem_info samsung_lpddr4x_k4ube3d4aa_mgcr = {
 	.module_mfg_id		= { .msb = 0xce, .lsb = 0x00 },
 	.dram_mfg_id		= { .msb = 0xce, .lsb = 0x00 },
 
-	.part_num		=
-		{ 'K', '4', 'U', 'B', 'E', '3', 'D', '4', 'A', 'A', '-',
-		  'M', 'G', 'C', 'R' },
+	.part_num		= "K4UBE3D4AA-MGCR",
 };
 
 const struct nonspd_mem_info samsung_lpddr4x_k4uce3q4aa_mgcr = {
@@ -787,9 +695,7 @@ const struct nonspd_mem_info samsung_lpddr4x_k4uce3q4aa_mgcr = {
 	.module_mfg_id		= { .msb = 0xce, .lsb = 0x00 },
 	.dram_mfg_id		= { .msb = 0xce, .lsb = 0x00 },
 
-	.part_num		=
-		{ 'K', '4', 'U', 'C', 'E', '3', 'Q', '4', 'A', 'A', '-',
-		'M', 'G', 'C', 'R' },
+	.part_num		= "K4UCE3Q4AA-MGCR",
 };
 
 const struct nonspd_mem_info sandisk_lpddr4x_sdada4cr_128g = {
@@ -802,7 +708,5 @@ const struct nonspd_mem_info sandisk_lpddr4x_sdada4cr_128g = {
 	.module_mfg_id		= { .msb = 0x45, .lsb = 0x00 },
 	.dram_mfg_id		= { .msb = 0x45, .lsb = 0x00 },
 
-	.part_num		=
-		{ 'S', 'D', 'A', 'D', 'A', '4', 'C', 'R', '-', '1', '2',
-		  '8', 'G' },
+	.part_num		= "SDADA4CR-128G",
 };
