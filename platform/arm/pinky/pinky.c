@@ -48,7 +48,6 @@ static struct veyron_probe_id {
 	const char *fdt_compat;
 } veyron_id_list[] = {
 	{ "Fievel", "google,veyron-fievel" },
-	{ "Mickey", "google,veyron-mickey" },
 	{ "Tiger", "google,veyron-tiger" },
 };
 
