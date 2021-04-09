@@ -35,6 +35,7 @@ getgid: 1
 getgroups32: 1
 getpid: 1
 getuid: 1
+getuid32: 1
 gettid: 1
 fcntl64: 1
 wait4: 1
