@@ -32,6 +32,7 @@ flock: 1
 pipe2: 1
 clone: 1
 getgid: 1
+getgid32: 1
 getgroups32: 1
 getpid: 1
 getuid: 1
