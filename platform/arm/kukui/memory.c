@@ -83,6 +83,14 @@ static const struct nonspd_mem_info *kukui_dram[] = {
 	[0x26] = &samsung_lpddr4x_kmdv6001da_b620,
 	[0x27] = &sandisk_lpddr4x_sdada4cr_128g,
 	[0x28] = &micron_lpddr4x_mt29vzzzcd9gqkpr_046,
+	/* Cozmo dram table, offset = 0x30 */
+	[0x30] = &samsung_lpddr4x_k4ube3d4aa_mgcr,
+	[0x31] = &hynix_lpddr4x_h9hcnnncpmalhr_nee,
+	[0x32] = &micron_lpddr4x_mt53e1g32d4nq_046wte,
+	[0x38] = &samsung_lpddr4x_k4ube3d4aa_mgcl,
+	[0x39] = &micron_lpddr4x_mt53e2g32d4nq_046wta,
+	[0x3a] = &hynix_lpddr4x_h9hcnnncpmmlxr_nee,
+	[0x3b] = &hynix_lpddr4x_h9hcnnnfammlxr_nee,
 };
 
 static int get_mem_info(struct platform_intf *intf, int dimm,
