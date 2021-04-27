@@ -285,7 +285,7 @@ int flashrom_write_by_name(size_t size, uint8_t *buf, const char *region)
 	strcat(region_file, full_filename);
 	args[i++] = strdup(region_file);
 	args[i++] = strdup("-w");
-	args[i++] = strdup("--fast-verify");
+	args[i++] = strdup("--noverify-all");
 	args[i++] = NULL;
 
 	if (do_cmd("flashrom", args) < 0) {
