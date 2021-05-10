@@ -529,6 +529,19 @@ const struct nonspd_mem_info micron_lpddr4x_mt53e1g32d2np_046wta = {
 	.part_num		= "MT53E1G32D2NP-46WT:A",
 };
 
+const struct nonspd_mem_info foresee_lpddr4x_feprf6432_58a1930 = {
+	.dram_type		= SPD_DRAM_TYPE_LPDDR4X,
+
+	.module_size_mbits	= 32768,
+	.num_ranks		= 1,
+	.device_width		= 32,
+
+	.module_mfg_id		= { .msb = 0x2c, .lsb = 0x00 },
+	.dram_mfg_id		= { .msb = 0x2c, .lsb = 0x00 },
+
+	.part_num		= "FEPRF6432-58A1930",
+};
+
 const struct nonspd_mem_info micron_lpddr4x_mt53e2g32d4nq_046wta = {
 	.dram_type		= SPD_DRAM_TYPE_LPDDR4X,
 
