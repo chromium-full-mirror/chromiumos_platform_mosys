@@ -154,6 +154,7 @@ extern const struct nonspd_mem_info samsung_lpddr4x_k4ube3d4am_mgcj;
 extern const struct nonspd_mem_info samsung_lpddr4x_k4ube3d4aa_mgcl;
 extern const struct nonspd_mem_info samsung_lpddr4x_k4ube3d4aa_mgcr;
 extern const struct nonspd_mem_info sandisk_lpddr4x_sdada4cr_128g;
+extern const struct nonspd_mem_info foresee_lpddr4x_feprf6432_58a1930;
 
 int spd_set_nonspd_info(struct platform_intf *intf,
                         const struct nonspd_mem_info **info);

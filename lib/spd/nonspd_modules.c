@@ -779,6 +779,22 @@ const struct nonspd_mem_info micron_lpddr4x_mt53e1g32d2np_046wta = {
 		  'P', '-', '4', '6', 'W', 'T', ':', 'A'},
 };
 
+const struct nonspd_mem_info foresee_lpddr4x_feprf6432_58a1930 = {
+	.dram_type		= SPD_DRAM_TYPE_LPDDR4X,
+
+	.module_size_mbits	= 32768,
+	.num_ranks		= 1,
+	.device_width		= 32,
+	.ddr_freq		= { DDR_2133 },
+
+	.module_mfg_id		= { .msb = 0x2c, .lsb = 0x00 },
+	.dram_mfg_id		= { .msb = 0x2c, .lsb = 0x00 },
+
+	.part_num		=
+		{ 'F', 'E', 'P', 'R', 'F', '6', '4', '3', '2', '-', '5', '8',
+		  'A', '1', '9', '3', '0'},
+};
+
 const struct nonspd_mem_info micron_lpddr4x_mt53e2g32d4nq_046wta = {
 	.dram_type		= SPD_DRAM_TYPE_LPDDR4X,
 
