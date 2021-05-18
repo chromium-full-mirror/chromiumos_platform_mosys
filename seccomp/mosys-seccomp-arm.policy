@@ -29,6 +29,7 @@ fstat64: 1
 fstatat64: 1
 fsync: 1
 lchown: 1
+lchown32: 1
 lstat64: 1
 lseek: 1
 flock: 1
