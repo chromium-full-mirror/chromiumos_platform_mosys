@@ -32,10 +32,8 @@
 #include <stdlib.h>
 #include <unistd.h>
 
-#include "lib/elog.h"
 #include "lib/memory.h"
 #include "lib/probe.h"
-#include "lib/smbios.h"
 
 #include "mosys/alloc.h"
 #include "mosys/command_list.h"
@@ -129,20 +127,10 @@ exit:
 	return status;
 }
 
-static struct eventlog_cb strago_eventlog_cb = {
-	.print_type	= &elog_print_type,
-	.print_data	= &elog_print_data,
-	.print_multi	= &elog_print_multi,
-	.verify		= &elog_verify,
-	.verify_header	= &elog_verify_header,
-	.fetch		= &elog_fetch_from_smbios,
-};
-
 static struct platform_cb strago_cb = {
 	.ec		= &cros_ec_cb,
 	.memory		= &smbios_memory_cb,
 	.sys 		= &strago_sys_cb,
-	.eventlog	= &strago_eventlog_cb,
 };
 
 static struct platform_intf platform_strago = {

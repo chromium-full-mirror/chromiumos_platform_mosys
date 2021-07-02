@@ -109,30 +109,6 @@ struct memory_cb {
 				const struct nonspd_mem_info **info);
 };
 
-/* eventlog related callbacks */
-enum smbios_log_entry_type;
-struct smbios_log_entry;
-struct eventlog_cb {
-	int (*print_type)(struct platform_intf *intf,
-	                  struct smbios_log_entry *entry,
-	                  struct kv_pair *kv);
-	int (*print_data)(struct platform_intf *intf,
-	                  struct smbios_log_entry *entry,
-	                  struct kv_pair *kv);
-	int (*print_multi)(struct platform_intf *intf,
-			   struct smbios_log_entry *entry,
-			   int start_id);
-	int (*verify)(struct platform_intf *intf,
-	              struct smbios_log_entry *entry);
-	int (*verify_header)(struct elog_header *elog_header);
-	int (*add)(struct platform_intf *intf, enum smbios_log_entry_type type,
-		   size_t data_size, uint8_t *data);
-	int (*clear)(struct platform_intf *intf);
-	int (*fetch)(struct platform_intf *intf, uint8_t **data,
-		     size_t *length, off_t *header_offset, off_t *data_offset);
-	int (*write)(struct platform_intf *intf, uint8_t *data, size_t length);
-};
-
 /* system information callbacks */
 struct sys_cb {
 	/* methods useful for probing */
@@ -168,7 +144,6 @@ struct psu_cb {
 /* platform-specific callbacks */
 struct platform_cb {
 	struct memory_cb *memory;	/* memory callbacks */
-	struct eventlog_cb *eventlog;	/* eventlog callbacks */
 	struct sys_cb *sys;		/* system callbacks */
 	struct ec_cb *ec;		/* ec callbacks */
 	struct ec_cb *pd;		/* pd callbacks */

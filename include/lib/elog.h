@@ -65,9 +65,6 @@ extern int elog_add_event_manually(struct platform_intf *intf,
 				   enum smbios_log_entry_type type,
 				   size_t data_size, uint8_t *data);
 extern int elog_clear_manually(struct platform_intf *intf);
-extern int elog_fetch_from_smbios(struct platform_intf *intf,
-				  uint8_t **data, size_t *length,
-				  off_t *header_offset, off_t *data_offset);
 extern int elog_fetch_from_flash(struct platform_intf *intf,
 				 uint8_t **data, size_t *length,
 				 off_t *header_offset, off_t *data_offset);

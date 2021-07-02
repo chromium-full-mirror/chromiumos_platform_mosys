@@ -118,18 +118,6 @@ static int gru_probe(struct platform_intf *intf)
 #endif /* CONFIG_CROS_CONFIG */
 }
 
-static struct eventlog_cb gru_eventlog_cb = {
-	.print_type	= &elog_print_type,
-	.print_data	= &elog_print_data,
-	.print_multi	= &elog_print_multi,
-	.verify		= &elog_verify,
-	.verify_header	= &elog_verify_header,
-	.add		= &elog_add_event_manually,
-	.clear		= &elog_clear_manually,
-	.fetch		= &elog_fetch_from_flash,
-	.write		= &elog_write_to_flash,
-};
-
 static struct platform_cb gru_cb = {
 	.ec		= &cros_ec_cb,
 	.memory		= &gru_memory_cb,
@@ -137,7 +125,6 @@ static struct platform_cb gru_cb = {
 	.psu 		= &generic_psu_battery_cb,
 #endif
 	.sys		= &fdt_sysinfo_cb,
-	.eventlog	= &gru_eventlog_cb,
 };
 
 static struct platform_intf platform_gru = {

@@ -42,8 +42,6 @@
 #include "drivers/google/cros_ec.h"
 
 #include "lib/probe.h"
-#include "lib/smbios.h"
-#include "lib/elog.h"
 
 #include "rambi.h"
 
@@ -145,21 +143,11 @@ exit:
 	return status;
 }
 
-static struct eventlog_cb rambi_eventlog_cb = {
-	.print_type	= &elog_print_type,
-	.print_data	= &elog_print_data,
-	.print_multi	= &elog_print_multi,
-	.verify		= &elog_verify,
-	.verify_header	= &elog_verify_header,
-	.fetch		= &elog_fetch_from_smbios,
-};
-
 static struct platform_cb rambi_cb = {
 	.ec		= &cros_ec_cb,
 	.memory		= &rambi_memory_cb,
 	.psu		= &rambi_psu_cb,
 	.sys 		= &rambi_sys_cb,
-	.eventlog	= &rambi_eventlog_cb,
 };
 
 static struct platform_op rambi_op = {

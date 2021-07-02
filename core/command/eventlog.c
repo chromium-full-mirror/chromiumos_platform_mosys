@@ -34,6 +34,7 @@
 #include <inttypes.h>
 #include <errno.h>
 
+#include "lib/elog.h"
 #include "lib/elog_smbios.h"
 
 #include "mosys/alloc.h"
@@ -46,6 +47,7 @@ static int eventlog_smbios_list_callback(struct platform_intf *intf,
                                          struct smbios_log_entry *entry,
                                          void *arg, int *complete)
 {
+	int count;
 	int *entry_count = arg;
 	int rc;
 	struct kv_pair *kv;
@@ -57,21 +59,14 @@ static int eventlog_smbios_list_callback(struct platform_intf *intf,
 	}
 
 	/* verify entry checksum on OEM types */
-	if (entry->type >= SMBIOS_EVENT_TYPE_OEM &&
-	    intf->cb->eventlog->verify &&
-	    !intf->cb->eventlog->verify(intf, entry)) {
+	if (entry->type >= SMBIOS_EVENT_TYPE_OEM && !elog_verify(intf, entry))
 		return 0;
-	}
 
-	/* see if there is a multi event handler */
-	if (intf->cb->eventlog->print_multi) {
-		int count = intf->cb->eventlog->print_multi(intf, entry,
-							    *entry_count);
-		if (count > 0) {
-			/* event was handled and 'count' events were added */
-			*entry_count += count;
-			return 0;
-		}
+	count = elog_print_multi(intf, entry, *entry_count);
+	if (count > 0) {
+		/* event was handled and 'count' events were added */
+		*entry_count += count;
+		return 0;
 	}
 
 	/* start of list */
@@ -85,9 +80,7 @@ static int eventlog_smbios_list_callback(struct platform_intf *intf,
 	/* print the timestamp */
 	smbios_eventlog_print_timestamp(intf, entry, kv);
 
-	/* look for a custom print_type handler */
-	if (intf->cb->eventlog->print_type == NULL ||
-	    intf->cb->eventlog->print_type(intf, entry, kv) == 0) {
+	if (elog_print_type(intf, entry, kv) == 0) {
 		/*
 		 * not handled by custom print_type handler
 		 * FIXME: pass "Unknown event" to val2str.
@@ -97,8 +90,7 @@ static int eventlog_smbios_list_callback(struct platform_intf *intf,
 	}
 
 	/* look for a custom print_data handler */
-	if (intf->cb->eventlog->print_data)
-		intf->cb->eventlog->print_data(intf, entry, kv);
+	elog_print_data(intf, entry, kv);
 
 	rc = kv_pair_print(kv);
 	kv_pair_free(kv);
@@ -112,9 +104,9 @@ static int eventlog_smbios_list_cmd(struct platform_intf *intf,
 {
 	int entry_count = 0;
 
-	return smbios_eventlog_foreach_event(
-		intf, intf->cb->eventlog->verify_header,
-		eventlog_smbios_list_callback, &entry_count);
+	return smbios_eventlog_foreach_event(intf, elog_verify_header,
+					     eventlog_smbios_list_callback,
+					     &entry_count);
 }
 
 static int eventlog_smbios_add_cmd(struct platform_intf *intf,
@@ -125,11 +117,6 @@ static int eventlog_smbios_add_cmd(struct platform_intf *intf,
 	size_t data_size = 0;
 	uint8_t *data = NULL;
 	int res;
-
-	if (!intf->cb->eventlog || !intf->cb->eventlog->add) {
-		errno = ENOSYS;
-		return -1;
-	}
 
 	if (argc < 1 || argc > 2) {
 		platform_cmd_usage(cmd);
@@ -166,7 +153,7 @@ static int eventlog_smbios_add_cmd(struct platform_intf *intf,
 		}
 	}
 
-	res = intf->cb->eventlog->add(intf, type, data_size, data);
+	res = elog_add_event_manually(intf, type, data_size, data);
 
 	free(data);
 	return res;
@@ -176,12 +163,7 @@ static int eventlog_smbios_clear_cmd(struct platform_intf *intf,
 				     struct platform_cmd *cmd,
 				     int argc, char **argv)
 {
-	if (!intf->cb->eventlog || !intf->cb->eventlog->clear) {
-		errno = ENOSYS;
-		return -1;
-	}
-
-	return intf->cb->eventlog->clear(intf);
+	return elog_clear_manually(intf);
 }
 
 static struct platform_cmd eventlog_smbios_cmds[] = {

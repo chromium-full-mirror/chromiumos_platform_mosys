@@ -50,19 +50,9 @@ static int jecht_probe(struct platform_intf *intf)
 	return 0;
 }
 
-static struct eventlog_cb jecht_eventlog_cb = {
-	.print_type = &elog_print_type,
-	.print_data = &elog_print_data,
-	.print_multi = &elog_print_multi,
-	.verify = &elog_verify,
-	.verify_header = &elog_verify_header,
-	.fetch = &elog_fetch_from_smbios,
-};
-
 static struct platform_cb jecht_cb = {
 	.memory = &smbios_memory_cb,
 	.psu = &generic_psu_ac_only_cb,
-	.eventlog = &jecht_eventlog_cb,
 };
 
 static struct platform_intf platform_jecht = {

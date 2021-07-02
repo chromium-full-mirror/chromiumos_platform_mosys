@@ -74,21 +74,8 @@ static int cyclone_probe(struct platform_intf *intf)
 	return index >= 0 ? 1 : 0;
 }
 
-static struct eventlog_cb cyclone_eventlog_cb = {
-	.print_type	= &elog_print_type,
-	.print_data	= &elog_print_data,
-	.print_multi	= &elog_print_multi,
-	.verify		= &elog_verify,
-	.verify_header	= &elog_verify_header,
-	.add		= &elog_add_event_manually,
-	.clear		= &elog_clear_manually,
-	.fetch		= &elog_fetch_from_flash,
-	.write		= &elog_write_to_flash,
-};
-
 static struct platform_cb cyclone_cb = {
 	.memory		= &cyclone_memory_cb,
-	.eventlog	= &cyclone_eventlog_cb,
 };
 
 static struct platform_intf platform_cyclone = {

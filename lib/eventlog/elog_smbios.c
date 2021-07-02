@@ -52,8 +52,6 @@
 #include "mosys/platform.h"
 #include "mosys/output.h"
 
-#include "intf/mmio.h"
-
 #include "lib/elog_smbios.h"
 #include "lib/smbios.h"
 #include "lib/val2str.h"
@@ -377,10 +375,9 @@ int smbios_eventlog_foreach_event(struct platform_intf *intf,
 	MOSYS_DCHECK(intf);
 	MOSYS_DCHECK(callback);
 
-	if (intf->cb->eventlog->fetch(intf, &data, &length, &header_offset,
-				      &data_offset)) {
+	if (elog_fetch_from_flash(intf, &data, &length, &header_offset,
+				  &data_offset))
 		return -1;
-	}
 
 	/* Obtain handle to eventlog. */
 	elog_iter = smbios_new_eventlog_iterator(intf, data, length,

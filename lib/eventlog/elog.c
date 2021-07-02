@@ -34,14 +34,11 @@
 #include <inttypes.h>
 #include <time.h>
 
-#include "intf/mmio.h"
-
 #include "lib/coreboot.h"
 #include "lib/elog.h"
 #include "lib/elog_smbios.h"
 #include "lib/flashrom.h"
 #include "lib/math.h"
-#include "lib/smbios.h"
 #include "lib/string.h"
 #include "lib/val2str.h"
 
@@ -1056,12 +1053,7 @@ int elog_add_event_manually(struct platform_intf *intf,
 	off_t header_offset, data_offset;
 	struct elog_copy_events_params params;
 
-	if (!intf->cb->eventlog->fetch || !intf->cb->eventlog->write) {
-		errno = ENOSYS;
-		return -1;
-	}
-
-  	/* Total event size must fit in length member of entry (1 byte) */
+	/* Total event size must fit in length member of entry (1 byte) */
 	if (event_size > 0xff) {
 		lprintf(LOG_ERR, "Event data size %zu too large.\n",
 				event_data_size);
@@ -1069,8 +1061,8 @@ int elog_add_event_manually(struct platform_intf *intf,
 		return -1;
 	}
 
-	if (intf->cb->eventlog->fetch(intf, &data, &length, &header_offset,
-				      &data_offset))
+	if (elog_fetch_from_flash(intf, &data, &length, &header_offset,
+				  &data_offset))
 		return -1;
 
 	data_size = length - data_offset;
@@ -1132,7 +1124,7 @@ int elog_add_event_manually(struct platform_intf *intf,
 		return -1;
 	}
 
-	if (intf->cb->eventlog->write(intf, data, length)) {
+	if (elog_write_to_flash(intf, data, length)) {
 		free(new_data);
 		return -1;
 	}
@@ -1157,13 +1149,8 @@ int elog_clear_manually(struct platform_intf *intf)
 	struct elog_copy_events_params params;
 	uint32_t skipped;
 
-	if (!intf->cb->eventlog->fetch || !intf->cb->eventlog->write) {
-		errno = ENOSYS;
-		return -1;
-	}
-
-	if (intf->cb->eventlog->fetch(intf, &data, &length, &header_offset,
-				      &data_offset))
+	if (elog_fetch_from_flash(intf, &data, &length, &header_offset,
+				  &data_offset))
 		return -1;
 
 	data_size = length - data_offset;
@@ -1187,50 +1174,10 @@ int elog_clear_manually(struct platform_intf *intf)
 		return -1;
 	}
 
-	if (intf->cb->eventlog->write(intf, new_data, length)) {
+	if (elog_write_to_flash(intf, new_data, length)) {
 		free(new_data);
 		return -1;
 	}
-
-	return 0;
-}
-
-/*
- * elog_fetch_from_smbios - fetch the eventlog from the SMBIOS tables.
- *
- * @intf:          platform interface used for low level hardware access
- * @data:          pointer to the fetched contents of the event log
- * @length:        pointer to the length of the event log
- * @header_offset: offset of the header in the event log
- * @data_offset:   offset of the first event in the event log
- *
- * returns -1 on failure, 0 on success
- */
-int elog_fetch_from_smbios(struct platform_intf *intf, uint8_t **data,
-			   size_t *length, off_t *header_offset,
-			   off_t *data_offset)
-{
-	struct smbios_table table;
-
-	if (smbios_find_table(intf, SMBIOS_TYPE_LOG, 0, &table) < 0) {
-		lprintf(LOG_WARNING, "Unable to find SMBIOS eventlog table.\n");
-		return -1;
-	}
-
-	if (table.data.log.header_format != ELOG_HEADER_FORMAT)
-		return -1;
-
-	/* Only support memory mapped I/O access */
-	if (table.data.log.method != SMBIOS_LOG_METHOD_TYPE_MEM)
-		return -1;
-
-	*length = table.data.log.length;
-	*data = mosys_malloc(*length);
-	*header_offset = table.data.log.header_start;
-	*data_offset = table.data.log.data_start;
-
-	if (mmio_read(intf, table.data.log.address.mem, *length, *data) < 0)
-		return -1;
 
 	return 0;
 }

@@ -32,11 +32,9 @@
 #include <stdlib.h>
 #include <unistd.h>
 
-#include "lib/elog.h"
 #include "lib/memory.h"
 #include "lib/probe.h"
 #include "lib/sku.h"
-#include "lib/smbios.h"
 
 #include "mosys/alloc.h"
 #include "mosys/command_list.h"
@@ -108,22 +106,12 @@ exit:
 	return status;
 }
 
-static struct eventlog_cb glados_eventlog_cb = {
-	.print_type	= &elog_print_type,
-	.print_data	= &elog_print_data,
-	.print_multi	= &elog_print_multi,
-	.verify		= &elog_verify,
-	.verify_header	= &elog_verify_header,
-	.fetch		= &elog_fetch_from_smbios,
-};
-
 static struct platform_cb glados_cb = {
 	.ec		= &cros_ec_cb,
 	.pd		= &cros_pd_cb,
 	.fp		= &cros_fp_cb,
 	.memory		= &smbios_memory_cb,
 	.sys 		= &glados_sys_cb,
-	.eventlog	= &glados_eventlog_cb,
 };
 
 static struct platform_intf platform_glados = {

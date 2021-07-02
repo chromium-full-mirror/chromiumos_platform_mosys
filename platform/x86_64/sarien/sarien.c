@@ -42,8 +42,6 @@
 
 #include "lib/cros_config.h"
 #include "lib/memory.h"
-#include "lib/smbios.h"
-#include "lib/elog.h"
 #include "lib/sku.h"
 
 #include "sarien.h"
@@ -62,20 +60,10 @@ static int sarien_probe(struct platform_intf *intf)
 	return cros_config_probe(intf, NULL);
 }
 
-static struct eventlog_cb sarien_eventlog_cb = {
-	.print_type	= &elog_print_type,
-	.print_data	= &elog_print_data,
-	.print_multi	= &elog_print_multi,
-	.verify		= &elog_verify,
-	.verify_header	= &elog_verify_header,
-	.fetch		= &elog_fetch_from_smbios,
-};
-
 static struct platform_cb sarien_cb = {
 	.ec		= &wilco_ec_cb,
 	.memory		= &smbios_memory_cb,
 	.sys		= &sarien_sys_cb,
-	.eventlog	= &sarien_eventlog_cb,
 };
 
 static struct platform_intf platform_sarien = {

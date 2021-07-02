@@ -21,7 +21,6 @@
 
 #include "drivers/google/cros_ec.h"
 #include "lib/cros_config.h"
-#include "lib/elog.h"
 #include "lib/memory.h"
 #include "lib/smbios.h"
 #include "mosys/command_list.h"
@@ -41,15 +40,6 @@ static int platform_probe(struct platform_intf *intf)
 	return cros_config_probe(intf, NULL);
 }
 
-static struct eventlog_cb smbios_eventlog_cb = {
-	.print_type = &elog_print_type,
-	.print_data = &elog_print_data,
-	.print_multi = &elog_print_multi,
-	.verify = &elog_verify,
-	.verify_header = &elog_verify_header,
-	.fetch = &elog_fetch_from_smbios,
-};
-
 static struct sys_cb smbios_sys_cb = {
 	.version = &smbios_sysinfo_get_version,
 	.vendor = &smbios_sysinfo_get_vendor,
@@ -60,7 +50,6 @@ static struct platform_cb generic_x86_cb = {
 	.ec = &cros_ec_cb,
 	.memory = &smbios_memory_cb,
 	.sys = &smbios_sys_cb,
-	.eventlog = &smbios_eventlog_cb,
 };
 
 /*
