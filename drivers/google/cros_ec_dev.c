@@ -51,108 +51,6 @@
 
 #define CROS_EC_COMMAND_RETRIES	50
 
-/* ec device interface v1 (used with Chrome OS v3.18 and earlier) */
-
-/*
- * Wait for a command to complete, then return the response
- *
- * This is called when we get an EAGAIN response from the EC. We need to
- * send EC_CMD_GET_COMMS_STATUS commands until the EC indicates it is
- * finished the command that we originally sent.
- *
- * returns 0 if command is successful, <0 to indicate timeout or error
- */
-static int command_wait_for_response(struct cros_ec_priv *priv)
-{
-	struct ec_response_get_comms_status status;
-	struct cros_ec_command cmd;
-	int ret;
-	int i;
-
-	cmd.version = 0;
-	cmd.command = EC_CMD_GET_COMMS_STATUS;
-	cmd.outdata = NULL;
-	cmd.outsize = 0;
-	cmd.indata = (uint8_t *)&status;
-	cmd.insize = sizeof(status);
-
-	for (i = 1; i <= CROS_EC_COMMAND_RETRIES; i++) {
-		ret = ioctl(priv->devfs->fd, CROS_EC_DEV_IOCXCMD, &cmd,
-			    sizeof(cmd));
-		if (ret) {
-			lprintf(LOG_ERR, "%s: CrOS EC command failed: %d\n",
-				 __func__, ret);
-			ret = -EC_RES_ERROR;
-			break;
-		}
-
-		if (!(status.flags & EC_COMMS_STATUS_PROCESSING)) {
-			ret = -EC_RES_SUCCESS;
-			break;
-		}
-
-		usleep(1000);
-	}
-
-	return ret;
-}
-
-/*
- * cros_ec_command_dev - Issue command to CROS_EC device
- *
- * @command:	command code
- * @outdata:	data to send to EC
- * @outsize:	number of bytes in outbound payload
- * @indata:	(unallocated) buffer to store data received from EC
- * @insize:	number of bytes in inbound payload
- *
- * This uses the kernel Chrome OS EC driver to communicate with the EC.
- *
- * The outdata and indata buffers contain payload data (if any); command
- * and response codes as well as checksum data are handled transparently by
- * this function.
- *
- * Returns >=0 for success, or negative if other error.
- */
-static int cros_ec_command_dev(struct ec_cb *ec, int command, int version,
-			       const void *indata, int insize,
-			       const void *outdata, int outsize)
-{
-	struct cros_ec_priv *priv;
-	struct cros_ec_command cmd;
-	int ret;
-
-	MOSYS_DCHECK(ec && ec->priv);
-	priv = ec->priv;
-
-	cmd.version = version;
-	cmd.command = command;
-	cmd.outdata = outdata;
-	cmd.outsize = outsize;
-	cmd.indata = (uint8_t *)indata;
-	cmd.insize = insize;
-	ret = ioctl(priv->devfs->fd, CROS_EC_DEV_IOCXCMD, &cmd, sizeof(cmd));
-	if (ret < 0 && errno == -EAGAIN)
-		ret = command_wait_for_response(priv);
-
-	if (ret < 0) {
-		lprintf(LOG_ERR, "%s: Transfer failed: %d\n", __func__, ret);
-		return -EC_RES_ERROR;
-	}
-
-	/* TODO: Remove this. Issue 695075. */
-	if (command != EC_CMD_PD_CHIP_INFO)
-		return 0;
-
-	if (cmd.result) {
-		lprintf(LOG_ERR, "%s: EC command failed: 0x%x\n",
-			__func__, cmd.result);
-		return -EECRESULT - cmd.result;
-	}
-
-	return 0; /* Should we return ret here? */
-}
-
 /*
  * ec device interface v2
  * (used with upstream kernel as well as with Chrome OS v4.4 and later)
@@ -252,33 +150,6 @@ static int cros_ec_command_dev_v2(struct ec_cb *ec, int command, int version,
 }
 
 /*
- * Attempt to communicate with kernel using old ioctl format.
- * If it returns ENOTTY, assume that this kernel uses the new format.
- */
-static int ec_dev_is_v2(int fd)
-{
-	struct ec_params_hello h_req = {
-		.in_data = 0xa0b0c0d0
-	};
-	struct ec_response_hello h_resp;
-	struct cros_ec_command s_cmd = { };
-	int r;
-
-	s_cmd.command = EC_CMD_HELLO;
-	s_cmd.result = 0xff;
-	s_cmd.outsize = sizeof(h_req);
-	s_cmd.outdata = (uint8_t *)&h_req;
-	s_cmd.insize = sizeof(h_resp);
-	s_cmd.indata = (uint8_t *)&h_resp;
-
-	r = ioctl(fd, CROS_EC_DEV_IOCXCMD, &s_cmd, sizeof(s_cmd));
-	if (r < 0 && errno == ENOTTY)
-		return 1;
-
-	return 0;
-}
-
-/*
  * cros_ec_probe_dev - Probe for CrOS EC type device using devfs.
  *
  * @intf:	The platform interface
@@ -301,10 +172,6 @@ int cros_ec_probe_dev(struct ec_cb *ec)
 		return -1;
 	}
 
-	if (ec_dev_is_v2(priv->devfs->fd))
-		priv->cmd = cros_ec_command_dev_v2;
-	else
-		priv->cmd = cros_ec_command_dev;
-
+	priv->cmd = cros_ec_command_dev_v2;
 	return 1;
 }
