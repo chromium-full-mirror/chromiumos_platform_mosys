@@ -7,7 +7,6 @@ else
   subdir('cyclone')
   subdir('mistral')
   subdir('pinky')
-  subdir('storm')
 endif
 
 # These platforms are currently undergoing unibuild migrations and
