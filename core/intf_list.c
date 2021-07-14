@@ -46,15 +46,6 @@ int intf_op_setup(struct platform_intf *intf)
 {
 	int rc = 0;
 
-#ifdef CONFIG_PLATFORM_ARCH_X86
-	static struct platform_op x86_default_op = {
-		.mmio = &mmio_mmap_intf,
-	};
-
-	if (!intf->op)
-		intf->op = &x86_default_op;
-#endif
-
 	if (intf->op && intf->op->mmio && intf->op->mmio->setup)
 		rc |= intf->op->mmio->setup(intf);
 
