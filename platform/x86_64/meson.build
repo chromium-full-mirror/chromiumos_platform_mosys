@@ -5,9 +5,7 @@ if use_cros_config
   # "Generic" yet.
   subdir('sarien')  # Wilco EC
 else
-  subdir('auron')
   subdir('glados')
-  subdir('jecht')
   subdir('rambi')
   subdir('strago')
 endif
