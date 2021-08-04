@@ -11,7 +11,6 @@
 #   placed under here, not under platform/arm/.
 
 if use_cros_config
-  subdir('cheza')
   subdir('kukui')
   subdir('trogdor')
 endif
