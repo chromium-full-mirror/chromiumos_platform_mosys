@@ -38,8 +38,29 @@ static int get_mem_info(struct platform_intf *intf, int dimm,
 	case 0x00:
 		*info = &hynix_lpddr4x_h9hcnnncpmmlxr_nee;
 		break;
+	case 0x01:
+		*info = &samsung_lpddr4x_k4ube3d4aa_mgcr;
+		break;
 	case 0x10:
 		*info = &micron_lpddr4x_mt53e1g32d2np_046wta;
+		break;
+	case 0x20:
+		*info = &micron_lpddr4x_mt53e2g32d4nq_046wta;
+		break;
+	case 0x30:
+		*info = &samsung_lpddr4x_k4uce3q4aa_mgcr;
+		break;
+	case 0x31:
+		*info = &hynix_lpddr4x_h9hcnnnfammlxr_nee;
+		break;
+	case 0x40:
+		*info = &micron_lpddr4x_mt53e512m32d2np_046;
+		break;
+	case 0x41:
+		*info = &samsung_lpddr4x_k4u6e3s4aa_mgcr;
+		break;
+	case 0x42:
+		*info = &hynix_lpddr4x_h9hcnnnbkmmlxr_nee;
 		break;
 	default:
 		lprintf(LOG_ERR, "Invalid RAM code: %d.\n", ram_code);

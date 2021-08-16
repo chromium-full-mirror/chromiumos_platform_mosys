@@ -145,6 +145,19 @@ const struct nonspd_mem_info hynix_lpddr3_h9ccnnnbktmlbr_ntd = {
 	.part_num		= "H9CCNNNBKTMLBR-NTD",
 };
 
+const struct nonspd_mem_info hynix_lpddr4x_h9hcnnnbkmmlxr_nee = {
+	.dram_type		= SPD_DRAM_TYPE_LPDDR4X,
+
+	.module_size_mbits	= 16384,
+	.num_ranks		= 1,
+	.device_width		= 32,
+
+	.module_mfg_id		= { .msb = 0xad, .lsb = 0x80 },
+	.dram_mfg_id		= { .msb = 0xad, .lsb = 0x80 },
+
+	.part_num		= "H9HCNNNBKMMLXR-NEE",
+};
+
 const struct nonspd_mem_info hynix_lpddr4x_h9hcnnncpmalhr_nee = {
 	.dram_type		= SPD_DRAM_TYPE_LPDDR4X,
 
@@ -555,6 +568,19 @@ const struct nonspd_mem_info micron_lpddr4x_mt53e2g32d4nq_046wta = {
 	.part_num		= "MT53E2G32D4NQ-46WT:A",
 };
 
+const struct nonspd_mem_info micron_lpddr4x_mt53e512m32d2np_046 = {
+	.dram_type		= SPD_DRAM_TYPE_LPDDR4X,
+
+	.module_size_mbits	= 16384,
+	.num_ranks		= 1,
+	.device_width		= 32,
+
+	.module_mfg_id		= { .msb = 0x2c, .lsb = 0x00 },
+	.dram_mfg_id		= { .msb = 0x2c, .lsb = 0x00 },
+
+	.part_num		= "MT53E512M32D2NP-046",
+};
+
 const struct nonspd_mem_info micron_lpddr4x_mt53d1g32d4dt_046wtd = {
 	.dram_type		= SPD_DRAM_TYPE_LPDDR4X,
 
@@ -683,6 +709,19 @@ const struct nonspd_mem_info samsung_lpddr4x_kmdv6001da_b620 = {
 	.dram_mfg_id		= { .msb = 0xce, .lsb = 0x00 },
 
 	.part_num		= "KMDV6001DA-B620",
+};
+
+const struct nonspd_mem_info samsung_lpddr4x_k4u6e3s4aa_mgcr = {
+	.dram_type		= SPD_DRAM_TYPE_LPDDR4X,
+
+	.module_size_mbits	= 16384,
+	.num_ranks		= 1,
+	.device_width		= 32,
+
+	.module_mfg_id		= { .msb = 0xce, .lsb = 0x00 },
+	.dram_mfg_id		= { .msb = 0xce, .lsb = 0x00 },
+
+	.part_num		= "K4U6E3S4AA-MGCR",
 };
 
 const struct nonspd_mem_info samsung_lpddr4x_k4ube3d4aa_mgcl = {
