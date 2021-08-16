@@ -8,6 +8,7 @@ clock_gettime: 1
 clock_nanosleep: 1
 fchown: 1
 faccessat: 1
+faccessat2: 1
 newfstatat: 1
 fchmodat: 1
 fdatasync: 1
