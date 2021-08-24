@@ -75,4 +75,5 @@ getppid: 1
 getcwd: 1
 prctl: 1
 statfs: 1
+statx: 1
 fstatfs: 1
