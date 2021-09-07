@@ -13,6 +13,7 @@ dup: 1
 dup2: 1
 execve: 1
 exit_group: 1
+fchdir: 1
 fchmodat: 1
 fcntl: 1
 fdatasync: 1
@@ -58,6 +59,7 @@ sigaltstack: 1
 splice: 1
 stat: 1
 statx: 1
+symlinkat: 1
 tgkill: 1
 umask: 1
 unlink: 1

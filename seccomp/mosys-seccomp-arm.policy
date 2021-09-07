@@ -16,6 +16,7 @@ dup: 1
 exit_group: 1
 faccessat: 1
 faccessat2: 1
+fchdir: 1
 fchmodat: 1
 fdatasync: 1
 munmap: 1
@@ -74,6 +75,7 @@ fstatfs: 1
 fstatfs64: 1
 prctl: 1
 sigreturn: 1
+symlinkat: 1
 arm_fadvise64_64: 1
 _llseek: 1
 umask: 1
