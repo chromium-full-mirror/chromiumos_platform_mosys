@@ -17,6 +17,7 @@ static int trogdor_dimm_count;
 static const struct nonspd_mem_info *mem_info;
 
 enum trogdor_ram_manufacturer {
+	SAMSUNG = 1,
 	HYNIX = 6,
 	MICRON = 255
 };
@@ -83,6 +84,8 @@ static int populate_ram_info(void)
 			mem_info = &micron_lpddr4x_mt53e1g32d2np_046wta;
 		} else if (ram_code == 2 && ram_mid == HYNIX) {
 			mem_info = &hynix_lpddr4x_h9hcnnncpmmlxr_nee;
+		} else if (ram_code == 2 && ram_mid == SAMSUNG) {
+			mem_info = &samsung_lpddr4x_k4ube3d4aa_mgcr;
 		} else if (ram_code == 3 && ram_mid == MICRON) {
 			mem_info = &micron_lpddr4x_mt53e2g32d4nq_046wta;
 		} else if (ram_code == 3 && ram_mid == HYNIX) {
