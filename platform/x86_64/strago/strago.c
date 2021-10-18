@@ -37,7 +37,6 @@
 
 #include "mosys/alloc.h"
 #include "mosys/command_list.h"
-#include "mosys/intf_list.h"
 #include "mosys/log.h"
 #include "mosys/platform.h"
 

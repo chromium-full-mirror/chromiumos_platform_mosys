@@ -43,7 +43,6 @@
 #include "lib/generic_callbacks.h"
 #include "mosys/command_list.h"
 #include "mosys/platform.h"
-#include "mosys/intf_list.h"
 #include "mosys/log.h"
 
 enum gru_boards {

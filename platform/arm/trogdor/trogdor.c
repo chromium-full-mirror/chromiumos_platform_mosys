@@ -10,7 +10,6 @@
 #include "lib/sku.h"
 #include "mosys/command_list.h"
 #include "mosys/platform.h"
-#include "mosys/intf_list.h"
 
 static struct platform_cmd *trogdor_sub[] = {
 	&cmd_ec,

@@ -39,7 +39,6 @@
 
 #include "mosys/alloc.h"
 #include "mosys/globals.h"
-#include "mosys/intf_list.h"
 #include "mosys/kv_pair.h"
 #include "mosys/log.h"
 #include "mosys/platform.h"
@@ -159,12 +158,6 @@ struct platform_intf *mosys_platform_setup(const char *platform_name)
 	if (intf->setup && intf->setup(intf) < 0)
 		return NULL;
 
-	/* prepare interface operations */
-	if (intf_op_setup(intf) < 0) {
-		mosys_platform_destroy(intf);
-		return NULL;
-	}
-
 	/* call platform-specific post-setup if found */
 	if (intf->setup_post &&
 	    intf->setup_post(intf) < 0) {
@@ -190,10 +183,6 @@ void mosys_platform_destroy(struct platform_intf *intf)
 		/* cleanup interface */
 		if (intf->destroy)
 			intf->destroy(intf);
-
-		/* cleanup interface operations */
-		if (intf->op)
-			intf_op_destroy(intf);
 	}
 }
 

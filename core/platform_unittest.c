@@ -24,7 +24,6 @@
 // clang-format on
 
 #include "mosys/globals.h"
-#include "mosys/intf_list.h"
 #include "mosys/platform.h"
 
 /* Subcommands list used for testing which defines no commands */

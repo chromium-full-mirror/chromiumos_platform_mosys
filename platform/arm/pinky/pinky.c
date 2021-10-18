@@ -40,7 +40,6 @@
 #include "lib/probe.h"
 #include "mosys/command_list.h"
 #include "mosys/platform.h"
-#include "mosys/intf_list.h"
 #include "mosys/log.h"
 
 static struct veyron_probe_id {

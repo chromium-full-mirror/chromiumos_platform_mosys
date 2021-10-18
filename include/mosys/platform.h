@@ -81,15 +81,6 @@ struct platform_cmd {
 	} arg;
 };
 
-/* platform operations handlers */
-struct pci_intf;
-struct mmio_intf;
-
-struct platform_op {
-	struct pci_intf *pci;		/* pci interface */
-	struct mmio_intf *mmio;		/* mmio interface */
-};
-
 /* memory related callbacks */
 struct smbios_table;
 struct memory_spd_cb {
@@ -163,7 +154,6 @@ struct platform_intf {
 	const char *name;		/* canonical platform name */
 	const struct sku_info *sku_info;	/* SKU information */
 	struct platform_cmd **sub;	/* list of commands */
-	struct platform_op *op;		/* operations */
 	struct platform_cb *cb;		/* callbacks */
 
 	/*
