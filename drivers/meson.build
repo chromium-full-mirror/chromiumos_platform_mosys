@@ -1,2 +1,1 @@
 subdir('google')
-subdir('intel')
