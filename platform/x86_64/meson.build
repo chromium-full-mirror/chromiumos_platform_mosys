@@ -6,6 +6,5 @@ if use_cros_config
   subdir('sarien')  # Wilco EC
 else
   subdir('glados')
-  subdir('rambi')
   subdir('strago')
 endif
