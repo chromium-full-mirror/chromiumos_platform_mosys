@@ -33,19 +33,6 @@
 #define MOSYS_LIB_FLASHROM_H__
 
 /*
- * flashrom_read - Read ROM using Flashrom utility
- *
- * @buf:	output buffer
- * @size:	(expected) size of ROM
- * @region:	region to include with -i (NULL to read entire ROM)
- *
- * This function reads the target ROM by calling Flashrom with appropriate
- * parameters. It will save the ROM to a temporary file and then copy the
- * file into the provided buffer.
- */
-extern int flashrom_read(uint8_t *buf, size_t size, const char *region);
-
-/*
  * flashrom_read_by_name - Partial read using Flashrom utility
  *
  * @buf:	double-pointer of buffer to allocate and fill

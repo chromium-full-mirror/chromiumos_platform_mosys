@@ -117,65 +117,6 @@ static int do_cmd(const char *cmd, char *const *argv)
 	return rc;
 }
 
-/* TODO: add arbitrary range support */
-int flashrom_read(uint8_t *buf, size_t size, const char *region)
-{
-	int fd, rc = -1;
-	char filename[] = "flashrom_XXXXXX";
-	char full_filename[PATH_MAX];
-	char *args[MAX_ARRAY_SIZE];
-	struct stat s;
-	int i = 0;
-
-	args[i++] = strdup("flashrom");
-	args[i++] = strdup("-p");
-	args[i++] = strdup("host");
-
-	strcpy(full_filename, "/tmp/");
-	strcat(full_filename, filename);
-	if (mkstemp(full_filename) == -1) {
-		lperror(LOG_DEBUG,
-			"Unable to make temporary file for flashrom");
-		goto flashrom_read_exit_0;
-	}
-
-	if (region) {
-		args[i++] = strdup("-i");
-		args[i++] = strdup(region);
-	}
-	args[i++] = strdup("-r");
-	args[i++] = strdup(full_filename);
-	args[i++] = NULL;
-
-	if (do_cmd("flashrom", args) < 0)
-		goto flashrom_read_exit_1;
-
-	fd = open(full_filename, O_RDONLY);
-	if (fstat(fd, &s) < 0) {
-		lprintf(LOG_DEBUG, "%s: Cannot stat %s\n", __func__, full_filename);
-		goto flashrom_read_exit_1;
-	}
-
-	if (s.st_size != size) {
-		lprintf(LOG_DEBUG, "%s: Size of image: %jd, expected %zu\n",
-		                   __func__, (intmax_t)s.st_size, size);
-		goto flashrom_read_exit_1;
-	}
-
-	if (read(fd, buf, size) != size) {
-		lperror(LOG_DEBUG, "%s: Unable to read image\n", full_filename);
-		goto flashrom_read_exit_1;
-	}
-
-	rc = 0;
-flashrom_read_exit_1:
-	for (i = 0; args[i] != NULL; i++)
-		free(args[i]);
-flashrom_read_exit_0:
-	unlink(full_filename);
-	return rc;
-}
-
 int flashrom_read_by_name(uint8_t **buf, const char *region)
 {
 	int fd, rc = -1;
