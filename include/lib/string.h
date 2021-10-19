@@ -51,21 +51,6 @@
 extern char *buf2str(uint8_t *inbuf, size_t length);
 
 /*
- * Build a string, as through sprintf().  The returned string is
- * dynamically allocated and must be free()ed by the caller.
- */
-extern char *format_string(const char *fmt, ...)
-    __attribute__ ((format(printf, 1, 2)));
-
-/*
- * Scan memory at address=haystack for a block of memory that matches
- * needle.
- */
-extern int find_pattern(void *haystack, size_t haystack_length,
-                        void *needle, size_t needle_length,
-                        size_t align, size_t *offset);
-
-/*
  * strlfind - linear search for string in set of strings
  *
  * @str:		string to search for
