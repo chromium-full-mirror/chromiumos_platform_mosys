@@ -41,42 +41,6 @@
 #include "mosys/platform.h"
 
 #include "lib/nonspd.h"
-#include "lib/spd.h"
-
-static int memory_spd_print_geometry(struct platform_intf *intf, int dimm)
-{
-	struct kv_pair *kv;
-	struct spd_device *spd;
-	uint8_t *spd_data;
-	int rc;
-
-	if (!intf->cb->memory->spd || !intf->cb->memory->spd->read) {
-		errno = ENOSYS;
-		return -1;
-	}
-
-	kv = kv_pair_new();
-
-	spd = new_spd_device(intf, dimm);
-	if (spd == NULL) {
-		lprintf(LOG_DEBUG,
-			"Failed to read from SPD %u (not present?)\n", dimm);
-		return 0;	/* not an error */
-	}
-
-	spd_data = &spd->eeprom.data[0];
-
-	kv_pair_fmt(kv, "dimm", "%u", dimm);
-	spd_print_field(intf, kv, spd_data, SPD_GET_SIZE);
-	spd_print_field(intf, kv, spd_data, SPD_GET_RANKS);
-	spd_print_field(intf, kv, spd_data, SPD_GET_WIDTH);
-
-	rc = kv_pair_print(kv);
-	kv_pair_free(kv);
-
-	free(spd);
-	return rc;
-}
 
 static int memory_nonspd_print_geometry(struct platform_intf *intf, int dimm)
 {
@@ -125,55 +89,15 @@ static int memory_spd_print_geometry_cmd(struct platform_intf *intf,
 			errno = EINVAL;
 			return -1;
 		}
-		if (intf->cb->memory->spd)
-			memory_spd_print_geometry(intf, dimm);
-		else
-			memory_nonspd_print_geometry(intf, dimm);
+		memory_nonspd_print_geometry(intf, dimm);
 	} else {
 		do {
-			if (intf->cb->memory->spd)
-				memory_spd_print_geometry(intf, dimm);
-			else
-				memory_nonspd_print_geometry(intf, dimm);
+			memory_nonspd_print_geometry(intf, dimm);
 			dimm++;
 		} while (dimm < last_dimm);
 	}
 
 	return 0;
-}
-
-static int memory_spd_print_id(struct platform_intf *intf, int dimm)
-{
-	struct kv_pair *kv;
-	struct spd_device *spd;
-	uint8_t *spd_data;
-	int rc;
-
-	if (!intf->cb->memory->spd || !intf->cb->memory->spd->read) {
-		errno = ENOSYS;
-		return -1;
-	}
-
-	kv = kv_pair_new();
-
-	spd = new_spd_device(intf, dimm);
-	if (spd == NULL) {
-		lprintf(LOG_DEBUG,
-			"Failed to read from SPD %u (not present?)\n", dimm);
-		return 0;	/* not an error */
-	}
-
-	spd_data = &spd->eeprom.data[0];
-
-	kv_pair_fmt(kv, "dimm", "%u", dimm);
-	spd_print_field(intf, kv, spd_data, SPD_GET_MFG_ID);
-	spd_print_field(intf, kv, spd_data, SPD_GET_PART_NUMBER);
-
-	rc = kv_pair_print(kv);
-	kv_pair_free(kv);
-
-	free(spd);
-	return rc;
 }
 
 static int memory_nonspd_print_id(struct platform_intf *intf, int dimm)
@@ -222,55 +146,15 @@ static int memory_spd_print_id_cmd(struct platform_intf *intf,
 			errno = EINVAL;
 			return -1;
 		}
-		if (intf->cb->memory->spd)
-			memory_spd_print_id(intf, dimm);
-		else
-			memory_nonspd_print_id(intf, dimm);
+		memory_nonspd_print_id(intf, dimm);
 	} else {
 		do {
-			if (intf->cb->memory->spd)
-				memory_spd_print_id(intf, dimm);
-			else
-				memory_nonspd_print_id(intf, dimm);
+			memory_nonspd_print_id(intf, dimm);
 			dimm++;
 		} while (dimm < last_dimm);
 	}
 
 	return 0;
-}
-
-static int memory_spd_print_type(struct platform_intf *intf, int dimm)
-{
-	struct kv_pair *kv;
-	struct spd_device *spd;
-	uint8_t *spd_data;
-	int rc;
-
-	if (!intf->cb->memory->spd || !intf->cb->memory->spd->read) {
-		errno = ENOSYS;
-		return -1;
-	}
-
-	kv = kv_pair_new();
-
-	spd = new_spd_device(intf, dimm);
-	if (spd == NULL) {
-		lprintf(LOG_DEBUG,
-			"Failed to read from SPD %u (not present?)\n", dimm);
-		return 0;	/* not an error */
-	}
-
-	spd_data = &spd->eeprom.data[0];
-
-	kv_pair_fmt(kv, "dimm", "%u", dimm);
-	spd_print_field(intf, kv, spd_data, SPD_GET_DRAM_TYPE);
-	spd_print_field(intf, kv, spd_data, SPD_GET_MODULE_TYPE);
-
-	rc = kv_pair_print(kv);
-	kv_pair_free(kv);
-
-	free(spd);
-	return rc;
 }
 
 static int memory_nonspd_print_type(struct platform_intf *intf, int dimm)
@@ -318,16 +202,10 @@ static int memory_spd_print_type_cmd(struct platform_intf *intf,
 			errno = EINVAL;
 			return -1;
 		}
-		if (intf->cb->memory->spd)
-			memory_spd_print_type(intf, dimm);
-		else
-			memory_nonspd_print_type(intf, dimm);
+		memory_nonspd_print_type(intf, dimm);
 	} else {
 		do {
-			if (intf->cb->memory->spd)
-				memory_spd_print_type(intf, dimm);
-			else
-				memory_nonspd_print_type(intf, dimm);
+			memory_nonspd_print_type(intf, dimm);
 			dimm++;
 		} while (dimm < last_dimm);
 	}

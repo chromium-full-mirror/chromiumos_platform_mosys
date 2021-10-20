@@ -83,19 +83,12 @@ struct platform_cmd {
 
 /* memory related callbacks */
 struct smbios_table;
-struct memory_spd_cb {
-	int (*read)(struct platform_intf *intf,
-	            int dimm, int reg, int len, unsigned char *buf);
-};
 
 struct memory_cb {
 	int (*dimm_count)(struct platform_intf *intf);
 	int (*dimm_speed)(struct platform_intf *intf,
 	                  int dimm, struct kv_pair *kv);
 
-	struct memory_spd_cb *spd;
-
-	/* for systems where SPD-formatted memory info is not available */
 	int (*nonspd_mem_info)(struct platform_intf *intf, int dimm,
 				const struct nonspd_mem_info **info);
 };

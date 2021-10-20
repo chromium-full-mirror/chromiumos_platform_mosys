@@ -36,19 +36,7 @@
 
 #include <inttypes.h>
 
-#include "lib/ddr4.h"
 #include "lib/val2str.h"
-
-#define SPD_DEFAULT_LENGTH 256
-#define SPD_DDR4_LENGTH    512
-#define SPD_MAX_LENGTH     SPD_DDR4_LENGTH
-
-#define SPD_PAGE_0        (0x6C >> 1)
-#define SPD_PAGE_1        (0x6E >> 1)
-
-/* forward declarations */
-struct kv_pair;
-struct platform_intf;
 
 /* different types of DRAM (fundamental memory type) for SPD */
 enum spd_dram_type {
@@ -90,17 +78,6 @@ static const struct valstr ddr3_module_type_lut[] = {
 	{ DDR3_MODULE_TYPE_LRDIMM, "LRDIMM" },
 };
 
-struct spd_eeprom {
-	int length;
-	uint8_t data[SPD_MAX_LENGTH];
-};
-
-struct spd_device {
-	int dimm_num; /* DIMM number in system. */
-	enum spd_dram_type dram_type; /* Fundamental DRAM type. */
-	struct spd_eeprom eeprom;
-};
-
 /*
  * various SPD fields that can be retrieved
  * these are found in different locations on DDR/DDR2 vs. FBDIMM
@@ -114,54 +91,5 @@ enum spd_field_type {
 	SPD_GET_RANKS,		/* Number of ranks */
 	SPD_GET_WIDTH,		/* SDRAM device width */
 };
-
-/*
- * new_spd_device() - create a new instance of spd_device
- *
- * @intf:  platform_intf for access
- * @dimm:  Google logical dimm number to represent
- *
- * returns allocated and filled in spd_devices on success, NULL if error
- */
-extern struct spd_device *new_spd_device(struct platform_intf *intf, int dimm);
-
-/* add register to key=value pair */
-extern int spd_print_reg(struct platform_intf *intf,
-			 struct kv_pair *kv, const void *data, uint8_t reg);
-
-/* add field to key=value pair */
-extern int spd_print_field(struct platform_intf *intf,
-			   struct kv_pair *kv,
-			   const void *data, enum spd_field_type type);
-
-/* print raw spd */
-extern int spd_print_raw(struct kv_pair *kv, int len, uint8_t *data);
-
-/*
- * spd_total_size  -  determine total bytes in spd from first few bytes
- *
- * @data:	spd data
- *
- * returns total size of SPD, may be less than max depending on type of module
- * returns <0 to indicate failure
- *
- */
-extern int spd_total_size(uint8_t *data);
-
-/*
- * spd_print_field_ddr3  -  add common DDR SPD fields into key=value pair
- *
- * @intf:       platform interface
- * @kv:         key=value pair
- * @data:       raw spd data
- * @type:       type of field to retrieve
- *
- * returns 1 to indicate data added to key=value pair
- * returns 0 to indicate no data added
- * returns <0 to indicate error
- *
- */
-extern int spd_print_field_ddr3(struct platform_intf *intf, struct kv_pair *kv,
-                                const void *data, enum spd_field_type type);
 
 #endif /* LIB_SPD_H__ */

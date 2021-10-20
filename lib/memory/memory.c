@@ -5,7 +5,6 @@
 
 #include "lib/memory.h"
 #include "lib/nonspd.h"
-#include "lib/spd.h"
 #include "lib/smbios.h"
 
 struct memory_cb smbios_memory_cb = {
