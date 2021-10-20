@@ -59,12 +59,6 @@ static int pd_info(struct platform_intf *intf, struct platform_cmd *cmd,
 	return ec_info_common(intf->cb->pd);
 }
 
-static int fp_info(struct platform_intf *intf, struct platform_cmd *cmd,
-		   int argc, char **argv)
-{
-	return ec_info_common(intf->cb->fp);
-}
-
 static int pd_chip_info(struct platform_intf *intf, struct platform_cmd *cmd,
 			int argc, char **argv)
 {
@@ -132,16 +126,6 @@ static struct platform_cmd pd_cmds[] = {
 	{ NULL }
 };
 
-static struct platform_cmd fp_cmds[] = {
-	{
-		.name	= "info",
-		.desc	= "Print basic FP MCU information",
-		.type	= ARG_TYPE_GETTER,
-		.arg	= { .func = fp_info }
-	},
-	{ NULL }
-};
-
 struct platform_cmd cmd_ec = {
 	.name	= "ec",
 	.desc	= "EC information",
@@ -154,11 +138,4 @@ struct platform_cmd cmd_pd = {
 	.desc	= "PD information",
 	.type	= ARG_TYPE_SUB,
 	.arg	= { .sub = pd_cmds }
-};
-
-struct platform_cmd cmd_fp = {
-	.name	= "fp",
-	.desc	= "Fingerprint MCU information",
-	.type	= ARG_TYPE_SUB,
-	.arg	= { .sub = fp_cmds }
 };

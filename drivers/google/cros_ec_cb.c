@@ -134,21 +134,3 @@ struct ec_cb cros_pd_cb = {
 	.fw_version = cros_ec_version,
 	.priv = &cros_pd_priv,
 };
-
-static struct cros_ec_dev cros_fp_devfs = {
-	.name = CROS_FP_DEV_NAME,
-	.fd = -1,
-};
-
-static struct cros_ec_priv cros_fp_priv = {
-	.devfs = &cros_fp_devfs,
-};
-
-struct ec_cb cros_fp_cb = {
-	.setup = cros_ec_setup,
-	.destroy = cros_ec_destroy,
-	.vendor = cros_ec_vendor,
-	.name = cros_ec_name,
-	.fw_version = cros_ec_version,
-	.priv = &cros_fp_priv,
-};

@@ -41,7 +41,6 @@
 
 #define CROS_EC_DEV_NAME		"/dev/cros_ec"
 #define CROS_PD_DEV_NAME		"/dev/cros_pd"
-#define CROS_FP_DEV_NAME		"/dev/cros_fp"
 
 struct nvram_cb;
 struct platform_intf;
@@ -70,7 +69,6 @@ int cros_ec_probe_dev(struct ec_cb *ec);
 
 extern struct ec_cb cros_ec_cb;
 extern struct ec_cb cros_pd_cb;
-extern struct ec_cb cros_fp_cb;
 
 /* EC commands */
 ssize_t cros_ec_version(struct ec_cb *ec, char *buf, size_t buf_sz);

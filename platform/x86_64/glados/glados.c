@@ -70,7 +70,6 @@ static const struct probe_ids probe_id_list[] = {
 
 static struct platform_cmd *glados_sub[] = {
 	&cmd_ec,
-	&cmd_fp,
 	&cmd_memory,
 	&cmd_pd,
 	&cmd_platform,
@@ -108,7 +107,6 @@ exit:
 static struct platform_cb glados_cb = {
 	.ec		= &cros_ec_cb,
 	.pd		= &cros_pd_cb,
-	.fp		= &cros_fp_cb,
 	.memory		= &smbios_memory_cb,
 	.sys 		= &glados_sys_cb,
 };
