@@ -1,5 +1,4 @@
 subdir('acpi')
-subdir('cbfs')
 subdir('cros_config')
 subdir('eventlog')
 subdir('file')
