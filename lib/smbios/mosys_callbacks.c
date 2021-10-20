@@ -171,16 +171,3 @@ int smbios_dimm_count(struct platform_intf *intf)
 
 	return dimm_cnt;
 }
-
-int smbios_dimm_speed(struct platform_intf *intf,
-		     int dimm, struct kv_pair *kv)
-{
-	struct smbios_table table;
-	if (smbios_find_table(intf, SMBIOS_TYPE_MEMORY, dimm, &table) < 0) {
-		return -1;
-	}
-
-	kv_pair_fmt(kv, "speed", "%d MHz", table.data.mem_device.speed);
-
-	return 0;
-}

@@ -86,9 +86,6 @@ struct smbios_table;
 
 struct memory_cb {
 	int (*dimm_count)(struct platform_intf *intf);
-	int (*dimm_speed)(struct platform_intf *intf,
-	                  int dimm, struct kv_pair *kv);
-
 	int (*nonspd_mem_info)(struct platform_intf *intf, int dimm,
 				const struct nonspd_mem_info **info);
 };

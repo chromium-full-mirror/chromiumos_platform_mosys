@@ -88,9 +88,6 @@ enum smbios_types {
 
 extern int smbios_dimm_count(struct platform_intf *intf);
 
-extern int smbios_dimm_speed(struct platform_intf *intf,
-		     int dimm, struct kv_pair *kv);
-
 /* SMBIOS main API. */
 extern int smbios_find_table(struct platform_intf *intf, enum smbios_types type,
 			     int instance, struct smbios_table *table);
