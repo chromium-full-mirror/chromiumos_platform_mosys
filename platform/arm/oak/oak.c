@@ -66,7 +66,6 @@ static struct platform_cmd *oak_sub[] = {
 #ifndef CONFIG_CROS_CONFIG
 	&cmd_psu,
 #endif
-	&cmd_eventlog,
 	NULL
 };
 

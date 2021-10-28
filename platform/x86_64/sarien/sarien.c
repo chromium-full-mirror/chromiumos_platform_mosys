@@ -49,7 +49,6 @@ static struct platform_cmd *sarien_sub[] = {
 	&cmd_ec,
 	&cmd_memory,
 	&cmd_platform,
-	&cmd_eventlog,
 	NULL
 };
 

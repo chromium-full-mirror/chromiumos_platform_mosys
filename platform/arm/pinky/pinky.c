@@ -54,7 +54,6 @@ static struct platform_cmd *pinky_sub[] = {
 	&cmd_memory,
 	&cmd_platform,
 	&cmd_psu,
-	&cmd_eventlog,
 	NULL
 };
 

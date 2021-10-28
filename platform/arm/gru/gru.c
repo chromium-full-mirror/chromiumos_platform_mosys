@@ -76,7 +76,6 @@ static struct platform_cmd *gru_sub[] = {
 #ifndef CONFIG_CROS_CONFIG
 	&cmd_psu,
 #endif
-	&cmd_eventlog,
 	NULL
 };
 

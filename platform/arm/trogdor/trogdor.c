@@ -16,7 +16,6 @@ static struct platform_cmd *trogdor_sub[] = {
 	&cmd_memory,
 	&cmd_pd,
 	&cmd_platform,
-	&cmd_eventlog,
 	NULL
 };
 

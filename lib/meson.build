@@ -1,8 +1,6 @@
 subdir('acpi')
 subdir('cros_config')
-subdir('eventlog')
 subdir('file')
-subdir('flashrom')
 subdir('math')
 subdir('memory')
 subdir('misc')

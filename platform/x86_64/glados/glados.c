@@ -73,7 +73,6 @@ static struct platform_cmd *glados_sub[] = {
 	&cmd_memory,
 	&cmd_pd,
 	&cmd_platform,
-	&cmd_eventlog,
 	NULL
 };
 

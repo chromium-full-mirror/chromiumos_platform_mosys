@@ -36,8 +36,6 @@
 #include <sys/types.h>
 #include <stdint.h>
 
-#include "lib/elog.h"
-
 struct kv_pair;
 struct nonspd_mem_info;
 

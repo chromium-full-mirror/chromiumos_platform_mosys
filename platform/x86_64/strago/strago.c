@@ -96,7 +96,6 @@ static struct platform_cmd *strago_sub[] = {
 	&cmd_ec,
 	&cmd_memory,
 	&cmd_platform,
-	&cmd_eventlog,
 	NULL
 };
 

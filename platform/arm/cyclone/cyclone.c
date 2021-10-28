@@ -56,7 +56,6 @@ static const char *id_list[] = {
 static struct platform_cmd *cyclone_sub[] = {
 	&cmd_memory,
 	&cmd_platform,
-	&cmd_eventlog,
 	NULL
 };
 
