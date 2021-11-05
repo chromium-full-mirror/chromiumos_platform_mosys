@@ -1,6 +1,7 @@
 if use_cros_config
   subdir('asurada')
   subdir('cherry')
+  subdir('herobrine')
   subdir('kukui')
   subdir('trogdor')
 else
