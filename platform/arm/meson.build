@@ -5,8 +5,6 @@ if use_cros_config
   subdir('kukui')
   subdir('trogdor')
 else
-  subdir('cyclone')
-  subdir('mistral')
   subdir('pinky')
 endif
 
