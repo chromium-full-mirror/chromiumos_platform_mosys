@@ -52,7 +52,7 @@ enum gru_boards {
 	RAINIER,
 };
 
-#ifndef CONFIG_CROS_CONFIG
+#ifndef CONFIG_UNIBUILD
 static enum gru_boards probed_board = UNKNOWN;
 
 static struct gru_probe_id {
@@ -71,13 +71,13 @@ static struct platform_cmd *gru_sub[] = {
 	&cmd_ec,
 	&cmd_memory,
 	&cmd_platform,
-#ifndef CONFIG_CROS_CONFIG
+#ifndef CONFIG_UNIBUILD
 	&cmd_psu,
 #endif
 	NULL
 };
 
-#ifndef CONFIG_CROS_CONFIG
+#ifndef CONFIG_UNIBUILD
 static int gru_probe(struct platform_intf *intf)
 {
 	int i;
@@ -98,12 +98,12 @@ static int gru_probe(struct platform_intf *intf)
 	lprintf(LOG_DEBUG, "%s: probed_board: %d\n", __func__, probed_board);
 	return probed_board > UNKNOWN ? 1 : 0;
 }
-#endif /* CONFIG_CROS_CONFIG */
+#endif /* CONFIG_UNIBUILD */
 
 static struct platform_cb gru_cb = {
 	.ec		= &cros_ec_cb,
 	.memory		= &gru_memory_cb,
-#ifndef CONFIG_CROS_CONFIG
+#ifndef CONFIG_UNIBUILD
 	.psu 		= &generic_psu_battery_cb,
 #endif
 	.sys		= &fdt_sysinfo_cb,
@@ -113,7 +113,7 @@ static struct platform_intf platform_gru = {
 	.type		= PLATFORM_ARMV8,
 	.sub		= gru_sub,
 	.cb		= &gru_cb,
-#ifndef CONFIG_CROS_CONFIG
+#ifndef CONFIG_UNIBUILD
 	.probe		= &gru_probe,
 #endif
 };

@@ -23,7 +23,7 @@
  * customization_id should be in LOEMID-SERIES format.
  * If - is not found, return nothing.
  */
-#ifndef CONFIG_CROS_CONFIG
+#ifndef CONFIG_UNIBUILD
 static char *_extract_customization_id_series_part(void)
 {
 	char *customization_id;
@@ -78,7 +78,7 @@ char *sku_get_chassis(struct platform_intf *intf)
 
 char *sku_get_model(struct platform_intf *intf)
 {
-#ifdef CONFIG_CROS_CONFIG
+#ifdef CONFIG_UNIBUILD
 	/*
 	 * Right now, the longest model name is 13 characters.  64
 	 * bytes is well in excess of what's necessary here.

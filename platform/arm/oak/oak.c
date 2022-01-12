@@ -46,7 +46,7 @@
 
 #include "oak.h"
 
-#ifndef CONFIG_CROS_CONFIG
+#ifndef CONFIG_UNIBUILD
 static struct oak_probe_id {
 	const char *name;
 	const char *fdt_compat;
@@ -62,13 +62,13 @@ static struct platform_cmd *oak_sub[] = {
 	&cmd_ec,
 	&cmd_memory,
 	&cmd_platform,
-#ifndef CONFIG_CROS_CONFIG
+#ifndef CONFIG_UNIBUILD
 	&cmd_psu,
 #endif
 	NULL
 };
 
-#ifndef CONFIG_CROS_CONFIG
+#ifndef CONFIG_UNIBUILD
 static int oak_probe(struct platform_intf *intf)
 {
 	int i;
@@ -93,7 +93,7 @@ static struct platform_cb oak_cb = {
 	.ec		= &cros_ec_cb,
 	.memory		= &oak_memory_cb,
 	.pd		= &cros_pd_cb,
-#ifndef CONFIG_CROS_CONFIG
+#ifndef CONFIG_UNIBUILD
 	.psu		= &generic_psu_battery_cb,
 #endif
 	.sys		= &oak_sys_cb,
@@ -103,7 +103,7 @@ static struct platform_intf platform_oak = {
 	.type		= PLATFORM_ARMV8,
 	.sub		= oak_sub,
 	.cb		= &oak_cb,
-#ifndef CONFIG_CROS_CONFIG
+#ifndef CONFIG_UNIBUILD
 	.probe		= &oak_probe,
 #endif
 };

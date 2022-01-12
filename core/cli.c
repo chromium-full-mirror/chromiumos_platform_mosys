@@ -35,7 +35,7 @@ static bool command_is_visible(struct platform_cmd *cmd)
 	if (!cmd->replaced_by_cros_config)
 		return true;
 
-#ifdef CONFIG_CROS_CONFIG
+#ifdef CONFIG_UNIBUILD
 	/*
 	 * On unibuild-enabled platforms, we can always return false
 	 * at this point because the fallback mechanism in cros_config
