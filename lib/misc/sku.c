@@ -23,6 +23,7 @@
  * customization_id should be in LOEMID-SERIES format.
  * If - is not found, return nothing.
  */
+#ifndef CONFIG_CROS_CONFIG
 static char *_extract_customization_id_series_part(void)
 {
 	char *customization_id;
@@ -40,6 +41,7 @@ static char *_extract_customization_id_series_part(void)
 
 	return series;
 }
+#endif
 
 int sku_get_number(struct platform_intf *intf)
 {
@@ -76,6 +78,23 @@ char *sku_get_chassis(struct platform_intf *intf)
 
 char *sku_get_model(struct platform_intf *intf)
 {
+#ifdef CONFIG_CROS_CONFIG
+	/*
+	 * Right now, the longest model name is 13 characters.  64
+	 * bytes is well in excess of what's necessary here.
+	 */
+	char model_buf[64];
+
+	if (read_file("/run/chromeos-config/v1/name", model_buf,
+		      sizeof(model_buf), LOG_ERR)) {
+		lprintf(LOG_ERR,
+			"%s: Failed to read model from chromeos-config\n",
+			__func__);
+		return NULL;
+	}
+
+	return mosys_strdup(model_buf);
+#else
 	const struct sku_info *info = intf->sku_info;
 	char *result = NULL;
 
@@ -89,6 +108,7 @@ char *sku_get_model(struct platform_intf *intf)
 	if (result)
 		strlower(result);
 	return result;
+#endif
 }
 
 char *sku_get_vpd_customization(struct platform_intf *intf)
