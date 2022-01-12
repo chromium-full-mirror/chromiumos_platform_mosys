@@ -1,5 +1,4 @@
 subdir('acpi')
-subdir('cros_config')
 subdir('file')
 subdir('math')
 subdir('memory')

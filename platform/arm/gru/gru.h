@@ -36,7 +36,6 @@
 #include "mosys/platform.h"
 
 #define GRU_HOST_FIRMWARE_ROM_SIZE		(8192 * 1024)
-#define SCARLET_DEFAULT_SKU_ID			(6)
 
 /* platform callbacks */
 extern struct memory_cb gru_memory_cb;

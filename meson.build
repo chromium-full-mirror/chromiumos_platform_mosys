@@ -59,10 +59,5 @@ subdir('platform')
 
 deps = [minijail_dep]
 
-# Cros config is a special snowflake.
-if use_cros_config
-  libmosys_src += mosys_lib_cros_config_src
-endif
-
 subdir('mains')
 subdir('unittests')

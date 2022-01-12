@@ -4,7 +4,6 @@
  */
 
 #include "drivers/google/cros_ec.h"
-#include "lib/cros_config.h"
 #include "lib/fdt.h"
 #include "lib/sku.h"
 #include "mosys/command_list.h"
@@ -18,11 +17,6 @@ static struct platform_cmd *herobrine_sub[] = {
 	NULL
 };
 
-static int herobrine_probe(struct platform_intf *intf)
-{
-	return cros_config_probe(intf, NULL);
-}
-
 /* TODO(b:177917361): add .memory */
 static struct platform_cb herobrine_cb = {
 	.ec		= &cros_ec_cb,
@@ -33,6 +27,5 @@ static struct platform_intf platform_herobrine = {
 	.type		= PLATFORM_ARMV8,
 	.sub		= herobrine_sub,
 	.cb		= &herobrine_cb,
-	.probe		= &herobrine_probe,
 };
 REGISTER_PLATFORM(platform_herobrine, "Herobrine");

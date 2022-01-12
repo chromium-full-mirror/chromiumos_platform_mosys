@@ -20,7 +20,6 @@
 #include <stdlib.h>
 
 #include "drivers/google/cros_ec.h"
-#include "lib/cros_config.h"
 #include "lib/memory.h"
 #include "lib/smbios.h"
 #include "mosys/command_list.h"
@@ -33,11 +32,6 @@ static struct platform_cmd *subcommands[] = {
 	&cmd_platform,
 	NULL,
 };
-
-static int platform_probe(struct platform_intf *intf)
-{
-	return cros_config_probe(intf, NULL);
-}
 
 static struct sys_cb smbios_sys_cb = {
 	.version = &smbios_sysinfo_get_version,
@@ -66,7 +60,6 @@ static struct platform_cb generic_x86_cb = {
 		.type = PLATFORM_X86_64,                \
 		.sub = subcommands,                     \
 		.cb = &generic_x86_cb,                  \
-		.probe = &platform_probe,               \
 	};                                              \
 	REGISTER_PLATFORM(platform_##line, name)
 

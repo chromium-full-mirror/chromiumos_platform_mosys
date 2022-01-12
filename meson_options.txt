@@ -19,10 +19,12 @@ option(
   description: 'If set to true, enable usage of the legacy vpd_get_value command to read VPD values.  Otherwise, read from sysfs.',
 )
 
+# TODO(jrosenth): Option is unused by mosys.  Delete once ebuild no
+# longer specifies it.
 option(
   'cros_config_data_src',
   type: 'string',
-  description: 'cros_config_data source file',
+  description: 'deprecated, does nothing',
 )
 
 option(

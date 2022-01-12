@@ -7,7 +7,6 @@
 #include <unistd.h>
 
 #include "drivers/google/cros_ec.h"
-#include "lib/cros_config.h"
 #include "lib/fdt.h"
 #include "lib/sku.h"
 #include "mosys/command_list.h"
@@ -23,11 +22,6 @@ static struct platform_cmd *cherry_sub[] = {
 	NULL
 };
 
-static int cherry_probe(struct platform_intf *intf)
-{
-	return cros_config_probe(intf, NULL);
-}
-
 static struct platform_cb cherry_cb = {
 	.ec		= &cros_ec_cb,
 	.memory		= &cherry_memory_cb,
@@ -38,6 +32,5 @@ static struct platform_intf platform_cherry = {
 	.type		= PLATFORM_ARMV8,
 	.sub		= cherry_sub,
 	.cb		= &cherry_cb,
-	.probe		= &cherry_probe,
 };
 REGISTER_PLATFORM(platform_cherry, "Cherry");

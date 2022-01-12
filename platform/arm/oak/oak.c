@@ -38,7 +38,6 @@
 
 #include "drivers/google/cros_ec.h"
 
-#include "lib/cros_config.h"
 #include "lib/file.h"
 #include "lib/generic_callbacks.h"
 #include "lib/math.h"
@@ -69,11 +68,9 @@ static struct platform_cmd *oak_sub[] = {
 	NULL
 };
 
+#ifndef CONFIG_CROS_CONFIG
 static int oak_probe(struct platform_intf *intf)
 {
-#ifdef CONFIG_CROS_CONFIG
-	return cros_config_probe(intf, NULL);
-#else
 	int i;
 
 	for (i = 0; i < ARRAY_SIZE(oak_id_list); i++) {
@@ -89,8 +86,8 @@ static int oak_probe(struct platform_intf *intf)
 	}
 
 	return 0;
-#endif
 }
+#endif
 
 static struct platform_cb oak_cb = {
 	.ec		= &cros_ec_cb,
@@ -106,6 +103,8 @@ static struct platform_intf platform_oak = {
 	.type		= PLATFORM_ARMV8,
 	.sub		= oak_sub,
 	.cb		= &oak_cb,
+#ifndef CONFIG_CROS_CONFIG
 	.probe		= &oak_probe,
+#endif
 };
 REGISTER_PLATFORM(platform_oak, "Oak");

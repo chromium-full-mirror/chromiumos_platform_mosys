@@ -38,7 +38,6 @@
 
 #include "drivers/google/cros_ec.h"
 
-#include "lib/cros_config.h"
 #include "lib/fdt.h"
 #include "lib/file.h"
 #include "lib/math.h"
@@ -54,11 +53,6 @@ static struct platform_cmd *kukui_sub[] = {
 	NULL
 };
 
-static int kukui_probe(struct platform_intf *intf)
-{
-	return cros_config_probe(intf, NULL);
-}
-
 static struct platform_cb kukui_cb = {
 	.ec		= &cros_ec_cb,
 	.memory		= &kukui_memory_cb,
@@ -69,6 +63,5 @@ static struct platform_intf platform_kukui = {
 	.type		= PLATFORM_ARMV8,
 	.sub		= kukui_sub,
 	.cb		= &kukui_cb,
-	.probe		= &kukui_probe,
 };
 REGISTER_PLATFORM(platform_kukui, "Kukui");

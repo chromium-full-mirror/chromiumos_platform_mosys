@@ -39,7 +39,6 @@
 
 #include "drivers/google/wilco_ec.h"
 
-#include "lib/cros_config.h"
 #include "lib/memory.h"
 #include "lib/sku.h"
 
@@ -52,12 +51,6 @@ static struct platform_cmd *sarien_sub[] = {
 	NULL
 };
 
-static int sarien_probe(struct platform_intf *intf)
-{
-	/* support single platform from configs->platform_name */
-	return cros_config_probe(intf, NULL);
-}
-
 static struct platform_cb sarien_cb = {
 	.ec		= &wilco_ec_cb,
 	.memory		= &smbios_memory_cb,
@@ -68,6 +61,5 @@ static struct platform_intf platform_sarien = {
 	.type		= PLATFORM_X86_64,
 	.sub		= sarien_sub,
 	.cb		= &sarien_cb,
-	.probe		= &sarien_probe,
 };
 REGISTER_PLATFORM(platform_sarien, "Sarien");

@@ -34,7 +34,6 @@
 
 #include "gru.h"
 #include "drivers/google/cros_ec.h"
-#include "lib/cros_config.h"
 #include "lib/fdt.h"
 #include "lib/file.h"
 #include "lib/math.h"
@@ -51,7 +50,6 @@ enum gru_boards {
 	GRU,
 	KEVIN,
 	RAINIER,
-	SCARLET
 };
 
 #ifndef CONFIG_CROS_CONFIG
@@ -79,23 +77,9 @@ static struct platform_cmd *gru_sub[] = {
 	NULL
 };
 
+#ifndef CONFIG_CROS_CONFIG
 static int gru_probe(struct platform_intf *intf)
 {
-#ifdef CONFIG_CROS_CONFIG
-	static const char* platform_arr[] = {"gru", NULL};
-	static struct sku_info sku_info;
-
-	int ret = cros_config_read_default_sku_info_fdt(intf, platform_arr,
-						        SCARLET_DEFAULT_SKU_ID,
-						        &sku_info);
-	/* If there was no error, indicate that we found a match */
-	if (!ret) {
-		intf->sku_info = &sku_info;
-		return 1;
-	}
-
-	return ret;
-#else
 	int i;
 
 	for (i = 0; i < ARRAY_SIZE(gru_id_list); i++) {
@@ -113,8 +97,8 @@ static int gru_probe(struct platform_intf *intf)
 
 	lprintf(LOG_DEBUG, "%s: probed_board: %d\n", __func__, probed_board);
 	return probed_board > UNKNOWN ? 1 : 0;
-#endif /* CONFIG_CROS_CONFIG */
 }
+#endif /* CONFIG_CROS_CONFIG */
 
 static struct platform_cb gru_cb = {
 	.ec		= &cros_ec_cb,
@@ -129,6 +113,8 @@ static struct platform_intf platform_gru = {
 	.type		= PLATFORM_ARMV8,
 	.sub		= gru_sub,
 	.cb		= &gru_cb,
+#ifndef CONFIG_CROS_CONFIG
 	.probe		= &gru_probe,
+#endif
 };
 REGISTER_PLATFORM(platform_gru, "Gru");
