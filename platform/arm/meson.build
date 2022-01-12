@@ -1,4 +1,4 @@
-if use_cros_config
+if unibuild
   subdir('asurada')
   subdir('cherry')
   subdir('herobrine')

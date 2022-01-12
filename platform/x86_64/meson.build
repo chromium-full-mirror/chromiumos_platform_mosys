@@ -1,4 +1,4 @@
-if use_cros_config
+if unibuild
   subdir('generic')
 
   # TODO(b/183403993): these platforms are not supported using

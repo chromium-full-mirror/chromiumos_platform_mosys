@@ -4,6 +4,6 @@ libmosys_src += files(
   'platform.c',
 )
 
-if not use_cros_config
+if not unibuild
   libmosys_src += files('psu.c')
 endif

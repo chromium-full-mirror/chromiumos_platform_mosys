@@ -3,6 +3,6 @@ libmosys_src += files(
   'probe.c',
 )
 
-if not use_cros_config
+if not unibuild
   libmosys_src += files('generic_callbacks.c')
 endif

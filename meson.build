@@ -7,8 +7,8 @@ include_common = include_directories(['include'])
 conf_data = configuration_data()
 
 use_vpd_file_cache = get_option('use_vpd_file_cache') == true
-use_cros_config = get_option('use_cros_config') == true
-if use_cros_config
+unibuild = get_option('use_cros_config') or get_option('unibuild')
+if unibuild
   conf_data.set('CONFIG_UNIBUILD', 1)
 endif
 

@@ -10,7 +10,7 @@
 # - Devices which are 64-bit userspace only (none yet) should be
 #   placed under here, not under platform/arm/.
 
-if use_cros_config
+if unibuild
   subdir('kukui')
   subdir('trogdor')
 endif

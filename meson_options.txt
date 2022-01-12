@@ -5,11 +5,20 @@ option(
   choices: ['x86', 'x86_64', 'amd64', 'arm', 'arm64'],
   description: 'The target architecture.',
 )
+
+# TODO(jrosenth): Delete option once ebuild no longer uses it.
 option(
   'use_cros_config',
   type: 'boolean',
   value: 'false',
-  description: 'If set to true, cros_config will be used',
+  description: 'Deprecated alias for unibuild option',
+)
+
+option(
+  'unibuild',
+  type: 'boolean',
+  value: 'false',
+  description: 'Set to true if compiling for a unibuild device',
 )
 
 option(
