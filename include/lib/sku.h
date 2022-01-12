@@ -17,15 +17,12 @@ struct platform_intf;
  *         for example 'ZZCR'.
  * `model` is the model name (the public code name on Golden Eye Device list)
  *         in lower case, for example 'samus'.
- * `chassis` is the chassis ID (usually same as model) in upper case, for
- *         example 'SAMUS'.
  * `customization` is the legacy support for customization_id in upper case,
  *         for example 'GOOGLE-SAMUS', also used as network config key.
  */
 struct sku_info {
 	const char *brand;
 	const char *model;
-	const char *chassis;
 	const char *customization;
 };
 

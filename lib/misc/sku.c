@@ -66,22 +66,11 @@ char *sku_get_brand(struct platform_intf *intf)
 
 char *sku_get_chassis(struct platform_intf *intf)
 {
-	const struct sku_info *info = intf->sku_info;
 	char *result = NULL;
 
-	if (info && info->chassis)
-		return mosys_strdup(info->chassis);
-
-	/* Use ${model%%.*} as default value. */
 	result = sku_get_model(intf);
-	if (!result && intf->name)
-		result = mosys_strdup(intf->name);
-	if (result) {
-		char *dot = strchr(result, '.');
-		if (dot)
-			*dot = '\0';
+	if (result)
 		strupper(result);
-	}
 	return result;
 }
 

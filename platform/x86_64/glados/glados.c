@@ -50,7 +50,7 @@ struct probe_ids {
 	const struct sku_info single_sku;
 };
 
-/* sku_info: brand, model, chassis, customization */
+/* sku_info: brand, model, customization */
 static const struct probe_ids probe_id_list[] = {
 	{ { "Asuka", }, .single_sku = { .brand = "DEAH", }, },
 	{ { "Caroline", }, .single_sku = { .brand = "SMAK", }, },
