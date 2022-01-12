@@ -111,22 +111,6 @@ char *sku_get_model(struct platform_intf *intf)
 #endif
 }
 
-char *sku_get_vpd_customization(struct platform_intf *intf)
-{
-	const struct sku_info *info = intf->sku_info;
-	char *customization_id;
-
-	/* Look for VPD first before looking into model */
-	customization_id = vpd_get_value("customization_id");
-	if (customization_id)
-		return customization_id;
-
-	if (info && info->customization)
-		return mosys_strdup(info->customization);
-
-	return NULL;
-}
-
 char *sku_get_customization(struct platform_intf *intf)
 {
 	const struct sku_info *info = intf->sku_info;
@@ -141,18 +125,4 @@ char *sku_get_customization(struct platform_intf *intf)
 		return customization_id;
 
 	return NULL;
-}
-
-/*
- * Do not use this outside of unibuild since it is not meaningful to have a
- * signature ID in a legacy build.
- */
-char *sku_get_whitelabel_from_vpd(void)
-{
-	const char *value;
-
-	value = vpd_get_value("whitelabel_tag");
-	if (!value)
-		value = "";
-	return mosys_strdup(value);
 }

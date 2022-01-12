@@ -51,30 +51,12 @@ extern char *sku_get_brand(struct platform_intf *intf);
 extern char *sku_get_chassis(struct platform_intf *intf);
 
 /**
- * sku_get_vpd_customization - get customization ID from VPD then model
- *
- * returns allocated string containing value if found
- * returns NULL to indicate value not found or error
- */
-extern char *sku_get_vpd_customization(struct platform_intf *intf);
-
-/**
  * sku_get_customization - get customization ID from model then VPD
  *
  * returns allocated string containing value if found
  * returns NULL to indicate value not found or error
  */
 extern char *sku_get_customization(struct platform_intf *intf);
-
-/**
- * sku_get_whitelabel_from_vpd - get whitelabel_tag from VPD
- *
- * This reads VPD and does not use any fallback values.
- *
- * returns allocated string containing value or allocated empty string if not
- * found or error
- */
-extern char *sku_get_whitelabel_from_vpd(void);
 
 /**
  * sku_get_model - get model name
