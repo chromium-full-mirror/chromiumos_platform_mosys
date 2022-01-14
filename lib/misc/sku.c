@@ -86,7 +86,7 @@ char *sku_get_model(struct platform_intf *intf)
 	char model_buf[64];
 
 	if (read_file("/run/chromeos-config/v1/name", model_buf,
-		      sizeof(model_buf), LOG_ERR)) {
+		      sizeof(model_buf), LOG_ERR) < 0) {
 		lprintf(LOG_ERR,
 			"%s: Failed to read model from chromeos-config\n",
 			__func__);
