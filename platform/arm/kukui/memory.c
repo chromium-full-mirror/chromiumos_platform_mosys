@@ -73,6 +73,11 @@ static const struct nonspd_mem_info *kukui_dram[] = {
 	[0x15] = &hynix_lpddr4x_h9hcnnnfammlxr_nee,
 	[0x16] = &micron_lpddr4x_mt53e2g32d4nq_046wta,
 	[0x17] = &micron_lpddr4x_mt53e1g32d2np_046wta,
+	[0x18] = &micron_lpddr4x_mt53e1g32d2np_046wtb,
+	[0x19] = &hynix_lpddr4x_h54g56cyrbx247,
+	[0x1a] = &samsung_lpddr4x_k4ube3d4ab_mgcl,
+	[0x1b] = &hynix_lpddr4x_h54g68cyrbx248,
+
 	/* Table shared by Kakadu and its variants, offset = 0x20 */
 	[0x20] = &samsung_lpddr4x_k4ube3d4aa_mgcr,
 	[0x21] = &hynix_lpddr4x_h9hcnnncpmalhr_nee,
