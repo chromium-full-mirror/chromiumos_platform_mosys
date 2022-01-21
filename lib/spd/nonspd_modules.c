@@ -179,6 +179,19 @@ const struct nonspd_mem_info hynix_lpddr4x_h9hcnnncpmalhr_nee = {
 	.part_num		= "H9HCNNNCPMALHR-NEE",
 };
 
+const struct nonspd_mem_info hynix_lpddr4x_h54g56cyrbx247 = {
+	.dram_type              = SPD_DRAM_TYPE_LPDDR4X,
+
+	.module_size_mbits      = 32768,
+	.num_ranks              = 2,
+	.device_width           = 32,
+
+	.module_mfg_id          = MFGID_HYNIX,
+	.dram_mfg_id            = MFGID_HYNIX,
+
+	.part_num               = "H54G56CYRBX247",
+};
+
 const struct nonspd_mem_info hynix_lpddr4x_h9hcnnncpmmlxr_nee = {
 	.dram_type		= SPD_DRAM_TYPE_LPDDR4X,
 
@@ -203,6 +216,19 @@ const struct nonspd_mem_info hynix_lpddr4x_h9hcnnnfammlxr_nee = {
 	.dram_mfg_id		= MFGID_HYNIX,
 
 	.part_num		= "H9HCNNNFAMMLXR-NEE",
+};
+
+const struct nonspd_mem_info hynix_lpddr4x_h54g68cyrbx248 = {
+	.dram_type              = SPD_DRAM_TYPE_LPDDR4X,
+
+	.module_size_mbits      =  65536,
+	.num_ranks              = 2,
+	.device_width           = 32,
+
+	.module_mfg_id          = MFGID_HYNIX,
+	.dram_mfg_id            = MFGID_HYNIX,
+
+	.part_num               = "H54G68CYRBX248",
 };
 
 const struct nonspd_mem_info micron_mt41k256m16ha = {
@@ -550,6 +576,19 @@ const struct nonspd_mem_info micron_lpddr4x_mt53e1g32d2np_046wta = {
 	.part_num		= "MT53E1G32D2NP-46WT:A",
 };
 
+const struct nonspd_mem_info micron_lpddr4x_mt53e1g32d2np_046wtb = {
+	.dram_type              = SPD_DRAM_TYPE_LPDDR4X,
+
+	.module_size_mbits      = 32768,
+	.num_ranks              = 2,
+	.device_width           = 32,
+
+	.module_mfg_id          = MFGID_MICRON,
+	.dram_mfg_id            = MFGID_MICRON,
+
+	.part_num               = "MT53E1G32D2NP-46WT:B",
+};
+
 const struct nonspd_mem_info foresee_lpddr4x_feprf6432_58a1930 = {
 	.dram_type		= SPD_DRAM_TYPE_LPDDR4X,
 
@@ -743,6 +782,19 @@ const struct nonspd_mem_info samsung_lpddr4x_k4ube3d4aa_mgcl = {
 	.dram_mfg_id		= MFGID_SAMSUNG,
 
 	.part_num		= "K4UBE3D4AA-MGCL",
+};
+
+const struct nonspd_mem_info samsung_lpddr4x_k4ube3d4ab_mgcl = {
+	.dram_type              = SPD_DRAM_TYPE_LPDDR4X,
+
+	.module_size_mbits      = 32768,
+	.num_ranks              = 2,
+	.device_width           = 32,
+
+	.module_mfg_id          = MFGID_SAMSUNG,
+	.dram_mfg_id            = MFGID_SAMSUNG,
+
+	.part_num               = "K4UBE3D4AB-MGCL",
 };
 
 const struct nonspd_mem_info samsung_lpddr4x_k4ube3d4aa_mgcr = {
