@@ -96,6 +96,19 @@ static const struct nonspd_mem_info *kukui_dram[] = {
 	[0x39] = &micron_lpddr4x_mt53e2g32d4nq_046wta,
 	[0x3a] = &hynix_lpddr4x_h9hcnnncpmmlxr_nee,
 	[0x3b] = &hynix_lpddr4x_h9hcnnnfammlxr_nee,
+
+	/* Kappa dram table, offset = 0x40 */
+	[0x40] = &samsung_lpddr4x_k4ube3d4aa_mgcr,
+	[0x41] = &hynix_lpddr4x_h9hcnnncpmalhr_nee,
+	[0x42] = &micron_lpddr4x_mt53e1g32d4nq_046wte,
+	[0x43] = &micron_lpddr4x_mt53e1g32d2np_046wta,
+	[0x44] = &micron_lpddr4x_mt53e1g32d2np_046wtb,
+	[0x45] = &hynix_lpddr4x_h54g56cyrbx247,
+	[0x46] = &samsung_lpddr4x_k4ube3d4ab_mgcl,
+	[0x48] = &samsung_lpddr4x_k4ube3d4aa_mgcl,
+	[0x49] = &micron_lpddr4x_mt53e2g32d4nq_046wta,
+	[0x4a] = &hynix_lpddr4x_h9hcnnncpmmlxr_nee,
+	[0x4b] = &micron_lpddr4x_mt29vzzzad9gqfsm_046,
 };
 
 static int get_mem_info(struct platform_intf *intf,
