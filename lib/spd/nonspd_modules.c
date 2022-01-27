@@ -377,6 +377,19 @@ const struct nonspd_mem_info micron_lpddr4x_mt53e2g32d4nq_046wta = {
 	.part_num		= "MT53E2G32D4NQ-46WT:A",
 };
 
+const struct nonspd_mem_info micron_lpddr4x_mt53e2g32d4nq_046wtc = {
+	.dram_type		= SPD_DRAM_TYPE_LPDDR4X,
+
+	.module_size_mbits	= 65536,
+	.num_ranks		= 2,
+	.device_width		= 32,
+
+	.module_mfg_id		= MFGID_MICRON,
+	.dram_mfg_id		= MFGID_MICRON,
+
+	.part_num		= "MT53E2G32D4NQ-46WT:C",
+};
+
 const struct nonspd_mem_info micron_lpddr4x_mt53e512m32d1np_046wtb = {
 	.dram_type              = SPD_DRAM_TYPE_LPDDR4X,
 
@@ -596,6 +609,19 @@ const struct nonspd_mem_info samsung_lpddr4x_k4uce3q4aa_mgcr = {
 	.dram_mfg_id		= MFGID_SAMSUNG,
 
 	.part_num		= "K4UCE3Q4AA-MGCR",
+};
+
+const struct nonspd_mem_info samsung_lpddr4x_k4uce3q4ab_mgcl = {
+	.dram_type		= SPD_DRAM_TYPE_LPDDR4X,
+
+	.module_size_mbits	= 65536,
+	.num_ranks		= 2,
+	.device_width		= 32,
+
+	.module_mfg_id		= MFGID_SAMSUNG,
+	.dram_mfg_id		= MFGID_SAMSUNG,
+
+	.part_num		= "K4UCE3Q4AB-MGCL",
 };
 
 const struct nonspd_mem_info sandisk_lpddr4x_sdada4cr_128g = {

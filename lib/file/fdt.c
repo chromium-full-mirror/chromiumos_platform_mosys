@@ -52,6 +52,10 @@
 #define FDT_BOARD_ID_PATH	"firmware/coreboot/board-id"
 #define FDT_SKU_ID_PATH		"firmware/coreboot/sku-id"
 
+#define LPDDR3_MFG_ID_PATH	"lpddr3/manufacturer_id"
+#define LPDDR3_REV_ID_PATH	"lpddr3/revision_id"
+
+
 /* returns number of bytes read or -1 to indicate error */
 static ssize_t fdt_read_node(const char *path, char *buf, size_t buf_sz)
 {
@@ -93,6 +97,60 @@ int fdt_get_ram_code(uint32_t *ram_code)
 	}
 
 	lprintf(LOG_DEBUG, "%s: ram_code: %u\n", __func__, *ram_code);
+	return 0;
+}
+
+/*
+ * get_ram_manufacturer_id - Get RAM manufacturer id from device tree
+ *
+ * returns 0 to indicate success, <0 to indicate failure.
+ */
+
+int fdt_get_ram_manufacturer_id(uint8_t *manufacturer_id)
+{
+	uint32_t buf[2];
+
+	if (fdt_read_node(LPDDR3_MFG_ID_PATH, (char *)buf, sizeof(buf)) < sizeof(uint32_t)) {
+		lprintf(LOG_ERR,
+			"%s: Error when reading Manufacturer ID\n",
+			__func__);
+		return -1;
+	}
+
+	*manufacturer_id = ntohl(buf[0]);
+
+	lprintf(LOG_DEBUG,
+		"%s: manufacturer_id: %#02x\n",
+		__func__,
+		*manufacturer_id);
+	return 0;
+}
+
+/*
+ * get_ram_revision_id - Get RAM revision id from device tree
+ *
+ * returns 0 to indicate success, <0 to indicate failure.
+ */
+
+int fdt_get_ram_revision_id(uint8_t *revision_id1, uint8_t *revision_id2)
+{
+	uint32_t buf[3];
+
+	if (fdt_read_node(LPDDR3_REV_ID_PATH, (char *)buf, sizeof(buf)) < sizeof(uint32_t) * 2) {
+		lprintf(LOG_ERR,
+			"%s: Error when reading Revision ID\n",
+			__func__);
+		return -1;
+	}
+
+	*revision_id1 = ntohl(buf[0]);
+	*revision_id2 = ntohl(buf[1]);
+
+	lprintf(LOG_DEBUG,
+		"%s: revision_id: %#02x %#02x\n",
+		__func__,
+		*revision_id1,
+		*revision_id2);
 	return 0;
 }
 

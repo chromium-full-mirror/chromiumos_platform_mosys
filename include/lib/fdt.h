@@ -44,6 +44,20 @@
 extern int fdt_get_ram_code(uint32_t *ram_code);
 
 /*
+ * fdt_get_ram_manufacturer_id - Get RAM manufacturer id from device tree
+ *
+ * returns 0 to indicate success, <0 to indicate failure.
+ */
+extern int fdt_get_ram_manufacturer_id(uint8_t *manufacturer_id);
+
+/*
+ * fdt_get_ram_revision_id - Get the two byte RAM revision id from device tree
+ *
+ * returns 0 to indicate success, <0 to indicate failure.
+ */
+extern int fdt_get_ram_revision_id(uint8_t *revision_id1, uint8_t *revision_id2);
+
+/*
  * fdt_get_board_id - Obtain board ID code from FDT board-id node
  *
  * returns 0 to indicate success, <0 to indicate failure.
