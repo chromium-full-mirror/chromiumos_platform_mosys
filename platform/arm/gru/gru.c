@@ -35,77 +35,19 @@
 #include "gru.h"
 #include "drivers/google/cros_ec.h"
 #include "lib/fdt.h"
-#include "lib/file.h"
-#include "lib/math.h"
-#include "lib/probe.h"
-#include "lib/sku.h"
-#include "lib/generic_callbacks.h"
 #include "mosys/command_list.h"
 #include "mosys/platform.h"
-#include "mosys/log.h"
-
-enum gru_boards {
-	UNKNOWN = -1,
-	BOB,
-	GRU,
-	KEVIN,
-	RAINIER,
-};
-
-#ifndef CONFIG_UNIBUILD
-static enum gru_boards probed_board = UNKNOWN;
-
-static struct gru_probe_id {
-	const char *name;
-	const char *fdt_compat;
-	const struct sku_info single_sku;
-} gru_id_list[] = {
-	[BOB]		= { "Bob", "google,bob-rev", { .brand = "ASUO" } },
-	[GRU]		= { "Gru", "google,gru-rev", { .brand = "LOGA" } },
-	[KEVIN]		= { "Kevin", "google,kevin-rev", { .brand = "SMAJ" } },
-	[RAINIER]	= { "Rainier", "google,rainier-rev" },
-};
-#endif
 
 static struct platform_cmd *gru_sub[] = {
 	&cmd_ec,
 	&cmd_memory,
 	&cmd_platform,
-#ifndef CONFIG_UNIBUILD
-	&cmd_psu,
-#endif
 	NULL
 };
-
-#ifndef CONFIG_UNIBUILD
-static int gru_probe(struct platform_intf *intf)
-{
-	int i;
-
-	for (i = 0; i < ARRAY_SIZE(gru_id_list); i++) {
-		const char **compat = &gru_id_list[i].fdt_compat;
-
-		if (probe_fdt_compatible(compat, 1, 1) == 0) {
-			lprintf(LOG_DEBUG, "Found platform \"%s\" via FDT "
-				"compatible node.\n", gru_id_list[i].name);
-			intf->name = gru_id_list[i].name;
-			intf->sku_info = &gru_id_list[i].single_sku;
-			probed_board = i;
-			break;
-		}
-	}
-
-	lprintf(LOG_DEBUG, "%s: probed_board: %d\n", __func__, probed_board);
-	return probed_board > UNKNOWN ? 1 : 0;
-}
-#endif /* CONFIG_UNIBUILD */
 
 static struct platform_cb gru_cb = {
 	.ec		= &cros_ec_cb,
 	.memory		= &gru_memory_cb,
-#ifndef CONFIG_UNIBUILD
-	.psu 		= &generic_psu_battery_cb,
-#endif
 	.sys		= &fdt_sysinfo_cb,
 };
 
@@ -113,8 +55,5 @@ static struct platform_intf platform_gru = {
 	.type		= PLATFORM_ARMV8,
 	.sub		= gru_sub,
 	.cb		= &gru_cb,
-#ifndef CONFIG_UNIBUILD
-	.probe		= &gru_probe,
-#endif
 };
 REGISTER_PLATFORM(platform_gru, "Gru");

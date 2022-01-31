@@ -11,8 +11,7 @@
 #   placed under here, not under platform/arm/.
 
 if unibuild
+  subdir('gru')
   subdir('kukui')
   subdir('trogdor')
 endif
-
-subdir('gru')
