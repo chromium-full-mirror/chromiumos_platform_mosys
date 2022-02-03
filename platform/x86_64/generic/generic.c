@@ -72,15 +72,21 @@ REGISTER_ALIAS("Generic");
  * mosys platform name to "Generic" in your Boxster or model.yaml
  * configuration.
  */
+REGISTER_ALIAS("Asuka");
+REGISTER_ALIAS("Caroline");
+REGISTER_ALIAS("Cave");
+REGISTER_ALIAS("Chell");
 REGISTER_ALIAS("Coral");
 REGISTER_ALIAS("Dedede");
 REGISTER_ALIAS("Fizz");
 REGISTER_ALIAS("Grunt");
 REGISTER_ALIAS("Hatch");
 REGISTER_ALIAS("Kalista");
+REGISTER_ALIAS("Lars");
 REGISTER_ALIAS("Octopus");
 REGISTER_ALIAS("Poppy");
 REGISTER_ALIAS("Puff");
 REGISTER_ALIAS("Reef");
+REGISTER_ALIAS("Sentry");
 REGISTER_ALIAS("Volteer");
 REGISTER_ALIAS("Zork");
