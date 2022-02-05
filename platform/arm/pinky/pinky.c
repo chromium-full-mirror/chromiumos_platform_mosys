@@ -35,7 +35,6 @@
 #include "pinky.h"
 #include "lib/fdt.h"
 #include "lib/file.h"
-#include "lib/generic_callbacks.h"
 #include "lib/math.h"
 #include "lib/probe.h"
 #include "mosys/command_list.h"
@@ -53,7 +52,6 @@ static struct veyron_probe_id {
 static struct platform_cmd *pinky_sub[] = {
 	&cmd_memory,
 	&cmd_platform,
-	&cmd_psu,
 	NULL
 };
 
@@ -77,7 +75,6 @@ static int pinky_probe(struct platform_intf *intf)
 
 static struct platform_cb pinky_cb = {
 	.memory		= &pinky_memory_cb,
-	.psu		= &generic_psu_ac_only_cb,
 	.sys		= &fdt_sysinfo_cb,
 };
 

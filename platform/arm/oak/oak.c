@@ -39,7 +39,6 @@
 #include "drivers/google/cros_ec.h"
 
 #include "lib/file.h"
-#include "lib/generic_callbacks.h"
 #include "lib/math.h"
 #include "lib/probe.h"
 #include "lib/sku.h"
@@ -62,9 +61,6 @@ static struct platform_cmd *oak_sub[] = {
 	&cmd_ec,
 	&cmd_memory,
 	&cmd_platform,
-#ifndef CONFIG_UNIBUILD
-	&cmd_psu,
-#endif
 	NULL
 };
 
@@ -93,9 +89,6 @@ static struct platform_cb oak_cb = {
 	.ec		= &cros_ec_cb,
 	.memory		= &oak_memory_cb,
 	.pd		= &cros_pd_cb,
-#ifndef CONFIG_UNIBUILD
-	.psu		= &generic_psu_battery_cb,
-#endif
 	.sys		= &oak_sys_cb,
 };
 
