@@ -16,8 +16,10 @@ endif
 arch = host_machine.cpu_family()
 if arch == 'x86' or arch == 'x86_64'
   conf_data.set('CONFIG_PLATFORM_ARCH_X86', 1)
+  platform_subdir = 'x86_64'
 elif arch == 'arm' or arch == 'aarch64'
   conf_data.set('CONFIG_PLATFORM_ARCH_ARMEL', 1)
+  platform_subdir = 'arm'
 endif
 
 platform_intf = get_option('platform_intf')
