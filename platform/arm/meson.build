@@ -5,8 +5,6 @@ if unibuild
   subdir('herobrine')
   subdir('kukui')
   subdir('trogdor')
-else
-  subdir('pinky')
 endif
 
 # These platforms are currently undergoing unibuild migrations and
