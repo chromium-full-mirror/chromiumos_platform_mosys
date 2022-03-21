@@ -82,6 +82,12 @@ int nonspd_print_field(struct kv_pair *kv,
 		case SPD_DRAM_TYPE_LPDDR4X:
 			kv_pair_add(kv, "dram", "LPDDR4X");
 			break;
+		case SPD_DRAM_TYPE_DDR5:
+			kv_pair_add(kv, "dram", "DDR5");
+			break;
+		case SPD_DRAM_TYPE_LPDDR5:
+			kv_pair_add(kv, "dram", "LPDDR5");
+			break;
 		default:
 			break;
 		}
@@ -207,6 +213,10 @@ static enum spd_dram_type map_smbios_mem_type_to_spd(struct smbios_table *table)
 		return SPD_DRAM_TYPE_LPDDR3;
 	case SMBIOS_MEMORY_TYPE_LPDDR4:
 		return SPD_DRAM_TYPE_LPDDR4;
+	case SMBIOS_MEMORY_TYPE_DDR5:
+		return SPD_DRAM_TYPE_DDR5;
+	case SMBIOS_MEMORY_TYPE_LPDDR5:
+		return SPD_DRAM_TYPE_LPDDR5;
 	case SMBIOS_MEMORY_TYPE_OTHER:
 	case SMBIOS_MEMORY_TYPE_UNKNOWN:
 		/* Do our best to figure it out from part numbers */

@@ -46,6 +46,8 @@ enum spd_dram_type {
 	SPD_DRAM_TYPE_DDR4      = 0x0c,
 	SPD_DRAM_TYPE_LPDDR4	= 0x10,
 	SPD_DRAM_TYPE_LPDDR4X	= 0x11,
+	SPD_DRAM_TYPE_DDR5	= 0x12,
+	SPD_DRAM_TYPE_LPDDR5	= 0x13,
 };
 
 enum ddr3_module_type {
