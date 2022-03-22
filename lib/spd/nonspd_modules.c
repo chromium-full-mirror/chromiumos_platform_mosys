@@ -602,6 +602,19 @@ const struct nonspd_mem_info foresee_lpddr4x_feprf6432_58a1930 = {
 	.part_num		= "FEPRF6432-58A1930",
 };
 
+const struct nonspd_mem_info foresee_lpddr4x_flxc2004g_n1 = {
+	.dram_type		= SPD_DRAM_TYPE_LPDDR4X,
+
+	.module_size_mbits	= 32768,
+	.num_ranks		= 2,
+	.device_width		= 32,
+
+	.module_mfg_id		= MFGID_MICRON,
+	.dram_mfg_id		= MFGID_MICRON,
+
+	.part_num		= "FLXC2004G-N1",
+};
+
 const struct nonspd_mem_info micron_lpddr4x_mt53e2g32d4nq_046wta = {
 	.dram_type		= SPD_DRAM_TYPE_LPDDR4X,
 
