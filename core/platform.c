@@ -292,7 +292,8 @@ void print_tree(struct platform_intf *intf)
  * returns 0 to indicate success
  * returns <0 to indicate failure
  */
-int print_platforms() {
+int print_platforms(void)
+{
 	struct kv_pair *kv;
 	int rc;
 

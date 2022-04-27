@@ -54,7 +54,7 @@ void mosys_set_kv_pair_style(enum kv_pair_style style)
 	mosys_kv_pair_style = style;
 }
 
-enum kv_pair_style mosys_get_kv_pair_style()
+enum kv_pair_style mosys_get_kv_pair_style(void)
 {
 	return mosys_kv_pair_style;
 }

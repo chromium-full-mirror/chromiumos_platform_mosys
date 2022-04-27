@@ -34,7 +34,8 @@
 
 #include "mosys/globals.h"
 
-void mosys_globals_init() {
+void mosys_globals_init(void)
+{
 	mosys_set_output_file(stdout);
 }
 
