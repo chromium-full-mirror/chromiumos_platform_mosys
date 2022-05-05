@@ -64,7 +64,7 @@ static const struct nonspd_mem_info *kukui_dram[] = {
 	[9] = &micron_lpddr4x_mt53e2g32d4nq_046wta,
 	[10] = &hynix_lpddr4x_h9hcnnncpmmlxr_nee,
 	[11] = &micron_lpddr4x_mt29vzzzad9gqfsm_046,
-	/* Burnet dram table */
+	/* Table shared by Fennel, Cerise, Stern, Makomo, Munna, offset = 0x10 */
 	[0x10] = &samsung_lpddr4x_k4ube3d4aa_mgcr,
 	[0x11] = &hynix_lpddr4x_h9hcnnncpmalhr_nee,
 	[0x12] = &micron_lpddr4x_mt53e1g32d4nq_046wte,
@@ -110,6 +110,20 @@ static const struct nonspd_mem_info *kukui_dram[] = {
 	[0x49] = &micron_lpddr4x_mt53e2g32d4nq_046wta,
 	[0x4a] = &hynix_lpddr4x_h9hcnnncpmmlxr_nee,
 	[0x4b] = &micron_lpddr4x_mt29vzzzad9gqfsm_046,
+
+	/* Table shared by Burnet and Esche, offset = 0x50 */
+	[0x50] = &samsung_lpddr4x_k4ube3d4aa_mgcr,
+	[0x51] = &micron_lpddr4x_mt53e2g32d4nq_046wtc,
+	[0x52] = &micron_lpddr4x_mt53e1g32d4nq_046wte,
+	[0x53] = &samsung_lpddr4x_k4ube3d4aa_mgcl,
+	[0x54] = &hynix_lpddr4x_h9hcnnncpmmlxr_nee,
+	[0x55] = &hynix_lpddr4x_h9hcnnnfammlxr_nee,
+	[0x56] = &micron_lpddr4x_mt53e2g32d4nq_046wta,
+	[0x57] = &micron_lpddr4x_mt53e1g32d2np_046wta,
+	[0x58] = &micron_lpddr4x_mt53e1g32d2np_046wtb,
+	[0x59] = &hynix_lpddr4x_h54g56cyrbx247,
+	[0x5a] = &samsung_lpddr4x_k4ube3d4ab_mgcl,
+	[0x5b] = &hynix_lpddr4x_h54g68cyrbx248,
 };
 
 static int get_mem_info(struct platform_intf *intf,
