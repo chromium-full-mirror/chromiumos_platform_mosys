@@ -117,7 +117,7 @@ static int cros_ec_command_dev_v2(struct ec_cb *ec, int command, int version,
 		memcpy(s_cmd->data, outdata, outsize);
 
 	ret = ioctl(priv->devfs->fd, CROS_EC_DEV_IOCXCMD_V2, s_cmd, size);
-	if (ret < 0 && errno == -EAGAIN)
+	if (ret < 0 && errno == EAGAIN)
 		ret = command_wait_for_response_v2(priv);
 	if (ret < 0) {
 		lprintf(LOG_ERR, "%s: Transfer failed: %d\n", __func__, ret);
