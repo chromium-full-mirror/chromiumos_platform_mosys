@@ -45,20 +45,6 @@
 
 #include "glados.h"
 
-struct probe_ids {
-	const char *smbios_name;
-	const struct sku_info single_sku;
-};
-
-/* sku_info: brand, model, customization */
-static const struct probe_ids probe_id_list[] = {
-	{ "Asuka", .single_sku = { .brand = "DEAH", }, },
-	{ "Caroline", .single_sku = { .brand = "SMAK", }, },
-	{ "Chell", .single_sku = { .brand = "HPZR", }, },
-	{ "Lars", .single_sku = { .brand = NULL, }, },
-	{ NULL },
-};
-
 static struct platform_cmd *glados_sub[] = {
 	&cmd_ec,
 	&cmd_memory,
@@ -69,24 +55,7 @@ static struct platform_cmd *glados_sub[] = {
 
 static int glados_probe(struct platform_intf *intf)
 {
-	static int status, probed;
-	const struct probe_ids *pid;
-
-	if (probed)
-		return status;
-
-	for (pid = probe_id_list; pid && pid->smbios_name; pid++) {
-		if ((status = probe_smbios(intf, pid->smbios_name)))
-			goto exit;
-	}
-	return 0;
-
-exit:
-	probed = 1;
-	/* Update canonical platform name */
-	intf->name = pid->smbios_name;
-	intf->sku_info = &pid->single_sku;
-	return status;
+	return probe_smbios(intf, intf->name);
 }
 
 static struct platform_cb glados_cb = {
@@ -96,10 +65,40 @@ static struct platform_cb glados_cb = {
 	.sys 		= &glados_sys_cb,
 };
 
-static struct platform_intf platform_glados = {
-	.type		= PLATFORM_X86_64,
-	.sub		= glados_sub,
-	.cb		= &glados_cb,
-	.probe		= &glados_probe,
+static const struct sku_info asuka_sku_info = { .brand = "DEAH" };
+static struct platform_intf platform_asuka = {
+	.type = PLATFORM_X86_64,
+	.sub = glados_sub,
+	.cb = &glados_cb,
+	.probe = &glados_probe,
+	.sku_info = &asuka_sku_info,
 };
-REGISTER_PLATFORM(platform_glados, "Glados");
+REGISTER_PLATFORM(platform_asuka, "Asuka");
+
+static const struct sku_info caroline_sku_info = { .brand = "SMAK" };
+static struct platform_intf platform_caroline = {
+	.type = PLATFORM_X86_64,
+	.sub = glados_sub,
+	.cb = &glados_cb,
+	.probe = &glados_probe,
+	.sku_info = &caroline_sku_info,
+};
+REGISTER_PLATFORM(platform_caroline, "Caroline");
+
+static const struct sku_info chell_sku_info = { .brand = "HPZR" };
+static struct platform_intf platform_chell = {
+	.type = PLATFORM_X86_64,
+	.sub = glados_sub,
+	.cb = &glados_cb,
+	.probe = &glados_probe,
+	.sku_info = &chell_sku_info,
+};
+REGISTER_PLATFORM(platform_chell, "Chell");
+
+static struct platform_intf platform_lars = {
+	.type = PLATFORM_X86_64,
+	.sub = glados_sub,
+	.cb = &glados_cb,
+	.probe = &glados_probe,
+};
+REGISTER_PLATFORM(platform_lars, "Lars");
