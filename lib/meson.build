@@ -1,4 +1,3 @@
-subdir('acpi')
 subdir('file')
 subdir('math')
 subdir('memory')

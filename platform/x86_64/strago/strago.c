@@ -46,48 +46,34 @@
 
 struct probe_ids {
 	const char *names[2];
-	const char *frids[2];
 };
 
 static const struct probe_ids probe_id_list[] = {
 	{ { "Banon", NULL },
-	  { "Banon", NULL },
 	},
 	{ { "Celes", NULL },
-	  { "Celes", NULL },
 	},
 	{ { "Cyan", NULL },
-	  { "Google_Cyan", NULL },
 	},
 	{ { "Edgar", NULL },
-	  { "Edgar", NULL },
 	},
 	{ { "Kefka", NULL },
-	  { "Kefka", NULL },
 	},
 	{ { "Reks", NULL },
-	  { "Reks", NULL },
 	},
 	{ { "Relm", NULL },
-	  { "Relm", NULL },
 	},
 	{ { "Setzer", NULL },
-	  { "Setzer", NULL },
 	},
 	{ { "Strago", NULL },
-	  { "Strago", NULL },
 	},
 	{ { "Terra", NULL },
-	  { "Terra", NULL },
 	},
 	{ { "Ultima", NULL },
-	  { "Ultima", NULL },
 	},
 	{ { "Umaro", NULL },
-	  { "Umaro", NULL },
 	},
 	{ { "Wizpig", NULL },
-	  { "Wizpig", NULL },
 	},
 	{ { NULL } }
 };
@@ -108,11 +94,6 @@ static int strago_probe(struct platform_intf *intf)
 		return status;
 
 	for (pid = probe_id_list; pid && pid->names[0]; pid++) {
-		/* FRID */
-		if ((status = probe_frid((const char **)pid->frids)))
-			goto exit;
-
-		/* SMBIOS */
 		if ((status = probe_smbios(intf, (const char **)pid->names)))
 			goto exit;
 	}

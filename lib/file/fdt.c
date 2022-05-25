@@ -46,7 +46,6 @@
 #include "mosys/platform.h"
 
 #define FDT_ROOT		"/proc/device-tree/"
-#define FDT_FRID_PATH		"firmware/chromeos/readonly-firmware-version"
 /* FIXME: assume coreboot for now */
 #define FDT_RAM_CODE_PATH	"firmware/coreboot/ram-code"
 #define FDT_BOARD_ID_PATH	"firmware/coreboot/board-id"
@@ -186,20 +185,6 @@ int fdt_get_sku_id(void)
 
 	lprintf(LOG_DEBUG, "%s: sku_id: %u\n", __func__, sku_id);
 	return sku_id;
-}
-
-ssize_t fdt_get_frid(char *buf, size_t buf_sz)
-{
-	ssize_t len;
-
-	len = fdt_read_node(FDT_FRID_PATH, buf, buf_sz);
-	if (len < 0) {
-		lprintf(LOG_ERR, "%s: failed to read frid from %s\n",
-			__func__, FDT_FRID_PATH);
-		return -1;
-	}
-
-	return len + 1;
 }
 
 /* Common sysinfo callbacks for almost all ARM devices. */

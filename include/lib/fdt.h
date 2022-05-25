@@ -72,17 +72,6 @@ extern int fdt_get_board_id(uint32_t *board_id);
  */
 extern int fdt_get_sku_id(void);
 
-/*
- * fdt_get_frid - retrieve FRID
- *
- * @buf:	buffer to store firmware ID
- * @buf_sz:	the size of the buffer
- *
- * returns length of read only firmware id to indicate success
- * returns <0 to indicate error
- */
-extern ssize_t fdt_get_frid(char *buf, size_t buf_sz);
-
 /**
  * fdt_sysinfo_cb - common sysinfo callbacks for ARM
  */

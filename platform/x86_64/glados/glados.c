@@ -85,11 +85,6 @@ static int glados_probe(struct platform_intf *intf)
 		return status;
 
 	for (pid = probe_id_list; pid && pid->names[0]; pid++) {
-		/* FRID */
-		if ((status = probe_frid(pid->names)))
-			goto exit;
-
-		/* SMBIOS */
 		if ((status = probe_smbios(intf, pid->names)))
 			goto exit;
 	}
