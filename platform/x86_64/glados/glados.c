@@ -54,17 +54,8 @@ struct probe_ids {
 static const struct probe_ids probe_id_list[] = {
 	{ "Asuka", .single_sku = { .brand = "DEAH", }, },
 	{ "Caroline", .single_sku = { .brand = "SMAK", }, },
-	{ "Cave", .single_sku = { .brand = "ASUL", }, },
 	{ "Chell", .single_sku = { .brand = "HPZR", }, },
-	{ "Glados", },
-	{ "Kunimitsu", },
-	/**
-	 * TODO(hungte) There may be variants for LARS so we can't provide a
-	 * single brand here for now. Need to revise for what to do. */
 	{ "Lars", .single_sku = { .brand = NULL, }, },
-        /* TODO(b/73852456) Allocate a brand code */
-	{ "Sentry", .single_sku = { .brand = "LEAJ", }, },
-	{ "Skylake", },
 	{ NULL },
 };
 
