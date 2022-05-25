@@ -44,38 +44,20 @@
 
 #include "strago.h"
 
-struct probe_ids {
-	const char *names[2];
-};
-
-static const struct probe_ids probe_id_list[] = {
-	{ { "Banon", NULL },
-	},
-	{ { "Celes", NULL },
-	},
-	{ { "Cyan", NULL },
-	},
-	{ { "Edgar", NULL },
-	},
-	{ { "Kefka", NULL },
-	},
-	{ { "Reks", NULL },
-	},
-	{ { "Relm", NULL },
-	},
-	{ { "Setzer", NULL },
-	},
-	{ { "Strago", NULL },
-	},
-	{ { "Terra", NULL },
-	},
-	{ { "Ultima", NULL },
-	},
-	{ { "Umaro", NULL },
-	},
-	{ { "Wizpig", NULL },
-	},
-	{ { NULL } }
+static const char *const probe_id_list[] = {
+	"Banon",
+	"Celes",
+	"Cyan",
+	"Edgar",
+	"Kefka",
+	"Reks",
+	"Relm",
+	"Setzer",
+	"Strago",
+	"Terra",
+	"Ultima",
+	"Umaro",
+	"Wizpig",
 };
 
 static struct platform_cmd *strago_sub[] = {
@@ -88,13 +70,13 @@ static struct platform_cmd *strago_sub[] = {
 static int strago_probe(struct platform_intf *intf)
 {
 	static int status = 0, probed = 0;
-	const struct probe_ids *pid;
+	const char *const *pid;
 
 	if (probed)
 		return status;
 
-	for (pid = probe_id_list; pid && pid->names[0]; pid++) {
-		if ((status = probe_smbios(intf, (const char **)pid->names)))
+	for (pid = probe_id_list; pid && *pid; pid++) {
+		if ((status = probe_smbios(intf, *pid)))
 			goto exit;
 	}
 	return 0;
@@ -102,7 +84,7 @@ static int strago_probe(struct platform_intf *intf)
 exit:
 	probed = 1;
 	/* Update canonical platform name */
-	intf->name = pid->names[0];
+	intf->name = *pid;
 	return status;
 }
 

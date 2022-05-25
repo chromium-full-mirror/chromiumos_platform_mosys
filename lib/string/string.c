@@ -76,44 +76,6 @@ char *buf2str(uint8_t *inbuf, size_t length)
 	return outbuf;
 }
 
-const char *strlfind(const char *str, const char *const arr[], int cs)
-{
-	int i;
-	const char *ret = NULL;
-
-	if (cs < 0 || cs > 1) {
-		lprintf(LOG_SPEW, "Invalid CS\n");
-		return NULL;
-	}
-
-	if (arr == NULL) {
-		lprintf(LOG_SPEW, "Empty static id list.\n");
-		return NULL;
-	}
-
-	for (i = 0; arr[i] != NULL; i++) {
-		lprintf(LOG_SPEW, "%s: \"%s\" ?= \"%s\": ",
-		                  __func__, str, arr[i]);
-		if (cs) {
-			if (!strcmp(str, arr[i])) {
-				ret = arr[i];
-				lprintf(LOG_SPEW, "Yes.\n");
-				break;
-			}
-		} else {
-			if (!strcasecmp(str, arr[i])) {
-				ret = arr[i];
-				lprintf(LOG_SPEW, "Yes.\n");
-				break;
-			}
-		}
-
-		lprintf(LOG_SPEW, "No.\n");
-	}
-
-	return ret;
-}
-
 char *strlower(char *str)
 {
 	char *p;

@@ -37,13 +37,13 @@ struct platform_intf;
 /*
  * probe_smbios - probe smbios for system info
  *
- * @ids:	null-terminated list of ids
+ * @name:	SMBIOS Name to match
  *
  * returns 1 to indicate match
  * returns 0 to indicate no match
  * returns <0 to indicate error
  */
-extern int probe_smbios(struct platform_intf *intf, const char *const ids[]);
+extern int probe_smbios(struct platform_intf *intf, const char *name);
 
 /*
  * probe_fdt_compatible - Probe platform using device tree "compatible" node

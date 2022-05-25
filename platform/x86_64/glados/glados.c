@@ -46,26 +46,26 @@
 #include "glados.h"
 
 struct probe_ids {
-	const char *names[2];
+	const char *smbios_name;
 	const struct sku_info single_sku;
 };
 
 /* sku_info: brand, model, customization */
 static const struct probe_ids probe_id_list[] = {
-	{ { "Asuka", }, .single_sku = { .brand = "DEAH", }, },
-	{ { "Caroline", }, .single_sku = { .brand = "SMAK", }, },
-	{ { "Cave", }, .single_sku = { .brand = "ASUL", }, },
-	{ { "Chell", }, .single_sku = { .brand = "HPZR", }, },
-	{ { "Glados", } },
-	{ { "Kunimitsu", }, },
+	{ "Asuka", .single_sku = { .brand = "DEAH", }, },
+	{ "Caroline", .single_sku = { .brand = "SMAK", }, },
+	{ "Cave", .single_sku = { .brand = "ASUL", }, },
+	{ "Chell", .single_sku = { .brand = "HPZR", }, },
+	{ "Glados", },
+	{ "Kunimitsu", },
 	/**
 	 * TODO(hungte) There may be variants for LARS so we can't provide a
 	 * single brand here for now. Need to revise for what to do. */
-	{ { "Lars", }, .single_sku = { .brand = NULL, }, },
+	{ "Lars", .single_sku = { .brand = NULL, }, },
         /* TODO(b/73852456) Allocate a brand code */
-	{ { "Sentry", }, .single_sku = { .brand = "LEAJ", }, },
-	{ { "Skylake", }, },
-	{ { NULL }, },
+	{ "Sentry", .single_sku = { .brand = "LEAJ", }, },
+	{ "Skylake", },
+	{ NULL },
 };
 
 static struct platform_cmd *glados_sub[] = {
@@ -84,8 +84,8 @@ static int glados_probe(struct platform_intf *intf)
 	if (probed)
 		return status;
 
-	for (pid = probe_id_list; pid && pid->names[0]; pid++) {
-		if ((status = probe_smbios(intf, pid->names)))
+	for (pid = probe_id_list; pid && pid->smbios_name; pid++) {
+		if ((status = probe_smbios(intf, pid->smbios_name)))
 			goto exit;
 	}
 	return 0;
@@ -93,7 +93,7 @@ static int glados_probe(struct platform_intf *intf)
 exit:
 	probed = 1;
 	/* Update canonical platform name */
-	intf->name = pid->names[0];
+	intf->name = pid->smbios_name;
 	intf->sku_info = &pid->single_sku;
 	return status;
 }

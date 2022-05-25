@@ -51,19 +51,6 @@
 extern char *buf2str(uint8_t *inbuf, size_t length);
 
 /*
- * strlfind - linear search for string in set of strings
- *
- * @str:		string to search for
- * @arr:		array to search
- * @case_sensitive:	boolean for case sensitivity
- *
- * returns pointer to array entry if string is found
- * returns NULL otherwise
- */
-const char *strlfind(const char *str, const char *const arr[],
-		     int case_sensitive);
-
-/*
  * strlower - convert a string to lower case
  *
  * @str:		string to convert (in place)

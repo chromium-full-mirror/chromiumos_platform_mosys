@@ -45,7 +45,7 @@
 #include "lib/smbios.h"
 #include "lib/string.h"
 
-int probe_smbios(struct platform_intf *intf, const char *const ids[])
+int probe_smbios(struct platform_intf *intf, const char *name)
 {
 	static char *id = NULL;
 	int ret = 0;
@@ -63,7 +63,7 @@ probe_smbios_cmp:
 	if (!id) {
 		ret = 0;
 		lprintf(LOG_SPEW, "%s: cannot find product name\n", __func__);
-	} else if (strlfind(id, ids, 0)) {
+	} else if (!strcmp(id, name)) {
 		ret = 1;
 		lprintf(LOG_DEBUG, "%s: matched id \"%s\"\n", __func__, id);
 	}
