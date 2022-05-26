@@ -317,6 +317,7 @@ const struct nonspd_mem_info hynix_lpddr4x_h54g56cyrbx247 = {
 	.module_size_mbits      = 32768,
 	.num_ranks              = 2,
 	.device_width           = 32,
+	.ddr_freq               = { DDR_667, DDR_800, DDR_933, DDR_1067, DDR_1200, DDR_1333, DDR_1600, DDR_2133},
 
 	.module_mfg_id          = MFGID_HYNIX,
 	.dram_mfg_id            = MFGID_HYNIX,
@@ -819,6 +820,7 @@ const struct nonspd_mem_info micron_lpddr4x_mt53e1g32d2np_046wtb = {
 	.module_size_mbits      = 32768,
 	.num_ranks              = 2,
 	.device_width           = 32,
+	.ddr_freq               = { DDR_667, DDR_800, DDR_933, DDR_1067, DDR_1200, DDR_1333, DDR_1600, DDR_2133},
 
 	.module_mfg_id          = MFGID_MICRON,
 	.dram_mfg_id            = MFGID_MICRON,
@@ -1056,6 +1058,7 @@ const struct nonspd_mem_info samsung_lpddr4x_k4ube3d4ab_mgcl = {
 	.module_size_mbits      = 32768,
 	.num_ranks              = 2,
 	.device_width           = 32,
+	.ddr_freq               = { DDR_667, DDR_800, DDR_933, DDR_1067, DDR_1200, DDR_1333, DDR_1600, DDR_2133},
 
 	.module_mfg_id          = MFGID_SAMSUNG,
 	.dram_mfg_id            = MFGID_SAMSUNG,
