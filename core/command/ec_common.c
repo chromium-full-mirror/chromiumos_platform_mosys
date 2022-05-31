@@ -120,6 +120,7 @@ static struct platform_cmd pd_cmds[] = {
 	{
 		.name	= "chip",
 		.desc	= "Print PD chip information",
+		.usage  = "<port number>",
 		.type	= ARG_TYPE_GETTER,
 		.arg	= { .func = pd_chip_info }
 	},
