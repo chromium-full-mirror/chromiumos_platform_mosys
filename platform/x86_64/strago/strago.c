@@ -58,6 +58,7 @@ static const char *const probe_id_list[] = {
 	"Ultima",
 	"Umaro",
 	"Wizpig",
+	NULL,
 };
 
 static struct platform_cmd *strago_sub[] = {
