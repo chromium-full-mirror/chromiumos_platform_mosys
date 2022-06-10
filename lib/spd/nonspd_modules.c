@@ -344,7 +344,7 @@ const struct nonspd_mem_info hynix_lpddr4x_h9hcnnncpmmlxr_nee = {
 const struct nonspd_mem_info hynix_lpddr4x_h9hcnnnfammlxr_nee = {
 	.dram_type		= SPD_DRAM_TYPE_LPDDR4X,
 
-	.module_size_mbits	=  65536,
+	.module_size_mbits	= 65536,
 	.num_ranks		= 2,
 	.device_width		= 32,
 	.ddr_freq		= { DDR_800, DDR_1200, DDR_1600 },
@@ -360,9 +360,10 @@ const struct nonspd_mem_info hynix_lpddr4x_h9hcnnnfammlxr_nee = {
 const struct nonspd_mem_info hynix_lpddr4x_h54g68cyrbx248 = {
 	.dram_type              = SPD_DRAM_TYPE_LPDDR4X,
 
-	.module_size_mbits      =  65536,
+	.module_size_mbits      = 65536,
 	.num_ranks              = 2,
 	.device_width           = 32,
+	.ddr_freq               = { DDR_667, DDR_800, DDR_933, DDR_1067, DDR_1200, DDR_1333, DDR_1600, DDR_2133},
 
 	.module_mfg_id          = MFGID_HYNIX,
 	.dram_mfg_id            = MFGID_HYNIX,
@@ -858,6 +859,20 @@ const struct nonspd_mem_info micron_lpddr4x_mt53e2g32d4nq_046wta = {
 	.part_num		=
 		{ 'M', 'T', '5', '3', 'E', '2', 'G', '3', '2', 'D', '4', 'N',
 		  'Q', '-', '4', '6', 'W', 'T', ':', 'A'},
+};
+
+const struct nonspd_mem_info micron_lpddr4x_mt53e2g32d4nq_046wtc = {
+	.dram_type		= SPD_DRAM_TYPE_LPDDR4X,
+
+	.module_size_mbits	= 65536,
+	.num_ranks		= 2,
+	.device_width		= 32,
+	.ddr_freq		= { DDR_2133 },
+
+	.module_mfg_id		= MFGID_MICRON,
+	.dram_mfg_id		= MFGID_MICRON,
+
+	.part_num		= "MT53E2G32D4NQ-46WT:C",
 };
 
 const struct nonspd_mem_info micron_lpddr4x_mt29vzzzad8dqksl = {
