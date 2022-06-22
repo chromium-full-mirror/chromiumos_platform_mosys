@@ -33,7 +33,6 @@
 #include <unistd.h>
 
 #include "lib/memory.h"
-#include "lib/probe.h"
 #include "lib/sku.h"
 
 #include "mosys/alloc.h"
@@ -53,11 +52,6 @@ static struct platform_cmd *glados_sub[] = {
 	NULL
 };
 
-static int glados_probe(struct platform_intf *intf)
-{
-	return probe_smbios(intf, intf->name);
-}
-
 static struct platform_cb glados_cb = {
 	.ec		= &cros_ec_cb,
 	.pd		= &cros_pd_cb,
@@ -70,7 +64,6 @@ static struct platform_intf platform_asuka = {
 	.type = PLATFORM_X86_64,
 	.sub = glados_sub,
 	.cb = &glados_cb,
-	.probe = &glados_probe,
 	.sku_info = &asuka_sku_info,
 };
 REGISTER_PLATFORM(platform_asuka, "Asuka");
@@ -80,7 +73,6 @@ static struct platform_intf platform_caroline = {
 	.type = PLATFORM_X86_64,
 	.sub = glados_sub,
 	.cb = &glados_cb,
-	.probe = &glados_probe,
 	.sku_info = &caroline_sku_info,
 };
 REGISTER_PLATFORM(platform_caroline, "Caroline");
@@ -90,7 +82,6 @@ static struct platform_intf platform_chell = {
 	.type = PLATFORM_X86_64,
 	.sub = glados_sub,
 	.cb = &glados_cb,
-	.probe = &glados_probe,
 	.sku_info = &chell_sku_info,
 };
 REGISTER_PLATFORM(platform_chell, "Chell");
@@ -99,6 +90,5 @@ static struct platform_intf platform_lars = {
 	.type = PLATFORM_X86_64,
 	.sub = glados_sub,
 	.cb = &glados_cb,
-	.probe = &glados_probe,
 };
 REGISTER_PLATFORM(platform_lars, "Lars");
