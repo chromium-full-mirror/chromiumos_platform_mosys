@@ -9,8 +9,4 @@ libmosys_src += files(
   'platform.c',
 )
 
-unittest_src += files(
-  'platform_unittest.c',
-)
-
 subdir('command')
