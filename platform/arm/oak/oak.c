@@ -34,28 +34,12 @@
 
 #include "mosys/command_list.h"
 #include "mosys/platform.h"
-#include "mosys/log.h"
 
 #include "drivers/google/cros_ec.h"
 
-#include "lib/file.h"
-#include "lib/math.h"
-#include "lib/probe.h"
 #include "lib/sku.h"
 
 #include "oak.h"
-
-#ifndef CONFIG_UNIBUILD
-static struct oak_probe_id {
-	const char *name;
-	const char *fdt_compat;
-	const struct sku_info single_sku;
-} oak_id_list[] = {
-	{ "Elm", "google,elm", { .brand = "ACAZ" } },
-	{ "Hana", "google,hana", { .brand = "LEAO" } },
-	{ "Oak", "google,oak", { .brand = NULL } },
-};
-#endif
 
 static struct platform_cmd *oak_sub[] = {
 	&cmd_ec,
@@ -64,27 +48,6 @@ static struct platform_cmd *oak_sub[] = {
 	NULL
 };
 
-#ifndef CONFIG_UNIBUILD
-static int oak_probe(struct platform_intf *intf)
-{
-	int i;
-
-	for (i = 0; i < ARRAY_SIZE(oak_id_list); i++) {
-		const char **compat = &oak_id_list[i].fdt_compat;
-
-		if (probe_fdt_compatible(compat, 1, 1) == 0) {
-			lprintf(LOG_DEBUG, "Found platform \"%s\" via FDT "
-				"compatible node.\n", oak_id_list[i].name);
-			intf->name = oak_id_list[i].name;
-			intf->sku_info = &oak_id_list[i].single_sku;
-			return 1;
-		}
-	}
-
-	return 0;
-}
-#endif
-
 static struct platform_cb oak_cb = {
 	.ec		= &cros_ec_cb,
 	.memory		= &oak_memory_cb,
@@ -92,12 +55,17 @@ static struct platform_cb oak_cb = {
 	.sys		= &oak_sys_cb,
 };
 
+/* TODO(b/183045220): Remove after hana is migrated to unibuild */
+#ifndef CONFIG_UNIBUILD
+static const struct sku_info hana_sku_info = { .brand = "LEAO" };
+#endif
+
 static struct platform_intf platform_oak = {
 	.type		= PLATFORM_ARMV8,
 	.sub		= oak_sub,
 	.cb		= &oak_cb,
 #ifndef CONFIG_UNIBUILD
-	.probe		= &oak_probe,
+	.sku_info	= &hana_sku_info,
 #endif
 };
 REGISTER_PLATFORM(platform_oak, "Oak");
