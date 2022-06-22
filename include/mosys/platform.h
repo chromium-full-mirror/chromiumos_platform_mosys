@@ -230,7 +230,7 @@ extern void push_platform_intf(struct platform_intf *intf,
  * returns NULL if platform not identified or other error
  *
  */
-extern struct platform_intf *mosys_platform_setup(const char *platform_name);
+extern struct platform_intf *mosys_platform_setup(void);
 
 /*
  * mosys_platform_destroy  -  clean up platform interface
@@ -254,7 +254,5 @@ extern void platform_cmd_usage(struct platform_cmd *cmd);
  * @intf:	platform interface
  */
 extern void print_tree(struct platform_intf *intf);
-
-extern int print_platforms(void);
 
 #endif /* MOSYS_PLATFORM_H__ */

@@ -60,22 +60,6 @@ void push_platform_intf(struct platform_intf *intf, struct platform_list *dest)
 }
 
 /*
- * Internal function used by mosys_platform_setup to search for a
- * supported platform by name
- */
-static struct platform_intf *find_platform_by_name(const char *platform_name)
-{
-	for (struct platform_list *p = platform_list; p; p = p->next) {
-		struct platform_intf *intf = p->entry;
-		if (!strcasecmp(intf->name, platform_name))
-			return intf;
-		continue;
-	}
-
-	return NULL;
-}
-
-/*
  * Internal function used by mosys_platform_setup to probe each
  * platform until one matches
  */
@@ -105,13 +89,10 @@ static struct platform_intf *probe_platform(void)
 /*
  * mosys_platform_setup  -  identify platform, setup interfaces and commands
  *
- * @platform_name: Optional platform name given to bypass
- *     auto-detection
- *
  * returns pointer to identified platform interface
  * returns NULL if platform not identified or other error
  */
-struct platform_intf *mosys_platform_setup(const char *platform_name)
+struct platform_intf *mosys_platform_setup(void)
 {
 	struct platform_intf *intf;
 	int platform_count = 0;
@@ -125,9 +106,7 @@ struct platform_intf *mosys_platform_setup(const char *platform_name)
 		platform_count++;
 	}
 
-	if (platform_name) {
-		intf = find_platform_by_name(platform_name);
-	} else if (platform_count == 1) {
+	if (platform_count == 1) {
 		intf = platform_list->entry;
 	} else {
 		intf = probe_platform();
@@ -284,33 +263,4 @@ void print_tree(struct platform_intf *intf)
 		if (tree_subcommand(intf, intf->sub[root], 1, str) < 0)
 			lprintf(LOG_DEBUG, "tree walking failed: %s", str);
 	}
-}
-
-/*
- * print_platforms - print platform ids
- *
- * returns 0 to indicate success
- * returns <0 to indicate failure
- */
-int print_platforms(void)
-{
-	struct kv_pair *kv;
-	int rc;
-
-	/* go through all supported interfaces */
-	for (struct platform_list *p = platform_list; p; p = p->next) {
-		struct platform_intf *intf = p->entry;
-
-		if (intf->type == PLATFORM_DEFAULT)
-			continue;
-
-		kv = kv_pair_new();
-		kv_pair_add(kv, "id", intf->name);
-		rc = kv_pair_print(kv);
-		kv_pair_free(kv);
-		if (rc)
-			return rc;
-	}
-
-	return rc;
 }

@@ -63,8 +63,6 @@ static void usage(void)
 	       "    -s [key]      print value for single key\n"
 	       "    -v            verbose (can be used multiple times)\n"
 	       "    -t            display command tree for detected platform\n"
-	       "    -S            print supported platform IDs\n"
-	       "    -p [id]       specify platform id (bypass auto-detection)\n"
 	       "    -h            print this help\n"
 	       "\n");
 }
@@ -205,9 +203,7 @@ int mosys_main(int argc, char **argv)
 	int rc, errsv;
 	int argflag;
 	int verbose = LOG_ERR;
-	bool print_platforms_opt = false;
 	bool showtree = false;
-	char *p_opt = NULL;
 	struct platform_intf *intf;
 	enum kv_pair_style style = KV_STYLE_VALUE;
 
@@ -235,12 +231,6 @@ int mosys_main(int argc, char **argv)
 		case 't':
 			showtree = true;
 			break;
-		case 'S':
-			print_platforms_opt = true;
-			break;
-		case 'p':
-			p_opt = optarg;
-			break;
 		case 'h':
 			usage();
 			exit(EXIT_SUCCESS);
@@ -251,8 +241,6 @@ int mosys_main(int argc, char **argv)
 	}
 
 	mosys_set_kv_pair_style(style);
-	if (print_platforms_opt)
-		return print_platforms();
 
 	/*
 	 * Init the logging system and the default log output file (stderr).
@@ -268,7 +256,7 @@ int mosys_main(int argc, char **argv)
 	mosys_set_verbosity(verbose);
 
 	/* try to identify the platform */
-	intf = mosys_platform_setup(p_opt);
+	intf = mosys_platform_setup();
 	if (!intf) {
 		lprintf(LOG_ERR, "Platform not supported\n");
 		rc = -1;
