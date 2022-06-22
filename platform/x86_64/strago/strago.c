@@ -68,25 +68,19 @@ static struct platform_cmd *strago_sub[] = {
 	NULL
 };
 
-static int strago_probe(struct platform_intf *intf)
+static int strago_setup(struct platform_intf *intf)
 {
-	static int status = 0, probed = 0;
 	const char *const *pid;
 
-	if (probed)
-		return status;
-
 	for (pid = probe_id_list; pid && *pid; pid++) {
-		if ((status = probe_smbios(intf, *pid)))
-			goto exit;
+		if (probe_smbios(intf, *pid)) {
+			/* Update canonical platform name */
+			intf->name = *pid;
+			return 0;
+		}
 	}
-	return 0;
 
-exit:
-	probed = 1;
-	/* Update canonical platform name */
-	intf->name = *pid;
-	return status;
+	return -1;
 }
 
 static struct platform_cb strago_cb = {
@@ -99,6 +93,6 @@ static struct platform_intf platform_strago = {
 	.type		= PLATFORM_X86_64,
 	.sub		= strago_sub,
 	.cb		= &strago_cb,
-	.probe		= &strago_probe,
+	.setup		= &strago_setup,
 };
 REGISTER_PLATFORM(platform_strago, "Strago");
