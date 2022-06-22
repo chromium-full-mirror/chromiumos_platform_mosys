@@ -1,4 +1,4 @@
-project('mosys', 'c')
+project('mosys', 'c', default_options : ['platform_intf=Generic'])
 
 # Include common. This is passed to all subdir build files as well
 include_common = include_directories(['include'])
@@ -23,9 +23,7 @@ elif arch == 'arm' or arch == 'aarch64'
 endif
 
 platform_intf = get_option('platform_intf')
-if platform_intf != ''
-  conf_data.set_quoted('CONFIG_SINGLE_PLATFORM', platform_intf)
-endif
+conf_data.set_quoted('CONFIG_SINGLE_PLATFORM', platform_intf)
 
 # Create the config header file and include it by default while compiling
 configure_file(

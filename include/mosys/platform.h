@@ -188,29 +188,12 @@ struct platform_list {
 		_Static_assert(                                             \
 			__builtin_constant_p(_name),                        \
 			"Platform names must be a compile-time constant."); \
-		if (_PLATFORM_IS_ENABLED(_name)) {                          \
+		if (!__builtin_strcmp(CONFIG_SINGLE_PLATFORM, _name)) {     \
 			struct platform_intf *intf = &(_intf);              \
 			intf->name = _name;                                 \
 			push_platform_intf(intf, &ent);                     \
 		}                                                           \
 	}
-
-/*
- * _PLATFORM_IS_ENABLED - Determine if a platform_intf (by-name) is
- * enabled in this build.
- *
- * @name:       The name of the platform.
- *
- * For binary size optimizations to happen, this should result in an
- * expression which can be evaluated at compile-time under the current
- * optimization settings.
- */
-#ifdef CONFIG_SINGLE_PLATFORM
-#define _PLATFORM_IS_ENABLED(name) \
-	!__builtin_strcmp(CONFIG_SINGLE_PLATFORM, name)
-#else
-#define _PLATFORM_IS_ENABLED(name) 1
-#endif
 
 /**
  * push_platform_intf - push an entry to the global platform list
