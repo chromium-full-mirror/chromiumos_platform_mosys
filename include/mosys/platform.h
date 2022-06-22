@@ -131,11 +131,6 @@ struct platform_intf {
 	struct platform_cmd **sub;	/* list of commands */
 	struct platform_cb *cb;		/* callbacks */
 
-	/*
-	 * returns 1 to indicate platform identified
-	 * returns 0 otherwise
-	 */
-	int (*probe)(struct platform_intf *intf);
 	int (*setup)(struct platform_intf *intf);
 	int (*setup_post)(struct platform_intf *intf);
 	int (*destroy)(struct platform_intf *intf);
@@ -184,27 +179,21 @@ struct platform_list {
 #define _REGISTER_PLATFORM(_intf, _name, function_id)                       \
 	static void __attribute__((constructor)) function_id(void)          \
 	{                                                                   \
-		static struct platform_list ent;                            \
 		_Static_assert(                                             \
 			__builtin_constant_p(_name),                        \
 			"Platform names must be a compile-time constant."); \
 		if (!__builtin_strcmp(CONFIG_SINGLE_PLATFORM, _name)) {     \
-			struct platform_intf *intf = &(_intf);              \
-			intf->name = _name;                                 \
-			push_platform_intf(intf, &ent);                     \
+			platform_intf = &(_intf);                           \
+			platform_intf->name = _name;                        \
 		}                                                           \
 	}
 
 /**
- * push_platform_intf - push an entry to the global platform list
+ * platform_intf - The registered platform.
  *
- * @intf:       Platform interface to register.
- * @dest:       Statically-allocated platform_list node.
- *
- * This is an internal helper used by the REGISTER_PLAFTORM macro.
+ * Used internally by REGISTER_PLATFORM, as well as platform.c.
  */
-extern void push_platform_intf(struct platform_intf *intf,
-			       struct platform_list *dest);
+extern struct platform_intf *platform_intf;
 
 /*
  * mosys_platform_setup  -  determine current platform and return handler

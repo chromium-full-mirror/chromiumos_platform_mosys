@@ -50,41 +50,7 @@
 #define LINE_MAX 64
 #endif
 
-static struct platform_list *platform_list;
-
-void push_platform_intf(struct platform_intf *intf, struct platform_list *dest)
-{
-	dest->entry = intf;
-	dest->next = platform_list;
-	platform_list = dest;
-}
-
-/*
- * Internal function used by mosys_platform_setup to probe each
- * platform until one matches
- */
-static struct platform_intf *probe_platform(void)
-{
-	for (struct platform_list *p = platform_list; p; p = p->next) {
-		struct platform_intf *intf = p->entry;
-
-		if (intf->probe) {
-			int rc = intf->probe(intf);
-
-			if (rc < 0) {
-				lprintf(LOG_DEBUG, "Error encountered when "
-					"probing %s\n", intf->name);
-				continue;
-			} else if (rc > 0) {
-				lprintf(LOG_DEBUG, "Platform %s found (via "
-					"probing)\n", intf->name);
-				return intf;
-			}
-		}
-	}
-
-	return NULL;
-}
+struct platform_intf *platform_intf = NULL;
 
 /*
  * mosys_platform_setup  -  identify platform, setup interfaces and commands
@@ -94,57 +60,21 @@ static struct platform_intf *probe_platform(void)
  */
 struct platform_intf *mosys_platform_setup(void)
 {
-	struct platform_intf *intf;
-	int platform_count = 0;
-	bool probe_called = false;
-
-	/* setup defaults for each platform */
-	for (struct platform_list *p = platform_list; p; p = p->next) {
-		intf = p->entry;
-		if (!intf->name)
-			intf->name = "";
-		platform_count++;
-	}
-
-	if (platform_count == 1) {
-		intf = platform_list->entry;
-	} else {
-		intf = probe_platform();
-		probe_called = true;
-	}
-
-	if (!intf)
+	if (!platform_intf)
 		return NULL;
 
-	/*
-	 * If we did not call the platform's probe function earlier
-	 * (e.g., selection by string or there is only a single
-	 * platform compiled in mosys), we need to call it now as this
-	 * may provide model-specific information.
-	 *
-	 * In the case the probe fails, most commands will still work.
-	 * We setup the platform_intf anyway, but provide a warning.
-	 */
-	if (!probe_called && intf->probe) {
-		if (intf->probe(intf) <= 0) {
-			lprintf(LOG_ERR,
-				"Platform probe function failed. "
-				"Model-specific commands may be incorrect.\n");
-		}
-	}
-
 	/* call platform-specific setup if found */
-	if (intf->setup && intf->setup(intf) < 0)
+	if (platform_intf->setup && platform_intf->setup(platform_intf) < 0)
 		return NULL;
 
 	/* call platform-specific post-setup if found */
-	if (intf->setup_post &&
-	    intf->setup_post(intf) < 0) {
+	if (platform_intf->setup_post &&
+	    platform_intf->setup_post(platform_intf) < 0) {
 		mosys_platform_destroy(intf);
 		return NULL;
 	}
 
-	return intf;
+	return platform_intf;
 }
 
 /*
