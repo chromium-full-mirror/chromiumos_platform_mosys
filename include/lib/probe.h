@@ -45,17 +45,4 @@ struct platform_intf;
  */
 extern int probe_smbios(struct platform_intf *intf, const char *name);
 
-/*
- * probe_fdt_compatible - Probe platform using device tree "compatible" node
- *
- * @id_list:		Known platform IDs to compare with
- * @num_ids:		Number of known platform IDs
- * @allow_partial:	Allow partial match (0=no, 1=yes)
- *
- * returns the index of the platform ID if found
- * returns <0 to indicate error
- */
-extern int probe_fdt_compatible(const char * const id_list[],
-				int num_ids, int allow_partial);
-
 #endif /* MOSYS_LIB_PROBE_H__ */
