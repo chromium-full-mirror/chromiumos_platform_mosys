@@ -67,32 +67,7 @@ struct platform_intf *mosys_platform_setup(void)
 	if (platform_intf->setup && platform_intf->setup(platform_intf) < 0)
 		return NULL;
 
-	/* call platform-specific post-setup if found */
-	if (platform_intf->setup_post &&
-	    platform_intf->setup_post(platform_intf) < 0) {
-		mosys_platform_destroy(intf);
-		return NULL;
-	}
-
 	return platform_intf;
-}
-
-/*
- * mosys_platform_destroy  -  clean up platform interface
- *
- * @intf:	platform interface
- */
-void mosys_platform_destroy(struct platform_intf *intf)
-{
-	/* Call the destroy callbacks and cleanup afterwards. */
-//	invoke_destroy_callbacks();
-//	cleanup_destroy_callbacks();
-
-	if (intf) {
-		/* cleanup interface */
-		if (intf->destroy)
-			intf->destroy(intf);
-	}
 }
 
 /*

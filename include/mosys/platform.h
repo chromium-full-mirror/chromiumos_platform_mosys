@@ -132,8 +132,6 @@ struct platform_intf {
 	struct platform_cb *cb;		/* callbacks */
 
 	int (*setup)(struct platform_intf *intf);
-	int (*setup_post)(struct platform_intf *intf);
-	int (*destroy)(struct platform_intf *intf);
 };
 
 /* Used for the global linked-list of all platforms. */
@@ -203,14 +201,6 @@ extern struct platform_intf *platform_intf;
  *
  */
 extern struct platform_intf *mosys_platform_setup(void);
-
-/*
- * mosys_platform_destroy  -  clean up platform interface
- *
- * @intf:	platform interface
- *
- */
-extern void mosys_platform_destroy(struct platform_intf *intf);
 
 /*
  * platform_cmd_usage  -  print usage help text for command

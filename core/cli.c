@@ -267,7 +267,7 @@ int mosys_main(int argc, char **argv)
 	if (showtree) {
 		print_tree(intf);
 		rc = 0;
-		goto exit_platform_cleanup;
+		goto exit;
 	}
 
 	/* run command */
@@ -276,9 +276,6 @@ int mosys_main(int argc, char **argv)
 	errsv = errno;
 	if (rc < 0 && errsv == ENOSYS)
 		lprintf(LOG_ERR, "Command not supported on this platform\n");
-
-exit_platform_cleanup:
-	mosys_platform_destroy(intf);
 
 exit:
 	mosys_log_halt();
