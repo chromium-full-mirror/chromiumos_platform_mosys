@@ -6,5 +6,4 @@ if unibuild
   subdir('sarien')  # Wilco EC
 else
   subdir('glados')
-  subdir('strago')
 endif
