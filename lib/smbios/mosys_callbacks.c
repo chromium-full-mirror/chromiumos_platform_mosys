@@ -86,19 +86,6 @@ char *smbios_sysinfo_get_vendor(struct platform_intf *intf)
 }
 
 /*
- * smbios_sysinfo_get_name  -  return platform product name
- *
- * @intf:       platform interface
- *
- * returns pointer to allocated platform name string
- * returns NULL if not found
- */
-char *smbios_sysinfo_get_name(struct platform_intf *intf)
-{
-	return smbios_scan_sysfs("product_name");
-}
-
-/*
  * smbios_sysinfo_get_version  -  return platform version
  *
  * @intf:       platform interface

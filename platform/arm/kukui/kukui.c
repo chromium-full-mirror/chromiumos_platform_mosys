@@ -41,7 +41,6 @@
 #include "lib/fdt.h"
 #include "lib/file.h"
 #include "lib/math.h"
-#include "lib/probe.h"
 #include "lib/sku.h"
 
 #include "kukui.h"

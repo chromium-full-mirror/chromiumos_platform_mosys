@@ -39,7 +39,6 @@
 #include "mosys/command_list.h"
 #include "mosys/platform.h"
 
-#include "lib/probe.h"
 #include "lib/sku.h"
 #include "mosys/log.h"
 #include "mosys/kv_pair.h"

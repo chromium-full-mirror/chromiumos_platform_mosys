@@ -93,7 +93,6 @@ extern int smbios_find_table(struct platform_intf *intf, enum smbios_types type,
 			     int instance, struct smbios_table *table);
 
 extern char *smbios_sysinfo_get_vendor(struct platform_intf *intf);
-extern char *smbios_sysinfo_get_name(struct platform_intf *intf);
 extern char *smbios_sysinfo_get_version(struct platform_intf *intf);
 extern char *smbios_sysinfo_get_sku(struct platform_intf *intf);
 extern int smbios_sysinfo_get_sku_number(struct platform_intf *intf);
