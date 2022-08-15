@@ -17,8 +17,6 @@
 #include "lib/vpd.h"
 #include "mosys/log.h"
 
-typeof(execve) __real_execve;
-typeof(execve) __wrap_execve;
 typeof(read_file) __real_read_file;
 typeof(read_file) __wrap_read_file;
 
@@ -30,27 +28,6 @@ static struct {
 	{ "whitelabel_tag", "fake_wl" },
 	{ "rlz_brand_code", "ZZCR" },
 };
-
-int __wrap_execve(const char *prog, char *const argv[], char *const envp[])
-{
-	if (strcmp(prog, "/usr/sbin/vpd_get_value")) {
-		return __real_execve(prog, argv, envp);
-	}
-
-	if (!argv[1])
-		exit(1);
-
-	for (size_t i = 0; i < ARRAY_SIZE(fake_vpd_values); i++) {
-		if (!strcmp(fake_vpd_values[i].name, argv[1])) {
-			printf("%s\n", fake_vpd_values[i].value);
-			exit(0);
-		}
-	}
-
-	/* vpd_get_value exits zero even when the value does not exist */
-	exit(0);
-	__builtin_unreachable();
-}
 
 #define SYSFS_PREFIX "/sys/firmware/vpd/ro/"
 ssize_t __wrap_read_file(const char *path, char *buf, size_t buf_sz,

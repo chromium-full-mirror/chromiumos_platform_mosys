@@ -6,7 +6,6 @@ include_common = include_directories(['include'])
 # Config data used for creating a config header and including it
 conf_data = configuration_data()
 
-use_vpd_file_cache = get_option('use_vpd_file_cache') == true
 unibuild = get_option('unibuild')
 if unibuild
   conf_data.set('CONFIG_UNIBUILD', 1)
