@@ -9,10 +9,10 @@
 /* Common manufacturing IDs */
 #define MFGID_ELPIDA	{ .msb = 0x2c, .lsb = 0x80 }
 #define MFGID_HYNIX	{ .msb = 0xad, .lsb = 0x80 }
-#define MFGID_MICRON	{ .msb = 0x2c, .lsb = 0x00 }
-#define MFGID_NANYA	{ .msb = 0x0b, .lsb = 0x03 }
-#define MFGID_SAMSUNG	{ .msb = 0xce, .lsb = 0x00 }
-#define MFGID_SANDISK	{ .msb = 0x45, .lsb = 0x00 }
+#define MFGID_MICRON	{ .msb = 0x2c, .lsb = 0x80 }
+#define MFGID_NANYA	{ .msb = 0x0b, .lsb = 0x83 }
+#define MFGID_SAMSUNG	{ .msb = 0xce, .lsb = 0x80 }
+#define MFGID_SANDISK	{ .msb = 0x45, .lsb = 0x80 }
 
 const struct nonspd_mem_info elpida_lpddr3_edfa164a2ma_jd_f = {
 	.dram_type		= SPD_DRAM_TYPE_LPDDR3,
@@ -393,8 +393,8 @@ const struct nonspd_mem_info samsung_lpddr3_k4e6e304ec_egcg = {
 	.num_ranks		= 2,
 	.device_width		= 32,
 
-	.module_mfg_id	= MFGID_SAMSUNG,
-	.dram_mfg_id	= MFGID_SAMSUNG,
+	.module_mfg_id		= MFGID_SAMSUNG,
+	.dram_mfg_id		= MFGID_SAMSUNG,
 
 	.part_num		= "K4E6E304EC-EGCG",
 };
@@ -563,6 +563,45 @@ const struct nonspd_mem_info micron_lpddr4x_mt53e2g32d4nq_046wta = {
 	.part_num		= "MT53E2G32D4NQ-46WT:A",
 };
 
+const struct nonspd_mem_info micron_lpddr4x_mt53e2g32d4nq_046wtc = {
+	.dram_type		= SPD_DRAM_TYPE_LPDDR4X,
+
+	.module_size_mbits	= 65536,
+	.num_ranks		= 2,
+	.device_width		= 32,
+
+	.module_mfg_id		= MFGID_MICRON,
+	.dram_mfg_id		= MFGID_MICRON,
+
+	.part_num		= "MT53E2G32D4NQ-46WT:C",
+};
+
+const struct nonspd_mem_info micron_lpddr4x_mt53e512m32d1np_046wtb = {
+	.dram_type              = SPD_DRAM_TYPE_LPDDR4X,
+
+	.module_size_mbits      = 16384,
+	.num_ranks              = 1,
+	.device_width           = 32,
+
+	.module_mfg_id		= MFGID_MICRON,
+	.dram_mfg_id		= MFGID_MICRON,
+
+	.part_num               = "MT53E512M32D1NP-046WT:B",
+};
+
+const struct nonspd_mem_info micron_lpddr4x_mt53e512m32d2np_046 = {
+	.dram_type		= SPD_DRAM_TYPE_LPDDR4X,
+
+	.module_size_mbits	= 16384,
+	.num_ranks		= 1,
+	.device_width		= 32,
+
+	.module_mfg_id		= MFGID_MICRON,
+	.dram_mfg_id		= MFGID_MICRON,
+
+	.part_num		= "MT53E512M32D2NP-046",
+};
+
 const struct nonspd_mem_info micron_lpddr4x_mt53d1g32d4dt_046wtd = {
 	.dram_type		= SPD_DRAM_TYPE_LPDDR4X,
 
@@ -691,6 +730,32 @@ const struct nonspd_mem_info samsung_lpddr4x_kmdv6001da_b620 = {
 	.dram_mfg_id		= MFGID_SAMSUNG,
 
 	.part_num		= "KMDV6001DA-B620",
+};
+
+const struct nonspd_mem_info samsung_lpddr4x_k4u6e3s4aa_mgcr = {
+	.dram_type		= SPD_DRAM_TYPE_LPDDR4X,
+
+	.module_size_mbits	= 16384,
+	.num_ranks		= 1,
+	.device_width		= 32,
+
+	.module_mfg_id		= MFGID_SAMSUNG,
+	.dram_mfg_id		= MFGID_SAMSUNG,
+
+	.part_num		= "K4U6E3S4AA-MGCR",
+};
+
+const struct nonspd_mem_info samsung_lpddr4x_k4u6e3s4ab_mgcl = {
+	.dram_type              = SPD_DRAM_TYPE_LPDDR4X,
+
+	.module_size_mbits      = 16384,
+	.num_ranks              = 1,
+	.device_width           = 32,
+
+	.module_mfg_id		= MFGID_SAMSUNG,
+	.dram_mfg_id		= MFGID_SAMSUNG,
+
+	.part_num               = "K4U6E3S4AB-MGCL",
 };
 
 const struct nonspd_mem_info samsung_lpddr4x_k4ube3d4aa_mgcl = {
