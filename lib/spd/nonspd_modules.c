@@ -7,10 +7,10 @@
 
 /* Common manufacturing IDs */
 #define MFGID_HYNIX	{ .msb = 0xad, .lsb = 0x80 }
-#define MFGID_MICRON	{ .msb = 0x2c, .lsb = 0x00 }
-#define MFGID_NANYA	{ .msb = 0x0b, .lsb = 0x03 }
-#define MFGID_SAMSUNG	{ .msb = 0xce, .lsb = 0x00 }
-#define MFGID_SANDISK	{ .msb = 0x45, .lsb = 0x00 }
+#define MFGID_MICRON	{ .msb = 0x2c, .lsb = 0x80 }
+#define MFGID_NANYA	{ .msb = 0x0b, .lsb = 0x83 }
+#define MFGID_SAMSUNG	{ .msb = 0xce, .lsb = 0x80 }
+#define MFGID_SANDISK	{ .msb = 0x45, .lsb = 0x80 }
 
 const struct nonspd_mem_info hynix_lpddr3_h9ccnnn8gtmlar_nud = {
 	.dram_type		= SPD_DRAM_TYPE_LPDDR3,
@@ -61,8 +61,8 @@ const struct nonspd_mem_info hynix_lpddr4x_h9hcnnnbkmmlxr_nee = {
 	.num_ranks		= 1,
 	.device_width		= 32,
 
-	.module_mfg_id		= { .msb = 0xad, .lsb = 0x80 },
-	.dram_mfg_id		= { .msb = 0xad, .lsb = 0x80 },
+	.module_mfg_id		= MFGID_HYNIX,
+	.dram_mfg_id		= MFGID_HYNIX,
 
 	.part_num		= "H9HCNNNBKMMLXR-NEE",
 };
@@ -194,8 +194,8 @@ const struct nonspd_mem_info samsung_lpddr3_k4e6e304ec_egcg = {
 	.num_ranks		= 2,
 	.device_width		= 32,
 
-	.module_mfg_id	= MFGID_SAMSUNG,
-	.dram_mfg_id	= MFGID_SAMSUNG,
+	.module_mfg_id		= MFGID_SAMSUNG,
+	.dram_mfg_id		= MFGID_SAMSUNG,
 
 	.part_num		= "K4E6E304EC-EGCG",
 };
@@ -396,8 +396,8 @@ const struct nonspd_mem_info micron_lpddr4x_mt53e512m32d1np_046wtb = {
 	.num_ranks              = 1,
 	.device_width           = 32,
 
-	.module_mfg_id          = { .msb = 0x2c, .lsb = 0x00 },
-	.dram_mfg_id            = { .msb = 0x2c, .lsb = 0x00 },
+	.module_mfg_id		= MFGID_MICRON,
+	.dram_mfg_id		= MFGID_MICRON,
 
 	.part_num               = "MT53E512M32D1NP-046WT:B",
 };
@@ -409,8 +409,8 @@ const struct nonspd_mem_info micron_lpddr4x_mt53e512m32d2np_046 = {
 	.num_ranks		= 1,
 	.device_width		= 32,
 
-	.module_mfg_id		= { .msb = 0x2c, .lsb = 0x00 },
-	.dram_mfg_id		= { .msb = 0x2c, .lsb = 0x00 },
+	.module_mfg_id		= MFGID_MICRON,
+	.dram_mfg_id		= MFGID_MICRON,
 
 	.part_num		= "MT53E512M32D2NP-046",
 };
@@ -539,8 +539,8 @@ const struct nonspd_mem_info samsung_lpddr4x_k4u6e3s4aa_mgcr = {
 	.num_ranks		= 1,
 	.device_width		= 32,
 
-	.module_mfg_id		= { .msb = 0xce, .lsb = 0x00 },
-	.dram_mfg_id		= { .msb = 0xce, .lsb = 0x00 },
+	.module_mfg_id		= MFGID_SAMSUNG,
+	.dram_mfg_id		= MFGID_SAMSUNG,
 
 	.part_num		= "K4U6E3S4AA-MGCR",
 };
@@ -552,8 +552,8 @@ const struct nonspd_mem_info samsung_lpddr4x_k4u6e3s4ab_mgcl = {
 	.num_ranks              = 1,
 	.device_width           = 32,
 
-	.module_mfg_id          = { .msb = 0xce, .lsb = 0x00 },
-	.dram_mfg_id            = { .msb = 0xce, .lsb = 0x00 },
+	.module_mfg_id		= MFGID_SAMSUNG,
+	.dram_mfg_id		= MFGID_SAMSUNG,
 
 	.part_num               = "K4U6E3S4AB-MGCL",
 };
