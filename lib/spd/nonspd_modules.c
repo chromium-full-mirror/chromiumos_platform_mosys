@@ -7,6 +7,7 @@
 
 /* Common manufacturing IDs */
 #define MFGID_HYNIX	{ .msb = 0xad, .lsb = 0x80 }
+#define MFGID_LONGSYS	{ .msb = 0xd6, .lsb = 0x8a }
 #define MFGID_MICRON	{ .msb = 0x2c, .lsb = 0x80 }
 #define MFGID_NANYA	{ .msb = 0x0b, .lsb = 0x83 }
 #define MFGID_SAMSUNG	{ .msb = 0xce, .lsb = 0x80 }
@@ -344,7 +345,7 @@ const struct nonspd_mem_info foresee_lpddr4x_feprf6432_58a1930 = {
 	.num_ranks		= 1,
 	.device_width		= 32,
 
-	.module_mfg_id		= MFGID_MICRON,
+	.module_mfg_id		= MFGID_LONGSYS,
 	.dram_mfg_id		= MFGID_MICRON,
 
 	.part_num		= "FEPRF6432-58A1930",
@@ -357,7 +358,7 @@ const struct nonspd_mem_info foresee_lpddr4x_flxc2004g_n1 = {
 	.num_ranks		= 2,
 	.device_width		= 32,
 
-	.module_mfg_id		= MFGID_MICRON,
+	.module_mfg_id		= MFGID_LONGSYS,
 	.dram_mfg_id		= MFGID_MICRON,
 
 	.part_num		= "FLXC2004G-N1",
