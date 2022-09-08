@@ -37,8 +37,6 @@
 
 #include "drivers/google/cros_ec.h"
 
-#include "lib/sku.h"
-
 #include "oak.h"
 
 static struct platform_cmd *oak_sub[] = {
@@ -55,17 +53,9 @@ static struct platform_cb oak_cb = {
 	.sys		= &oak_sys_cb,
 };
 
-/* TODO(b/183045220): Remove after hana is migrated to unibuild */
-#ifndef CONFIG_UNIBUILD
-static const struct sku_info hana_sku_info = { .brand = "LEAO" };
-#endif
-
 static struct platform_intf platform_oak = {
 	.type		= PLATFORM_ARMV8,
 	.sub		= oak_sub,
 	.cb		= &oak_cb,
-#ifndef CONFIG_UNIBUILD
-	.sku_info	= &hana_sku_info,
-#endif
 };
 REGISTER_PLATFORM(platform_oak, "Oak");
