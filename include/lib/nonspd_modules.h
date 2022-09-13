@@ -1,7 +1,6 @@
 /* SPDX-License-Identifier: BSD-3-Clause */
 /*
- * Copyright 2021, Google Inc.
- * All rights reserved.
+ * Copyright 2021 Google LLC
  *
  * SPD-like memory info for memory without real SPD data.
  */
