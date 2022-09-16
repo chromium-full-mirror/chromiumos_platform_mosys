@@ -84,10 +84,3 @@ static struct platform_intf platform_chell = {
 	.sku_info = &chell_sku_info,
 };
 REGISTER_PLATFORM(platform_chell, "Chell");
-
-static struct platform_intf platform_lars = {
-	.type = PLATFORM_X86_64,
-	.sub = glados_sub,
-	.cb = &glados_cb,
-};
-REGISTER_PLATFORM(platform_lars, "Lars");
