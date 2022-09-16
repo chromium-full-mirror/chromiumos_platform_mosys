@@ -17,32 +17,6 @@
 #include "lib/string.h"
 #include "lib/vpd.h"
 
-/*
- * Extracts the SERIES part from VPD "customization_id".
- *
- * customization_id should be in LOEMID-SERIES format.
- * If - is not found, return nothing.
- */
-#ifndef CONFIG_UNIBUILD
-static char *_extract_customization_id_series_part(void)
-{
-	char *customization_id;
-	char *series = NULL, *dash;
-
-	customization_id = vpd_get_value("customization_id");
-	if (!customization_id)
-		return NULL;
-
-	dash = strchr(customization_id, '-');
-	if (dash) {
-		series = mosys_strdup(dash + 1);
-	}
-	free(customization_id);
-
-	return series;
-}
-#endif
-
 int sku_get_number(struct platform_intf *intf)
 {
 	if (!intf || !intf->cb || !intf->cb->sys) {
@@ -101,12 +75,11 @@ char *sku_get_model(struct platform_intf *intf)
 	if (info && info->model)
 		return mosys_strdup(info->model);
 
-	/* First try customization_id (go/cros-chassis-id). */
-	result = _extract_customization_id_series_part();
-	if (!result && intf->name)
+	if (intf->name) {
 		result = mosys_strdup(intf->name);
-	if (result)
 		strlower(result);
+	}
+
 	return result;
 #endif
 }
