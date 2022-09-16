@@ -63,7 +63,7 @@ char *sku_get_brand(struct platform_intf *intf)
 	if (info && info->brand)
 		return mosys_strdup(info->brand);
 
-	return vpd_get_value("rlz_brand_code");
+	return NULL;
 }
 
 char *sku_get_chassis(struct platform_intf *intf)
