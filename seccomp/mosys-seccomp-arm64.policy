@@ -55,7 +55,7 @@ nanosleep: 1
 rt_sigprocmask: 1
 tgkill: 1
 # Don't allow mmap with both PROT_WRITE and PROT_EXEC
-mmap: arg2 in 0xfffffffb || arg2 in 0xfffffffd
+mmap: arg2 in ~PROT_EXEC || arg2 in ~PROT_WRITE
 set_tid_address: 1
 fadvise64: 1
 gettimeofday: 1
@@ -69,7 +69,7 @@ writev: 1
 # Needed for cloning process
 brk: 1
 # Don't allow mprotect with both PROT_WRITE and PROT_EXEC
-mprotect: arg2 in 0xfffffffb || arg2 in 0xfffffffd
+mprotect: arg2 in ~PROT_EXEC || arg2 in ~PROT_WRITE
 uname: 1
 rt_sigaction: 1
 rt_sigreturn: 1
