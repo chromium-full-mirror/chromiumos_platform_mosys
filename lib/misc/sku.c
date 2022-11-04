@@ -40,16 +40,6 @@ char *sku_get_brand(struct platform_intf *intf)
 	return NULL;
 }
 
-char *sku_get_chassis(struct platform_intf *intf)
-{
-	char *result = NULL;
-
-	result = sku_get_model(intf);
-	if (result)
-		strupper(result);
-	return result;
-}
-
 char *sku_get_model(struct platform_intf *intf)
 {
 #ifdef CONFIG_UNIBUILD

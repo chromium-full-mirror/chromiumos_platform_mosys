@@ -43,14 +43,6 @@ extern int sku_get_number(struct platform_intf *intf);
 extern char *sku_get_brand(struct platform_intf *intf);
 
 /**
- * sku_get_chassis - get chassis id
- *
- * returns allocated string containing value if found
- * returns NULL to indicate value not found or error
- */
-extern char *sku_get_chassis(struct platform_intf *intf);
-
-/**
  * sku_get_customization - get customization ID from model then VPD
  *
  * returns allocated string containing value if found

@@ -106,13 +106,6 @@ static int platform_model_cmd(struct platform_intf *intf,
 	return print_platforminfo("model", sku_get_model(intf));
 }
 
-static int platform_chassis_cmd(struct platform_intf *intf,
-				struct platform_cmd *cmd,
-				int argc, char **argv)
-{
-	return print_platforminfo("chassis", sku_get_chassis(intf));
-}
-
 /* These commands are completely unused on unibuild systems. */
 #ifndef CONFIG_UNIBUILD
 static int platform_brand_cmd(struct platform_intf *intf,
@@ -164,12 +157,6 @@ static struct platform_cmd platform_cmds[] = {
 		.desc	= "Display Model (deprecated)",
 		.type	= ARG_TYPE_GETTER,
 		.arg	= { .func = platform_model_cmd }
-	},
-	{
-		.name	= "chassis",
-		.desc	= "Display Chassis ID (deprecated)",
-		.type	= ARG_TYPE_GETTER,
-		.arg	= { .func = platform_chassis_cmd }
 	},
 	{
 		.name	= "sku",
