@@ -30,6 +30,7 @@ int sku_get_number(struct platform_intf *intf)
 	return -1;
 }
 
+#ifndef CONFIG_UNIBUILD
 char *sku_get_brand(struct platform_intf *intf)
 {
 	const struct sku_info *info = intf->sku_info;
@@ -42,23 +43,6 @@ char *sku_get_brand(struct platform_intf *intf)
 
 char *sku_get_model(struct platform_intf *intf)
 {
-#ifdef CONFIG_UNIBUILD
-	/*
-	 * Right now, the longest model name is 13 characters.  64
-	 * bytes is well in excess of what's necessary here.
-	 */
-	char model_buf[64];
-
-	if (read_file("/run/chromeos-config/v1/name", model_buf,
-		      sizeof(model_buf), LOG_ERR) < 0) {
-		lprintf(LOG_ERR,
-			"%s: Failed to read model from chromeos-config\n",
-			__func__);
-		return NULL;
-	}
-
-	return mosys_strdup(model_buf);
-#else
 	const struct sku_info *info = intf->sku_info;
 	char *result = NULL;
 
@@ -71,7 +55,6 @@ char *sku_get_model(struct platform_intf *intf)
 	}
 
 	return result;
-#endif
 }
 
 char *sku_get_customization(struct platform_intf *intf)
@@ -89,3 +72,4 @@ char *sku_get_customization(struct platform_intf *intf)
 
 	return NULL;
 }
+#endif

@@ -99,6 +99,8 @@ static int platform_version_cmd(struct platform_intf *intf,
 	return -1;
 }
 
+/* These commands are completely unused on unibuild systems. */
+#ifndef CONFIG_UNIBUILD
 static int platform_model_cmd(struct platform_intf *intf,
 			      struct platform_cmd *cmd,
 			      int argc, char **argv)
@@ -106,8 +108,6 @@ static int platform_model_cmd(struct platform_intf *intf,
 	return print_platforminfo("model", sku_get_model(intf));
 }
 
-/* These commands are completely unused on unibuild systems. */
-#ifndef CONFIG_UNIBUILD
 static int platform_brand_cmd(struct platform_intf *intf,
 			      struct platform_cmd *cmd,
 			      int argc, char **argv)
@@ -153,18 +153,19 @@ static struct platform_cmd platform_cmds[] = {
 		.arg	= { .func = platform_name_cmd }
 	},
 	{
-		.name	= "model",
-		.desc	= "Display Model (deprecated)",
-		.type	= ARG_TYPE_GETTER,
-		.arg	= { .func = platform_model_cmd }
-	},
-	{
 		.name	= "sku",
 		.desc	= "Display SKU Number (deprecated)",
 		.type	= ARG_TYPE_GETTER,
 		.arg	= { .func = platform_sku_cmd }
 	},
 #ifndef CONFIG_UNIBUILD
+	{
+		.name	= "model",
+		.desc	= "Display Model (deprecated)",
+		.type	= ARG_TYPE_GETTER,
+		.replaced_by_cros_config = true,
+		.arg	= { .func = platform_model_cmd }
+	},
 	{
 		.name	= "brand",
 		.desc	= "Display Brand Code (deprecated)",
