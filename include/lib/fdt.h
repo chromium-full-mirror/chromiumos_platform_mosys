@@ -63,14 +63,6 @@ extern int fdt_get_ram_revision_id(uint8_t *revision_id1, uint8_t *revision_id2)
  */
 extern int fdt_get_board_id(uint32_t *board_id);
 
-/*
- * fdt_get_sku_id  -  return platform SKU ID from FDT sku-id node
- *
- * returns SKU ID in integer
- * returns -1 if not found, other <0 values indicate invalid SKU ID
- */
-extern int fdt_get_sku_id(void);
-
 /**
  * fdt_sysinfo_cb - common sysinfo callbacks for ARM
  */

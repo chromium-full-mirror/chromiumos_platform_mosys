@@ -168,24 +168,6 @@ int fdt_get_board_id(uint32_t *board_id)
 	return 0;
 }
 
-int fdt_get_sku_id(void)
-{
-	uint32_t sku_id = 0xffffffff;
-
-	if (fdt_get_uint32_val(FDT_SKU_ID_PATH, &sku_id) < 0) {
-		lprintf(LOG_ERR, "%s: Error when reading board ID\n", __func__);
-		return -1;
-	}
-
-	if (sku_id == 0xffffffff) {
-		lprintf(LOG_ERR, "%s: sku_id is invalid.\n", __func__);
-		return -1;
-	}
-
-	lprintf(LOG_DEBUG, "%s: sku_id: %u\n", __func__, sku_id);
-	return sku_id;
-}
-
 /* Common sysinfo callbacks for almost all ARM devices. */
 static char *fdt_sysinfo_get_version(struct platform_intf *intf)
 {
@@ -199,12 +181,6 @@ static char *fdt_sysinfo_get_version(struct platform_intf *intf)
 	return mosys_strdup(board_id_str);
 }
 
-static int fdt_sysinfo_get_sku(struct platform_intf *intf)
-{
-	return fdt_get_sku_id();
-}
-
 struct sys_cb fdt_sysinfo_cb = {
 	.version = fdt_sysinfo_get_version,
-	.sku_number = fdt_sysinfo_get_sku,
 };

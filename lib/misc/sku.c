@@ -17,19 +17,6 @@
 #include "lib/string.h"
 #include "lib/vpd.h"
 
-int sku_get_number(struct platform_intf *intf)
-{
-	if (!intf || !intf->cb || !intf->cb->sys) {
-		return -1;
-	}
-
-	if (intf->cb->sys->sku_number) {
-		return intf->cb->sys->sku_number(intf);
-	}
-
-	return -1;
-}
-
 #ifndef CONFIG_UNIBUILD
 char *sku_get_brand(struct platform_intf *intf)
 {

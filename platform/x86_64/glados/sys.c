@@ -37,5 +37,4 @@
 struct sys_cb glados_sys_cb = {
 	.version		= &cros_ec_board_version_str,
 	.vendor			= &smbios_sysinfo_get_vendor,
-	.sku_number		= &smbios_sysinfo_get_sku_number,
 };

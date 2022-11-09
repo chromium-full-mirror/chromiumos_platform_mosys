@@ -27,14 +27,6 @@ struct sku_info {
 };
 
 /**
- * sku_get_number - get SKU number
- *
- * returns integer representing SKU number
- * returns -1 to indicate value not found or error
- */
-extern int sku_get_number(struct platform_intf *intf);
-
-/**
  * sku_get_brand - get (RLZ) brand code
  *
  * returns allocated string containing value if found

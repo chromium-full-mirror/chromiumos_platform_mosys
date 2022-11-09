@@ -123,22 +123,6 @@ static int platform_customization_cmd(struct platform_intf *intf,
 }
 #endif  /* CONFIG_UNIBUILD */
 
-static int platform_sku_cmd(struct platform_intf *intf,
-			    struct platform_cmd *cmd,
-			    int argc, char **argv)
-{
-	char buffer[16];
-	int sku_number = sku_get_number(intf);
-
-	if (sku_number < 0) {
-		errno = ENOSYS;
-		return -1;
-	}
-
-	snprintf(buffer, sizeof(buffer), "%d", sku_number);
-	return print_platforminfo(cmd->name, mosys_strdup(buffer));
-}
-
 static struct platform_cmd platform_cmds[] = {
 	{
 		.name	= "vendor",
@@ -151,12 +135,6 @@ static struct platform_cmd platform_cmds[] = {
 		.desc	= "Display Platform Product Name (deprecated)",
 		.type	= ARG_TYPE_GETTER,
 		.arg	= { .func = platform_name_cmd }
-	},
-	{
-		.name	= "sku",
-		.desc	= "Display SKU Number (deprecated)",
-		.type	= ARG_TYPE_GETTER,
-		.arg	= { .func = platform_sku_cmd }
 	},
 #ifndef CONFIG_UNIBUILD
 	{

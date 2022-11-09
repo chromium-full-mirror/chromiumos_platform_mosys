@@ -36,7 +36,6 @@ static struct platform_cmd *subcommands[] = {
 static struct sys_cb smbios_sys_cb = {
 	.version = &smbios_sysinfo_get_version,
 	.vendor = &smbios_sysinfo_get_vendor,
-	.sku_number = &smbios_sysinfo_get_sku_number,
 };
 
 static struct platform_cb generic_x86_cb = {
