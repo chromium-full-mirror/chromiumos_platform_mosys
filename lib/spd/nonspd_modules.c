@@ -538,32 +538,6 @@ const struct nonspd_mem_info micron_lpddr4x_mt53e1g32d2np_046wta = {
 	.part_num		= "MT53E1G32D2NP-46WT:A",
 };
 
-const struct nonspd_mem_info micron_lpddr4x_mt53e1g32d2np_046wtb = {
-	.dram_type              = SPD_DRAM_TYPE_LPDDR4X,
-
-	.module_size_mbits      = 32768,
-	.num_ranks              = 2,
-	.device_width           = 32,
-
-	.module_mfg_id          = MFGID_MICRON,
-	.dram_mfg_id            = MFGID_MICRON,
-
-	.part_num               = "MT53E1G32D2NP-46WT:B",
-};
-
-const struct nonspd_mem_info foresee_lpddr4x_feprf6432_58a1930 = {
-	.dram_type		= SPD_DRAM_TYPE_LPDDR4X,
-
-	.module_size_mbits	= 32768,
-	.num_ranks		= 1,
-	.device_width		= 32,
-
-	.module_mfg_id		= MFGID_LONGSYS,
-	.dram_mfg_id		= MFGID_MICRON,
-
-	.part_num		= "FEPRF6432-58A1930",
-};
-
 const struct nonspd_mem_info foresee_lpddr4x_flxc2004g_n1 = {
 	.dram_type		= SPD_DRAM_TYPE_LPDDR4X,
 
@@ -588,45 +562,6 @@ const struct nonspd_mem_info micron_lpddr4x_mt53e2g32d4nq_046wta = {
 	.dram_mfg_id		= MFGID_MICRON,
 
 	.part_num		= "MT53E2G32D4NQ-46WT:A",
-};
-
-const struct nonspd_mem_info micron_lpddr4x_mt53e2g32d4nq_046wtc = {
-	.dram_type		= SPD_DRAM_TYPE_LPDDR4X,
-
-	.module_size_mbits	= 65536,
-	.num_ranks		= 2,
-	.device_width		= 32,
-
-	.module_mfg_id		= MFGID_MICRON,
-	.dram_mfg_id		= MFGID_MICRON,
-
-	.part_num		= "MT53E2G32D4NQ-46WT:C",
-};
-
-const struct nonspd_mem_info micron_lpddr4x_mt53e512m32d1np_046wtb = {
-	.dram_type              = SPD_DRAM_TYPE_LPDDR4X,
-
-	.module_size_mbits      = 16384,
-	.num_ranks              = 1,
-	.device_width           = 32,
-
-	.module_mfg_id		= MFGID_MICRON,
-	.dram_mfg_id		= MFGID_MICRON,
-
-	.part_num               = "MT53E512M32D1NP-046WT:B",
-};
-
-const struct nonspd_mem_info micron_lpddr4x_mt53e512m32d2np_046 = {
-	.dram_type		= SPD_DRAM_TYPE_LPDDR4X,
-
-	.module_size_mbits	= 16384,
-	.num_ranks		= 1,
-	.device_width		= 32,
-
-	.module_mfg_id		= MFGID_MICRON,
-	.dram_mfg_id		= MFGID_MICRON,
-
-	.part_num		= "MT53E512M32D2NP-046",
 };
 
 const struct nonspd_mem_info micron_lpddr4x_mt53d1g32d4dt_046wtd = {
@@ -757,32 +692,6 @@ const struct nonspd_mem_info samsung_lpddr4x_kmdv6001da_b620 = {
 	.dram_mfg_id		= MFGID_SAMSUNG,
 
 	.part_num		= "KMDV6001DA-B620",
-};
-
-const struct nonspd_mem_info samsung_lpddr4x_k4u6e3s4aa_mgcr = {
-	.dram_type		= SPD_DRAM_TYPE_LPDDR4X,
-
-	.module_size_mbits	= 16384,
-	.num_ranks		= 1,
-	.device_width		= 32,
-
-	.module_mfg_id		= MFGID_SAMSUNG,
-	.dram_mfg_id		= MFGID_SAMSUNG,
-
-	.part_num		= "K4U6E3S4AA-MGCR",
-};
-
-const struct nonspd_mem_info samsung_lpddr4x_k4u6e3s4ab_mgcl = {
-	.dram_type              = SPD_DRAM_TYPE_LPDDR4X,
-
-	.module_size_mbits      = 16384,
-	.num_ranks              = 1,
-	.device_width           = 32,
-
-	.module_mfg_id		= MFGID_SAMSUNG,
-	.dram_mfg_id		= MFGID_SAMSUNG,
-
-	.part_num               = "K4U6E3S4AB-MGCL",
 };
 
 const struct nonspd_mem_info samsung_lpddr4x_k4ube3d4aa_mgcl = {
