@@ -49,7 +49,6 @@ static struct platform_cb oak_cb = {
 	.ec		= &cros_ec_cb,
 	.memory		= &oak_memory_cb,
 	.pd		= &cros_pd_cb,
-	.sys		= &oak_sys_cb,
 };
 
 static struct platform_intf platform_oak = {

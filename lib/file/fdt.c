@@ -47,8 +47,6 @@
 #define FDT_ROOT		"/proc/device-tree/"
 /* FIXME: assume coreboot for now */
 #define FDT_RAM_CODE_PATH	"firmware/coreboot/ram-code"
-#define FDT_BOARD_ID_PATH	"firmware/coreboot/board-id"
-#define FDT_SKU_ID_PATH		"firmware/coreboot/sku-id"
 
 #define LPDDR3_MFG_ID_PATH	"lpddr3/manufacturer_id"
 #define LPDDR3_REV_ID_PATH	"lpddr3/revision_id"
@@ -151,36 +149,3 @@ int fdt_get_ram_revision_id(uint8_t *revision_id1, uint8_t *revision_id2)
 		*revision_id2);
 	return 0;
 }
-
-int fdt_get_board_id(uint32_t *board_id)
-{
-	if (fdt_get_uint32_val(FDT_BOARD_ID_PATH, board_id) < 0) {
-		lprintf(LOG_ERR, "%s: Error when reading board ID\n", __func__);
-		return -1;
-	}
-
-	if (*board_id == 0xffffffff) {
-		lprintf(LOG_ERR, "%s: board_id is invalid.\n", __func__);
-		return -1;
-	}
-
-	lprintf(LOG_DEBUG, "%s: board_id: %u\n", __func__, *board_id);
-	return 0;
-}
-
-/* Common sysinfo callbacks for almost all ARM devices. */
-static char *fdt_sysinfo_get_version(struct platform_intf *intf)
-{
-	uint32_t board_id;
-	char board_id_str[16];
-
-	if (fdt_get_board_id(&board_id) < 0)
-		return NULL;
-
-	snprintf(board_id_str, sizeof(board_id_str), "rev%u", board_id);
-	return mosys_strdup(board_id_str);
-}
-
-struct sys_cb fdt_sysinfo_cb = {
-	.version = fdt_sysinfo_get_version,
-};

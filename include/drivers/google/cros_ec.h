@@ -73,15 +73,6 @@ extern struct ec_cb cros_pd_cb;
 /* EC commands */
 ssize_t cros_ec_version(struct ec_cb *ec, char *buf, size_t buf_sz);
 int cros_ec_chip_info(struct ec_cb *ec, struct ec_response_get_chip_info *info);
-int cros_ec_board_version(struct ec_cb *ec);
 int cros_ec_pd_chip_info(struct ec_cb *ec, int port);
-
-/*
- * This is intended to be used in platform-specific system callbacks (sys_cb)
- * which means it also allocates memory that must be freed. For these callbacks
- * the high-level command handling code is typically responsible for calling
- * the function and freeing the allocated memory.
- */
-char *cros_ec_board_version_str(struct platform_intf *intf);
 
 #endif	/* MOSYS_DRIVERS_EC_GOOGLE__ */

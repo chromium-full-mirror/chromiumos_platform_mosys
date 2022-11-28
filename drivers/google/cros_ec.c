@@ -46,7 +46,6 @@
 #include "lib/math.h"
 #include "lib/string.h"
 
-#define BOARD_VERSION_LEN	8	/* a 16-bit value or "Unknown" */
 #define ANX74XX_VENDOR_ID	0xAAAA
 #define PS8751_VENDOR_ID	0x1DA0
 
@@ -83,60 +82,6 @@ ssize_t cros_ec_version(struct ec_cb *ec, char *buf, size_t buf_sz)
 
 	lprintf(LOG_DEBUG, "%s: cannot determine version\n", __func__);
 	return -1;
-}
-
-int cros_ec_board_version(struct ec_cb *ec)
-{
-	struct cros_ec_priv *priv;
-	struct ec_response_board_version r;
-	int rc = 0;
-
-	if (ec->setup && ec->setup(ec) < 0) {
-		lprintf(LOG_ERR, "%s: EC setup failed!\n", __func__);
-		return -1;
-	}
-
-	MOSYS_CHECK(ec && ec->priv);
-	priv = ec->priv;
-
-	MOSYS_CHECK(priv->cmd);
-	rc = priv->cmd(ec, EC_CMD_GET_BOARD_VERSION, 0, &r, sizeof(r), NULL, 0);
-
-	if (ec->destroy && ec->destroy(ec) < 0) {
-		lprintf(LOG_ERR, "%s: EC destroy failed!\n", __func__);
-		return -1;
-	}
-
-	if (rc)
-		return -1;
-
-	lprintf(LOG_DEBUG, "CrOS EC Board Version: %d\n", r.board_version);
-
-	return r.board_version;
-}
-
-char *cros_ec_board_version_str(struct platform_intf *intf)
-{
-	int version;
-	char *str = mosys_zalloc(BOARD_VERSION_LEN);
-
-	/* Baseboard may have variants without EC in which case this
-	   function needs to be used more selectively. */
-	MOSYS_CHECK(intf && intf->cb->ec);
-
-	version = cros_ec_board_version(intf->cb->ec);
-	if (version < 0) {
-		snprintf(str, BOARD_VERSION_LEN, "Unknown");
-	} else {
-		/*
-		 * Prepend "rev" to match format currently used for CrOS
-		 * platforms with devicetree and newer (beginning with Reef)
-		 * SMBIOS system (type-1) version format.
-		 */
-		snprintf(str, BOARD_VERSION_LEN, "rev%d", version);
-	}
-
-	return str;
 }
 
 int cros_ec_chip_info(struct ec_cb *ec, struct ec_response_get_chip_info *info)

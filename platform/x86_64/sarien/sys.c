@@ -34,6 +34,5 @@
 #include "sarien.h"
 
 struct sys_cb sarien_sys_cb = {
-	.version		= &smbios_sysinfo_get_version,
 	.vendor			= &smbios_sysinfo_get_vendor,
 };

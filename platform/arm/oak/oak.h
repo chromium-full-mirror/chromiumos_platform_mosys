@@ -38,6 +38,5 @@
 
 /* platform callbacks */
 extern struct memory_cb oak_memory_cb;
-extern struct sys_cb oak_sys_cb;
 
 #endif /* PLATFORM_OAK_H */

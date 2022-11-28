@@ -25,7 +25,6 @@ static struct platform_cmd *asurada_sub[] = {
 static struct platform_cb asurada_cb = {
 	.ec		= &cros_ec_cb,
 	.memory		= &asurada_memory_cb,
-	.sys		= &asurada_sys_cb,
 };
 
 static struct platform_intf platform_asurada = {

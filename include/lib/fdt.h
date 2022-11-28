@@ -56,16 +56,4 @@ extern int fdt_get_ram_manufacturer_id(uint8_t *manufacturer_id);
  */
 extern int fdt_get_ram_revision_id(uint8_t *revision_id1, uint8_t *revision_id2);
 
-/*
- * fdt_get_board_id - Obtain board ID code from FDT board-id node
- *
- * returns 0 to indicate success, <0 to indicate failure.
- */
-extern int fdt_get_board_id(uint32_t *board_id);
-
-/**
- * fdt_sysinfo_cb - common sysinfo callbacks for ARM
- */
-extern struct sys_cb fdt_sysinfo_cb;
-
 #endif	/* MOSYS_LIB_FDT_H__ */

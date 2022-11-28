@@ -91,7 +91,6 @@ struct memory_cb {
 struct sys_cb {
 	/* methods useful for probing */
 	char *(*vendor)(struct platform_intf *intf);
-	char *(*version)(struct platform_intf *intf);
 };
 
 struct ec_cb {

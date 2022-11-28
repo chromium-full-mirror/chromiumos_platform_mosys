@@ -86,19 +86,6 @@ static int platform_name_cmd(struct platform_intf *intf,
 	return rc;
 }
 
-static int platform_version_cmd(struct platform_intf *intf,
-			      struct platform_cmd *cmd,
-			      int argc, char **argv)
-{
-	if (intf->cb && intf->cb->sys && intf->cb->sys->version) {
-		return print_platforminfo("version",
-					  intf->cb->sys->version(intf));
-	}
-
-	errno = ENOSYS;
-	return -1;
-}
-
 /* These commands are completely unused on unibuild systems. */
 #ifndef CONFIG_UNIBUILD
 static int platform_model_cmd(struct platform_intf *intf,
@@ -159,12 +146,6 @@ static struct platform_cmd platform_cmds[] = {
 		.arg	= { .func = platform_customization_cmd }
 	},
 #endif  /* CONFIG_UNIBUILD */
-	{
-		.name	= "version",
-		.desc	= "Display Platform Version (deprecated)",
-		.type	= ARG_TYPE_GETTER,
-		.arg	= { .func = platform_version_cmd }
-	},
 	{NULL}
 };
 
