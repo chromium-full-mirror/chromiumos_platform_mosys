@@ -41,8 +41,6 @@
 #include "lib/memory.h"
 #include "lib/sku.h"
 
-#include "sarien.h"
-
 static struct platform_cmd *sarien_sub[] = {
 	&cmd_ec,
 	&cmd_memory,
@@ -53,7 +51,6 @@ static struct platform_cmd *sarien_sub[] = {
 static struct platform_cb sarien_cb = {
 	.ec		= &wilco_ec_cb,
 	.memory		= &smbios_memory_cb,
-	.sys		= &sarien_sys_cb,
 };
 
 static struct platform_intf platform_sarien = {

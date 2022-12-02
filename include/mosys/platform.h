@@ -87,12 +87,6 @@ struct memory_cb {
 				const struct nonspd_mem_info **info);
 };
 
-/* system information callbacks */
-struct sys_cb {
-	/* methods useful for probing */
-	char *(*vendor)(struct platform_intf *intf);
-};
-
 struct ec_cb {
 	ssize_t (*vendor)(struct ec_cb *ec, char *buf, size_t buf_sz);
 	ssize_t (*name)(struct ec_cb *ec, char *buf, size_t buf_sz);
@@ -108,7 +102,6 @@ struct ec_cb {
 /* platform-specific callbacks */
 struct platform_cb {
 	struct memory_cb *memory;	/* memory callbacks */
-	struct sys_cb *sys;		/* system callbacks */
 	struct ec_cb *ec;		/* ec callbacks */
 	struct ec_cb *pd;		/* pd callbacks */
 	struct ec_cb *fp;		/* fp callbacks */

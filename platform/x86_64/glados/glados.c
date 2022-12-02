@@ -41,8 +41,6 @@
 
 #include "drivers/google/cros_ec.h"
 
-#include "glados.h"
-
 static struct platform_cmd *glados_sub[] = {
 	&cmd_ec,
 	&cmd_memory,
@@ -55,7 +53,6 @@ static struct platform_cb glados_cb = {
 	.ec		= &cros_ec_cb,
 	.pd		= &cros_pd_cb,
 	.memory		= &smbios_memory_cb,
-	.sys 		= &glados_sys_cb,
 };
 
 static const struct sku_info asuka_sku_info = { .brand = "DEAH" };

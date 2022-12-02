@@ -42,6 +42,22 @@
 #include "mosys/log.h"
 #include "mosys/kv_pair.h"
 
+static int platform_name_cmd(struct platform_intf *intf,
+			     struct platform_cmd *cmd,
+			     int argc, char **argv)
+{
+	int rc;
+	struct kv_pair *kv = kv_pair_new();
+
+	kv_pair_add(kv, "name", intf->name);
+	rc = kv_pair_print(kv);
+	kv_pair_free(kv);
+
+	return rc;
+}
+
+/* These commands are completely unused on unibuild systems. */
+#ifndef CONFIG_UNIBUILD
 static int print_platforminfo(const char *key, char *value)
 {
 	struct kv_pair *kv = kv_pair_new();
@@ -59,35 +75,6 @@ static int print_platforminfo(const char *key, char *value)
 	return rc;
 }
 
-static int platform_vendor_cmd(struct platform_intf *intf,
-			       struct platform_cmd *cmd,
-			       int argc, char **argv)
-{
-	if (intf->cb && intf->cb->sys && intf->cb->sys->vendor) {
-		return print_platforminfo("vendor",
-					  intf->cb->sys->vendor(intf));
-	}
-
-	errno = ENOSYS;
-	return -1;
-}
-
-static int platform_name_cmd(struct platform_intf *intf,
-			     struct platform_cmd *cmd,
-			     int argc, char **argv)
-{
-	int rc;
-	struct kv_pair *kv = kv_pair_new();
-
-	kv_pair_add(kv, "name", intf->name);
-	rc = kv_pair_print(kv);
-	kv_pair_free(kv);
-
-	return rc;
-}
-
-/* These commands are completely unused on unibuild systems. */
-#ifndef CONFIG_UNIBUILD
 static int platform_model_cmd(struct platform_intf *intf,
 			      struct platform_cmd *cmd,
 			      int argc, char **argv)
@@ -111,12 +98,6 @@ static int platform_customization_cmd(struct platform_intf *intf,
 #endif  /* CONFIG_UNIBUILD */
 
 static struct platform_cmd platform_cmds[] = {
-	{
-		.name	= "vendor",
-		.desc	= "Display Platform Vendor (deprecated)",
-		.type	= ARG_TYPE_GETTER,
-		.arg	= { .func = platform_vendor_cmd }
-	},
 	{
 		.name	= "name",
 		.desc	= "Display Platform Product Name (deprecated)",

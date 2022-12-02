@@ -27,62 +27,12 @@
  * OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
-#include <limits.h>
-#include <stdio.h>
 #include <stdlib.h>
-#include <sys/types.h>
 
-#include "mosys/alloc.h"
-#include "mosys/kv_pair.h"
-#include "mosys/log.h"
 #include "mosys/platform.h"
 
-#include "lib/file.h"
 #include "lib/smbios.h"
 #include "lib/smbios_tables.h"
-
-#define	SYSFS_SMBIOS_DIR	"/sys/class/dmi/id"
-
-/*
- * smbios_scan_sysfs - scan for a SMBIOS entry by filename and return its value
- *
- * @filename:	filename to scan for
- *
- * Note: User must remember to free allocated memory
- *
- * returns pointer to allocated memory containing SMBIOS info
- * returns NULL if not found
- */
-static char *smbios_scan_sysfs(const char *filename)
-{
-	ssize_t bytes_read;
-	char path[PATH_MAX];
-	char contents[SMBIOS_MAX_STRING_LENGTH + 1];
-
-	snprintf(path, sizeof(path), SYSFS_SMBIOS_DIR "/%s", filename);
-	bytes_read = read_file(path, contents, sizeof(contents), LOG_DEBUG);
-	if (bytes_read <= 0)
-		return NULL;
-
-	/* Trim off trailing newline, if there is one. */
-	if (contents[bytes_read - 1] == '\n')
-		contents[bytes_read - 1] = '\0';
-
-	return mosys_strdup(contents);
-}
-
-/*
- * smbios_sysinfo_get_vendor  -  return platform vendor
- *
- * @intf:       platform interface
- *
- * returns pointer to allocated platform vendor string
- * returns NULL if not found
- */
-char *smbios_sysinfo_get_vendor(struct platform_intf *intf)
-{
-	return smbios_scan_sysfs("sys_vendor");
-}
 
 /*
  * Memory callbacks

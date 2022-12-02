@@ -10,6 +10,5 @@
 
 /* platform callbacks */
 extern struct memory_cb asurada_memory_cb;
-extern struct sys_cb asurada_sys_cb;
 
 #endif /* PLATFORM_ASURADA_H */

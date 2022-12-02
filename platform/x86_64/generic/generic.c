@@ -9,9 +9,7 @@
  *
  * - Unibuild
  * - We have a Chrome OS EC
- * - Memory and system information is available in SMBIOS
- * - Has a battery (TODO(b/183403993): drop this assumption, which
- *   would add support for chromeboxen as well)
+ * - Memory information is available in SMBIOS
  *
  * This implements a common platform_intf for all devices which that
  * applies to.
@@ -33,14 +31,9 @@ static struct platform_cmd *subcommands[] = {
 	NULL,
 };
 
-static struct sys_cb smbios_sys_cb = {
-	.vendor = &smbios_sysinfo_get_vendor,
-};
-
 static struct platform_cb generic_x86_cb = {
 	.ec = &cros_ec_cb,
 	.memory = &smbios_memory_cb,
-	.sys = &smbios_sys_cb,
 };
 
 /*
