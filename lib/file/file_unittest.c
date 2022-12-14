@@ -31,6 +31,7 @@
 #include <setjmp.h>
 #include <stdarg.h>
 #include <stddef.h>
+#include <stdint.h>
 #include <unistd.h>
 
 // cmocka doesn't include some headers it uses, e.g. setjmp. Prevent
