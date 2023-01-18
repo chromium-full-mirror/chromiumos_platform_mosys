@@ -56,8 +56,6 @@ static int platform_name_cmd(struct platform_intf *intf,
 	return rc;
 }
 
-/* These commands are completely unused on unibuild systems. */
-#ifndef CONFIG_UNIBUILD
 static int print_platforminfo(const char *key, char *value)
 {
 	struct kv_pair *kv = kv_pair_new();
@@ -95,7 +93,6 @@ static int platform_customization_cmd(struct platform_intf *intf,
 {
 	return print_platforminfo("customization", sku_get_customization(intf));
 }
-#endif  /* CONFIG_UNIBUILD */
 
 static struct platform_cmd platform_cmds[] = {
 	{
@@ -104,7 +101,6 @@ static struct platform_cmd platform_cmds[] = {
 		.type	= ARG_TYPE_GETTER,
 		.arg	= { .func = platform_name_cmd }
 	},
-#ifndef CONFIG_UNIBUILD
 	{
 		.name	= "model",
 		.desc	= "Display Model (deprecated)",
@@ -126,7 +122,6 @@ static struct platform_cmd platform_cmds[] = {
 		.replaced_by_cros_config = true,
 		.arg	= { .func = platform_customization_cmd }
 	},
-#endif  /* CONFIG_UNIBUILD */
 	{NULL}
 };
 
@@ -134,5 +129,6 @@ struct platform_cmd cmd_platform = {
 	.name	= "platform",
 	.desc	= "Platform Information (deprecated)",
 	.type	= ARG_TYPE_SUB,
+	.replaced_by_cros_config = true,
 	.arg	= { .sub = platform_cmds }
 };

@@ -1,3 +1,5 @@
-libmosys_src += files(
-  'sku.c',
-)
+if not unibuild
+  libmosys_src += files(
+    'sku.c',
+  )
+endif

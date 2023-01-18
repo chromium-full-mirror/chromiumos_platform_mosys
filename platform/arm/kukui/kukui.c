@@ -39,14 +39,12 @@
 
 #include "lib/file.h"
 #include "lib/math.h"
-#include "lib/sku.h"
 
 #include "kukui.h"
 
 static struct platform_cmd *kukui_sub[] = {
 	&cmd_ec,
 	&cmd_memory,
-	&cmd_platform,
 	NULL
 };
 

@@ -8,7 +8,6 @@
 
 #include "drivers/google/cros_ec.h"
 #include "lib/file.h"
-#include "lib/sku.h"
 #include "mosys/command_list.h"
 #include "mosys/platform.h"
 
@@ -18,7 +17,6 @@ static struct platform_cmd *asurada_sub[] = {
 	&cmd_ec,
 	&cmd_memory,
 	&cmd_pd,
-	&cmd_platform,
 	NULL
 };
 

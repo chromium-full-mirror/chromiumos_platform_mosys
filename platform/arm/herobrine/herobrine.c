@@ -4,7 +4,6 @@
  */
 
 #include "drivers/google/cros_ec.h"
-#include "lib/sku.h"
 #include "mosys/command_list.h"
 #include "mosys/platform.h"
 #include "herobrine.h"
@@ -14,7 +13,6 @@ static struct platform_cmd *herobrine_sub[] = {
 	&cmd_ec,
 	&cmd_memory,
 	&cmd_pd,
-	&cmd_platform,
 	NULL
 };
 

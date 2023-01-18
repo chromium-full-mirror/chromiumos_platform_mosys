@@ -39,7 +39,6 @@
 static struct platform_cmd *gru_sub[] = {
 	&cmd_ec,
 	&cmd_memory,
-	&cmd_platform,
 	NULL
 };
 

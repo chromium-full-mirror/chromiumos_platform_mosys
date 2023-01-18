@@ -17,7 +17,6 @@
 #include "lib/string.h"
 #include "lib/vpd.h"
 
-#ifndef CONFIG_UNIBUILD
 char *sku_get_brand(struct platform_intf *intf)
 {
 	const struct sku_info *info = intf->sku_info;
@@ -59,4 +58,3 @@ char *sku_get_customization(struct platform_intf *intf)
 
 	return NULL;
 }
-#endif

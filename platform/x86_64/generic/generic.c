@@ -27,7 +27,6 @@ static struct platform_cmd *subcommands[] = {
 	&cmd_ec,
 	&cmd_memory,
 	&cmd_pd,
-	&cmd_platform,
 	NULL,
 };
 

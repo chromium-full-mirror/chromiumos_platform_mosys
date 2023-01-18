@@ -39,12 +39,10 @@
 #include "drivers/google/wilco_ec.h"
 
 #include "lib/memory.h"
-#include "lib/sku.h"
 
 static struct platform_cmd *sarien_sub[] = {
 	&cmd_ec,
 	&cmd_memory,
-	&cmd_platform,
 	NULL
 };
 
