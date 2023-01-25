@@ -15,15 +15,9 @@ struct platform_intf;
  * `brand` is the 4 letter RLZ brand code (go/crosrlz) in upper case, different
  *         for each LOEM in White Label devices, and also used for CR50 BoardID,
  *         for example 'ZZCR'.
- * `model` is the model name (the public code name on Golden Eye Device list)
- *         in lower case, for example 'samus'.
- * `customization` is the legacy support for customization_id in upper case,
- *         for example 'GOOGLE-SAMUS', also used as network config key.
  */
 struct sku_info {
 	const char *brand;
-	const char *model;
-	const char *customization;
 };
 
 /**

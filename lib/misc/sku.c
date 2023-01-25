@@ -29,11 +29,7 @@ char *sku_get_brand(struct platform_intf *intf)
 
 char *sku_get_model(struct platform_intf *intf)
 {
-	const struct sku_info *info = intf->sku_info;
 	char *result = NULL;
-
-	if (info && info->model)
-		return mosys_strdup(info->model);
 
 	if (intf->name) {
 		result = mosys_strdup(intf->name);
@@ -45,16 +41,5 @@ char *sku_get_model(struct platform_intf *intf)
 
 char *sku_get_customization(struct platform_intf *intf)
 {
-	const struct sku_info *info = intf->sku_info;
-	char *customization_id;
-
-	/* Look for model first before looking into VPD */
-	if (info && info->customization)
-		return mosys_strdup(info->customization);
-
-	customization_id = vpd_get_value("customization_id");
-	if (customization_id)
-		return customization_id;
-
-	return NULL;
+	return vpd_get_value("customization_id");
 }
