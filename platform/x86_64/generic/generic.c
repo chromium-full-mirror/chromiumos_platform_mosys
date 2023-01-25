@@ -35,48 +35,9 @@ static struct platform_cb generic_x86_cb = {
 	.memory = &smbios_memory_cb,
 };
 
-/*
- * Macro to register this platfom under many names.
- *
- * Ideally, we can get everything under the "Generic" name one day,
- * but many external services (e.g., Tast) have started relying on
- * Mosys' internal platform names for selecting tests.  Thus, we
- * duplicate the platform under many different names where required.
- */
-#define REGISTER_ALIAS(name) _register_alias_1(name, __LINE__)
-#define _register_alias_1(name, line) _register_alias_2(name, line)
-#define _register_alias_2(name, line)                   \
-	static struct platform_intf platform_##line = { \
-		.type = PLATFORM_X86_64,                \
-		.sub = subcommands,                     \
-		.cb = &generic_x86_cb,                  \
-	};                                              \
-	REGISTER_PLATFORM(platform_##line, name)
-
-REGISTER_ALIAS("Generic");
-
-/*
- * Legacy platform aliases prior to "Generic" being created.
- *
- * DO NOT APPEND NEW NAMES TO THIS LIST.  Instead, you should set the
- * mosys platform name to "Generic" in your Boxster or model.yaml
- * configuration.
- */
-REGISTER_ALIAS("Asuka");
-REGISTER_ALIAS("Caroline");
-REGISTER_ALIAS("Cave");
-REGISTER_ALIAS("Chell");
-REGISTER_ALIAS("Coral");
-REGISTER_ALIAS("Dedede");
-REGISTER_ALIAS("Fizz");
-REGISTER_ALIAS("Grunt");
-REGISTER_ALIAS("Hatch");
-REGISTER_ALIAS("Kalista");
-REGISTER_ALIAS("Lars");
-REGISTER_ALIAS("Octopus");
-REGISTER_ALIAS("Poppy");
-REGISTER_ALIAS("Puff");
-REGISTER_ALIAS("Reef");
-REGISTER_ALIAS("Sentry");
-REGISTER_ALIAS("Volteer");
-REGISTER_ALIAS("Zork");
+static struct platform_intf platform_generic = {
+	.type = PLATFORM_X86_64,
+	.sub = subcommands,
+	.cb = &generic_x86_cb,
+};
+REGISTER_PLATFORM(platform_generic, "Generic");
