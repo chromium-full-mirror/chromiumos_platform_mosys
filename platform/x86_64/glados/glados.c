@@ -39,19 +39,13 @@
 #include "mosys/log.h"
 #include "mosys/platform.h"
 
-#include "drivers/google/cros_ec.h"
-
 static struct platform_cmd *glados_sub[] = {
-	&cmd_ec,
 	&cmd_memory,
-	&cmd_pd,
 	&cmd_platform,
 	NULL
 };
 
 static struct platform_cb glados_cb = {
-	.ec		= &cros_ec_cb,
-	.pd		= &cros_pd_cb,
 	.memory		= &smbios_memory_cb,
 };
 

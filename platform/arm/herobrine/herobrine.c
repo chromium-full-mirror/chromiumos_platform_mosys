@@ -3,22 +3,20 @@
  * found in the LICENSE file.
  */
 
-#include "drivers/google/cros_ec.h"
+#include <stddef.h>
+
 #include "mosys/command_list.h"
 #include "mosys/platform.h"
 #include "herobrine.h"
 
 /* TODO(b:177917361): Add &cmd_memory */
 static struct platform_cmd *herobrine_sub[] = {
-	&cmd_ec,
 	&cmd_memory,
-	&cmd_pd,
 	NULL
 };
 
 /* TODO(b:177917361): add .memory */
 static struct platform_cb herobrine_cb = {
-	.ec	= &cros_ec_cb,
 	.memory = &herobrine_memory_cb,
 };
 

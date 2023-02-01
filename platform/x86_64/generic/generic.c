@@ -8,7 +8,6 @@
  * assumes the following:
  *
  * - Unibuild
- * - We have a Chrome OS EC
  * - Memory information is available in SMBIOS
  *
  * This implements a common platform_intf for all devices which that
@@ -17,21 +16,17 @@
 
 #include <stdlib.h>
 
-#include "drivers/google/cros_ec.h"
 #include "lib/memory.h"
 #include "lib/smbios.h"
 #include "mosys/command_list.h"
 #include "mosys/platform.h"
 
 static struct platform_cmd *subcommands[] = {
-	&cmd_ec,
 	&cmd_memory,
-	&cmd_pd,
 	NULL,
 };
 
 static struct platform_cb generic_x86_cb = {
-	.ec = &cros_ec_cb,
 	.memory = &smbios_memory_cb,
 };
 

@@ -52,7 +52,6 @@ unittest_src = files()
 
 # Subdirs with source to link against
 subdir('core')
-subdir('drivers')
 subdir('lib')
 subdir('platform')
 

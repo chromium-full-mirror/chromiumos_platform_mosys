@@ -36,18 +36,14 @@
 #include "mosys/platform.h"
 #include "mosys/log.h"
 
-#include "drivers/google/wilco_ec.h"
-
 #include "lib/memory.h"
 
 static struct platform_cmd *sarien_sub[] = {
-	&cmd_ec,
 	&cmd_memory,
 	NULL
 };
 
 static struct platform_cb sarien_cb = {
-	.ec		= &wilco_ec_cb,
 	.memory		= &smbios_memory_cb,
 };
 

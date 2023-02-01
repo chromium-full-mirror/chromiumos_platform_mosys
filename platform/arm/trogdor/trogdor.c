@@ -3,20 +3,18 @@
  * found in the LICENSE file.
  */
 
+#include <stddef.h>
+
 #include "trogdor.h"
-#include "drivers/google/cros_ec.h"
 #include "mosys/command_list.h"
 #include "mosys/platform.h"
 
 static struct platform_cmd *trogdor_sub[] = {
-	&cmd_ec,
 	&cmd_memory,
-	&cmd_pd,
 	NULL
 };
 
 static struct platform_cb trogdor_cb = {
-	.ec		= &cros_ec_cb,
 	.memory		= &trogdor_memory_cb,
 };
 

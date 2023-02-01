@@ -34,20 +34,15 @@
 #include "mosys/command_list.h"
 #include "mosys/platform.h"
 
-#include "drivers/google/cros_ec.h"
-
 #include "oak.h"
 
 static struct platform_cmd *oak_sub[] = {
-	&cmd_ec,
 	&cmd_memory,
 	NULL
 };
 
 static struct platform_cb oak_cb = {
-	.ec		= &cros_ec_cb,
 	.memory		= &oak_memory_cb,
-	.pd		= &cros_pd_cb,
 };
 
 static struct platform_intf platform_oak = {

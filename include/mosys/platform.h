@@ -87,24 +87,9 @@ struct memory_cb {
 				const struct nonspd_mem_info **info);
 };
 
-struct ec_cb {
-	ssize_t (*vendor)(struct ec_cb *ec, char *buf, size_t buf_sz);
-	ssize_t (*name)(struct ec_cb *ec, char *buf, size_t buf_sz);
-	ssize_t (*fw_version)(struct ec_cb *ec, char *buf, size_t buf_sz);
-	int (*pd_chip_info)(struct ec_cb *ec, int port);
-
-	int (*setup)(struct ec_cb *ec);
-	int (*destroy)(struct ec_cb *ec);
-
-	void *priv;	/* private data for EC */
-};
-
 /* platform-specific callbacks */
 struct platform_cb {
 	struct memory_cb *memory;	/* memory callbacks */
-	struct ec_cb *ec;		/* ec callbacks */
-	struct ec_cb *pd;		/* pd callbacks */
-	struct ec_cb *fp;		/* fp callbacks */
 };
 
 /* SKU based platform information, provided by lib/sku.h */

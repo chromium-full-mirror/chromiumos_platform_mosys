@@ -32,18 +32,15 @@
 #include <unistd.h>
 
 #include "gru.h"
-#include "drivers/google/cros_ec.h"
 #include "mosys/command_list.h"
 #include "mosys/platform.h"
 
 static struct platform_cmd *gru_sub[] = {
-	&cmd_ec,
 	&cmd_memory,
 	NULL
 };
 
 static struct platform_cb gru_cb = {
-	.ec		= &cros_ec_cb,
 	.memory		= &gru_memory_cb,
 };
 

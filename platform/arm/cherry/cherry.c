@@ -6,21 +6,17 @@
 #include <stdlib.h>
 #include <unistd.h>
 
-#include "drivers/google/cros_ec.h"
 #include "mosys/command_list.h"
 #include "mosys/platform.h"
 
 #include "cherry.h"
 
 static struct platform_cmd *cherry_sub[] = {
-	&cmd_ec,
 	&cmd_memory,
-	&cmd_pd,
 	NULL
 };
 
 static struct platform_cb cherry_cb = {
-	.ec		= &cros_ec_cb,
 	.memory		= &cherry_memory_cb,
 };
 
