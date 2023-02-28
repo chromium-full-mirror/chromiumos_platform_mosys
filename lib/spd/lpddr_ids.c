@@ -23,7 +23,7 @@ const static struct {
 	const struct nonspd_mem_info *mem_info;
 } ddr_table[] = {
 	/* Current used components */
-	{ HYNIX, 0x06, 0x06, &hynix_lpddr4x_h9hcnnnfammlxr_nee },
+	{ HYNIX, 0x06, 0x00, &hynix_lpddr4x_h9hcnnnfammlxr_nee },
 	{ MICRON, 0x07, 0x07, &micron_lpddr4x_mt53e2g32d4nq_046wtc},
 
 	/* Placeholder for other AVL components in DLM */
