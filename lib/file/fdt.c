@@ -48,8 +48,7 @@
 /* FIXME: assume coreboot for now */
 #define FDT_RAM_CODE_PATH	"firmware/coreboot/ram-code"
 
-#define LPDDR3_MFG_ID_PATH	"lpddr3/manufacturer_id"
-#define LPDDR3_REV_ID_PATH	"lpddr3/revision_id"
+#define LPDDR3_COMPAT_PATH	"lpddr-channel0/rank@0/compatible"
 
 
 /* returns number of bytes read or -1 to indicate error */
@@ -96,55 +95,34 @@ int fdt_get_ram_code(uint32_t *ram_code)
 	return 0;
 }
 
-/*
- * get_ram_manufacturer_id - Get RAM manufacturer id from device tree
- *
- * returns 0 to indicate success, <0 to indicate failure.
- */
-
-int fdt_get_ram_manufacturer_id(uint8_t *manufacturer_id)
+int fdt_get_ram_ids(uint8_t *manufacturer_id, uint8_t *revision_id1,
+		    uint8_t *revision_id2)
 {
-	uint32_t buf[2];
+	char buf[32];
 
-	if (fdt_read_node(LPDDR3_MFG_ID_PATH, (char *)buf, sizeof(buf)) < sizeof(uint32_t)) {
+	if (fdt_read_node(LPDDR3_COMPAT_PATH, (char *)buf, sizeof(buf)) <= 0) {
 		lprintf(LOG_ERR,
 			"%s: Error when reading Manufacturer ID\n",
 			__func__);
 		return -1;
 	}
 
-	*manufacturer_id = ntohl(buf[0]);
-
-	lprintf(LOG_DEBUG,
-		"%s: manufacturer_id: %#02x\n",
-		__func__,
-		*manufacturer_id);
-	return 0;
-}
-
-/*
- * get_ram_revision_id - Get RAM revision id from device tree
- *
- * returns 0 to indicate success, <0 to indicate failure.
- */
-
-int fdt_get_ram_revision_id(uint8_t *revision_id1, uint8_t *revision_id2)
-{
-	uint32_t buf[3];
-
-	if (fdt_read_node(LPDDR3_REV_ID_PATH, (char *)buf, sizeof(buf)) < sizeof(uint32_t) * 2) {
+	/*
+	 * Manufacturer ID is in ascii value gated between '-' and ','
+	 * characters.  Revision ID is the hex number after the ','.
+	 */
+	if (sscanf(buf, "lpddr%*1d-%2hhx,%2hhx%2hhx",
+		   manufacturer_id, revision_id1, revision_id2) != 3) {
 		lprintf(LOG_ERR,
-			"%s: Error when reading Revision ID\n",
+			"%s: Error when parsing Manufacturer/Revision ID\n",
 			__func__);
 		return -1;
 	}
 
-	*revision_id1 = ntohl(buf[0]);
-	*revision_id2 = ntohl(buf[1]);
-
 	lprintf(LOG_DEBUG,
-		"%s: revision_id: %#02x %#02x\n",
+		"%s: manufacturer_id: %#02x, revision_id: %#02x %#02x\n",
 		__func__,
+		*manufacturer_id,
 		*revision_id1,
 		*revision_id2);
 	return 0;

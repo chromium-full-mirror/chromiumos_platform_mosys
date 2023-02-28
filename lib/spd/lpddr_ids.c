@@ -46,14 +46,10 @@ const struct nonspd_mem_info *lpddr_info_from_fdt_ids(void)
 
 	ran_once = true;
 
-	if (fdt_get_ram_manufacturer_id(&ram_manufacturer) < 0) {
+	if (fdt_get_ram_ids(&ram_manufacturer, &ram_revision1,
+			    &ram_revision2) < 0) {
 		lprintf(LOG_ERR,
-			"%s: Unable to obtain RAM manufacturer_id.\n",
-			__func__);
-		return lpddr_mem_info;
-	}
-	if (fdt_get_ram_revision_id(&ram_revision1, &ram_revision2) < 0) {
-		lprintf(LOG_ERR, "%s: Unable to obtain RAM revision_id.\n",
+			"%s: Unable to obtain RAM manufacturer_id or revision_id.\n",
 			__func__);
 		return lpddr_mem_info;
 	}
@@ -67,7 +63,8 @@ const struct nonspd_mem_info *lpddr_info_from_fdt_ids(void)
 		}
 	}
 	lprintf(LOG_ERR,
-		"%s: Unrecognized configuration: Manufacturer ID: %#02x Revision ID: %#02x %#02x\n",
+		"%s: Unrecognized configuration: Manufacturer ID: %#02x "
+		"Revision ID: %#02x %#02x\n",
 		__func__, ram_manufacturer, ram_revision1, ram_revision2);
 
 	return lpddr_mem_info;
