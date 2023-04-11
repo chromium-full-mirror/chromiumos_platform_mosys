@@ -29,6 +29,7 @@ const static struct {
 	/* Placeholder for other AVL components in DLM */
 	{ HYNIX, 0x00, 0x00, &hynix_lpddr4x_h54g68cyrbx248 },
 	{ SAMSUNG, 0x00, 0x00,  &samsung_lpddr4x_k4uce3q4ab_mgcl },
+	{ SAMSUNG, 0x08, 0x00,  &samsung_lpddr4x_k4ube3d4ab_mgcl },
 };
 
 const struct nonspd_mem_info *lpddr_info_from_fdt_ids(void)
