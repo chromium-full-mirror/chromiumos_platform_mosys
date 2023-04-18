@@ -43,9 +43,6 @@ add_global_arguments('-Wundef', language : 'c')
 add_global_arguments('-Wmissing-variable-declarations', language : 'c')
 add_global_arguments('-Wmissing-prototypes', language : 'c')
 
-# External libs used by Mosys
-minijail_dep = declare_dependency(link_args: '-lminijail')
-
 libmosys_src = files()
 platform_support_src = files()
 unittest_src = files()
@@ -55,7 +52,14 @@ subdir('core')
 subdir('lib')
 subdir('platform')
 
-deps = [minijail_dep]
+# Mosys is only on test images except for non-unibuild.  We don't need minijail
+# on unibuilds.
+if not unibuild
+  minijail_dep = declare_dependency(link_args: '-lminijail')
+  deps = [minijail_dep]
+else
+  deps = []
+endif
 
 subdir('mains')
 subdir('unittests')

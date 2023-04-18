@@ -3,7 +3,6 @@
  * found in the LICENSE file.
  */
 
-#include <chromeos/libminijail.h>
 #include <errno.h>
 #include <fcntl.h>
 #include <linux/securebits.h>
@@ -12,8 +11,13 @@
 #include <sys/types.h>
 #include <unistd.h>
 
+#ifndef CONFIG_UNIBUILD
+#include <chromeos/libminijail.h>
+#endif
+
 #include "mosys/cli.h"
 
+#ifndef CONFIG_UNIBUILD
 #define MOSYS_CAPS CAP_TO_MASK(CAP_SYS_RAWIO) | CAP_TO_MASK(CAP_SYS_ADMIN)
 #define MOSYS_SECCOMP_POLICY_PATH "/usr/share/policy/mosys-seccomp.policy"
 
@@ -28,8 +32,6 @@ static void setup_jail(void)
 
 	j = minijail_new();
 
-	/* TODO(crbug.com/1082531): see if we can remove this ifdef. */
-#ifndef CONFIG_PLATFORM_ARCH_ARMEL
 	minijail_use_caps(j, MOSYS_CAPS);
 	minijail_set_ambient_caps(j);
 
@@ -38,7 +40,6 @@ static void setup_jail(void)
 	minijail_skip_setting_securebits(j, SECURE_ALL_BITS | SECURE_ALL_LOCKS);
 	minijail_remount_proc_readonly(j);
 	minijail_namespace_net(j);
-#endif
 
 	minijail_no_new_privs(j);
 	minijail_set_seccomp_filter_tsync(j);
@@ -55,9 +56,12 @@ static void setup_jail(void)
 	minijail_enter(j);
 	minijail_destroy(j);
 }
+#endif
 
 int main(int argc, char *argv[])
 {
+#ifndef CONFIG_UNIBUILD
 	setup_jail();
+#endif
 	return mosys_main(argc, argv);
 }
