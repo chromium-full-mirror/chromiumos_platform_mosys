@@ -107,6 +107,19 @@ const struct nonspd_mem_info hynix_lpddr4x_h54g56cyrbx247 = {
 	.part_num               = "H54G56CYRBX247",
 };
 
+const struct nonspd_mem_info hynix_lpddr4x_h54g56cyrbx247n = {
+	.dram_type              = SPD_DRAM_TYPE_LPDDR4X,
+
+	.module_size_mbits      = 32768,
+	.num_ranks              = 2,
+	.device_width           = 32,
+
+	.module_mfg_id          = MFGID_HYNIX,
+	.dram_mfg_id            = MFGID_HYNIX,
+
+	.part_num               = "H54G56CYRBX247N",
+};
+
 const struct nonspd_mem_info hynix_lpddr4x_h9hcnnncpmmlxr_nee = {
 	.dram_type		= SPD_DRAM_TYPE_LPDDR4X,
 
@@ -144,6 +157,19 @@ const struct nonspd_mem_info hynix_lpddr4x_h54g68cyrbx248 = {
 	.dram_mfg_id            = MFGID_HYNIX,
 
 	.part_num               = "H54G68CYRBX248",
+};
+
+const struct nonspd_mem_info hynix_lpddr4x_h54g68cyrbx248n = {
+	.dram_type              = SPD_DRAM_TYPE_LPDDR4X,
+
+	.module_size_mbits      =  65536,
+	.num_ranks              = 2,
+	.device_width           = 32,
+
+	.module_mfg_id          = MFGID_HYNIX,
+	.dram_mfg_id            = MFGID_HYNIX,
+
+	.part_num               = "H54G68CYRBX248N",
 };
 
 const struct nonspd_mem_info nanya_lpddr3_nt6cl512t32am_h0 = {
