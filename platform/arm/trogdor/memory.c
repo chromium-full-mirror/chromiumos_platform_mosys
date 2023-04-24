@@ -92,6 +92,10 @@ static int populate_ram_info(void)
 			mem_info = &hynix_lpddr4x_h9hcnnnfammlxr_nee;
 		} else if (ram_code == 4 && ram_mid == MICRON) {
 			mem_info = &foresee_lpddr4x_flxc2004g_n1;
+		} else if (ram_code == 4 && ram_mid == HYNIX) {
+			mem_info = &hynix_lpddr4x_h54g56cyrbx247n;
+		} else if (ram_code == 5 && ram_mid == HYNIX) {
+			mem_info = &hynix_lpddr4x_h54g68cyrbx248n;
 		} else {
 			lprintf(LOG_ERR, "%s: Unknown ram code or "
 				"manufacturer id.\n", __func__);
