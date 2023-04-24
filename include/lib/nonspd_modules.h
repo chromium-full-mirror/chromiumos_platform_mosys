@@ -25,6 +25,8 @@ extern const struct nonspd_mem_info hynix_lpddr4x_h9hcnnncpmmlxr_nee;
 extern const struct nonspd_mem_info hynix_lpddr4x_h9hcnnnfammlxr_nee;
 extern const struct nonspd_mem_info hynix_ddr3l_h5tc8g63amr_pba;
 extern const struct nonspd_mem_info hynix_lpddr3_h9ccnnnbptblbr_nud;
+extern const struct nonspd_mem_info hynix_lpddr4x_h54g56cyrbx247n;
+extern const struct nonspd_mem_info hynix_lpddr4x_h54g68cyrbx248n;
 extern const struct nonspd_mem_info hynix_lpddr3_h9ccnnnbltblar_nud;
 extern const struct nonspd_mem_info hynix_lpddr3_h9ccnnnbktmlbr_ntd;
 extern const struct nonspd_mem_info micron_mt41k256m16ha;
