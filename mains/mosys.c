@@ -6,12 +6,12 @@
 #include <errno.h>
 #include <fcntl.h>
 #include <linux/securebits.h>
-#include <sys/capability.h>
 #include <sys/stat.h>
 #include <sys/types.h>
 #include <unistd.h>
 
 #ifndef CONFIG_UNIBUILD
+#include <sys/capability.h>
 #include <chromeos/libminijail.h>
 #endif
 
