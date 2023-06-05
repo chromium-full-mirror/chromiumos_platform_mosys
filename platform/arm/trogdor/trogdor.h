@@ -8,7 +8,7 @@
 
 #include "mosys/platform.h"
 
-#define TROGDOR_HOST_FIRMWARE_ROM_SIZE		(8192 * 1024)
+#define TROGDOR_HOST_FIRMWARE_ROM_SIZE (8192 * 1024)
 
 /* platform callbacks */
 extern struct memory_cb trogdor_memory_cb;

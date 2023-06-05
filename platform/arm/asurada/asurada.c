@@ -14,16 +14,16 @@
 
 static struct platform_cmd *asurada_sub[] = {
 	&cmd_memory,
-	NULL
+	NULL,
 };
 
 static struct platform_cb asurada_cb = {
-	.memory		= &asurada_memory_cb,
+	.memory = &asurada_memory_cb,
 };
 
 static struct platform_intf platform_asurada = {
-	.type		= PLATFORM_ARMV8,
-	.sub		= asurada_sub,
-	.cb		= &asurada_cb,
+	.type = PLATFORM_ARMV8,
+	.sub = asurada_sub,
+	.cb = &asurada_cb,
 };
 REGISTER_PLATFORM(platform_asurada, "Asurada");

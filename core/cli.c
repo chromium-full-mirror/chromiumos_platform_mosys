@@ -166,22 +166,22 @@ static int intf_main(struct platform_intf *intf, int argc, char **argv)
 
 	/* go through subcommand list for this interface */
 	for (_sub = intf->sub; _sub && *_sub; _sub++) {
-		 sub = *_sub;
+		sub = *_sub;
 
 		if (!command_is_visible(sub))
 			continue;
 
-		 if (do_list) {
-			 printf("    %-12s  %s\n", sub->name, sub->desc);
-			 continue;
-		 }
+		if (do_list) {
+			printf("    %-12s  %s\n", sub->name, sub->desc);
+			continue;
+		}
 
-		 /* is this sub-command is the one they asked for? */
-		 if (!strcmp(sub->name, argv[0])) {
-			 lprintf(LOG_DEBUG, "Found command %s (%s)\n",
-				 sub->name, sub->desc);
-			 return sub_main(intf, sub, argc - 1, &(argv[1]));
-		 }
+		/* is this sub-command is the one they asked for? */
+		if (!strcmp(sub->name, argv[0])) {
+			lprintf(LOG_DEBUG, "Found command %s (%s)\n", sub->name,
+				sub->desc);
+			return sub_main(intf, sub, argc - 1, &(argv[1]));
+		}
 	}
 
 	if (do_list) {

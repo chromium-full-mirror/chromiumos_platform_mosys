@@ -67,7 +67,7 @@ int mosys_printf(const char *format, ...)
  * @data:       pointer to buffer to print
  * @length:     number of bytes to print
  */
-void print_buffer_to_file(FILE* fp, void *data, int length)
+void print_buffer_to_file(FILE *fp, void *data, int length)
 {
 	uint8_t astr[20], val;
 	int i, ctr;

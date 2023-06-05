@@ -35,7 +35,7 @@
 
 struct file_backed_range *
 find_file_backed_range(uint64_t address, size_t length,
-                       struct file_backed_range *ranges)
+		       struct file_backed_range *ranges)
 {
 	struct file_backed_range *file_range;
 	uint64_t end_address = address + length - 1;

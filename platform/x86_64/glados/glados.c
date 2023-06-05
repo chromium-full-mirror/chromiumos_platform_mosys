@@ -42,11 +42,11 @@
 static struct platform_cmd *glados_sub[] = {
 	&cmd_memory,
 	&cmd_platform,
-	NULL
+	NULL,
 };
 
 static struct platform_cb glados_cb = {
-	.memory		= &smbios_memory_cb,
+	.memory = &smbios_memory_cb,
 };
 
 static const struct sku_info asuka_sku_info = { .brand = "DEAH" };

@@ -38,16 +38,16 @@
 
 static struct platform_cmd *oak_sub[] = {
 	&cmd_memory,
-	NULL
+	NULL,
 };
 
 static struct platform_cb oak_cb = {
-	.memory		= &oak_memory_cb,
+	.memory = &oak_memory_cb,
 };
 
 static struct platform_intf platform_oak = {
-	.type		= PLATFORM_ARMV8,
-	.sub		= oak_sub,
-	.cb		= &oak_cb,
+	.type = PLATFORM_ARMV8,
+	.sub = oak_sub,
+	.cb = &oak_cb,
 };
 REGISTER_PLATFORM(platform_oak, "Oak");

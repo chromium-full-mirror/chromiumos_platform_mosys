@@ -37,16 +37,16 @@
 
 static struct platform_cmd *gru_sub[] = {
 	&cmd_memory,
-	NULL
+	NULL,
 };
 
 static struct platform_cb gru_cb = {
-	.memory		= &gru_memory_cb,
+	.memory = &gru_memory_cb,
 };
 
 static struct platform_intf platform_gru = {
-	.type		= PLATFORM_ARMV8,
-	.sub		= gru_sub,
-	.cb		= &gru_cb,
+	.type = PLATFORM_ARMV8,
+	.sub = gru_sub,
+	.cb = &gru_cb,
 };
 REGISTER_PLATFORM(platform_gru, "Gru");

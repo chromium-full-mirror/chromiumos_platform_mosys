@@ -11,16 +11,12 @@
 
 #include "trogdor.h"
 
-#define MAX_LINE_SIZE	128
+#define MAX_LINE_SIZE 128
 
 static int trogdor_dimm_count;
 static const struct nonspd_mem_info *mem_info;
 
-enum trogdor_ram_manufacturer {
-	SAMSUNG = 1,
-	HYNIX = 6,
-	MICRON = 255
-};
+enum trogdor_ram_manufacturer { SAMSUNG = 1, HYNIX = 6, MICRON = 255 };
 
 /*
  * TODO(b/177917361) Remove once we have a more reliable API to probe
@@ -97,8 +93,10 @@ static int populate_ram_info(void)
 		} else if (ram_code == 5 && ram_mid == HYNIX) {
 			mem_info = &hynix_lpddr4x_h54g68cyrbx248n;
 		} else {
-			lprintf(LOG_ERR, "%s: Unknown ram code or "
-				"manufacturer id.\n", __func__);
+			lprintf(LOG_ERR,
+				"%s: Unknown ram code or "
+				"manufacturer id.\n",
+				__func__);
 			ret = -1;
 		}
 

@@ -76,7 +76,7 @@ struct platform_intf *mosys_platform_setup(void)
  */
 void platform_cmd_usage(struct platform_cmd *cmd)
 {
-	printf("usage: %s %s\n\n", cmd->name, cmd->usage ? : "");
+	printf("usage: %s %s\n\n", cmd->name, cmd->usage ?: "");
 }
 
 /*
@@ -90,8 +90,7 @@ void platform_cmd_usage(struct platform_cmd *cmd)
  * returns 0 to indicate success
  * returns <0 to indicate failure (or end of command hierarchy)
  */
-static int tree_subcommand(struct platform_intf *intf,
-			   struct platform_cmd *cmd,
+static int tree_subcommand(struct platform_intf *intf, struct platform_cmd *cmd,
 			   int depth, char *str)
 {
 	struct platform_cmd *sub;
@@ -137,7 +136,6 @@ static int tree_subcommand(struct platform_intf *intf,
 			// not a subcommand or function?!?
 			return -1;
 		}
-
 	}
 
 	free(tabs);
@@ -158,7 +156,7 @@ void print_tree(struct platform_intf *intf)
 		if (mosys_get_verbosity() >= LOG_NOTICE) {
 			printf("[root] ");
 			snprintf(str, sizeof(str), "mosys %s",
-						   intf->sub[root]->name);
+				 intf->sub[root]->name);
 		} else {
 			snprintf(str, sizeof(str), "%s", intf->sub[root]->name);
 		}

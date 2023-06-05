@@ -34,7 +34,7 @@
 #include <inttypes.h>
 #include "mosys/platform.h"
 
-#define OAK_HOST_FIRMWARE_ROM_SIZE		(4096 * 1024)
+#define OAK_HOST_FIRMWARE_ROM_SIZE (4096 * 1024)
 
 /* platform callbacks */
 extern struct memory_cb oak_memory_cb;

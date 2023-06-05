@@ -37,14 +37,14 @@
 #include <string.h>
 
 /* key=value string pair list */
-#define KV_PAIR_MAX_VALUE_LEN      1024
+#define KV_PAIR_MAX_VALUE_LEN 1024
 
 enum kv_pair_style {
-	KV_STYLE_PAIR,		/* key1="value1" key2="value2" */
-	KV_STYLE_VALUE,		/* | value1 | value2 | */
-	KV_STYLE_LONG,		/* key1         | value1 */
-				/* key2         | value2 */
-	KV_STYLE_SINGLE,	/* prints raw value for specified key */
+	KV_STYLE_PAIR, /* key1="value1" key2="value2" */
+	KV_STYLE_VALUE, /* | value1 | value2 | */
+	KV_STYLE_LONG, /* key1         | value1 */
+	/* key2         | value2 */
+	KV_STYLE_SINGLE, /* prints raw value for specified key */
 };
 
 struct kv_pair {
@@ -90,8 +90,8 @@ extern struct kv_pair *kv_pair_new(void);
  * returns pointer to new key=value pair
  * returns NULL to indicate error
  */
-extern struct kv_pair *kv_pair_add(struct kv_pair *kv_list,
-                                   const char *key, const char *value);
+extern struct kv_pair *kv_pair_add(struct kv_pair *kv_list, const char *key,
+				   const char *value);
 
 /*
  * kv_pair_add_bool  -  add new boolean kvpair to list
@@ -104,7 +104,7 @@ extern struct kv_pair *kv_pair_add(struct kv_pair *kv_list,
  * returns NULL to indicate error
  */
 extern struct kv_pair *kv_pair_add_bool(struct kv_pair *kv_list,
-                                        const char *key, int value);
+					const char *key, int value);
 
 /*
  * kv_pair_fmt  -  add key=value pair based on printf format
@@ -118,8 +118,8 @@ extern struct kv_pair *kv_pair_add_bool(struct kv_pair *kv_list,
  * returns pointer to new key=value pair
  * returns NULL to indicate error
  */
-extern struct kv_pair *kv_pair_fmt(struct kv_pair *kv_list,
-                                   const char *kv_key, const char *format, ...);
+extern struct kv_pair *kv_pair_fmt(struct kv_pair *kv_list, const char *kv_key,
+				   const char *format, ...);
 
 /*
  * kv_pair_free  -  clean a key=value pair list
@@ -137,8 +137,8 @@ extern void kv_pair_free(struct kv_pair *kv_list);
  * returns 0 to indicate success
  * returns -1 to indicate error
  */
-extern int kv_pair_print_to_file(FILE* fp, struct kv_pair *kv_list,
-                                 enum kv_pair_style style);
+extern int kv_pair_print_to_file(FILE *fp, struct kv_pair *kv_list,
+				 enum kv_pair_style style);
 
 /*
  * kv_pair_print  -  print a key=value pair list to gsys output

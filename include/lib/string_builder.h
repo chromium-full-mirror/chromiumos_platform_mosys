@@ -95,8 +95,8 @@ extern int reset_string_builder(struct string_builder *str_builder);
  * returns -1 on error else the amount of characters written to the builder.
  */
 extern int string_builder_vsnprintf(struct string_builder *str_builder,
-                                    size_t size, const char *format,
-                                    va_list ap);
+				    size_t size, const char *format,
+				    va_list ap);
 /*
  * Fill in a string_builder instance using the semantics of snprintf().
  *
@@ -107,8 +107,8 @@ extern int string_builder_vsnprintf(struct string_builder *str_builder,
  * returns -1 on error else the amount of characters written to the builder.
  */
 extern int string_builder_snprintf(struct string_builder *str_builder,
-                                   size_t size, const char *format, ...)
-                                   __attribute__((format(printf, 3, 4)));
+				   size_t size, const char *format, ...)
+	__attribute__((format(printf, 3, 4)));
 /*
  * Fill in a string_builder instance using the semantics of sprintf().
  *
@@ -119,8 +119,8 @@ extern int string_builder_snprintf(struct string_builder *str_builder,
  * returns -1 on error else the amount of characters written to the builder.
  */
 extern int string_builder_sprintf(struct string_builder *str_builder,
-                                  const char *format, ...)
-                                   __attribute__((format(printf, 2, 3)));
+				  const char *format, ...)
+	__attribute__((format(printf, 2, 3)));
 
 /*
  * Append a string at the end of a string_builder instance.
@@ -132,7 +132,7 @@ extern int string_builder_sprintf(struct string_builder *str_builder,
  * returns number of bytes appended on success, < 0 on failure.
  */
 extern int string_builder_strncat(struct string_builder *str_builder,
-                                 const char *str, size_t size);
+				  const char *str, size_t size);
 
 /*
  * Append a string at the end of a string_builder instance.
@@ -143,7 +143,7 @@ extern int string_builder_strncat(struct string_builder *str_builder,
  * returns number of bytes appended on success, < 0 on failure.
  */
 extern int string_builder_strcat(struct string_builder *str_builder,
-                                 const char *str);
+				 const char *str);
 
 /*
  * Append a character at the end of a string_builder instance.
@@ -153,8 +153,7 @@ extern int string_builder_strcat(struct string_builder *str_builder,
  *
  * returns 0 on success, < 0 on failure.
  */
-extern int string_builder_add_char(struct string_builder *str_builder,
-                                   char ch);
+extern int string_builder_add_char(struct string_builder *str_builder, char ch);
 
 /*
  * Append a hexadecimal representation of the input buffer at the end of a
@@ -166,7 +165,7 @@ extern int string_builder_add_char(struct string_builder *str_builder,
  * returns the number of bytes converted and added on success, < 0 on failure.
  */
 extern int string_builder_add_hexstring(struct string_builder *str_builder,
-                                        char *buffer, int length);
+					char *buffer, int length);
 
 /*
  * Get the built string.
@@ -175,7 +174,7 @@ extern int string_builder_add_hexstring(struct string_builder *str_builder,
  *
  * returns the string built by str_builder, or NULL str_builder is invalid.
  */
-extern const char *string_builder_get_string(
-                       struct string_builder *str_builder);
+extern const char *
+string_builder_get_string(struct string_builder *str_builder);
 
 #endif /* MOSYS_LIB_STRING_BUILDER_H_ */

@@ -39,14 +39,14 @@
 
 /* different types of DRAM (fundamental memory type) for SPD */
 enum spd_dram_type {
-	SPD_DRAM_TYPE_DDR3	= 0x0b,
-	SPD_DRAM_TYPE_LPDDR3	= 0xf1,
+	SPD_DRAM_TYPE_DDR3 = 0x0b,
+	SPD_DRAM_TYPE_LPDDR3 = 0xf1,
 	SPD_DRAM_TYPE_JEDEC_LPDDR3 = 0x0f,
-	SPD_DRAM_TYPE_DDR4      = 0x0c,
-	SPD_DRAM_TYPE_LPDDR4	= 0x10,
-	SPD_DRAM_TYPE_LPDDR4X	= 0x11,
-	SPD_DRAM_TYPE_DDR5	= 0x12,
-	SPD_DRAM_TYPE_LPDDR5	= 0x13,
+	SPD_DRAM_TYPE_DDR4 = 0x0c,
+	SPD_DRAM_TYPE_LPDDR4 = 0x10,
+	SPD_DRAM_TYPE_LPDDR4X = 0x11,
+	SPD_DRAM_TYPE_DDR5 = 0x12,
+	SPD_DRAM_TYPE_LPDDR5 = 0x13,
 };
 
 enum ddr3_module_type {
@@ -84,13 +84,13 @@ static const struct valstr ddr3_module_type_lut[] = {
  * these are found in different locations on DDR/DDR2 vs. FBDIMM
  */
 enum spd_field_type {
-	SPD_GET_DRAM_TYPE,      /* DRAM type */
-	SPD_GET_MODULE_TYPE,    /* DIMM type */
-	SPD_GET_MFG_ID,		/* Module Manufacturer ID */
-	SPD_GET_PART_NUMBER,	/* Module Part Number */
-	SPD_GET_SIZE,		/* Module Size (in MB) */
-	SPD_GET_RANKS,		/* Number of ranks */
-	SPD_GET_WIDTH,		/* SDRAM device width */
+	SPD_GET_DRAM_TYPE, /* DRAM type */
+	SPD_GET_MODULE_TYPE, /* DIMM type */
+	SPD_GET_MFG_ID, /* Module Manufacturer ID */
+	SPD_GET_PART_NUMBER, /* Module Part Number */
+	SPD_GET_SIZE, /* Module Size (in MB) */
+	SPD_GET_RANKS, /* Number of ranks */
+	SPD_GET_WIDTH, /* SDRAM device width */
 };
 
 #endif /* LIB_SPD_H__ */

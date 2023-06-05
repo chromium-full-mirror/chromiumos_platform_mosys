@@ -34,7 +34,7 @@
 #include <inttypes.h>
 #include "mosys/platform.h"
 
-#define KUKUI_HOST_FIRMWARE_ROM_SIZE		(8192 * 1024)
+#define KUKUI_HOST_FIRMWARE_ROM_SIZE (8192 * 1024)
 
 /* platform callbacks */
 extern struct memory_cb kukui_memory_cb;

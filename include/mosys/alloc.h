@@ -60,38 +60,32 @@
 #include <stdlib.h>
 
 /* memory allocation routines */
-extern void *
-internal_mosys_malloc(size_t size,
-                     const char *file, int line, const char *func);
+extern void *internal_mosys_malloc(size_t size, const char *file, int line,
+				   const char *func);
 #define mosys_malloc(size) \
 	internal_mosys_malloc((size), __FILE__, __LINE__, __func__)
-extern void *
-internal_mosys_calloc(size_t nmemb, size_t size,
-                     const char *file, int line, const char *func);
+extern void *internal_mosys_calloc(size_t nmemb, size_t size, const char *file,
+				   int line, const char *func);
 #define mosys_calloc(nmemb, size) \
 	internal_mosys_calloc((nmemb), (size), __FILE__, __LINE__, __func__)
-extern void *
-internal_mosys_zalloc(size_t size,
-                     const char *file, int line, const char *func);
+extern void *internal_mosys_zalloc(size_t size, const char *file, int line,
+				   const char *func);
 #define mosys_zalloc(size) \
 	internal_mosys_zalloc((size), __FILE__, __LINE__, __func__)
-extern void *
-internal_mosys_realloc(void *ptr, size_t size,
-                      const char *file, int line, const char *func);
+extern void *internal_mosys_realloc(void *ptr, size_t size, const char *file,
+				    int line, const char *func);
 #define mosys_realloc(ptr, size) \
 	internal_mosys_realloc((ptr), (size), __FILE__, __LINE__, __func__)
-extern char *
-internal_mosys_strdup(const char *str,
-                     const char *file, int line, const char *func);
+extern char *internal_mosys_strdup(const char *str, const char *file, int line,
+				   const char *func);
 #define mosys_strdup(str) \
 	internal_mosys_strdup((str), __FILE__, __LINE__, __func__)
 
 /* The allocation failure handler funtion signature */
 typedef int (*alloc_failure_handler)(size_t size, const char *file, int line,
-                                     const char *func);
+				     const char *func);
 
 /* Set the allocation failure handler. */
-extern void
-mosys_set_alloc_failure_handler(alloc_failure_handler func_ptr);
+extern void mosys_set_alloc_failure_handler(alloc_failure_handler func_ptr);
 
 #endif /* MOSYS_ALLOC_H__ */

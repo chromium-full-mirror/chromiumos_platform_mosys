@@ -13,7 +13,7 @@
 
 static struct platform_cmd *corsola_sub[] = {
 	&cmd_memory,
-	NULL
+	NULL,
 };
 
 static struct platform_cb corsola_cb = {
@@ -21,9 +21,9 @@ static struct platform_cb corsola_cb = {
 };
 
 static struct platform_intf platform_corsola = {
-	.type	= PLATFORM_ARMV8,
-	.sub	= corsola_sub,
-	.cb	= &corsola_cb,
+	.type = PLATFORM_ARMV8,
+	.sub = corsola_sub,
+	.cb = &corsola_cb,
 };
 
 REGISTER_PLATFORM(platform_corsola, "Corsola");

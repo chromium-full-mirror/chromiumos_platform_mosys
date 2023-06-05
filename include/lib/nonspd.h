@@ -90,8 +90,8 @@ struct nonspd_mem_info {
 };
 
 extern int nonspd_print_field(struct kv_pair *kv,
-				const struct nonspd_mem_info *info,
-				enum spd_field_type type);
+			      const struct nonspd_mem_info *info,
+			      enum spd_field_type type);
 
 int spd_set_nonspd_info_from_smbios(struct platform_intf *intf, int dimm,
 				    const struct nonspd_mem_info **info);

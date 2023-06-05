@@ -47,20 +47,20 @@
 extern uint8_t rolling8_csum(uint8_t *buf, size_t len);
 
 #ifndef __mask
-# define __mask(high, low) ((1ULL << (high)) + \
-                            (((1ULL << (high)) - 1) - ((1ULL << (low)) - 1)))
+#define __mask(high, low) \
+	((1ULL << (high)) + (((1ULL << (high)) - 1) - ((1ULL << (low)) - 1)))
 #endif
 
 #ifndef __min
-# define __min(a, b)  ((a) < (b) ? (a) : (b))
+#define __min(a, b) ((a) < (b) ? (a) : (b))
 #endif
 
 #ifndef __max
-# define __max(a, b)  ((a) > (b) ? (a) : (b))
+#define __max(a, b) ((a) > (b) ? (a) : (b))
 #endif
 
 #ifndef __abs
-# define __abs(x) ((x) < 0 ? -(x) : (x))
+#define __abs(x) ((x) < 0 ? -(x) : (x))
 #endif
 
 static inline uint8_t bin2bcd(uint8_t bin)

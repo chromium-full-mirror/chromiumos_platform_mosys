@@ -11,16 +11,16 @@
 
 static struct platform_cmd *trogdor_sub[] = {
 	&cmd_memory,
-	NULL
+	NULL,
 };
 
 static struct platform_cb trogdor_cb = {
-	.memory		= &trogdor_memory_cb,
+	.memory = &trogdor_memory_cb,
 };
 
 static struct platform_intf platform_trogdor = {
-	.type		= PLATFORM_ARMV8,
-	.sub		= trogdor_sub,
-	.cb		= &trogdor_cb,
+	.type = PLATFORM_ARMV8,
+	.sub = trogdor_sub,
+	.cb = &trogdor_cb,
 };
 REGISTER_PLATFORM(platform_trogdor, "Trogdor");

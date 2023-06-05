@@ -38,7 +38,7 @@
 
 #include "mosys/log.h"
 
-#define LOG_MSG_LENGTH	1024
+#define LOG_MSG_LENGTH 1024
 
 struct logpriv {
 	const char *name;
@@ -104,7 +104,7 @@ int lperror(enum log_levels level, const char *format, ...)
 }
 
 int mosys_log_init(const char *name, enum log_levels threshold,
-                  FILE *output_file)
+		   FILE *output_file)
 {
 	if (logpriv.valid) {
 		return -1;

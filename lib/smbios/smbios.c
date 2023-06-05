@@ -66,8 +66,8 @@ static int smbios_parse_string_table(
 		/* Fill in string if there is room left. */
 		if (id < SMBIOS_MAX_STRINGS) {
 			/* filter non-ascii characters */
-			for (i = 0; i < len &&
-			     i < SMBIOS_MAX_STRING_LENGTH - 1; i++) {
+			for (i = 0; i < len && i < SMBIOS_MAX_STRING_LENGTH - 1;
+			     i++) {
 				if (isprint(ptr[i]))
 					strings[id][i] = ptr[i];
 				else

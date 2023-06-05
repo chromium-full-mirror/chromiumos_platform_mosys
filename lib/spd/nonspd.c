@@ -56,9 +56,8 @@
  * returns <0 to indicate error
  *
  */
-int nonspd_print_field(struct kv_pair *kv,
-			const struct nonspd_mem_info *info,
-			enum spd_field_type type)
+int nonspd_print_field(struct kv_pair *kv, const struct nonspd_mem_info *info,
+		       enum spd_field_type type)
 {
 	int ret = 0;
 
@@ -99,7 +98,7 @@ int nonspd_print_field(struct kv_pair *kv,
 		case SPD_DRAM_TYPE_LPDDR3:
 		case SPD_DRAM_TYPE_JEDEC_LPDDR3:
 			kv_pair_add(kv, "module",
-			            val2str(info->module_type.ddr3_type,
+				    val2str(info->module_type.ddr3_type,
 					    ddr3_module_type_lut));
 			ret = 1;
 			break;
@@ -110,8 +109,7 @@ int nonspd_print_field(struct kv_pair *kv,
 		}
 		break;
 
-	case SPD_GET_MFG_ID:
-	{
+	case SPD_GET_MFG_ID: {
 		uint8_t manuf_lsb = info->module_mfg_id.lsb & 0x7f;
 		uint8_t manuf_msb = info->module_mfg_id.msb & 0x7f;
 		const char *tstr;
@@ -119,19 +117,18 @@ int nonspd_print_field(struct kv_pair *kv,
 		tstr = jedec_manufacturer(manuf_lsb, manuf_msb);
 
 		if (tstr != NULL) {
-			kv_pair_fmt(kv, "module_mfg", "%u-%u: %s", manuf_lsb + 1,
-			            manuf_msb, tstr);
+			kv_pair_fmt(kv, "module_mfg", "%u-%u: %s",
+				    manuf_lsb + 1, manuf_msb, tstr);
 		} else {
 			kv_pair_fmt(kv, "module_mfg", "%u-%u", manuf_lsb + 1,
-			            manuf_msb);
+				    manuf_msb);
 		}
 		ret = 1;
 		break;
 	}
 
-	case SPD_GET_PART_NUMBER:
-	{
-		char part[sizeof(info->part_num)+1];
+	case SPD_GET_PART_NUMBER: {
+		char part[sizeof(info->part_num) + 1];
 
 		memcpy(part, &info->part_num[0], sizeof(info->part_num));
 		part[sizeof(info->part_num)] = '\0';
@@ -141,23 +138,20 @@ int nonspd_print_field(struct kv_pair *kv,
 		break;
 	}
 
-	case SPD_GET_SIZE:
-	{
+	case SPD_GET_SIZE: {
 		/* translate mbits to mbytes */
 		kv_pair_fmt(kv, "size_mb", "%u", info->module_size_mbits / 8);
 		ret = 1;
 		break;
 	}
 
-	case SPD_GET_RANKS:
-	{
+	case SPD_GET_RANKS: {
 		kv_pair_fmt(kv, "ranks", "%d", info->num_ranks);
 		ret = 1;
 		break;
 	}
 
-	case SPD_GET_WIDTH:
-	{
+	case SPD_GET_WIDTH: {
 		kv_pair_fmt(kv, "width", "%d", info->device_width);
 		ret = 1;
 		break;
@@ -173,8 +167,8 @@ int nonspd_print_field(struct kv_pair *kv,
 // This one is reserved for storing mem info from SMBIOS if no explicit entry
 // was added above.
 static struct nonspd_mem_info part_extracted_from_smbios = {
-	.part_num		=
-		{ 'U', 'N', 'P', 'R', 'O', 'V', 'I', 'S', 'I', 'O', 'N', 'E', 'D'},
+	.part_num = { 'U', 'N', 'P', 'R', 'O', 'V', 'I', 'S', 'I', 'O', 'N',
+		      'E', 'D' },
 };
 
 static enum spd_dram_type map_smbios_mem_type_to_spd(struct smbios_table *table)
@@ -234,9 +228,8 @@ static enum spd_dram_type map_smbios_mem_type_to_spd(struct smbios_table *table)
 	}
 }
 
-static int extract_mem_info_from_smbios(
-	struct smbios_table *table,
-	struct nonspd_mem_info *info)
+static int extract_mem_info_from_smbios(struct smbios_table *table,
+					struct nonspd_mem_info *info)
 {
 	const char *smbios_part_num;
 	size_t smbios_part_num_len, max_part_num_len;
@@ -246,12 +239,12 @@ static int extract_mem_info_from_smbios(
 	smbios_part_num = table->string[table->data.mem_device.part_number];
 	smbios_part_num_len = strlen(smbios_part_num);
 
-	if (!smbios_part_num_len ||
-		smbios_part_num_len > max_part_num_len) {
-		lprintf(LOG_ERR, "%s: SMBIOS Memory info table: part num is missing. "
-				"Or len of part number %lu is larger then buffer %lu."
-				, __func__, (unsigned long)smbios_part_num_len,
-				(unsigned long)max_part_num_len);
+	if (!smbios_part_num_len || smbios_part_num_len > max_part_num_len) {
+		lprintf(LOG_ERR,
+			"%s: SMBIOS Memory info table: part num is missing. "
+			"Or len of part number %lu is larger then buffer %lu.",
+			__func__, (unsigned long)smbios_part_num_len,
+			(unsigned long)max_part_num_len);
 		return -1;
 	}
 
@@ -267,7 +260,6 @@ static int extract_mem_info_from_smbios(
 
 	return 0;
 }
-
 
 int spd_set_nonspd_info_from_smbios(struct platform_intf *intf, int dimm,
 				    const struct nonspd_mem_info **info)

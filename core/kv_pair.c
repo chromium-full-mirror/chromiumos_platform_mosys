@@ -58,7 +58,6 @@ enum kv_pair_style mosys_get_kv_pair_style(void)
 	return mosys_kv_pair_style;
 }
 
-
 /*
  * kv_pair_new  -  create new key=value pair
  *
@@ -80,8 +79,8 @@ struct kv_pair *kv_pair_new(void)
  * returns pointer to new key=value pair
  * returns NULL to indicate error
  */
-struct kv_pair *kv_pair_add(struct kv_pair *kv_list,
-			    const char *key, const char *value)
+struct kv_pair *kv_pair_add(struct kv_pair *kv_list, const char *key,
+			    const char *value)
 {
 	struct kv_pair *kv_new = kv_pair_new();
 	struct kv_pair *kv_ptr;
@@ -97,7 +96,9 @@ struct kv_pair *kv_pair_add(struct kv_pair *kv_list,
 	/* first in the list if no list provided */
 	if (kv_list) {
 		/* find the end of list */
-		for (kv_ptr = kv_list; kv_ptr->next != NULL; kv_ptr = kv_ptr->next) ;
+		for (kv_ptr = kv_list; kv_ptr->next != NULL;
+		     kv_ptr = kv_ptr->next)
+			;
 
 		/* link in the new pair at the end */
 		kv_ptr->next = kv_new;
@@ -117,8 +118,8 @@ struct kv_pair *kv_pair_add(struct kv_pair *kv_list,
  * returns pointer to new key=value pair
  * returns NULL to indicate error
  */
-struct kv_pair *kv_pair_add_bool(struct kv_pair *kv_list,
-                                 const char *key, int value)
+struct kv_pair *kv_pair_add_bool(struct kv_pair *kv_list, const char *key,
+				 int value)
 {
 	const char *str;
 
@@ -141,8 +142,8 @@ struct kv_pair *kv_pair_add_bool(struct kv_pair *kv_list,
  * returns pointer to new key=value pair
  * returns NULL to indicate error
  */
-struct kv_pair *kv_pair_fmt(struct kv_pair *kv_list,
-			    const char *kv_key, const char *format, ...)
+struct kv_pair *kv_pair_fmt(struct kv_pair *kv_list, const char *kv_key,
+			    const char *format, ...)
 {
 	char kv_value[KV_PAIR_MAX_VALUE_LEN];
 	va_list vptr;
@@ -189,8 +190,8 @@ void kv_pair_free(struct kv_pair *kv_list)
  * returns 0 to indicate success
  * returns <0 to indicate failure
  */
-int kv_pair_print_to_file(FILE* fp, struct kv_pair *kv_list,
-		enum kv_pair_style style)
+int kv_pair_print_to_file(FILE *fp, struct kv_pair *kv_list,
+			  enum kv_pair_style style)
 {
 	struct kv_pair *kv_ptr;
 	int single_found = 0;
@@ -200,7 +201,7 @@ int kv_pair_print_to_file(FILE* fp, struct kv_pair *kv_list,
 			continue;
 
 		switch (style) {
-		case KV_STYLE_PAIR:{
+		case KV_STYLE_PAIR: {
 			int i, len = strlen(kv_ptr->value);
 			/* need to escape quotes in value */
 			fprintf(fp, "%s=\"", kv_ptr->key);
@@ -221,18 +222,17 @@ int kv_pair_print_to_file(FILE* fp, struct kv_pair *kv_list,
 			break;
 
 		case KV_STYLE_LONG:
-			fprintf(fp, "%-20s | %s", kv_ptr->key,
-                                       kv_ptr->value);
+			fprintf(fp, "%-20s | %s", kv_ptr->key, kv_ptr->value);
 			if (kv_ptr->next)
 				fprintf(fp, "\n");
 			break;
 
-		case KV_STYLE_SINGLE:{
+		case KV_STYLE_SINGLE: {
 			const char *single_key = kv_get_single_key();
 			if (!single_key)
 				break;
 			if (!strncmp(single_key, kv_ptr->key,
-						strlen(kv_ptr->key))) {
+				     strlen(kv_ptr->key))) {
 				fprintf(fp, "%s", kv_ptr->value);
 				single_found = 1;
 			}

@@ -51,8 +51,7 @@ extern int fdt_get_ram_code(uint32_t *ram_code);
  *
  * returns 0 to indicate success, <0 to indicate failure.
  */
-extern int fdt_get_ram_ids(uint8_t *manufacturer_id,
-			   uint8_t *revision_id1,
+extern int fdt_get_ram_ids(uint8_t *manufacturer_id, uint8_t *revision_id1,
 			   uint8_t *revision_id2);
 
-#endif	/* MOSYS_LIB_FDT_H__ */
+#endif /* MOSYS_LIB_FDT_H__ */

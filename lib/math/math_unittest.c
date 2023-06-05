@@ -104,8 +104,8 @@ static void macro_unittest(void **state)
 int main(void)
 {
 	const struct CMUnitTest tests[] = {
-	    cmocka_unit_test(rolling8_csum_test),
-	    cmocka_unit_test(macro_unittest),
+		cmocka_unit_test(rolling8_csum_test),
+		cmocka_unit_test(macro_unittest),
 	};
 
 	return cmocka_run_group_tests(tests, /*group_setup=*/NULL,

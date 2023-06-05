@@ -37,7 +37,7 @@
 #include <inttypes.h>
 #include <stdio.h>
 #include <string.h>
-#include <stdlib.h>       /* abort */
+#include <stdlib.h> /* abort */
 
 /*
  * MOSYS_CHECK() method to provide CHECK()-like behavior.
@@ -45,14 +45,15 @@
  * This is intended to be equivalent to assert() except that it is evaluated,
  * even if NDEBUG is set.
  */
-#define MOSYS_CHECK(exp_) \
-do { \
-  if (!(exp_)) { \
-    fprintf(stderr, \
-            "assertion failed in file %s, line %d", __FILE__, __LINE__); \
-    abort(); \
-  } \
-} while (0);
+#define MOSYS_CHECK(exp_)                                               \
+	do {                                                            \
+		if (!(exp_)) {                                          \
+			fprintf(stderr,                                 \
+				"assertion failed in file %s, line %d", \
+				__FILE__, __LINE__);                    \
+			abort();                                        \
+		}                                                       \
+	} while (0);
 
 /*
  * MOSYS_DCHECK() method to provide DCHECK()-like behavior.

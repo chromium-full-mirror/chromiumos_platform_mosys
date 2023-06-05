@@ -106,7 +106,6 @@ static int get_memory_config(struct platform_intf *intf)
 static int dimm_count(struct platform_intf *intf)
 {
 	return OAK_DIMM_COUNT;
-
 }
 
 static int get_mem_info(struct platform_intf *intf, int dimm,
@@ -156,6 +155,6 @@ static int get_mem_info(struct platform_intf *intf, int dimm,
 }
 
 struct memory_cb oak_memory_cb = {
-	.dimm_count		= dimm_count,
-	.nonspd_mem_info	= &get_mem_info,
+	.dimm_count = dimm_count,
+	.nonspd_mem_info = &get_mem_info,
 };

@@ -51,18 +51,18 @@ enum platform_type {
  *  testing.
  */
 enum arg_type {
-	ARG_TYPE_GETTER,	/* "getter" functions */
-	ARG_TYPE_SETTER,	/* "setter" functions */
-	ARG_TYPE_SUB,		/* branch deeper into command hierachy */
+	ARG_TYPE_GETTER, /* "getter" functions */
+	ARG_TYPE_SETTER, /* "setter" functions */
+	ARG_TYPE_SUB, /* branch deeper into command hierachy */
 };
 
 /* nested command lists */
 struct platform_intf;
 struct platform_cmd {
-	const char *name;		/* command name */
-	const char *desc;		/* command help text */
-	const char *usage;		/* command usage text */
-	enum arg_type type;		/* argument type */
+	const char *name; /* command name */
+	const char *desc; /* command help text */
+	const char *usage; /* command usage text */
+	enum arg_type type; /* argument type */
 
 	/*
 	 * Disallow execution unless I_AM_CROS_CONFIG=1 is set in the
@@ -70,11 +70,10 @@ struct platform_cmd {
 	 */
 	bool replaced_by_cros_config;
 
-	union {				/* sub-commands or function */
+	union { /* sub-commands or function */
 		struct platform_cmd *sub;
 		int (*func)(struct platform_intf *intf,
-			    struct platform_cmd *cmd,
-			    int argc, char **argv);
+			    struct platform_cmd *cmd, int argc, char **argv);
 	} arg;
 };
 
@@ -84,12 +83,12 @@ struct smbios_table;
 struct memory_cb {
 	int (*dimm_count)(struct platform_intf *intf);
 	int (*nonspd_mem_info)(struct platform_intf *intf, int dimm,
-				const struct nonspd_mem_info **info);
+			       const struct nonspd_mem_info **info);
 };
 
 /* platform-specific callbacks */
 struct platform_cb {
-	struct memory_cb *memory;	/* memory callbacks */
+	struct memory_cb *memory; /* memory callbacks */
 };
 
 /* SKU based platform information, provided by lib/sku.h */
@@ -100,11 +99,11 @@ struct sku_info;
  * One of these should be defined for each supported platform.
  */
 struct platform_intf {
-	enum platform_type type;	/* numeric platform type */
-	const char *name;		/* canonical platform name */
-	const struct sku_info *sku_info;	/* SKU information */
-	struct platform_cmd **sub;	/* list of commands */
-	struct platform_cb *cb;		/* callbacks */
+	enum platform_type type; /* numeric platform type */
+	const char *name; /* canonical platform name */
+	const struct sku_info *sku_info; /* SKU information */
+	struct platform_cmd **sub; /* list of commands */
+	struct platform_cb *cb; /* callbacks */
 
 	int (*setup)(struct platform_intf *intf);
 };

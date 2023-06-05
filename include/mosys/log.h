@@ -38,15 +38,15 @@
 
 /* Should be kept in sync with enum Log in src/logging.rs. */
 enum log_levels {
-	LOG_EMERG = 0,		/* system is unusable */
-	LOG_ALERT,		/* action must be taken immediately */
-	LOG_CRIT,		/* critical conditions */
-	LOG_ERR,		/* error conditions */
-	LOG_WARNING,		/* warning conditions */
-	LOG_NOTICE,		/* normal but significant condition */
-	LOG_INFO,		/* informational messages */
-	LOG_DEBUG,		/* debug-level messages */
-	LOG_SPEW,		/* excessive debug messages */
+	LOG_EMERG = 0, /* system is unusable */
+	LOG_ALERT, /* action must be taken immediately */
+	LOG_CRIT, /* critical conditions */
+	LOG_ERR, /* error conditions */
+	LOG_WARNING, /* warning conditions */
+	LOG_NOTICE, /* normal but significant condition */
+	LOG_INFO, /* informational messages */
+	LOG_DEBUG, /* debug-level messages */
+	LOG_SPEW, /* excessive debug messages */
 };
 
 /*
@@ -56,16 +56,16 @@ enum log_levels {
  * are not free()ed or close()d on log_halt().
  */
 extern int mosys_log_init(const char *name, enum log_levels threshold,
-                         FILE *output_file);
+			  FILE *output_file);
 /* stop the logging subsystem */
 extern int mosys_log_halt(void);
 
 /* log something */
 extern int lprintf(enum log_levels level, const char *format, ...)
-                   __attribute__((format (__printf__, 2, 3)));
+	__attribute__((format(__printf__, 2, 3)));
 /* log something including the errno string */
 extern int lperror(enum log_levels level, const char *format, ...)
-                   __attribute__((format (__printf__, 2, 3)));
+	__attribute__((format(__printf__, 2, 3)));
 
 /* get the current log threshold */
 extern int log_threshold_get(void);

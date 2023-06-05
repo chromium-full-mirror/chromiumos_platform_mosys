@@ -45,7 +45,7 @@
  *         <0 if an output error is encountered.
  */
 extern int mosys_printf(const char *format, ...)
-    __attribute__((format(printf, 1, 2)));
+	__attribute__((format(printf, 1, 2)));
 
 /*
  * print_buffer_to_file  -  print raw buffer to FILE* in hex and ascii
@@ -54,7 +54,7 @@ extern int mosys_printf(const char *format, ...)
  * @data:       pointer to buffer to print
  * @length:     number of bytes to print
  */
-extern void print_buffer_to_file(FILE* fp, void *data, int length);
+extern void print_buffer_to_file(FILE *fp, void *data, int length);
 
 /*
  * print_buffer  -  print raw buffer to mosys output in hex and ascii

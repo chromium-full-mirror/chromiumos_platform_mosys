@@ -43,8 +43,7 @@
 #include "mosys/kv_pair.h"
 
 static int platform_name_cmd(struct platform_intf *intf,
-			     struct platform_cmd *cmd,
-			     int argc, char **argv)
+			     struct platform_cmd *cmd, int argc, char **argv)
 {
 	int rc;
 	struct kv_pair *kv = kv_pair_new();
@@ -74,61 +73,69 @@ static int print_platforminfo(const char *key, char *value)
 }
 
 static int platform_model_cmd(struct platform_intf *intf,
-			      struct platform_cmd *cmd,
-			      int argc, char **argv)
+			      struct platform_cmd *cmd, int argc, char **argv)
 {
 	return print_platforminfo("model", sku_get_model(intf));
 }
 
 static int platform_brand_cmd(struct platform_intf *intf,
-			      struct platform_cmd *cmd,
-			      int argc, char **argv)
+			      struct platform_cmd *cmd, int argc, char **argv)
 {
 	return print_platforminfo("brand", sku_get_brand(intf));
 }
 
 static int platform_customization_cmd(struct platform_intf *intf,
-				      struct platform_cmd *cmd,
-				      int argc, char **argv)
+				      struct platform_cmd *cmd, int argc,
+				      char **argv)
 {
 	return print_platforminfo("customization", sku_get_customization(intf));
 }
 
 static struct platform_cmd platform_cmds[] = {
 	{
-		.name	= "name",
-		.desc	= "Display Platform Product Name (deprecated)",
-		.type	= ARG_TYPE_GETTER,
-		.arg	= { .func = platform_name_cmd }
+		.name = "name",
+		.desc = "Display Platform Product Name (deprecated)",
+		.type = ARG_TYPE_GETTER,
+		.arg = {
+			.func = platform_name_cmd,
+		},
 	},
 	{
-		.name	= "model",
-		.desc	= "Display Model (deprecated)",
-		.type	= ARG_TYPE_GETTER,
+		.name = "model",
+		.desc = "Display Model (deprecated)",
+		.type = ARG_TYPE_GETTER,
 		.replaced_by_cros_config = true,
-		.arg	= { .func = platform_model_cmd }
+		.arg = {
+			.func = platform_model_cmd,
+		},
 	},
 	{
-		.name	= "brand",
-		.desc	= "Display Brand Code (deprecated)",
-		.type	= ARG_TYPE_GETTER,
+		.name = "brand",
+		.desc = "Display Brand Code (deprecated)",
+		.type = ARG_TYPE_GETTER,
 		.replaced_by_cros_config = true,
-		.arg	= { .func = platform_brand_cmd }
+		.arg = {
+			.func = platform_brand_cmd,
+		},
 	},
 	{
-		.name	= "customization",
-		.desc	= "Display Customization ID (deprecated)",
-		.type	= ARG_TYPE_GETTER,
+		.name = "customization",
+		.desc = "Display Customization ID (deprecated)",
+		.type = ARG_TYPE_GETTER,
 		.replaced_by_cros_config = true,
-		.arg	= { .func = platform_customization_cmd }
+		.arg = {
+			.func = platform_customization_cmd,
+		},
 	},
-	{NULL}
+	{ NULL },
 };
 
 struct platform_cmd cmd_platform = {
-	.name	= "platform",
-	.desc	= "Platform Information (deprecated)",
-	.type	= ARG_TYPE_SUB,
+	.name = "platform",
+	.desc = "Platform Information (deprecated)",
+	.type = ARG_TYPE_SUB,
 	.replaced_by_cros_config = true,
-	.arg	= { .sub = platform_cmds }
+	.arg = {
+		.sub = platform_cmds,
+	},
 };

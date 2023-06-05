@@ -57,7 +57,6 @@ static int string_builder_space_left(struct string_builder *str_builder)
 	return space;
 }
 
-
 struct string_builder *new_sized_string_builder(int size)
 {
 	struct string_builder *str_builder;
@@ -80,7 +79,8 @@ struct string_builder *new_string_builder(void)
 }
 
 struct string_builder *
-clone_string_builder(const struct string_builder *str_builder) {
+clone_string_builder(const struct string_builder *str_builder)
+{
 	struct string_builder *new_builder;
 
 	if (str_builder == NULL)
@@ -111,7 +111,7 @@ int reset_string_builder(struct string_builder *str_builder)
 }
 
 int string_builder_vsnprintf(struct string_builder *str_builder, size_t size,
-                             const char *format, va_list ap)
+			     const char *format, va_list ap)
 {
 	int space_free;
 	int length_written;
@@ -132,7 +132,7 @@ int string_builder_vsnprintf(struct string_builder *str_builder, size_t size,
 	}
 
 	length_written = vsnprintf(&str_builder->buffer[str_builder->used_size],
-	                           size + 1, format, ap);
+				   size + 1, format, ap);
 
 	if (length_written > size) {
 		/* Handle the case of truncation. */
@@ -154,21 +154,21 @@ int string_builder_vsnprintf(struct string_builder *str_builder, size_t size,
 }
 
 int string_builder_snprintf(struct string_builder *str_builder, size_t size,
-                            const char *format, ...)
+			    const char *format, ...)
 {
 	va_list ap;
 	int length_written;
 
 	va_start(ap, format);
-	length_written = string_builder_vsnprintf(str_builder, size,
-	                                          format, ap);
+	length_written =
+		string_builder_vsnprintf(str_builder, size, format, ap);
 	va_end(ap);
 
 	return length_written;
 }
 
 int string_builder_sprintf(struct string_builder *str_builder,
-                           const char *format, ...)
+			   const char *format, ...)
 {
 	va_list ap;
 	int space_free;
@@ -181,15 +181,15 @@ int string_builder_sprintf(struct string_builder *str_builder,
 	space_free = string_builder_space_left(str_builder);
 
 	va_start(ap, format);
-	length_written = string_builder_vsnprintf(str_builder,
-	                           space_free + 1, format, ap);
+	length_written = string_builder_vsnprintf(str_builder, space_free + 1,
+						  format, ap);
 	va_end(ap);
 
 	return length_written;
 }
 
 int string_builder_strncat(struct string_builder *str_builder, const char *str,
-                           size_t size)
+			   size_t size)
 {
 	int space_left;
 	int appended_string_len;
@@ -215,7 +215,7 @@ int string_builder_strncat(struct string_builder *str_builder, const char *str,
 	str_builder->buffer[str_builder->used_size + size] = '\0';
 
 	appended_string_len =
-	    strlen(&str_builder->buffer[str_builder->used_size]);
+		strlen(&str_builder->buffer[str_builder->used_size]);
 
 	str_builder->used_size += appended_string_len;
 
@@ -250,7 +250,7 @@ int string_builder_add_char(struct string_builder *str_builder, char ch)
 }
 
 int string_builder_add_hexstring(struct string_builder *str_builder,
-                                 char *buffer, int length)
+				 char *buffer, int length)
 {
 	int i;
 	int len_written;
@@ -260,8 +260,8 @@ int string_builder_add_hexstring(struct string_builder *str_builder,
 	}
 
 	for (i = 0; i < length; i++) {
-		len_written = string_builder_sprintf(str_builder, "%02x",
-		                                     buffer[i]);
+		len_written =
+			string_builder_sprintf(str_builder, "%02x", buffer[i]);
 		/* Something really bad happened. */
 		if (len_written < 0) {
 			return -1; // COV_NF_LINE

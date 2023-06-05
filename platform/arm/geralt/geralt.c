@@ -13,7 +13,7 @@
 
 static struct platform_cmd *geralt_sub[] = {
 	&cmd_memory,
-	NULL
+	NULL,
 };
 
 static struct platform_cb geralt_cb = {
@@ -21,9 +21,9 @@ static struct platform_cb geralt_cb = {
 };
 
 static struct platform_intf platform_geralt = {
-	.type	= PLATFORM_ARMV8,
-	.sub	= geralt_sub,
-	.cb	= &geralt_cb,
+	.type = PLATFORM_ARMV8,
+	.sub = geralt_sub,
+	.cb = &geralt_cb,
 };
 
 REGISTER_PLATFORM(platform_geralt, "Geralt");

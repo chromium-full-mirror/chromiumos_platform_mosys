@@ -34,7 +34,7 @@
 #include <inttypes.h>
 #include "mosys/platform.h"
 
-#define GRU_HOST_FIRMWARE_ROM_SIZE		(8192 * 1024)
+#define GRU_HOST_FIRMWARE_ROM_SIZE (8192 * 1024)
 
 /* platform callbacks */
 extern struct memory_cb gru_memory_cb;

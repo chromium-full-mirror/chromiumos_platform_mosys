@@ -44,16 +44,14 @@ struct file_backed_range {
 	const char *file_name;
 };
 
-#define FILE_BACKED_RANGE_INIT(begin_, size_, file_) \
-	{ \
-		ADDRESS_RANGE_INIT(begin_, (begin_) + (size_) - 1ULL), \
-		file_, \
+#define FILE_BACKED_RANGE_INIT(begin_, size_, file_)                        \
+	{                                                                   \
+		ADDRESS_RANGE_INIT(begin_, (begin_) + (size_)-1ULL), file_, \
 	}
 
-#define FILE_BACKED_RANGE_END \
-	{ \
-		ADDRESS_RANGE_INIT(0, 0), \
-		NULL, \
+#define FILE_BACKED_RANGE_END                   \
+	{                                       \
+		ADDRESS_RANGE_INIT(0, 0), NULL, \
 	}
 
 /*
@@ -65,7 +63,7 @@ struct file_backed_range {
  * @ranges:   array of file_backed_range
  */
 extern struct file_backed_range *
-find_file_backed_range(uint64_t address,
-                       size_t length, struct file_backed_range *ranges);
+find_file_backed_range(uint64_t address, size_t length,
+		       struct file_backed_range *ranges);
 
 #endif /* MOSYS_FILE_BACKED_RANGE_H__ */

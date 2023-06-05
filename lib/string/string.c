@@ -62,7 +62,7 @@ char *buf2str(uint8_t *inbuf, size_t length)
 	if (inbuf == NULL)
 		return NULL;
 
-	outbuf = mosys_malloc(2*length + 1);
+	outbuf = mosys_malloc(2 * length + 1);
 	outp = outbuf;
 
 	for (i = 0; i < length; i++) {
@@ -71,7 +71,7 @@ char *buf2str(uint8_t *inbuf, size_t length)
 		outp += 2;
 	}
 
-	outbuf[2*length] = '\0';
+	outbuf[2 * length] = '\0';
 	return outbuf;
 }
 
@@ -95,7 +95,8 @@ char *strupper(char *str)
 	return str;
 }
 
-size_t strlcpy(char *dest, const char *src, size_t size) {
+size_t strlcpy(char *dest, const char *src, size_t size)
+{
 	size_t copied = 0;
 
 	if (size == 0)

@@ -42,16 +42,16 @@
 
 static struct platform_cmd *kukui_sub[] = {
 	&cmd_memory,
-	NULL
+	NULL,
 };
 
 static struct platform_cb kukui_cb = {
-	.memory		= &kukui_memory_cb,
+	.memory = &kukui_memory_cb,
 };
 
 static struct platform_intf platform_kukui = {
-	.type		= PLATFORM_ARMV8,
-	.sub		= kukui_sub,
-	.cb		= &kukui_cb,
+	.type = PLATFORM_ARMV8,
+	.sub = kukui_sub,
+	.cb = &kukui_cb,
 };
 REGISTER_PLATFORM(platform_kukui, "Kukui");

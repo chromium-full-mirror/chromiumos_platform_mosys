@@ -12,7 +12,7 @@
 /* TODO(b:177917361): Add &cmd_memory */
 static struct platform_cmd *herobrine_sub[] = {
 	&cmd_memory,
-	NULL
+	NULL,
 };
 
 /* TODO(b:177917361): add .memory */
@@ -21,8 +21,8 @@ static struct platform_cb herobrine_cb = {
 };
 
 static struct platform_intf platform_herobrine = {
-	.type	= PLATFORM_ARMV8,
-	.sub	= herobrine_sub,
-	.cb	= &herobrine_cb,
+	.type = PLATFORM_ARMV8,
+	.sub = herobrine_sub,
+	.cb = &herobrine_cb,
 };
 REGISTER_PLATFORM(platform_herobrine, "Herobrine");

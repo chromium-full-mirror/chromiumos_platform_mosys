@@ -67,6 +67,6 @@ static int get_mem_info(struct platform_intf *intf, int dimm,
 }
 
 struct memory_cb corsola_memory_cb = {
-	.dimm_count		= dimm_count,
-	.nonspd_mem_info	= get_mem_info,
+	.dimm_count = dimm_count,
+	.nonspd_mem_info = get_mem_info,
 };

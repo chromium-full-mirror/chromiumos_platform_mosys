@@ -44,12 +44,11 @@
 #include "mosys/log.h"
 #include "mosys/platform.h"
 
-#define FDT_ROOT		"/proc/device-tree/"
+#define FDT_ROOT "/proc/device-tree/"
 /* FIXME: assume coreboot for now */
-#define FDT_RAM_CODE_PATH	"firmware/coreboot/ram-code"
+#define FDT_RAM_CODE_PATH "firmware/coreboot/ram-code"
 
-#define LPDDR3_COMPAT_PATH	"lpddr-channel0/rank@0/compatible"
-
+#define LPDDR3_COMPAT_PATH "lpddr-channel0/rank@0/compatible"
 
 /* returns number of bytes read or -1 to indicate error */
 static ssize_t fdt_read_node(const char *path, char *buf, size_t buf_sz)
@@ -101,8 +100,7 @@ int fdt_get_ram_ids(uint8_t *manufacturer_id, uint8_t *revision_id1,
 	char buf[32];
 
 	if (fdt_read_node(LPDDR3_COMPAT_PATH, (char *)buf, sizeof(buf)) <= 0) {
-		lprintf(LOG_ERR,
-			"%s: Error when reading Manufacturer ID\n",
+		lprintf(LOG_ERR, "%s: Error when reading Manufacturer ID\n",
 			__func__);
 		return -1;
 	}
@@ -111,8 +109,8 @@ int fdt_get_ram_ids(uint8_t *manufacturer_id, uint8_t *revision_id1,
 	 * Manufacturer ID is in ascii value gated between '-' and ','
 	 * characters.  Revision ID is the hex number after the ','.
 	 */
-	if (sscanf(buf, "lpddr%*1d-%2hhx,%2hhx%2hhx",
-		   manufacturer_id, revision_id1, revision_id2) != 3) {
+	if (sscanf(buf, "lpddr%*1d-%2hhx,%2hhx%2hhx", manufacturer_id,
+		   revision_id1, revision_id2) != 3) {
 		lprintf(LOG_ERR,
 			"%s: Error when parsing Manufacturer/Revision ID\n",
 			__func__);
@@ -121,9 +119,6 @@ int fdt_get_ram_ids(uint8_t *manufacturer_id, uint8_t *revision_id1,
 
 	lprintf(LOG_DEBUG,
 		"%s: manufacturer_id: %#02x, revision_id: %#02x %#02x\n",
-		__func__,
-		*manufacturer_id,
-		*revision_id1,
-		*revision_id2);
+		__func__, *manufacturer_id, *revision_id1, *revision_id2);
 	return 0;
 }

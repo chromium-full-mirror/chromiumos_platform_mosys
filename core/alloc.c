@@ -36,82 +36,77 @@
 static alloc_failure_handler do_alloc_failure;
 
 /* set the allocation failure handler - for use by library users */
-void
-mosys_set_alloc_failure_handler(alloc_failure_handler func_ptr)
+void mosys_set_alloc_failure_handler(alloc_failure_handler func_ptr)
 {
 	do_alloc_failure = func_ptr;
 }
 
 /* the last resort if an allocation fails - this function does not return */
-static void *
-alloc_fail_abort(size_t size, const char *file, int line, const char *func)
+static void *alloc_fail_abort(size_t size, const char *file, int line,
+			      const char *func)
 {
-	lprintf(LOG_EMERG, "allocation failure in %s (%s:%d): %u bytes\n",
-	    func, file, line, (unsigned)size);
+	lprintf(LOG_EMERG, "allocation failure in %s (%s:%d): %u bytes\n", func,
+		file, line, (unsigned)size);
 	abort();
 	return NULL;
 }
 
-void *
-internal_mosys_malloc(size_t size,
-                     const char *file, int line, const char *func)
+void *internal_mosys_malloc(size_t size, const char *file, int line,
+			    const char *func)
 {
 	do {
 		void *p = malloc(size);
 		if (p != NULL)
 			return p;
-	} while (do_alloc_failure
-	     && (do_alloc_failure(size, file, line, func) == 0));
+	} while (do_alloc_failure &&
+		 (do_alloc_failure(size, file, line, func) == 0));
 
 	return alloc_fail_abort(size, file, line, func);
 }
 
-void *
-internal_mosys_calloc(size_t nmemb, size_t size,
-                     const char *file, int line, const char *func)
+void *internal_mosys_calloc(size_t nmemb, size_t size, const char *file,
+			    int line, const char *func)
 {
 	do {
 		void *p = calloc(nmemb, size);
 		if (p != NULL)
 			return p;
-	} while (do_alloc_failure
-	     && (do_alloc_failure(nmemb*size, file, line, func) == 0));
+	} while (do_alloc_failure &&
+		 (do_alloc_failure(nmemb * size, file, line, func) == 0));
 
-	return alloc_fail_abort(nmemb*size, file, line, func);
+	return alloc_fail_abort(nmemb * size, file, line, func);
 }
 
-void *
-internal_mosys_zalloc(size_t size,
-                     const char *file, int line, const char *func)
+void *internal_mosys_zalloc(size_t size, const char *file, int line,
+			    const char *func)
 {
 	return internal_mosys_calloc(1, size, file, line, func);
 }
 
-void *
-internal_mosys_realloc(void *ptr, size_t size,
-                      const char *file, int line, const char *func)
+void *internal_mosys_realloc(void *ptr, size_t size, const char *file, int line,
+			     const char *func)
 {
 	do {
 		void *p = realloc(ptr, size);
 		if (p != NULL)
 			return p;
-	} while (do_alloc_failure
-	     && (do_alloc_failure(size, file, line, func) == 0));
+	} while (do_alloc_failure &&
+		 (do_alloc_failure(size, file, line, func) == 0));
 
 	return alloc_fail_abort(size, file, line, func);
 }
 
-char *
-internal_mosys_strdup(const char *str,
-                     const char *file, int line, const char *func)
+char *internal_mosys_strdup(const char *str, const char *file, int line,
+			    const char *func)
 {
 	do {
 		char *p = strdup(str);
 		if (p != NULL)
 			return p;
 	} while (do_alloc_failure
-	     // COV_NF_START
-	     && (do_alloc_failure(strlen(str)+1, file, line, func) == 0));
+		 // COV_NF_START
+		 && (do_alloc_failure(strlen(str) + 1, file, line, func) == 0));
 
-	return alloc_fail_abort(strlen(str)+1, file, line, func); // COV_NF_END
+	return alloc_fail_abort(strlen(str) + 1, file, line,
+				func); // COV_NF_END
 }

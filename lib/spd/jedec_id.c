@@ -1781,20 +1781,9 @@ static const char *jedec_id14[] = {
 };
 
 static const char **jedec_ids[] = {
-	jedec_id1,
-	jedec_id2,
-	jedec_id3,
-	jedec_id4,
-	jedec_id5,
-	jedec_id6,
-	jedec_id7,
-	jedec_id8,
-	jedec_id9,
-	jedec_id10,
-	jedec_id11,
-	jedec_id12,
-	jedec_id13,
-	jedec_id14,
+	jedec_id1,  jedec_id2,	jedec_id3,  jedec_id4,	jedec_id5,
+	jedec_id6,  jedec_id7,	jedec_id8,  jedec_id9,	jedec_id10,
+	jedec_id11, jedec_id12, jedec_id13, jedec_id14,
 };
 
 /*
@@ -1807,8 +1796,7 @@ static const char **jedec_ids[] = {
  */
 const char *jedec_manufacturer(int idx, uint8_t id)
 {
-	if (0 <= idx &&
-            idx < sizeof(jedec_ids) / sizeof(jedec_ids[0]))
+	if (0 <= idx && idx < sizeof(jedec_ids) / sizeof(jedec_ids[0]))
 		return jedec_ids[idx][id];
 	return NULL;
 }

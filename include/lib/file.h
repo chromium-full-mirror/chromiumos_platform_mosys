@@ -60,4 +60,4 @@ int file_open(const char *file, int rw);
 ssize_t read_file(const char *path, char *buf, size_t buf_sz,
 		  enum log_levels log_level);
 
-#endif	/* MOSYS_LIB_FILE_H__ */
+#endif /* MOSYS_LIB_FILE_H__ */

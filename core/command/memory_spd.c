@@ -69,8 +69,8 @@ static int memory_nonspd_print_geometry(struct platform_intf *intf, int dimm)
 }
 
 static int memory_spd_print_geometry_cmd(struct platform_intf *intf,
-                                         struct platform_cmd *cmd,
-                                         int argc, char **argv)
+					 struct platform_cmd *cmd, int argc,
+					 char **argv)
 {
 	int dimm;
 	int last_dimm;
@@ -127,8 +127,8 @@ static int memory_nonspd_print_id(struct platform_intf *intf, int dimm)
 }
 
 static int memory_spd_print_id_cmd(struct platform_intf *intf,
-                                   struct platform_cmd *cmd,
-                                   int argc, char **argv)
+				   struct platform_cmd *cmd, int argc,
+				   char **argv)
 {
 	int dimm;
 	int last_dimm;
@@ -184,8 +184,8 @@ static int memory_nonspd_print_type(struct platform_intf *intf, int dimm)
 }
 
 static int memory_spd_print_type_cmd(struct platform_intf *intf,
-                                     struct platform_cmd *cmd,
-                                     int argc, char **argv)
+				     struct platform_cmd *cmd, int argc,
+				     char **argv)
 {
 	int dimm;
 	int last_dimm;
@@ -216,8 +216,8 @@ static int memory_spd_print_type_cmd(struct platform_intf *intf,
 }
 
 static int memory_spd_print_all_cmd(struct platform_intf *intf,
-                                    struct platform_cmd *cmd,
-                                    int argc, char **argv)
+				    struct platform_cmd *cmd, int argc,
+				    char **argv)
 {
 	int rc = 0, dimm;
 
@@ -245,60 +245,74 @@ static int memory_spd_print_all_cmd(struct platform_intf *intf,
 
 static struct platform_cmd memory_spd_print_cmds[] = {
 	{
-		.name	= "geometry",
-		.desc	= "Print module geometry and capacity",
-		.usage	= "<dimm number>",
-		.type	= ARG_TYPE_GETTER,
-		.arg	= { .func = memory_spd_print_geometry_cmd }
+		.name = "geometry",
+		.desc = "Print module geometry and capacity",
+		.usage = "<dimm number>",
+		.type = ARG_TYPE_GETTER,
+		.arg = {
+			.func = memory_spd_print_geometry_cmd,
+		},
 	},
 	{
-		.name	= "id",
-		.desc	= "Print module ID information",
-		.usage	= "<dimm number>",
-		.type	= ARG_TYPE_GETTER,
-		.arg	= { .func = memory_spd_print_id_cmd }
+		.name = "id",
+		.desc = "Print module ID information",
+		.usage = "<dimm number>",
+		.type = ARG_TYPE_GETTER,
+		.arg = {
+			.func = memory_spd_print_id_cmd,
+		},
 	},
 	{
-		.name	= "type",
-		.desc	= "Print module and dram type information",
-		.usage	= "<dimm number>",
-		.type	= ARG_TYPE_GETTER,
-		.arg	= { .func = memory_spd_print_type_cmd }
+		.name = "type",
+		.desc = "Print module and dram type information",
+		.usage = "<dimm number>",
+		.type = ARG_TYPE_GETTER,
+		.arg = {
+			.func = memory_spd_print_type_cmd,
+		},
 	},
 	{
-		.name	= "all",
-		.desc	= "Print all of the above",
-		.usage	= "<dimm number>",
-		.type	= ARG_TYPE_GETTER,
-		.arg	= { .func = memory_spd_print_all_cmd }
+		.name = "all",
+		.desc = "Print all of the above",
+		.usage = "<dimm number>",
+		.type = ARG_TYPE_GETTER,
+		.arg = {
+			.func = memory_spd_print_all_cmd,
+		},
 	},
-	{ NULL }
+	{ NULL },
 };
 
 static struct platform_cmd memory_spd_cmds[] = {
 	{
-		.name	= "print",
-		.desc	= "Print SPD Information",
-		.usage	= "<dimm number>",
-		.type	= ARG_TYPE_SUB,
-		.arg	= { .sub = memory_spd_print_cmds }
+		.name = "print",
+		.desc = "Print SPD Information",
+		.usage = "<dimm number>",
+		.type = ARG_TYPE_SUB,
+		.arg = {
+			.sub = memory_spd_print_cmds,
+		},
 	},
-	{ NULL }
+	{ NULL },
 };
 
 static struct platform_cmd memory_cmds[] = {
 	{
-		.name	= "spd",
-		.desc	= "Information from SPD",
-		.type	= ARG_TYPE_SUB,
-		.arg	= { .sub = memory_spd_cmds }
+		.name = "spd",
+		.desc = "Information from SPD",
+		.type = ARG_TYPE_SUB,
+		.arg = {
+			.sub = memory_spd_cmds,
+		},
 	},
-	{ NULL }
+	{ NULL },
 };
 
 struct platform_cmd cmd_memory = {
-	.name	= "memory",
-	.desc	= "Memory Information",
-	.type	= ARG_TYPE_SUB,
-	.arg	= { .sub = memory_cmds }
+	.name = "memory",
+	.desc = "Memory Information",
+	.type = ARG_TYPE_SUB,
+	.arg = {
+		.sub = memory_cmds,
+	},
 };

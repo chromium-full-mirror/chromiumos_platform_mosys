@@ -62,7 +62,7 @@ int file_open(const char *file, int rw)
 	if (lstat(file, &st1) < 0) {
 		if (rw == FILE_WRITE) {
 			/* does not exist, ok to create */
-			fd = open(file, O_CREAT|O_WRONLY, S_IRUSR|S_IWUSR);
+			fd = open(file, O_CREAT | O_WRONLY, S_IRUSR | S_IWUSR);
 			if (fd == -1) {
 				lperror(LOG_DEBUG,
 					"Unable to open file %s for write",
@@ -89,8 +89,8 @@ int file_open(const char *file, int rw)
 
 	/* it exists - only regular files and char devices */
 	if (S_ISREG(st1.st_mode) == 0 && S_ISCHR(st1.st_mode) == 0) {
-		lprintf(LOG_NOTICE, "File %s has invalid mode: %d\n",
-			file, st1.st_mode);
+		lprintf(LOG_NOTICE, "File %s has invalid mode: %d\n", file,
+			st1.st_mode);
 		return -1;
 	}
 
@@ -163,8 +163,8 @@ ssize_t read_file(const char *path, char *buf, size_t buf_sz,
 
 	bytes_read = fread(buf, 1, buf_sz - 1, f);
 	if (ferror(f)) {
-		lprintf(log_level, "%s: File \"%s\" in error state\n",
-			__func__, path);
+		lprintf(log_level, "%s: File \"%s\" in error state\n", __func__,
+			path);
 		goto fail;
 	}
 
@@ -178,8 +178,10 @@ ssize_t read_file(const char *path, char *buf, size_t buf_sz,
 		if (fread(one_more_byte, 1, 1, f) == 0 && feof(f))
 			goto ok;
 
-		lprintf(log_level, "%s: The entire file \"%s\" could not fit in"
-			"a buffer of size %zu\n", __func__, path, buf_sz);
+		lprintf(log_level,
+			"%s: The entire file \"%s\" could not fit in"
+			"a buffer of size %zu\n",
+			__func__, path, buf_sz);
 		goto fail;
 	}
 
