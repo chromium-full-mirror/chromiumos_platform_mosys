@@ -72,7 +72,9 @@ static int memory_spd_print_geometry_cmd(struct platform_intf *intf,
                                          struct platform_cmd *cmd,
                                          int argc, char **argv)
 {
-	int dimm = 0, last_dimm;
+	int dimm;
+	int last_dimm;
+	int rv = 0;
 
 	if (!intf->cb->memory || !intf->cb->memory->dimm_count) {
 		errno = ENOSYS;
@@ -88,15 +90,14 @@ static int memory_spd_print_geometry_cmd(struct platform_intf *intf,
 			errno = EINVAL;
 			return -1;
 		}
-		memory_nonspd_print_geometry(intf, dimm);
-	} else {
-		do {
-			memory_nonspd_print_geometry(intf, dimm);
-			dimm++;
-		} while (dimm < last_dimm);
+		return memory_nonspd_print_geometry(intf, dimm);
 	}
 
-	return 0;
+	for (dimm = 0; dimm < last_dimm; dimm++) {
+		rv |= memory_nonspd_print_geometry(intf, dimm);
+	}
+
+	return rv;
 }
 
 static int memory_nonspd_print_id(struct platform_intf *intf, int dimm)
@@ -129,7 +130,9 @@ static int memory_spd_print_id_cmd(struct platform_intf *intf,
                                    struct platform_cmd *cmd,
                                    int argc, char **argv)
 {
-	int dimm = 0, last_dimm;
+	int dimm;
+	int last_dimm;
+	int rv = 0;
 
 	if (!intf->cb->memory || !intf->cb->memory->dimm_count) {
 		errno = ENOSYS;
@@ -145,15 +148,14 @@ static int memory_spd_print_id_cmd(struct platform_intf *intf,
 			errno = EINVAL;
 			return -1;
 		}
-		memory_nonspd_print_id(intf, dimm);
-	} else {
-		do {
-			memory_nonspd_print_id(intf, dimm);
-			dimm++;
-		} while (dimm < last_dimm);
+		return memory_nonspd_print_id(intf, dimm);
 	}
 
-	return 0;
+	for (dimm = 0; dimm < last_dimm; dimm++) {
+		rv |= memory_nonspd_print_id(intf, dimm);
+	}
+
+	return rv;
 }
 
 static int memory_nonspd_print_type(struct platform_intf *intf, int dimm)
@@ -185,7 +187,9 @@ static int memory_spd_print_type_cmd(struct platform_intf *intf,
                                      struct platform_cmd *cmd,
                                      int argc, char **argv)
 {
-	int dimm = 0, last_dimm;
+	int dimm;
+	int last_dimm;
+	int rv = 0;
 
 	if (!intf->cb->memory || !intf->cb->memory->dimm_count) {
 		errno = ENOSYS;
@@ -201,15 +205,14 @@ static int memory_spd_print_type_cmd(struct platform_intf *intf,
 			errno = EINVAL;
 			return -1;
 		}
-		memory_nonspd_print_type(intf, dimm);
-	} else {
-		do {
-			memory_nonspd_print_type(intf, dimm);
-			dimm++;
-		} while (dimm < last_dimm);
+		return memory_nonspd_print_type(intf, dimm);
 	}
 
-	return 0;
+	for (dimm = 0; dimm < last_dimm; dimm++) {
+		rv |= memory_nonspd_print_type(intf, dimm);
+	}
+
+	return rv;
 }
 
 static int memory_spd_print_all_cmd(struct platform_intf *intf,
