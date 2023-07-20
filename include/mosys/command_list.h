@@ -34,7 +34,6 @@
 
 struct platform_cmd;
 
-extern struct platform_cmd cmd_platform;
 extern struct platform_cmd cmd_memory;
 
 #endif /* MOSYS_COMMAND_LIST_H__ */
