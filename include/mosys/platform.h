@@ -91,9 +91,6 @@ struct platform_cb {
 	struct memory_cb *memory; /* memory callbacks */
 };
 
-/* SKU based platform information, provided by lib/sku.h */
-struct sku_info;
-
 /*
  * Top-level interface handler.
  * One of these should be defined for each supported platform.
@@ -101,7 +98,6 @@ struct sku_info;
 struct platform_intf {
 	enum platform_type type; /* numeric platform type */
 	const char *name; /* canonical platform name */
-	const struct sku_info *sku_info; /* SKU information */
 	struct platform_cmd **sub; /* list of commands */
 	struct platform_cb *cb; /* callbacks */
 

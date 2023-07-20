@@ -1,7 +1,6 @@
 subdir('file')
 subdir('math')
 subdir('memory')
-subdir('misc')
 subdir('smbios')
 subdir('spd')
 subdir('string')
