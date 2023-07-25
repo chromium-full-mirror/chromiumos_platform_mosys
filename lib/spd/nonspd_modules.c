@@ -12,6 +12,11 @@
 #define MFGID_SAMSUNG	{ .msb = 0xce, .lsb = 0x00 }
 #define MFGID_SANDISK	{ .msb = 0x45, .lsb = 0x00 }
 
+#define MFGID_CXMT                       \
+	{                                \
+		.msb = 0x91, .lsb = 0x8a \
+	}
+
 const struct nonspd_mem_info hynix_lpddr3_h9ccnnn8gtmlar_nud = {
 	.dram_type		= SPD_DRAM_TYPE_LPDDR3,
 	.module_type.ddr3_type	= DDR3_MODULE_TYPE_SO_DIMM,
@@ -634,4 +639,17 @@ const struct nonspd_mem_info sandisk_lpddr4x_sdada4cr_128g = {
 	.dram_mfg_id		= MFGID_SANDISK,
 
 	.part_num		= "SDADA4CR-128G",
+};
+
+const struct nonspd_mem_info cxmt_lpddr4x_cxdb5ccbm_ml_a = {
+	.dram_type = SPD_DRAM_TYPE_LPDDR4X,
+
+	.module_size_mbits = 32768,
+	.num_ranks = 2,
+	.device_width = 32,
+
+	.module_mfg_id = MFGID_CXMT,
+	.dram_mfg_id = MFGID_CXMT,
+
+	.part_num = "CXDB5CCBM-ML-A",
 };
