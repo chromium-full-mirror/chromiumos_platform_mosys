@@ -46,6 +46,9 @@ static int get_mem_info(struct platform_intf *intf, int dimm,
 		break;
 	case 0x03:
 		*info = &hynix_lpddr4x_h54g56cyrbx247;
+                break;
+	case 0x04:
+		*info = &cxmt_lpddr4x_cxdb5ccbm_ml_a;
 		break;
 	case 0x11:
 		*info = &hynix_lpddr4x_h9hcnnnbkmmlxr_nee;

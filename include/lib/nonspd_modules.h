@@ -62,5 +62,6 @@ extern const struct nonspd_mem_info samsung_lpddr4x_k4uce3q4ab_mgcl;
 extern const struct nonspd_mem_info sandisk_lpddr4x_sdada4cr_128g;
 extern const struct nonspd_mem_info foresee_lpddr4x_feprf6432_58a1930;
 extern const struct nonspd_mem_info foresee_lpddr4x_flxc2004g_n1;
+extern const struct nonspd_mem_info cxmt_lpddr4x_cxdb5ccbm_ml_a;
 
 #endif /* LIB_NONSPD_MODULES_H__ */
