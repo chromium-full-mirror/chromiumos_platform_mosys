@@ -64,12 +64,6 @@ struct platform_cmd {
 	const char *usage; /* command usage text */
 	enum arg_type type; /* argument type */
 
-	/*
-	 * Disallow execution unless I_AM_CROS_CONFIG=1 is set in the
-	 * environment.
-	 */
-	bool replaced_by_cros_config;
-
 	union { /* sub-commands or function */
 		struct platform_cmd *sub;
 		int (*func)(struct platform_intf *intf,

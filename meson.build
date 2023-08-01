@@ -6,11 +6,6 @@ include_common = include_directories(['include'])
 # Config data used for creating a config header and including it
 conf_data = configuration_data()
 
-unibuild = get_option('unibuild')
-if unibuild
-  conf_data.set('CONFIG_UNIBUILD', 1)
-endif
-
 # Setting on a per-arch basis
 arch = host_machine.cpu_family()
 if arch == 'x86' or arch == 'x86_64'
@@ -51,15 +46,5 @@ unittest_src = files()
 subdir('core')
 subdir('lib')
 subdir('platform')
-
-# Mosys is only on test images except for non-unibuild.  We don't need minijail
-# on unibuilds.
-if not unibuild
-  minijail_dep = declare_dependency(link_args: '-lminijail')
-  deps = [minijail_dep]
-else
-  deps = []
-endif
-
 subdir('mains')
 subdir('unittests')

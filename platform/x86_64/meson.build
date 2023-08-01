@@ -1,3 +1,1 @@
-if unibuild
-  subdir('generic')
-endif
+subdir('generic')

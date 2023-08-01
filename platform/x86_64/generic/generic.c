@@ -7,7 +7,6 @@
  * Most modern x86 developments can be supported by common code which
  * assumes the following:
  *
- * - Unibuild
  * - Memory information is available in SMBIOS
  *
  * This implements a common platform_intf for all devices which that

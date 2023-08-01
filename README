@@ -13,9 +13,6 @@ Mosys uses meson to build.  To setup the build, use:
 
     meson output_dir
 
-Flags of interest:
--Dunibuild=true/false: True if the system is unibuild.
-
 Then, to compile mosys, run:
 
     ninja -C output_dir

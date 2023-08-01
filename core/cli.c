@@ -17,43 +17,6 @@
 #include "mosys/log.h"
 #include "mosys/platform.h"
 
-/**
- * command_is_visible() - is this command visible and executable?
- *
- * @cmd:	The command (either subcommand or leaf is acceptable).
- *
- * Returns: true if the command should be shown and allowed to execute
- * (either replaced_by_cros_config is false, or I_AM_CROS_CONFIG=1 is
- * set in the environment), or false if the command should be hidden.
- */
-static bool command_is_visible(struct platform_cmd *cmd)
-{
-	const char *envvar;
-	static bool is_cros_config;
-	static bool probed_environment;
-
-	if (!cmd->replaced_by_cros_config)
-		return true;
-
-#ifdef CONFIG_UNIBUILD
-	/*
-	 * On unibuild-enabled platforms, we can always return false
-	 * at this point because the fallback mechanism in cros_config
-	 * is never used, thus the commands which have been replaced
-	 * by cros_config should always be hidden.
-	 */
-	return false;
-#endif
-
-	if (!probed_environment) {
-		envvar = getenv("I_AM_CROS_CONFIG");
-		is_cros_config = envvar && !strcmp(envvar, "1");
-		probed_environment = true;
-	}
-
-	return is_cros_config;
-}
-
 static void usage(void)
 {
 	printf("usage: mosys [options] [commands]\n\n"
@@ -76,7 +39,7 @@ static void sub_list(struct platform_cmd *sub)
 
 	printf("  Commands:\n");
 	for (_sub = sub->arg.sub; _sub && _sub->name; _sub++) {
-		if (_sub->desc && command_is_visible(_sub))
+		if (_sub->desc)
 			printf("    %-12s  %s\n", _sub->name, _sub->desc);
 	}
 	printf("\n");
@@ -123,8 +86,6 @@ static int sub_main(struct platform_intf *intf, struct platform_cmd *sub,
 
 		/* search for matching sub-command */
 		for (cmd = sub->arg.sub; cmd && cmd->name; cmd++) {
-			if (!command_is_visible(cmd))
-				continue;
 			if (strlen(cmd->name) != strlen(argv[0]))
 				continue;
 			if (strcmp(cmd->name, argv[0]) == 0) {
@@ -167,9 +128,6 @@ static int intf_main(struct platform_intf *intf, int argc, char **argv)
 	/* go through subcommand list for this interface */
 	for (_sub = intf->sub; _sub && *_sub; _sub++) {
 		sub = *_sub;
-
-		if (!command_is_visible(sub))
-			continue;
 
 		if (do_list) {
 			printf("    %-12s  %s\n", sub->name, sub->desc);

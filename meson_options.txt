@@ -10,7 +10,7 @@ option(
   'unibuild',
   type: 'boolean',
   value: 'false',
-  description: 'Set to true if compiling for a unibuild device',
+  description: 'Does nothing.  To be deleted after the ebuild deletes it.',
 )
 
 option(

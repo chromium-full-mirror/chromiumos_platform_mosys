@@ -33,7 +33,7 @@ foreach f: unittest_src
         name,
         [f] + libmosys_src,
         include_directories: include_common,
-        dependencies: [cmocka_dep] + deps,
+        dependencies: [cmocka_dep],
         link_args : link_args,
     )
 endforeach
