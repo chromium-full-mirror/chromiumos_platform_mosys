@@ -22,7 +22,6 @@ static struct platform_cb asurada_cb = {
 };
 
 struct platform_intf platform_intf = {
-	.type = PLATFORM_ARMV8,
 	.sub = asurada_sub,
 	.cb = &asurada_cb,
 };

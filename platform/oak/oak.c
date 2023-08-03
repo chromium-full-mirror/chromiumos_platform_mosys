@@ -46,7 +46,6 @@ static struct platform_cb oak_cb = {
 };
 
 struct platform_intf platform_intf = {
-	.type = PLATFORM_ARMV8,
 	.sub = oak_sub,
 	.cb = &oak_cb,
 };

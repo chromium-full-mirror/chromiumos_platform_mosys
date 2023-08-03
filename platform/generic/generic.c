@@ -30,7 +30,6 @@ static struct platform_cb generic_x86_cb = {
 };
 
 struct platform_intf platform_intf = {
-	.type = PLATFORM_X86_64,
 	.sub = subcommands,
 	.cb = &generic_x86_cb,
 };

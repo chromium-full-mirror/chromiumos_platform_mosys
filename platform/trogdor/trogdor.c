@@ -19,7 +19,6 @@ static struct platform_cb trogdor_cb = {
 };
 
 struct platform_intf platform_intf = {
-	.type = PLATFORM_ARMV8,
 	.sub = trogdor_sub,
 	.cb = &trogdor_cb,
 };

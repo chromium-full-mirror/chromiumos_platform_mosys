@@ -38,14 +38,6 @@
 struct kv_pair;
 struct nonspd_mem_info;
 
-/* defined platform types */
-enum platform_type {
-	PLATFORM_DEFAULT,
-	PLATFORM_X86_64,
-	PLATFORM_ARMV7,
-	PLATFORM_ARMV8,
-};
-
 /*
  *  Command types. These are exposed via "mosys -tv" to help with automated
  *  testing.
@@ -90,7 +82,6 @@ struct platform_cb {
  * One of these should be defined for each supported platform.
  */
 struct platform_intf {
-	enum platform_type type; /* numeric platform type */
 	struct platform_cmd **sub; /* list of commands */
 	struct platform_cb *cb; /* callbacks */
 };

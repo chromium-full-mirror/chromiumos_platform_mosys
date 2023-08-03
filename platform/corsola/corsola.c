@@ -21,7 +21,6 @@ static struct platform_cb corsola_cb = {
 };
 
 struct platform_intf platform_intf = {
-	.type = PLATFORM_ARMV8,
 	.sub = corsola_sub,
 	.cb = &corsola_cb,
 };

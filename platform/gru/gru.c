@@ -45,7 +45,6 @@ static struct platform_cb gru_cb = {
 };
 
 struct platform_intf platform_intf = {
-	.type = PLATFORM_ARMV8,
 	.sub = gru_sub,
 	.cb = &gru_cb,
 };

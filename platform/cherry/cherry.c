@@ -21,7 +21,6 @@ static struct platform_cb cherry_cb = {
 };
 
 struct platform_intf platform_intf = {
-	.type = PLATFORM_ARMV8,
 	.sub = cherry_sub,
 	.cb = &cherry_cb,
 };

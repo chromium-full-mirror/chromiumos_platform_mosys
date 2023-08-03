@@ -21,7 +21,6 @@ static struct platform_cb geralt_cb = {
 };
 
 struct platform_intf platform_intf = {
-	.type = PLATFORM_ARMV8,
 	.sub = geralt_sub,
 	.cb = &geralt_cb,
 };

@@ -50,7 +50,6 @@ static struct platform_cb kukui_cb = {
 };
 
 struct platform_intf platform_intf = {
-	.type = PLATFORM_ARMV8,
 	.sub = kukui_sub,
 	.cb = &kukui_cb,
 };
