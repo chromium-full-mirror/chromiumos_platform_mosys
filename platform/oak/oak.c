@@ -45,9 +45,8 @@ static struct platform_cb oak_cb = {
 	.memory = &oak_memory_cb,
 };
 
-static struct platform_intf platform_oak = {
+struct platform_intf platform_intf = {
 	.type = PLATFORM_ARMV8,
 	.sub = oak_sub,
 	.cb = &oak_cb,
 };
-REGISTER_PLATFORM(platform_oak, "Oak");

@@ -21,9 +21,8 @@ static struct platform_cb asurada_cb = {
 	.memory = &asurada_memory_cb,
 };
 
-static struct platform_intf platform_asurada = {
+struct platform_intf platform_intf = {
 	.type = PLATFORM_ARMV8,
 	.sub = asurada_sub,
 	.cb = &asurada_cb,
 };
-REGISTER_PLATFORM(platform_asurada, "Asurada");

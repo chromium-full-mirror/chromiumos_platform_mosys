@@ -29,9 +29,8 @@ static struct platform_cb generic_x86_cb = {
 	.memory = &smbios_memory_cb,
 };
 
-static struct platform_intf platform_generic = {
+struct platform_intf platform_intf = {
 	.type = PLATFORM_X86_64,
 	.sub = subcommands,
 	.cb = &generic_x86_cb,
 };
-REGISTER_PLATFORM(platform_generic, "Generic");

@@ -18,9 +18,8 @@ static struct platform_cb trogdor_cb = {
 	.memory = &trogdor_memory_cb,
 };
 
-static struct platform_intf platform_trogdor = {
+struct platform_intf platform_intf = {
 	.type = PLATFORM_ARMV8,
 	.sub = trogdor_sub,
 	.cb = &trogdor_cb,
 };
-REGISTER_PLATFORM(platform_trogdor, "Trogdor");

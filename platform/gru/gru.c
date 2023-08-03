@@ -44,9 +44,8 @@ static struct platform_cb gru_cb = {
 	.memory = &gru_memory_cb,
 };
 
-static struct platform_intf platform_gru = {
+struct platform_intf platform_intf = {
 	.type = PLATFORM_ARMV8,
 	.sub = gru_sub,
 	.cb = &gru_cb,
 };
-REGISTER_PLATFORM(platform_gru, "Gru");

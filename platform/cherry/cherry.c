@@ -20,9 +20,8 @@ static struct platform_cb cherry_cb = {
 	.memory = &cherry_memory_cb,
 };
 
-static struct platform_intf platform_cherry = {
+struct platform_intf platform_intf = {
 	.type = PLATFORM_ARMV8,
 	.sub = cherry_sub,
 	.cb = &cherry_cb,
 };
-REGISTER_PLATFORM(platform_cherry, "Cherry");

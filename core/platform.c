@@ -34,22 +34,6 @@
 
 #include "mosys/platform.h"
 
-struct platform_intf *platform_intf = NULL;
-
-/*
- * mosys_platform_setup  -  identify platform, setup interfaces and commands
- *
- * returns pointer to identified platform interface
- * returns NULL if platform not identified or other error
- */
-struct platform_intf *mosys_platform_setup(void)
-{
-	if (!platform_intf)
-		return NULL;
-
-	return platform_intf;
-}
-
 /*
  * platform_cmd_usage  -  print usage text for command
  *

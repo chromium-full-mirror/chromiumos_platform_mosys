@@ -20,10 +20,8 @@ static struct platform_cb corsola_cb = {
 	.memory = &corsola_memory_cb,
 };
 
-static struct platform_intf platform_corsola = {
+struct platform_intf platform_intf = {
 	.type = PLATFORM_ARMV8,
 	.sub = corsola_sub,
 	.cb = &corsola_cb,
 };
-
-REGISTER_PLATFORM(platform_corsola, "Corsola");

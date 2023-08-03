@@ -95,72 +95,10 @@ struct platform_intf {
 	struct platform_cb *cb; /* callbacks */
 };
 
-/* Used for the global linked-list of all platforms. */
-struct platform_list {
-	struct platform_intf *entry;
-	struct platform_list *next;
-};
-
 /**
- * REGISTER_PLATFORM - Macro to register a platform_intf in the global
- * platforms list.
- *
- * @intf:       The platform interface to register.
- * @name:       The name of the platform.  For unibuild devices, this
- *              platform_intf will be matched based on a comparison to
- *              /identity:platform-name in cros_config.
- *
- * This should be placed after the definition of a platform_intf, like so:
- *    static struct platform_intf platform_foo {
- *         ...
- *    };
- *    REGISTER_PLATFORM(platform_foo, "Foo");
+ * platform_intf - The platform.
  */
-#define REGISTER_PLATFORM(intf, name) \
-	_REGISTER_PLATFORM(intf, name, _register_platform_##intf)
-
-/*
- * _REGISTER_PLATFORM Internal helper macro for REGISTER_PLATFORM.
- *
- * @_intf:        Platform interface.
- * @_name:        The name of the platform.
- * @function_id:  Identifier to be used for the generated function.
- *
- * This works by creating a constructor function [1] which
- * conditionally places the platform interface into the global list
- * before main runs.  In the case that _PLATFORM_IS_ENABLED(_name) can
- * be determined to be false at compile-time, the entire function,
- * including the references to the platform interface, will be
- * optimized away by the compiler.
- *
- * [1]: https://gcc.gnu.org/onlinedocs/gcc/Common-Function-Attributes.html
- */
-#define _REGISTER_PLATFORM(_intf, _name, function_id)                       \
-	static void __attribute__((constructor)) function_id(void)          \
-	{                                                                   \
-		_Static_assert(                                             \
-			__builtin_constant_p(_name),                        \
-			"Platform names must be a compile-time constant."); \
-		if (!__builtin_strcmp(CONFIG_SINGLE_PLATFORM, _name)) {     \
-			platform_intf = &(_intf);                           \
-		}                                                           \
-	}
-
-/**
- * platform_intf - The registered platform.
- *
- * Used internally by REGISTER_PLATFORM, as well as platform.c.
- */
-extern struct platform_intf *platform_intf;
-
-/*
- * mosys_platform_setup  -  determine current platform and return handler
- *
- * returns pointer to pre-defined interface for detected platform
- * returns NULL if platform not identified or other error
- *
- */
-extern struct platform_intf *mosys_platform_setup(void);
+extern struct platform_intf platform_intf;
 
 /*
  * platform_cmd_usage  -  print usage help text for command

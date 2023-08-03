@@ -49,9 +49,8 @@ static struct platform_cb kukui_cb = {
 	.memory = &kukui_memory_cb,
 };
 
-static struct platform_intf platform_kukui = {
+struct platform_intf platform_intf = {
 	.type = PLATFORM_ARMV8,
 	.sub = kukui_sub,
 	.cb = &kukui_cb,
 };
-REGISTER_PLATFORM(platform_kukui, "Kukui");

@@ -160,7 +160,6 @@ int mosys_main(int argc, char **argv)
 	int rc, errsv;
 	int argflag;
 	int verbose = LOG_ERR;
-	struct platform_intf *intf;
 	enum kv_pair_style style = KV_STYLE_VALUE;
 
 	mosys_globals_init();
@@ -208,22 +207,13 @@ int mosys_main(int argc, char **argv)
 	/* set the global verbosity level */
 	mosys_set_verbosity(verbose);
 
-	/* try to identify the platform */
-	intf = mosys_platform_setup();
-	if (!intf) {
-		lprintf(LOG_ERR, "Platform not supported\n");
-		rc = -1;
-		goto exit;
-	}
-
 	/* run command */
 	errno = 0;
-	rc = intf_main(intf, argc - optind, argv + optind);
+	rc = intf_main(&platform_intf, argc - optind, argv + optind);
 	errsv = errno;
 	if (rc < 0 && errsv == ENOSYS)
 		lprintf(LOG_ERR, "Command not supported on this platform\n");
 
-exit:
 	mosys_log_halt();
 
 	if (rc < 0 && errsv > 0)

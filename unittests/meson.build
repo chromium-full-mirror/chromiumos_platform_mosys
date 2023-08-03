@@ -31,7 +31,7 @@ foreach f: unittest_src
 
     test_target = executable(
         name,
-        [f] + libmosys_src,
+        [f] + libmosys_src + platform_support_src,
         include_directories: include_common,
         dependencies: [cmocka_dep],
         link_args : link_args,

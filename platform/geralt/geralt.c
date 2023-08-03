@@ -20,10 +20,8 @@ static struct platform_cb geralt_cb = {
 	.memory = &geralt_memory_cb,
 };
 
-static struct platform_intf platform_geralt = {
+struct platform_intf platform_intf = {
 	.type = PLATFORM_ARMV8,
 	.sub = geralt_sub,
 	.cb = &geralt_cb,
 };
-
-REGISTER_PLATFORM(platform_geralt, "Geralt");
