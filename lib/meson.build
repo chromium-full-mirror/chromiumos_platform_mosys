@@ -1,5 +1,4 @@
 subdir('file')
-subdir('math')
 subdir('memory')
 subdir('smbios')
 subdir('spd')

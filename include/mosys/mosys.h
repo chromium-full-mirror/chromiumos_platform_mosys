@@ -66,4 +66,6 @@
 #define MOSYS_DCHECK MOSYS_CHECK
 #endif
 
+#define ARRAY_SIZE(arr) (sizeof(arr) / sizeof((arr)[0]))
+
 #endif /* MOSYS_MOSYS_H__ */

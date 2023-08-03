@@ -39,10 +39,6 @@
 #include "lib/smbios.h"
 #include "mosys/log.h"
 
-#ifndef ARRAY_SIZE
-#define ARRAY_SIZE(x) (sizeof(x) / sizeof((x)[0]))
-#endif
-
 struct nonspd_mem_info {
 	/* DRAM type */
 	enum spd_dram_type dram_type;

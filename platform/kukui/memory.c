@@ -32,6 +32,7 @@
 #include "lib/nonspd.h"
 
 #include "mosys/log.h"
+#include "mosys/mosys.h"
 #include "mosys/platform.h"
 
 #include "kukui.h"

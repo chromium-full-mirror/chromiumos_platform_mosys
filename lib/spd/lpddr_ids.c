@@ -3,12 +3,14 @@
  * found in the LICENSE file.
  */
 
+#include <stdbool.h>
+
 #include "lib/lpddr_ids.h"
 
 #include "lib/fdt.h"
-#include <stdbool.h>
 #include "lib/nonspd.h"
 #include "lib/nonspd_modules.h"
+#include "mosys/mosys.h"
 
 enum herobrine_ram_manufacturer {
 	SAMSUNG = 0x01,

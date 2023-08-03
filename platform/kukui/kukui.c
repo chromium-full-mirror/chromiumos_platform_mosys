@@ -36,7 +36,6 @@
 #include "mosys/log.h"
 
 #include "lib/file.h"
-#include "lib/math.h"
 
 #include "kukui.h"
 

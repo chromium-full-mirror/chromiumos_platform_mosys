@@ -36,12 +36,12 @@
 #include <string.h>
 
 #include "jedec_id.h"
-#include "lib/math.h"
 #include "lib/nonspd.h"
 #include "lib/val2str.h"
 #include "mosys/platform.h"
 #include "mosys/kv_pair.h"
 #include "mosys/log.h"
+#include "mosys/mosys.h"
 
 /*
  * nonspd_print_field  -  add common DDR SPD fields into key=value pair

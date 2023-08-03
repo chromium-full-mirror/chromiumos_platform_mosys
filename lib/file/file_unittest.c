@@ -41,8 +41,8 @@
 #include <cmocka.h>
 // clang-format on
 
-#include "lib/math.h"
 #include "mosys/log.h"
+#include "mosys/mosys.h"
 #include "mosys/platform.h"
 
 #include "lib/file.h"
