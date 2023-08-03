@@ -25,7 +25,6 @@ static void usage(void)
 	       "    -l            print data in long format\n"
 	       "    -s [key]      print value for single key\n"
 	       "    -v            verbose (can be used multiple times)\n"
-	       "    -t            display command tree for detected platform\n"
 	       "    -h            print this help\n"
 	       "\n");
 }
@@ -161,7 +160,6 @@ int mosys_main(int argc, char **argv)
 	int rc, errsv;
 	int argflag;
 	int verbose = LOG_ERR;
-	bool showtree = false;
 	struct platform_intf *intf;
 	enum kv_pair_style style = KV_STYLE_VALUE;
 
@@ -185,9 +183,6 @@ int mosys_main(int argc, char **argv)
 			break;
 		case 'v':
 			verbose++;
-			break;
-		case 't':
-			showtree = true;
 			break;
 		case 'h':
 			usage();
@@ -218,12 +213,6 @@ int mosys_main(int argc, char **argv)
 	if (!intf) {
 		lprintf(LOG_ERR, "Platform not supported\n");
 		rc = -1;
-		goto exit;
-	}
-
-	if (showtree) {
-		print_tree(intf);
-		rc = 0;
 		goto exit;
 	}
 

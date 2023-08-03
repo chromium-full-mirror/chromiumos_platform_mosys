@@ -172,11 +172,4 @@ extern struct platform_intf *mosys_platform_setup(void);
  */
 extern void platform_cmd_usage(struct platform_cmd *cmd);
 
-/*
- * print_tree - print command tree for this platform
- *
- * @intf:	platform interface
- */
-extern void print_tree(struct platform_intf *intf);
-
 #endif /* MOSYS_PLATFORM_H__ */
