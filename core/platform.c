@@ -47,10 +47,6 @@ struct platform_intf *mosys_platform_setup(void)
 	if (!platform_intf)
 		return NULL;
 
-	/* call platform-specific setup if found */
-	if (platform_intf->setup && platform_intf->setup(platform_intf) < 0)
-		return NULL;
-
 	return platform_intf;
 }
 

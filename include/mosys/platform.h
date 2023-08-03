@@ -93,8 +93,6 @@ struct platform_intf {
 	enum platform_type type; /* numeric platform type */
 	struct platform_cmd **sub; /* list of commands */
 	struct platform_cb *cb; /* callbacks */
-
-	int (*setup)(struct platform_intf *intf);
 };
 
 /* Used for the global linked-list of all platforms. */
