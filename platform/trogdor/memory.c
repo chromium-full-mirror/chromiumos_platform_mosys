@@ -5,7 +5,6 @@
 
 #include "lib/fdt.h"
 #include "lib/nonspd.h"
-#include "lib/string.h"
 
 #include "mosys/platform.h"
 

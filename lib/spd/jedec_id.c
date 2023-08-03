@@ -35,8 +35,6 @@
 
 #include <stdlib.h>
 
-#include "lib/string.h"
-
 #include "jedec_id.h"
 
 /*
