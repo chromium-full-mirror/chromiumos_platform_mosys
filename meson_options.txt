@@ -1,12 +1,4 @@
 option(
-  'arch',
-  type : 'combo',
-  value: 'x86',
-  choices: ['x86', 'x86_64', 'amd64', 'arm', 'arm64'],
-  description: 'The target architecture.',
-)
-
-option(
   'platform_intf',
   type: 'string',
   description: 'If set to a non-empty string, compile for just this platform.',
