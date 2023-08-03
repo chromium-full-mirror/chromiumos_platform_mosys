@@ -220,7 +220,6 @@ int mosys_main(int argc, char **argv)
 		rc = -1;
 		goto exit;
 	}
-	lprintf(LOG_DEBUG, "Platform: %s\n", intf->name);
 
 	if (showtree) {
 		print_tree(intf);

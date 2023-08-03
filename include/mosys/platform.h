@@ -91,7 +91,6 @@ struct platform_cb {
  */
 struct platform_intf {
 	enum platform_type type; /* numeric platform type */
-	const char *name; /* canonical platform name */
 	struct platform_cmd **sub; /* list of commands */
 	struct platform_cb *cb; /* callbacks */
 
@@ -146,7 +145,6 @@ struct platform_list {
 			"Platform names must be a compile-time constant."); \
 		if (!__builtin_strcmp(CONFIG_SINGLE_PLATFORM, _name)) {     \
 			platform_intf = &(_intf);                           \
-			platform_intf->name = _name;                        \
 		}                                                           \
 	}
 
