@@ -89,8 +89,12 @@ static int populate_ram_info(void)
 			mem_info = &foresee_lpddr4x_flxc2004g_n1;
 		} else if (ram_code == 4 && ram_mid == HYNIX) {
 			mem_info = &hynix_lpddr4x_h54g56cyrbx247n;
+		} else if (ram_code == 4 && ram_mid == SAMSUNG) {
+			mem_info = &samsung_lpddr4x_k4ube3d4ab_mgcl;
 		} else if (ram_code == 5 && ram_mid == HYNIX) {
 			mem_info = &hynix_lpddr4x_h54g68cyrbx248n;
+		} else if (ram_code == 5 && ram_mid == SAMSUNG) {
+			mem_info = &samsung_lpddr4x_k4uce3q4ab_mgcl;
 		} else {
 			lprintf(LOG_ERR,
 				"%s: Unknown ram code or "
