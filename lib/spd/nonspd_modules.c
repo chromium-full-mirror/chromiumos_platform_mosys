@@ -733,6 +733,19 @@ const struct nonspd_mem_info samsung_lpddr4x_k4ube3d4aa_mgcl = {
 	.part_num		= "K4UBE3D4AA-MGCL",
 };
 
+const struct nonspd_mem_info samsung_lpddr4x_k4ube3d4ab_mgcl = {
+	.dram_type = SPD_DRAM_TYPE_LPDDR4X,
+
+	.module_size_mbits = 32768,
+	.num_ranks = 2,
+	.device_width = 32,
+
+	.module_mfg_id = MFGID_SAMSUNG,
+	.dram_mfg_id = MFGID_SAMSUNG,
+
+	.part_num = "K4UBE3D4AB-MGCL",
+};
+
 const struct nonspd_mem_info samsung_lpddr4x_k4ube3d4aa_mgcr = {
 	.dram_type		= SPD_DRAM_TYPE_LPDDR4X,
 
@@ -757,6 +770,19 @@ const struct nonspd_mem_info samsung_lpddr4x_k4uce3q4aa_mgcr = {
 	.dram_mfg_id		= MFGID_SAMSUNG,
 
 	.part_num		= "K4UCE3Q4AA-MGCR",
+};
+
+const struct nonspd_mem_info samsung_lpddr4x_k4uce3q4ab_mgcl = {
+	.dram_type = SPD_DRAM_TYPE_LPDDR4X,
+
+	.module_size_mbits = 65536,
+	.num_ranks = 2,
+	.device_width = 32,
+
+	.module_mfg_id = MFGID_SAMSUNG,
+	.dram_mfg_id = MFGID_SAMSUNG,
+
+	.part_num = "K4UCE3Q4AB-MGCL",
 };
 
 const struct nonspd_mem_info sandisk_lpddr4x_sdada4cr_128g = {
