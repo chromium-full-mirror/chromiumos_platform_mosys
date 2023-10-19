@@ -12,7 +12,6 @@
 #include <unistd.h>
 
 #include "mosys/cli.h"
-#include "mosys/globals.h"
 #include "mosys/kv_pair.h"
 #include "mosys/log.h"
 #include "mosys/platform.h"
@@ -206,9 +205,6 @@ int mosys_main(int argc, char **argv)
 	 * becomes, and the more information will be printed.
 	 */
 	mosys_log_init(argv[0], verbose, NULL);
-
-	/* set the global verbosity level */
-	mosys_set_verbosity(verbose);
 
 	/* run command */
 	errno = 0;
