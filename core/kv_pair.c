@@ -40,7 +40,6 @@
 #include <sys/file.h>
 
 #include "mosys/alloc.h"
-#include "mosys/globals.h"
 #include "mosys/kv_pair.h"
 
 /*
@@ -258,9 +257,8 @@ int kv_pair_print_to_file(FILE *fp, struct kv_pair *kv_list,
  */
 int kv_pair_print(struct kv_pair *kv_list)
 {
-	FILE *fp = mosys_get_output_file();
 	enum kv_pair_style style = mosys_get_kv_pair_style();
-	return kv_pair_print_to_file(fp, kv_list, style);
+	return kv_pair_print_to_file(stdout, kv_list, style);
 }
 
 static const char *single_key;

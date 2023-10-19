@@ -38,7 +38,6 @@
 #include <sys/types.h>
 
 #include "mosys/alloc.h"
-#include "mosys/globals.h"
 #include "mosys/log.h"
 #include "mosys/mosys.h"
 

@@ -167,8 +167,6 @@ int mosys_main(int argc, char **argv)
 	int verbose = LOG_ERR;
 	enum kv_pair_style style = KV_STYLE_VALUE;
 
-	mosys_globals_init();
-
 	while ((argflag = getopt(argc, argv, "klvtSs:p:h")) > 0) {
 		switch (argflag) {
 		case 'k':

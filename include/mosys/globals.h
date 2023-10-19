@@ -34,18 +34,6 @@
 #define MOSYS_GLOBALS_H__
 
 /*
- * init all mosys global settings
- */
-void mosys_globals_init(void);
-
-/*
- * manage the global output file
- */
-#include <stdio.h>
-extern FILE *mosys_get_output_file(void);
-extern void mosys_set_output_file(FILE *fp);
-
-/*
  * manage the global verbosity
  */
 extern int mosys_get_verbosity(void);

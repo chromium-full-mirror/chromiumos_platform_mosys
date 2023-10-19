@@ -33,28 +33,6 @@
 
 #include "mosys/globals.h"
 
-void mosys_globals_init(void)
-{
-	mosys_set_output_file(stdout);
-}
-
-/*
- * The global output destination
- */
-static FILE *mosys_output_file;
-
-FILE *mosys_get_output_file(void)
-{
-	if (!mosys_output_file)
-		return stdout;
-	return mosys_output_file;
-}
-
-void mosys_set_output_file(FILE *fp)
-{
-	mosys_output_file = fp;
-}
-
 /*
  * The global verbosity level
  */
