@@ -91,12 +91,4 @@ struct platform_intf {
  */
 extern struct platform_intf platform_intf;
 
-/*
- * platform_cmd_usage  -  print usage help text for command
- *
- * @cmd:	command pointer
- *
- */
-extern void platform_cmd_usage(struct platform_cmd *cmd);
-
 #endif /* MOSYS_PLATFORM_H__ */

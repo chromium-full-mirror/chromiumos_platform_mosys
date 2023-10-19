@@ -17,6 +17,11 @@
 #include "mosys/log.h"
 #include "mosys/platform.h"
 
+static void cmd_usage(struct platform_cmd *cmd)
+{
+	printf("usage: %s %s\n\n", cmd->name, cmd->usage ?: "");
+}
+
 static void usage(void)
 {
 	printf("usage: mosys [options] [commands]\n\n"
@@ -64,7 +69,7 @@ static int sub_main(struct platform_intf *intf, struct platform_cmd *sub,
 
 		/* this is a function, it might have more args */
 		if (argc > 0 && !strcmp(argv[0], "help")) {
-			platform_cmd_usage(sub);
+			cmd_usage(sub);
 			return 0;
 		}
 

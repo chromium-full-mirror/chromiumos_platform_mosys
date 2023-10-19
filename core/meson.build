@@ -4,7 +4,6 @@ libmosys_src += files(
   'globals.c',
   'kv_pair.c',
   'alloc.c',
-  'platform.c',
 )
 
 subdir('command')
