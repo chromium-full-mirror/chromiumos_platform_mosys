@@ -36,7 +36,6 @@
 
 #include "lib/fdt.h"
 #include "lib/file.h"
-#include "lib/string_builder.h"
 
 #include "mosys/alloc.h"
 #include "mosys/log.h"
@@ -45,32 +44,16 @@
 
 #define FDT_ROOT "/proc/device-tree/"
 /* FIXME: assume coreboot for now */
-#define FDT_RAM_CODE_PATH "firmware/coreboot/ram-code"
+#define FDT_RAM_CODE_PATH FDT_ROOT "firmware/coreboot/ram-code"
 
-#define LPDDR3_COMPAT_PATH "lpddr-channel0/rank@0/compatible"
-
-/* returns number of bytes read or -1 to indicate error */
-static ssize_t fdt_read_node(const char *path, char *buf, size_t buf_sz)
-{
-	ssize_t ret;
-	struct string_builder *sb;
-
-	sb = new_string_builder();
-	string_builder_strcat(sb, FDT_ROOT);
-	string_builder_strcat(sb, path);
-
-	ret = read_file(string_builder_get_string(sb), buf, buf_sz, LOG_ERR);
-
-	free_string_builder(sb);
-	return ret;
-}
+#define LPDDR3_COMPAT_PATH FDT_ROOT "lpddr-channel0/rank@0/compatible"
 
 static int fdt_get_uint32_val(const char *path, uint32_t *val)
 {
 	/* Leave room for a null-terminator in the buffer */
 	char buf[sizeof(*val) + 1];
 
-	if (fdt_read_node(path, buf, ARRAY_SIZE(buf)) < 0)
+	if (read_file(path, buf, ARRAY_SIZE(buf), LOG_ERR) < 0)
 		return -1;
 
 	*val = ntohl(*(uint32_t *)buf);
@@ -98,7 +81,7 @@ int fdt_get_ram_ids(uint8_t *manufacturer_id, uint8_t *revision_id1,
 {
 	char buf[32];
 
-	if (fdt_read_node(LPDDR3_COMPAT_PATH, (char *)buf, sizeof(buf)) <= 0) {
+	if (read_file(LPDDR3_COMPAT_PATH, buf, sizeof(buf), LOG_ERR) <= 0) {
 		lprintf(LOG_ERR, "%s: Error when reading Manufacturer ID\n",
 			__func__);
 		return -1;
