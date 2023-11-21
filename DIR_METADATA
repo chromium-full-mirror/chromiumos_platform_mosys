@@ -7,8 +7,8 @@
 #   https://source.chromium.org/chromium/infra/infra/+/HEAD:go/src/infra/tools/dirmd/proto/dir_metadata.proto
 
 buganizer {
-  # ChromeOS > Platform > Enablement > Firmware > mosys
-  component_id: 970973
+  # ChromeOS > Platform > baseOS > Firmware
+  component_id: 167172
 }
 
 chromeos {
