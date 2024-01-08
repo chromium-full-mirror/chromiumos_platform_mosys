@@ -62,6 +62,9 @@ static int get_mem_info(struct platform_intf *intf, int dimm,
 	case 0x20:
 		*info = &micron_lpddr4x_mt53e2g32d4nq_046wtc;
 		break;
+	case 0x21:
+		*info = &hynix_lpddr4x_h54g68cyrbx248;
+		break;
 	default:
 		lprintf(LOG_ERR, "Invalid RAM code: %d.\n", ram_code);
 		return -1;
