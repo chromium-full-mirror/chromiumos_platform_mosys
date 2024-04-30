@@ -653,3 +653,15 @@ const struct nonspd_mem_info cxmt_lpddr4x_cxdb5ccbm_ml_a = {
 
 	.part_num = "CXDB5CCBM-ML-A",
 };
+
+const struct nonspd_mem_info nanya_lpddr4x_nt6ap1024f32bl_j1 = {
+	.dram_type = SPD_DRAM_TYPE_LPDDR4X,
+
+	.module_size_mbits = 32768,
+	.num_ranks = 2,
+	.device_width = 32,
+	.module_mfg_id = MFGID_NANYA,
+	.dram_mfg_id = MFGID_NANYA,
+
+	.part_num = "NT6AP1024F32BL-J1",
+};
