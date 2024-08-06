@@ -32,10 +32,13 @@
 #include <arpa/inet.h>
 #include <errno.h>
 #include <inttypes.h>
+#include <limits.h>
 #include <string.h>
+#include <unistd.h>
 
 #include "lib/fdt.h"
 #include "lib/file.h"
+#include "lib/nonspd.h"
 
 #include "mosys/alloc.h"
 #include "mosys/log.h"
@@ -53,7 +56,7 @@ static int fdt_get_uint32_val(const char *path, uint32_t *val)
 	/* Leave room for a null-terminator in the buffer */
 	char buf[sizeof(*val) + 1];
 
-	if (read_file(path, buf, ARRAY_SIZE(buf), LOG_ERR) < 0)
+	if (read_file(path, buf, ARRAY_SIZE(buf), LOG_DEBUG) < 0)
 		return -1;
 
 	*val = ntohl(*(uint32_t *)buf);
@@ -76,12 +79,15 @@ int fdt_get_ram_code(uint32_t *ram_code)
 	return 0;
 }
 
-int fdt_get_ram_ids(uint8_t *manufacturer_id, uint8_t *revision_id1,
-		    uint8_t *revision_id2)
+static int fdt_extract_info_from_compatible(const char *path,
+					    uint8_t *lpddr_type,
+					    uint8_t *manufacturer_id,
+					    uint8_t *revision_id1,
+					    uint8_t *revision_id2)
 {
 	char buf[32];
 
-	if (read_file(LPDDR3_COMPAT_PATH, buf, sizeof(buf), LOG_ERR) <= 0) {
+	if (read_file(path, buf, sizeof(buf), LOG_ERR) <= 0) {
 		lprintf(LOG_ERR, "%s: Error when reading Manufacturer ID\n",
 			__func__);
 		return -1;
@@ -91,16 +97,126 @@ int fdt_get_ram_ids(uint8_t *manufacturer_id, uint8_t *revision_id1,
 	 * Manufacturer ID is in ascii value gated between '-' and ','
 	 * characters.  Revision ID is the hex number after the ','.
 	 */
-	if (sscanf(buf, "lpddr%*1d-%2hhx,%2hhx%2hhx", manufacturer_id,
-		   revision_id1, revision_id2) != 3) {
+	if (sscanf(buf, "lpddr%1hhu-%2hhx,%2hhx%2hhx", lpddr_type,
+		   manufacturer_id, revision_id1, revision_id2) != 4) {
 		lprintf(LOG_ERR,
-			"%s: Error when parsing Manufacturer/Revision ID\n",
+			"%s: Error when parsing LPDDR type/Manufacturer/Revision ID\n",
 			__func__);
 		return -1;
 	}
 
 	lprintf(LOG_DEBUG,
-		"%s: manufacturer_id: %#02x, revision_id: %#02x %#02x\n",
-		__func__, *manufacturer_id, *revision_id1, *revision_id2);
+		"%s: lpddr_type: %u, manufacturer_id: %#02x, revision_id: %#02x %#02x\n",
+		__func__, *lpddr_type, *manufacturer_id, *revision_id1,
+		*revision_id2);
+	return 0;
+}
+
+int fdt_get_ram_ids(uint8_t *manufacturer_id, uint8_t *revision_id1,
+		    uint8_t *revision_id2)
+{
+	uint8_t lpddr_type;
+
+	return fdt_extract_info_from_compatible(LPDDR3_COMPAT_PATH, &lpddr_type,
+						manufacturer_id, revision_id1,
+						revision_id2);
+}
+
+size_t fdt_channel_count(void)
+{
+	int status = 0;
+	size_t channel_count = 0;
+	char filepath[PATH_MAX];
+
+	while (status == 0) {
+		snprintf(filepath, sizeof(filepath),
+			 "/proc/device-tree/lpddr-channel%zu/name",
+			 channel_count);
+		status = access(filepath, F_OK);
+
+		if (status == 0)
+			channel_count++;
+	}
+
+	return channel_count;
+}
+
+int fdt_get_channel_info(int channel, struct fdt_memory_channel *chan_info)
+{
+	int status = 0, rank_count = 0;
+	char filepath[PATH_MAX], channel_path[PATH_MAX];
+	uint8_t lpddr_type, mfg_id, rev_id1, rev_id2;
+	uint32_t rank_size, channel_io_width, rank_io_width, density;
+
+	if (!chan_info)
+		return -1;
+
+	snprintf(channel_path, sizeof(channel_path),
+		 "/proc/device-tree/lpddr-channel%d", channel);
+
+	/* Get channel-io-width */
+	snprintf(filepath, sizeof(filepath), "%s/io-width", channel_path);
+	if (fdt_get_uint32_val(filepath, &channel_io_width)) {
+		lprintf(LOG_ERR, "%s: Error when reading channel-io-width\n",
+			__func__);
+		return -1;
+	}
+
+	/* Get rank-io-width */
+	snprintf(filepath, sizeof(filepath), "%s/rank@%d/io-width",
+		 channel_path, rank_count);
+	if (fdt_get_uint32_val(filepath, &rank_io_width)) {
+		lprintf(LOG_ERR, "%s: Error when reading rank-io-width\n",
+			__func__);
+		return -1;
+	}
+
+	if (rank_io_width == 0 || channel_io_width % rank_io_width) {
+		lprintf(LOG_ERR,
+			"%s: channel_io_width is not a multiple of "
+			"rank_io_width\n",
+			__func__);
+		return -1;
+	}
+
+	/* Calculate rank_count and density */
+	density = 0;
+	while (status == 0) {
+		snprintf(filepath, sizeof(filepath), "%s/rank@%d/density",
+			 channel_path, rank_count);
+		status = fdt_get_uint32_val(filepath, &rank_size);
+
+		if (status == 0) {
+			density +=
+				rank_size * (channel_io_width / rank_io_width);
+			rank_count++;
+		}
+	}
+
+	if (rank_count == 0) {
+		lprintf(LOG_ERR, "%s: Error when reading rank size\n",
+			__func__);
+		return -1;
+	}
+
+	/* Get LPDDR type, manufacturer ID, revision IDs */
+	snprintf(filepath, sizeof(filepath), "%s/rank@0/compatible",
+		 channel_path);
+	if (fdt_extract_info_from_compatible(filepath, &lpddr_type, &mfg_id,
+					     &rev_id1, &rev_id2)) {
+		lprintf(LOG_ERR,
+			"%s: Error when reading info from compatible\n",
+			__func__);
+		return -1;
+	}
+
+	chan_info->lpddr_type = lpddr_type;
+	chan_info->manufacturer_id = mfg_id;
+	chan_info->revision[0] = rev_id1;
+	chan_info->revision[1] = rev_id2;
+	chan_info->io_width = rank_io_width;
+	chan_info->density_mbits = density;
+	chan_info->num_ranks = rank_count;
+
 	return 0;
 }

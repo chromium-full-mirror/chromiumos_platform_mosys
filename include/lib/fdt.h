@@ -54,4 +54,16 @@ extern int fdt_get_ram_code(uint32_t *ram_code);
 extern int fdt_get_ram_ids(uint8_t *manufacturer_id, uint8_t *revision_id1,
 			   uint8_t *revision_id2);
 
+struct fdt_memory_channel {
+	uint8_t lpddr_type;
+	uint8_t manufacturer_id;
+	uint8_t revision[2];
+	size_t io_width;
+	size_t density_mbits;
+	size_t num_ranks;
+};
+
+size_t fdt_channel_count(void);
+int fdt_get_channel_info(int channel, struct fdt_memory_channel *mem_info);
+
 #endif /* MOSYS_LIB_FDT_H__ */
