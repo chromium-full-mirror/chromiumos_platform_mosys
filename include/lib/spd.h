@@ -39,6 +39,7 @@
 
 /* different types of DRAM (fundamental memory type) for SPD */
 enum spd_dram_type {
+	SPD_DRAM_TYPE_UNDEFINED = 0,
 	SPD_DRAM_TYPE_DDR3 = 0x0b,
 	SPD_DRAM_TYPE_LPDDR3 = 0xf1,
 	SPD_DRAM_TYPE_JEDEC_LPDDR3 = 0x0f,
