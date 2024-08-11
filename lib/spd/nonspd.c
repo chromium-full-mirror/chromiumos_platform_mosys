@@ -118,6 +118,10 @@ int nonspd_print_field(struct kv_pair *kv, const struct nonspd_mem_info *info,
 		if (tstr != NULL) {
 			kv_pair_fmt(kv, "module_mfg", "%u-%u: %s",
 				    manuf_lsb + 1, manuf_msb, tstr);
+		} else if (info->revision[0] || info->revision[1]) {
+			kv_pair_fmt(kv, "module_mfg", "%02x,%02x%02x",
+				    info->module_mfg_id.lsb, info->revision[0],
+				    info->revision[1]);
 		} else {
 			kv_pair_fmt(kv, "module_mfg", "%u-%u", manuf_lsb + 1,
 				    manuf_msb);
