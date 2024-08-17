@@ -11,4 +11,14 @@
 /* platform callbacks */
 extern struct memory_cb arm_memory_cb;
 
+/*
+ * get_dram_part_num - Get DRAM_PART_NUM from CBI.
+ *
+ * @buf :      buffer for storing DRAM_PART_NUM
+ * @buf_size : buffer size
+ *
+ * returns 0 to indicate success, otherwise failure.
+ */
+int get_dram_part_num(uint8_t *buf, size_t buf_size);
+
 #endif /* PLATFORM_ARM_H */

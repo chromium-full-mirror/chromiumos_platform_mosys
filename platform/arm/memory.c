@@ -45,6 +45,7 @@ static int get_mem_info(struct platform_intf *intf, int dimm,
 			const struct nonspd_mem_info **info)
 {
 	struct fdt_memory_channel chan_info;
+	static bool get_part_num_once;
 
 	if (fdt_get_channel_info(dimm, &chan_info))
 		return -1;
@@ -60,7 +61,13 @@ static int get_mem_info(struct platform_intf *intf, int dimm,
 	mem_info.num_ranks = chan_info.num_ranks;
 	mem_info.device_width = chan_info.io_width;
 
+	if (!get_part_num_once) {
+		get_dram_part_num(mem_info.part_num, sizeof(mem_info.part_num));
+		get_part_num_once = true;
+	}
+
 	*info = &mem_info;
+
 	return 0;
 }
 

@@ -39,6 +39,8 @@
 #include "lib/smbios.h"
 #include "mosys/log.h"
 
+#define PART_NUM_LEN 33
+
 struct nonspd_mem_info {
 	/* DRAM type */
 	enum spd_dram_type dram_type;
@@ -73,7 +75,7 @@ struct nonspd_mem_info {
 	} module_mfg_date;
 
 	/* Module Part Number */
-	uint8_t part_num[33];
+	uint8_t part_num[PART_NUM_LEN];
 
 	/* DRAM Manufacturer ID */
 	struct {
