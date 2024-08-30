@@ -1,3 +1,4 @@
+subdir('cbi')
 subdir('file')
 subdir('memory')
 subdir('smbios')

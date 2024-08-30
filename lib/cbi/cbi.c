@@ -8,7 +8,7 @@
 #include <string.h>
 #include <sys/wait.h>
 #include <unistd.h>
-#include "arm.h"
+#include "lib/cbi.h"
 #include "lib/nonspd.h"
 
 #define READ_FD 0
@@ -23,7 +23,7 @@ static void _strip_eol(char *str)
 		*newline = '\0';
 }
 
-int get_dram_part_num(uint8_t *buf, size_t buf_size)
+int cbi_get_dram_part_num(uint8_t *buf, size_t buf_size)
 {
 	pid_t pid;
 	int fd[2];

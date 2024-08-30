@@ -11,7 +11,7 @@
 #include <unistd.h>
 
 #include <cmocka.h>
-#include "arm.h"
+#include "lib/cbi.h"
 #include "lib/nonspd.h"
 
 typeof(execvp) __wrap_execvp;
@@ -46,8 +46,8 @@ static void buffer_size_test(void **state)
 {
 	ectool_mock_part_num = PART_NUM_STR;
 
-	assert_int_not_equal(get_dram_part_num(buf, 0), 0);
-	assert_int_equal(get_dram_part_num(buf, sizeof(buf)), 0);
+	assert_int_not_equal(cbi_get_dram_part_num(buf, 0), 0);
+	assert_int_equal(cbi_get_dram_part_num(buf, sizeof(buf)), 0);
 	assert_string_equal(buf, PART_NUM_STR);
 }
 
@@ -55,7 +55,7 @@ static void ectool_long_part_num_test(void **state)
 {
 	ectool_mock_part_num = PART_NUM_STR PART_NUM_STR;
 
-	assert_int_not_equal(get_dram_part_num(buf, sizeof(buf)), 0);
+	assert_int_not_equal(cbi_get_dram_part_num(buf, sizeof(buf)), 0);
 }
 
 static void ectool_non_zero_exit_test(void **state)
@@ -63,7 +63,7 @@ static void ectool_non_zero_exit_test(void **state)
 	ectool_mock_part_num = PART_NUM_STR;
 	ectool_exit_code = 1;
 
-	assert_int_not_equal(get_dram_part_num(buf, sizeof(buf)), 0);
+	assert_int_not_equal(cbi_get_dram_part_num(buf, sizeof(buf)), 0);
 }
 
 #define TEST(test_function_name) \

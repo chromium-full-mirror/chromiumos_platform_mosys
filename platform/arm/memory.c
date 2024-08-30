@@ -3,6 +3,7 @@
  * found in the LICENSE file.
  */
 
+#include "lib/cbi.h"
 #include "lib/fdt.h"
 #include "lib/memory.h"
 #include "lib/nonspd.h"
@@ -62,7 +63,8 @@ static int get_mem_info(struct platform_intf *intf, int dimm,
 	mem_info.device_width = chan_info.io_width;
 
 	if (!get_part_num_once) {
-		get_dram_part_num(mem_info.part_num, sizeof(mem_info.part_num));
+		cbi_get_dram_part_num(mem_info.part_num,
+				      sizeof(mem_info.part_num));
 		get_part_num_once = true;
 	}
 

@@ -4,8 +4,5 @@
 
 platform_support_src += files(
   'arm.c',
-  'cbi.c',
   'memory.c',
 )
-
-unittest_src += files('cbi_unittest.c')
