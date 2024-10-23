@@ -57,6 +57,7 @@ extern const struct nonspd_mem_info samsung_lpddr4x_k4u6e3s4ab_mgcl;
 extern const struct nonspd_mem_info samsung_lpddr4x_k4ube3d4aa_mgcl;
 extern const struct nonspd_mem_info samsung_lpddr4x_k4ube3d4ab_mgcl;
 extern const struct nonspd_mem_info samsung_lpddr4x_k4ube3d4aa_mgcr;
+extern const struct nonspd_mem_info samsung_lpddr4x_k4uce3d4aa_mgcl;
 extern const struct nonspd_mem_info samsung_lpddr4x_k4uce3q4aa_mgcr;
 extern const struct nonspd_mem_info samsung_lpddr4x_k4uce3q4ab_mgcl;
 extern const struct nonspd_mem_info sandisk_lpddr4x_sdada4cr_128g;
