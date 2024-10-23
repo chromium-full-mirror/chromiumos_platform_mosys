@@ -71,6 +71,9 @@ static int get_mem_info(struct platform_intf *intf, int dimm,
 	case 0x22:
 		*info = &samsung_lpddr4x_k4uce3q4ab_mgcl;
 		break;
+	case 0x23:
+		*info = &samsung_lpddr4x_k4uce3d4aa_mgcl;
+		break;
 	default:
 		lprintf(LOG_ERR, "Invalid RAM code: %d.\n", ram_code);
 		return -1;
