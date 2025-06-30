@@ -678,3 +678,15 @@ const struct nonspd_mem_info nanya_lpddr4x_nt6ap1024f32bl_j1 = {
 
 	.part_num = "NT6AP1024F32BL-J1",
 };
+
+const struct nonspd_mem_info rayson_lpddr4x_rs2g32lv4d4bdt_46bt = {
+	.dram_type = SPD_DRAM_TYPE_LPDDR4X,
+
+	.module_size_mbits = 65536,
+	.num_ranks = 2,
+	.device_width = 32,
+	.module_mfg_id = MFGID_MICRON,
+	.dram_mfg_id = MFGID_MICRON,
+
+	.part_num = "RS2G32LV4D4BDT-46BT",
+};
