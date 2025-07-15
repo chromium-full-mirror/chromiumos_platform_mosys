@@ -63,6 +63,8 @@ extern const struct nonspd_mem_info foresee_lpddr4x_feprf6432_58a1930;
 extern const struct nonspd_mem_info foresee_lpddr4x_flxc2004g_n1;
 extern const struct nonspd_mem_info cxmt_lpddr4x_cxdb5ccbm_ml_a;
 extern const struct nonspd_mem_info nanya_lpddr4x_nt6ap1024f32bl_j1;
+extern const struct nonspd_mem_info rayson_lpddr4x_rs1g32lr4d2bnr_46bt;
+extern const struct nonspd_mem_info rayson_lpddr4x_rs2g32lr4d4bnr_46bt;
 extern const struct nonspd_mem_info rayson_lpddr4x_rs2g32lv4d4bdt_46bt;
 
 #endif /* LIB_NONSPD_MODULES_H__ */

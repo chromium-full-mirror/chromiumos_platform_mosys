@@ -53,6 +53,9 @@ static int get_mem_info(struct platform_intf *intf, int dimm,
 	case 0x05:
 		*info = &nanya_lpddr4x_nt6ap1024f32bl_j1;
 		break;
+	case 0x06:
+		*info = &rayson_lpddr4x_rs1g32lr4d2bnr_46bt;
+		break;
 	case 0x11:
 		*info = &hynix_lpddr4x_h9hcnnnbkmmlxr_nee;
 		break;
@@ -76,6 +79,9 @@ static int get_mem_info(struct platform_intf *intf, int dimm,
 		break;
 	case 0x24:
 		*info = &rayson_lpddr4x_rs2g32lv4d4bdt_46bt;
+		break;
+	case 0x25:
+		*info = &rayson_lpddr4x_rs2g32lr4d4bnr_46bt;
 		break;
 	default:
 		lprintf(LOG_ERR, "Invalid RAM code: %d.\n", ram_code);
