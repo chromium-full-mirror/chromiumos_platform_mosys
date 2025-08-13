@@ -685,8 +685,8 @@ const struct nonspd_mem_info rayson_lpddr4x_rs1g32lr4d2bnr_46bt = {
 	.module_size_mbits = 32768,
 	.num_ranks = 1,
 	.device_width = 16,
-	.module_mfg_id = MFGID_MICRON,
-	.dram_mfg_id = MFGID_MICRON,
+	.module_mfg_id = MFGID_CXMT,
+	.dram_mfg_id = MFGID_CXMT,
 
 	.part_num = "RS1G32LR4D2BNR-46BT",
 };
@@ -697,8 +697,8 @@ const struct nonspd_mem_info rayson_lpddr4x_rs2g32lr4d4bnr_46bt = {
 	.module_size_mbits = 65536,
 	.num_ranks = 2,
 	.device_width = 16,
-	.module_mfg_id = MFGID_MICRON,
-	.dram_mfg_id = MFGID_MICRON,
+	.module_mfg_id = MFGID_CXMT,
+	.dram_mfg_id = MFGID_CXMT,
 
 	.part_num = "RS2G32LR4D4BNR-46BT",
 };
