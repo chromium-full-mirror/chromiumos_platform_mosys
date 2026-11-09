@@ -48,7 +48,7 @@ static void buffer_size_test(void **state)
 
 	assert_int_not_equal(cbi_get_dram_part_num(buf, 0), 0);
 	assert_int_equal(cbi_get_dram_part_num(buf, sizeof(buf)), 0);
-	assert_string_equal(buf, PART_NUM_STR);
+	assert_string_equal((const char *)buf, PART_NUM_STR);
 }
 
 static void ectool_long_part_num_test(void **state)
